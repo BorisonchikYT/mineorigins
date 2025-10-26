@@ -1,0 +1,1657 @@
+/* Страница поселений */
+.settlements-section {
+    padding: 2rem 0;
+}
+
+/* Статистика поселений */
+.settlements-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.settlement-stat {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.settlement-stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left var(--transition-slow);
+}
+
+.settlement-stat:hover::before {
+    left: 100%;
+}
+
+.settlement-stat:hover {
+    transform: translateY(-5px);
+    border-color: var(--mc-accent);
+    box-shadow: 0 10px 30px rgba(126, 87, 194, 0.2);
+}
+
+.stat-visual {
+    position: relative;
+}
+
+.stat-3d-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.stat-data {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Карта мира - ОБНОВЛЕНО */
+.world-map {
+    margin: 4rem 0;
+    position: relative;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    border: 2px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+}
+
+.map-point {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: all var(--transition-fast);
+    z-index: 10;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+.map-point.hell {
+    background: var(--hell-color);
+}
+
+.map-point.heaven {
+    background: var(--heaven-color);
+}
+
+.map-point.earth {
+    background: var(--earth-color);
+}
+
+.map-point.glhell {
+    background: linear-gradient(45deg, var(--hell-color), #ff6b6b);
+    border: 3px solid #ffd700;
+}
+
+.map-point.glheaven {
+    background: linear-gradient(45deg, var(--heaven-color), #4fc3f7);
+    border: 3px solid #ffd700;
+}
+
+.map-point.glearth {
+    background: linear-gradient(45deg, var(--earth-color), #8bc34a);
+    border: 3px solid #ffd700;
+}
+
+.map-point:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+    z-index: 20;
+}
+
+.point-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    animation: pointPulse 2s infinite;
+    opacity: 0.7;
+}
+
+@keyframes pointPulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.5); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 0.7; }
+}
+
+.point-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    filter: blur(8px);
+    opacity: 0.4;
+}
+
+.map-point:hover .point-glow {
+    filter: blur(12px);
+    opacity: 0.6;
+}
+
+/* Подсказка на карте */
+.map-tooltip {
+    position: absolute;
+    margin-top: 150px;
+    background: rgba(15, 15, 23, 0.95);
+    border: 1px solid var(--mc-accent);
+    border-radius: 10px;
+    padding: 1rem;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all var(--transition-fast);
+    pointer-events: none;
+    min-width: 200px;
+    backdrop-filter: blur(10px);
+}
+
+.map-tooltip.visible {
+    opacity: 10;
+    transform: translateY(0);
+}
+
+.tooltip-content {
+    text-align: center;
+}
+
+.tooltip-content strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.tooltip-content span {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+}
+
+/* Легенда карты */
+.map-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(15, 15, 23, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+    z-index: 5;
+    backdrop-filter: blur(10px);
+}
+
+.legend-title {
+    font-size: 0.9rem;
+    color: var(--text-accent);
+    margin-bottom: 0.8rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.legend-color.hell { background: var(--hell-color); }
+.legend-color.heaven { background: var(--heaven-color); }
+.legend-color.earth { background: var(--earth-color); }
+.legend-color.glhell { background: linear-gradient(45deg, var(--hell-color), #ff6b6b); }
+.legend-color.glheaven { background: linear-gradient(45deg, var(--heaven-color), #4fc3f7); }
+.legend-color.glearth { background: linear-gradient(45deg, var(--earth-color), #8bc34a); }
+
+/* Быстрая информация */
+.quick-settlement-info {
+    position: fixed;
+    background: rgba(15, 15, 23, 0.95);
+    border: 2px solid;
+    border-radius: 15px;
+    padding: 1.5rem;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all var(--transition-fast);
+    pointer-events: none;
+    max-width: 250px;
+}
+
+.quick-settlement-info.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quick-settlement-info.hell-theme {
+    border-color: var(--hell-color);
+    background: linear-gradient(135deg, rgba(15, 15, 23, 0.95), rgba(42, 26, 26, 0.95));
+}
+
+.quick-settlement-info.heaven-theme {
+    border-color: var(--heaven-color);
+    background: linear-gradient(135deg, rgba(15, 15, 23, 0.95), rgba(26, 42, 58, 0.95));
+}
+
+.quick-settlement-info.earth-theme {
+    border-color: var(--earth-color);
+    background: linear-gradient(135deg, rgba(15, 15, 23, 0.95), rgba(26, 42, 26, 0.95));
+}
+
+.info-content {
+    position: relative;
+}
+
+.info-content h4 {
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.info-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-stats span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.close-info {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--mc-accent);
+    border: none;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Сетка поселений */
+.settlements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.settlement-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.settlement-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.settlement-card.hell-settlement:hover {
+    border-color: var(--hell-color);
+    box-shadow: 0 15px 40px rgba(255, 68, 68, 0.3);
+}
+
+.settlement-card.heaven-settlement:hover {
+    border-color: var(--heaven-color);
+    box-shadow: 0 15px 40px rgba(79, 195, 247, 0.3);
+}
+
+.settlement-card.earth-settlement:hover {
+    border-color: var(--earth-color);
+    box-shadow: 0 15px 40px rgba(139, 195, 74, 0.3);
+}
+
+/* Визуальная часть поселения */
+.settlement-visual {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.settlement-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    border: 3px solid;
+    overflow: hidden;
+}
+
+.settlement-image.hell {
+    background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
+    border-color: var(--hell-glow);
+}
+
+.settlement-image.heaven {
+    background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
+    border-color: var(--heaven-glow);
+}
+
+.settlement-image.earth {
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+    border-color: var(--earth-glow);
+}
+
+.settlement-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+}
+
+.settlement-card:hover .settlement-glow {
+    opacity: 0.5;
+}
+
+.population-badge, .level-badge {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.population-badge {
+    top: 1rem;
+    left: 1rem;
+}
+
+.level-badge {
+    top: 1rem;
+    right: 1rem;
+}
+
+/* Контент поселения */
+.settlement-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.settlement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.settlement-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.settlement-leader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.leader-label {
+    color: var(--text-secondary);
+}
+
+.leader-name {
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.settlement-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.settlement-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+/* Особенности поселения */
+.settlement-features {
+    margin-bottom: 1.5rem;
+}
+
+.settlement-features h4 {
+    margin-bottom: 0.8rem;
+    color: var(--text-accent);
+    font-size: 1rem;
+}
+
+.features-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.feature-tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-fast);
+}
+
+.feature-tag:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Футер карточки */
+.settlement-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.established-date {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.view-details-btn {
+    padding: 0.6rem 1.2rem;
+    background: rgba(126, 87, 194, 0.2);
+    border: 1px solid var(--mc-accent);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.view-details-btn:hover {
+    background: var(--mc-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(126, 87, 194, 0.3);
+}
+
+/* Модальное окно поселения */
+.settlement-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.settlement-modal.active {
+    opacity: 1;
+}
+
+.settlement-modal .modal-content {
+    background: var(--mc-dark);
+    border: 2px solid;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.settlement-modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.settlement-image-large {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border: 4px solid;
+}
+
+.settlement-image-large.hell {
+    background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
+    border-color: var(--hell-glow);
+}
+
+.settlement-image-large.heaven {
+    background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
+    border-color: var(--heaven-glow);
+}
+
+.settlement-image-large.earth {
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+    border-color: var(--earth-glow);
+}
+
+.settlement-info {
+    flex: 1;
+}
+
+.settlement-info h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.settlement-level {
+    font-size: 1rem;
+    color: var(--text-accent);
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.settlement-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.settlement-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.detail-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.detail-item h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-accent);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.feature-icon {
+    font-size: 1rem;
+}
+
+.mini-map {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin: 1rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.coordinates {
+    text-align: center;
+    font-family: 'Minecraft', monospace;
+    color: var(--text-accent);
+    font-size: 0.9rem;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.visit-btn, .share-btn {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.visit-btn {
+    background: var(--mc-accent);
+    color: white;
+}
+
+.visit-btn:hover {
+    background: #6d46b5;
+    transform: translateY(-2px);
+}
+
+.share-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.share-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Уведомления */
+.visit-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.visit-notification.active {
+    opacity: 1;
+}
+
+.notification-content {
+    background: var(--mc-dark);
+    border: 2px solid var(--mc-accent);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.visit-notification.active .notification-content {
+    transform: scale(1);
+}
+
+.notification-content h4 {
+    margin-bottom: 1.5rem;
+    color: var(--text-accent);
+    font-size: 1.5rem;
+}
+
+.notification-content pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    white-space: pre-wrap;
+    font-family: 'Minecraft', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.copy-coords-btn, .close-notification {
+    padding: 0.8rem 1.5rem;
+    margin: 0 0.5rem;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.copy-coords-btn {
+    background: var(--mc-accent);
+    color: white;
+}
+
+.copy-coords-btn:hover {
+    background: #6d46b5;
+}
+
+.close-notification {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.close-notification:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--mc-accent);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    z-index: 10001;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.toast-notification.show {
+    transform: translateX(0);
+}
+
+/* Фильтры поселений */
+.settlements-filter {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.settlement-filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.settlement-filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.settlement-filter-btn:hover::before {
+    left: 100%;
+}
+
+.settlement-filter-btn.active {
+    background: rgba(126, 87, 194, 0.2);
+    border-color: var(--mc-accent);
+    color: var(--text-primary);
+    box-shadow: 0 0 20px rgba(126, 87, 194, 0.3);
+}
+
+.settlement-filter-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--mc-accent);
+}
+
+/* Поиск поселений */
+.settlements-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+}
+
+.settlements-search:focus {
+    outline: none;
+    border-color: var(--mc-accent);
+    box-shadow: 0 0 20px rgba(126, 87, 194, 0.3);
+}
+
+.settlements-search::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Адаптивность для страницы поселений */
+@media (max-width: 1024px) {
+    .settlements-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .settlements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+    
+    .settlement-details {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .settlements-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .settlements-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .settlement-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .modal-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .settlement-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .settlement-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+}
+
+
+/* Дополнительные стили для settlements */
+.advanced-filters {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-group label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filter-group select {
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: inherit;
+}
+
+/* Улучшенные модальные окна */
+.settlement-stats-detailed {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.settlement-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.leader-info {
+    font-weight: bold;
+    color: var(--text-accent);
+}
+
+.view-leader-profile {
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(126, 87, 194, 0.2);
+    border: 1px solid var(--mc-accent);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.view-leader-profile:hover {
+    background: var(--mc-accent);
+}
+
+.biome-tag, .age-tag {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.features-grid-detailed {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.feature-item-detailed {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid var(--mc-accent);
+}
+
+.feature-content {
+    flex: 1;
+}
+
+.feature-content strong {
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.feature-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Интерактивная карта в модальном окне */
+.interactive-map {
+    margin: 1rem 0;
+}
+
+.map-overview {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 68, 68, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(79, 195, 247, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(139, 195, 74, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+}
+
+.map-point-large {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.map-point-large.hell {
+    background: var(--hell-color);
+    box-shadow: 0 0 20px var(--hell-color);
+}
+
+.map-point-large.heaven {
+    background: var(--heaven-color);
+    box-shadow: 0 0 20px var(--heaven-color);
+}
+
+.map-point-large.earth {
+    background: var(--earth-color);
+    box-shadow: 0 0 20px var(--earth-color);
+}
+
+.point-glow-large {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    animation: pointPulseLarge 2s infinite;
+}
+
+@keyframes pointPulseLarge {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+.map-coordinates {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.coordinate-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.coord-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.coord-value {
+    font-family: 'Minecraft', monospace;
+    color: var(--text-accent);
+    font-size: 0.9rem;
+}
+
+/* Галерея */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.gallery-item {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+}
+
+.gallery-item.placeholder {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Уведомления о точках пути */
+.waypoint-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10002;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.waypoint-notification.active {
+    opacity: 1;
+}
+
+.waypoint-notification .notification-content {
+    background: var(--mc-dark);
+    border: 2px solid var(--mc-accent);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.waypoint-notification.active .notification-content {
+    transform: scale(1);
+}
+
+.notification-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* Подсказки на карте */
+.point-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 15, 23, 0.95);
+    border: 1px solid var(--mc-accent);
+    border-radius: 8px;
+    padding: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-fast);
+    z-index: 1000;
+}
+
+.point-tooltip strong {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+}
+
+.point-tooltip span {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.no-settlements-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 2px solid var(--mc-accent);
+}
+
+.no-settlements-message h3 {
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+}
+
+/* Статусы войны */
+.war-status-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid;
+}
+
+.war-status-badge.peace {
+    background: rgba(76, 175, 80, 0.2);
+    border-color: #4caf50;
+    color: #4caf50;
+}
+
+.war-status-badge.defensive {
+    background: rgba(255, 193, 7, 0.2);
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+.war-status-badge.aggressive {
+    background: rgba(244, 67, 54, 0.2);
+    border-color: #f44336;
+    color: #f44336;
+}
+
+.war-status-badge.neutral {
+    background: rgba(158, 158, 158, 0.2);
+    border-color: #9e9e9e;
+    color: #9e9e9e;
+}
+
+.war-status-badge-large {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 3px solid;
+}
+
+/* Координаты в карточке */
+.settlement-coordinates {
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.coordinates-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+}
+
+.coordinates-value {
+    font-family: 'Minecraft', monospace;
+    font-size: 0.9rem;
+    color: var(--text-accent);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+}
+
+/* Сетка жителей */
+.settlement-residents {
+    margin: 2rem 0;
+}
+
+.residents-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.resident-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.resident-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.resident-avatar {
+    font-size: 1.2rem;
+    width: 30px;
+    text-align: center;
+}
+
+.resident-name {
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.leader-tag, .deputy-tag {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--text-accent);
+    color: var(--mc-dark);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 8px;
+    border: 1px solid var(--mc-dark);
+}
+
+.deputy-tag {
+    background: var(--mc-accent);
+}
+
+/* Биомы и возраст */
+.biome-tag, .age-tag {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Адаптивность для новых элементов */
+@media (max-width: 768px) {
+    .residents-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .war-status-badge {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .settlement-coordinates {
+        font-size: 0.8rem;
+    }
+}
+
+/* Стили для уведомлений о точках пути и профилях */
+.waypoint-notification .notification-content,
+.leader-profile-notification .notification-content {
+    max-width: 600px;
+}
+
+.waypoint-format-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.format-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.format-btn.active {
+    background: var(--mc-accent);
+    color: white;
+    border-color: var(--mc-accent);
+}
+
+.waypoint-code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.leader-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.leader-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border: 3px solid;
+}
+
+.leader-avatar.hell {
+    background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
+    border-color: var(--hell-glow);
+}
+
+.leader-avatar.heaven {
+    background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
+    border-color: var(--heaven-glow);
+}
+
+.leader-avatar.earth {
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+    border-color: var(--earth-glow);
+}
+
+.leader-details h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.leader-achievements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.leader-achievements li {
+    padding: 0.5rem;
+    margin: 0.3rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    border-left: 3px solid var(--mc-accent);
+}
+
+/* Стили для фильтров */
+.filter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.advanced-filters {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 150px;
+}
+
+.filter-group label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filter-group select {
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--mc-accent);
+}
+
+/* Адаптивность фильтров */
+@media (max-width: 768px) {
+    .advanced-filters {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .filter-group {
+        min-width: auto;
+    }
+    
+    .filter-buttons {
+        gap: 0.5rem;
+    }
+    
+    .settlement-filter-btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.8rem;
+    }
+}
