@@ -63,6 +63,54 @@
                 <p class="section-subtitle">Лучшие моменты и постройки нашего сообщества</p>
             </div>
 
+<!-- Добавить после .section-header -->
+<div class="gallery-stats">
+    <div class="gallery-stat stat-total">
+        <span class="stat-icon">🖼️</span>
+        <div class="stat-info">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Всего фото</div>
+        </div>
+    </div>
+    <div class="gallery-stat stat-builds">
+        <span class="stat-icon">🏰</span>
+        <div class="stat-info">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Построек</div>
+        </div>
+    </div>
+    <div class="gallery-stat stat-nature">
+        <span class="stat-icon">🌿</span>
+        <div class="stat-info">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Природы</div>
+        </div>
+    </div>
+    <div class="gallery-stat stat-events">
+        <span class="stat-icon">🎉</span>
+        <div class="stat-info">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Событий</div>
+        </div>
+    </div>
+</div>
+
+<!-- Добавить бейджи категорий в каждую .gallery-card -->
+<div class="category-badge category-builds">Постройки</div>
+
+<!-- Добавить модальное окно перед закрывающим </body> -->
+<div class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close">×</button>
+        <img class="modal-image" src="" alt="">
+        <div class="modal-info">
+            <h3 class="modal-title"></h3>
+            <p class="modal-description"></p>
+            <div class="modal-stats"></div>
+        </div>
+    </div>
+</div>
+
             <div class="gallery-filters">
                 <button class="filter-btn active" data-filter="all">Все</button>
                 <button class="filter-btn" data-filter="builds">Постройки</button>
