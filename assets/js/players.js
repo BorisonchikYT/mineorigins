@@ -455,7 +455,7 @@ function hideLoadingState() {
 function loadDemoPlayersData() {
     console.log('Загружаем демо данные...');
     const demoPlayers = [
-        {
+      {
             "id": 1,
             "name": "_Kot_Baris_",
             "avatar": "assets/images/icons/kotbaris.png",
@@ -499,8 +499,8 @@ function loadDemoPlayersData() {
             "description": "Дворф — бывший воин который просто хочет спокойно жить но приключения зовут его\nЖивет в городе Фрикбург  и хочет накопить золотых чтобы построить лучшую харчевню где люди и нелюди смогли бы давать и брать задания просто отдыхать и снимать жилье а так же участвовать в рейдах на замки и быть наемниками,",
             "joinDate": "",
             "socials": {
-              "discord": "darcklord#3456",
-              "telegram": "@darcklord"
+              "discord": "",
+              "telegram": ""
             }
           },
           {
@@ -598,7 +598,55 @@ function loadDemoPlayersData() {
                 "discord": "",
                 "telegram": ""
             }
-          }
+      },
+          {
+            "id": 13,
+            "name": "Yaryna",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "hell",
+            "description": "Демоница — житель Логова Хантера, дружелюбная и общительная участница сервера.",
+            "joinDate": "",
+            "socials": {
+                "discord": "prus404",
+                "telegram": "@Prus404"
+            }
+      }, 
+          {
+            "id": 14,
+            "name": "Lemonchik",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "hell",
+            "description": "",
+            "joinDate": "",
+            "socials": {
+                "discord": "",
+                "telegram": ""
+            }
+      }, 
+          {
+            "id": 15,
+            "name": "tropic_yt2021",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "earth",
+            "description": "",
+            "joinDate": "",
+            "socials": {
+                "discord": "",
+                "telegram": ""
+            }
+      }, 
+          {
+            "id": 16,
+            "name": "Ayaz_ak",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "earth",
+            "description": "",
+            "joinDate": "",
+            "socials": {
+                "discord": "",
+                "telegram": ""
+            }
+      }
     ];
     renderPlayersGrid(demoPlayers);
     updatePlayersStats(demoPlayers);
