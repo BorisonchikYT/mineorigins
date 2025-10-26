@@ -143,6 +143,19 @@
                 "discord": "",
                 "telegram": ""
             }
+      },
+          {
+            "id": 13,
+            "name": "Yaryna",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "hell",
+            "description": "Демоница — житель Логова Хантера, дружелюбная и общительная участница сервера.",
+            "joinDate": "",
+            "socials": {
+                "discord": "",
+                "telegram": "@Prus404"
+            }
       }
+
     ]
   }
