@@ -155,6 +155,42 @@
                 "discord": "prus404",
                 "telegram": "@Prus404"
             }
+      }, 
+          {
+            "id": 14,
+            "name": "Lemonchik",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "hell",
+            "description": "",
+            "joinDate": "",
+            "socials": {
+                "discord": "",
+                "telegram": ""
+            }
+      }, 
+          {
+            "id": 15,
+            "name": "tropic_yt2021",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "earth",
+            "description": "",
+            "joinDate": "",
+            "socials": {
+                "discord": "",
+                "telegram": ""
+            }
+      }, 
+          {
+            "id": 16,
+            "name": "Ayaz_ak",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "earth",
+            "description": "",
+            "joinDate": "",
+            "socials": {
+                "discord": "",
+                "telegram": ""
+            }
       }
 
     ]
