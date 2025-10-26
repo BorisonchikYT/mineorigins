@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Origins - Главная</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="floating-island hell-island" data-speed="2"></div>
+        <div class="floating-island heaven-island" data-speed="1.5"></div>
+        <div class="floating-island earth-island" data-speed="1"></div>
+        <div class="particles"></div>
+        <div class="nether-portal"></div>
+        <div class="end-gateway"></div>
+    </div>
+
+    <!--<div class="minecraft-cursor"></div> -->
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-logo">
+                    <!-- <div class="cube-3d">
+                        <div class="face front"></div>
+                        <div class="face back"></div>
+                        <div class="face right"></div>
+                        <div class="face left"></div>
+                        <div class="face top"></div>
+                        <div class="face bottom"></div>
+                    </div> -->
+                </div>
+                <div class="brand-text">
+                    <h1>MINE</h1>
+                    <span>ORIGINS</span>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item active" data-text="ГЛАВНАЯ">
+                    <span class="nav-icon">⛏️</span>
+                    ГЛАВНАЯ
+                </a>
+                <a href="players.html" class="nav-item" data-text="ИГРОКИ">
+                    <span class="nav-icon">👥</span>
+                    ИГРОКИ
+                </a>
+                <a href="settlements.html" class="nav-item" data-text="ПОСЕЛЕНИЯ">
+                    <span class="nav-icon">🏰</span>
+                    ПОСЕЛЕНИЯ
+                </a>
+            </div>
+
+            <div class="server-status">
+                <div class="status-indicator online"></div>
+                <span class="status-text">ОНЛАЙН</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="title-wrapper">
+                    <h2 class="main-title">
+                        <span class="title-word">MINE</span>
+                        <span class="title-word">ORIGINS</span>
+                    </h2>
+                    <div class="title-subtext">
+                        <span class="fabric-label">FABRIC 1.21.1</span>
+                        <span class="version-badge">v0.6</span>
+                    </div>
+                </div>
+
+                <div class="server-description">
+                    <p>Присоеденяйся к нам на сервер, переходы в Telegram канал и скачивай сборку</p>
+                </div>
+
+                <!-- МБ ДОБАВЛЮ В БУДУЩЕМ 
+                <div class="server-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-data">
+                            <div class="stat-number" data-target="156">0</div>
+                            <div class="stat-label">Игроков онлайн</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-data">
+                            <div class="stat-number" data-target="24">0</div>
+                            <div class="stat-label">Поселений</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"></div>
+                        <div class="stat-data">
+                            <div class="stat-number" data-target="327">0</div>
+                            <div class="stat-label">Всего игроков</div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="action-buttons">
+                    <a href="https://discord.gg/KK4dCevPah" class="action-btn discord-btn">
+                        <span class="btn-glow"></span>
+                        <span class="btn-icon"></span>
+                        Discord Сервер
+                    </a>
+                    <a href="https://t.me/mine_origins" class="action-btn telegram-btn">
+                        <span class="btn-glow"></span>
+                        <span class="btn-icon"></span>
+                        Telegram Канал
+                    </a>
+                </div>
+            </div>
+
+            <div class="races-showcase">
+                <div class="race-card hell-race" data-race="hell">
+                    <div class="race-visual">
+                        <div class="race-icon">🔥</div>
+                        <div class="race-glow"></div>
+                    </div>
+                    <div class="race-info">
+                        <h3>ДЕМОНЫ</h3>
+                        <p>Живут в аду</p>
+                        <div class="race-stats">
+                            <span class="stat">Скоро</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="race-card heaven-race" data-race="heaven">
+                    <div class="race-visual">
+                        <div class="race-icon">👼</div>
+                        <div class="race-glow"></div>
+                    </div>
+                    <div class="race-info">
+                        <h3>АНГЕЛЫ</h3>
+                        <p>Живут в раю</p>
+                        <div class="race-stats">
+                            <span class="stat">Скоро</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="race-card earth-race" data-race="earth">
+                    <div class="race-visual">
+                        <div class="race-icon">🌍</div>
+                        <div class="race-glow"></div>
+                    </div>
+                    <div class="race-info">
+                        <h3>ЗЕМНЫЕ</h3>
+                        <p>Живут на земле</p>
+                        <div class="race-stats">
+                            <span class="stat">Скоро</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="section-header">
+                <h2 class="section-title">ОСОБЕННОСТИ СЕРВЕРА</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-animation">
+                        <div class="floating-block"></div>
+                    </div>
+                    <div class="feature-content">
+                        <h3>СИСТЕМА РАС</h3>
+                        <p>Уникальные способности и характеристики для каждой расы</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-animation">
+                        <div class="rotating-item">⚔️</div>
+                    </div>
+                    <div class="feature-content">
+                        <h3>ЭПИЧЕСКИЕ СРАЖЕНИЯ</h3>
+                        <p>PvP и PvE контенты для всех стилей игры</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-animation">
+                        <div class="pulsing-core"></div>
+                    </div>
+                    <div class="feature-content">
+                        <h3>ЭКОНОМИКА</h3>
+                        <p>Развитая торговая система и рынок</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Онлайн статистика ТОЖЕ МБ ДОБАВЛЮ
+        <section class="online-stats">
+            <div class="stats-container">
+                <h3>ОНЛАЙН СТАТИСТИКА</h3>
+                <div class="stats-grid">
+                    <div class="online-chart">
+                        <canvas id="onlineChart"></canvas>
+                    </div>
+                    <div class="players-online">
+                        <h4>СЕЙЧАС ИГРАЮТ</h4>
+                        <div class="online-list" id="onlineList">
+                            Список игроков будет заполнен через JS
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">MINECRAFT ORIGINS</div>
+                <p>Лучший сервер с системой рас и происхождений</p>
+            </div>
+            <div class="footer-section">
+                <h4>БЫСТРЫЕ ССЫЛКИ</h4>
+                <a href="index.html">Главная</a>
+                <a href="players.html">Игроки</a>
+                <a href="settlements.html">Поселения</a>
+            </div>
+            <div class="footer-section">
+                <h4>СООБЩЕСТВО</h4>
+                <a href="https://discord.gg/KK4dCevPah">Discord</a>
+                <a href="https://t.me/mine_origins">Telegram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 MINECRAFT ORIGINS. Все права защищены.</p>
+            <p>Minecraft™ является товарным знаком Mojang AB</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игроки - Minecraft Origins</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/players.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="floating-island hell-island" data-speed="2"></div>
+        <div class="floating-island heaven-island" data-speed="1.5"></div>
+        <div class="floating-island earth-island" data-speed="1"></div>
+        <div class="particles"></div>
+    </div>
+
+    <!-- <div class="minecraft-cursor"></div> -->
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-logo">
+                    <!-- <div class="cube-3d">
+                        <div class="face front"></div>
+                        <div class="face back"></div>
+                        <div class="face right"></div>
+                        <div class="face left"></div>
+                        <div class="face top"></div>
+                        <div class="face bottom"></div>
+                    </div> -->
+                </div>
+                <div class="brand-text">
+                    <h1>MINECRAFT</h1>
+                    <span>ORIGINS</span>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item" data-text="ГЛАВНАЯ">
+                    <span class="nav-icon">⛏️</span>
+                    ГЛАВНАЯ
+                </a>
+                <a href="players.html" class="nav-item active" data-text="ИГРОКИ">
+                    <span class="nav-icon">👥</span>
+                    ИГРОКИ
+                </a>
+                <a href="settlements.html" class="nav-item" data-text="ПОСЕЛЕНИЯ">
+                    <span class="nav-icon">🏰</span>
+                    ПОСЕЛЕНИЯ
+                </a>
+            </div>
+
+            <div class="server-status">
+                <div class="status-indicator online"></div>
+                <span class="status-text">ОНЛАЙН</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="players-section">
+            <div class="section-header">
+                <h2 class="section-title">СООБЩЕСТВО ИГРОКОВ</h2>
+                <div class="title-underline"></div>
+                <!-- <p class="section-subtitle">Знакомьтесь с нашим дружным сообществом</p> -->
+            </div>
+
+            <div class="players-stats-overview">
+                <div class="players-stat">
+                    <div class="stat-badge hell">
+                        <span class="stat-icon">🔥</span>
+                        <div class="stat-info">
+                            <div class="stat-number" data-target="1">1</div>
+                            <div class="stat-label">Демоны</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="players-stat">
+                    <div class="stat-badge heaven">
+                        <span class="stat-icon">👼</span>
+                        <div class="stat-info">
+                            <div class="stat-number" data-target="4">4</div>
+                            <div class="stat-label">Ангелы</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="players-stat">
+                    <div class="stat-badge earth">
+                        <span class="stat-icon">🌍</span>
+                        <div class="stat-info">
+                            <div class="stat-number" data-target="7">7</div>
+                            <div class="stat-label">Земные</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="players-stat">
+                    <div class="stat-badge total">
+                        <span class="stat-icon">👥</span>
+                        <div class="stat-info">
+                            <div class="stat-number" data-target="12">12</div>
+                            <div class="stat-label">Всего</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="players-controls">
+                <input type="text" class="players-search" placeholder="🔍 Поиск игрока..." id="playersSearch">
+                
+                <div class="players-filter">
+                    <button class="filter-btn active" data-filter="all">
+                        <span class="filter-icon">🌟</span>
+                        ВСЕ ИГРОКИ
+                    </button>
+                    <button class="filter-btn" data-filter="hell">
+                        <span class="filter-icon">🔥</span>
+                        ДЕМОНЫ
+                    </button>
+                    <button class="filter-btn" data-filter="heaven">
+                        <span class="filter-icon">👼</span>
+                        АНГЕЛЫ
+                    </button>
+                    <button class="filter-btn" data-filter="earth">
+                        <span class="filter-icon">🌍</span>
+                        ЗЕМНЫЕ
+                    </button>
+                </div>
+            </div>
+
+            <div class="players-grid" id="playersGrid">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Загрузка игроков...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2024 MINECRAFT ORIGINS. Все права защищены.</p>
+            <p>Minecraft™ является товарным знаком Mojang AB</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/players.js"></script>
+</body>
+</html>
