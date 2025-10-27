@@ -1,197 +1,197 @@
 {
-    "players": [
-       {
-            "id": 1,
-            "name": "_Kot_Baris_",
-            "avatar": "assets/images/icons/kotbaris.png",
-            "race": "earth",
-            "description": "◈ Земной\nКото-человек, я лидер земной расы, создатель ФрикБургской Империи, хочет наладить мир между расами.",
-            "joinDate": "2025-10-11",
-            "socials": {
-              "discord": "borisonchik_yt",
-              "telegram": "@BorisonchikOfficial",
-            }
-          },
-          {
-            "id": 2,
-            "name": "stalker_hunter_",
-            "avatar": "assets/images/icons/stalker.png",
-            "race": "hell",
-            "description": "◈ Демон\nПадший Ангел — лидер адской расы, присутствует на сервере с открытия. Сохраняет нейтралитет между ФрикБургом и ВДНХ, наблюдает за порядком в аду и на поверхности.",
-            "joinDate": "2025-10-11",
-            "socials": {
-              "discord": "stalker_hunter_",
-              "telegram": "@Stalker_Hunter_s"
-            }
-          },
-          {
-            "id": 3,
-            "name": "amidamaru3434",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "heaven",
-            "description": "◈ Ангел\nСерафим — лидер райской расы, присутствует на сервере с открытия.",
-            "joinDate": "",
-            "socials": {
+  "players": [
+     {
+          "id": 1,
+          "name": "_Kot_Baris_",
+          "avatar": "assets/images/icons/kotbaris.png",
+          "race": "earth",
+          "description": "◈ Земной\nКото-человек, я лидер земной расы, создатель ФрикБургской Империи, хочет наладить мир между расами.",
+          "joinDate": "2025-10-11",
+          "socials": {
+            "discord": "borisonchik_yt",
+            "telegram": "@BorisonchikOfficial"
+          }
+        },
+        {
+          "id": 2,
+          "name": "stalker_hunter_",
+          "avatar": "assets/images/icons/stalker.png",
+          "race": "hell",
+          "description": "◈ Демон\nПадший Ангел — лидер адской расы, присутствует на сервере с открытия. Сохраняет нейтралитет между ФрикБургом и ВДНХ, наблюдает за порядком в аду и на поверхности.",
+          "joinDate": "2025-10-11",
+          "socials": {
+            "discord": "stalker_hunter_",
+            "telegram": "@Stalker_Hunter_s"
+          }
+        },
+        {
+          "id": 3,
+          "name": "amidamaru3434",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "heaven",
+          "description": "◈ Ангел\nСерафим — лидер райской расы, присутствует на сервере с открытия.",
+          "joinDate": "",
+          "socials": {
+            "discord": "",
+            "telegram": ""
+          }
+        },
+        {
+          "id": 4,
+          "name": "darcklord",
+          "avatar": "assets/images/icons/darcklord.png",
+          "race": "earth",
+          "description": "Дворф — бывший воин который просто хочет спокойно жить но приключения зовут его\nЖивет в городе Фрикбург  и хочет накопить золотых чтобы построить лучшую харчевню где люди и нелюди смогли бы давать и брать задания просто отдыхать и снимать жилье а так же участвовать в рейдах на замки и быть наемниками,",
+          "joinDate": "",
+          "socials": {
+            "discord": "",
+            "telegram": ""
+          }
+        },
+        {
+          "id": 5,
+          "name": "ddanilkaaaa",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "",
+          "socials": {
               "discord": "",
               "telegram": ""
-            }
-          },
-          {
-            "id": 4,
-            "name": "darcklord",
-            "avatar": "assets/images/icons/darcklord.png",
-            "race": "earth",
-            "description": "Дворф — бывший воин который просто хочет спокойно жить но приключения зовут его\nЖивет в городе Фрикбург  и хочет накопить золотых чтобы построить лучшую харчевню где люди и нелюди смогли бы давать и брать задания просто отдыхать и снимать жилье а так же участвовать в рейдах на замки и быть наемниками,",
-            "joinDate": "",
-            "socials": {
+          }
+        },
+        {
+          "id": 6,
+          "name": "deace",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "heaven",
+          "description": "",
+          "joinDate": "",
+          "socials": {
               "discord": "",
               "telegram": ""
-            }
-          },
-          {
-            "id": 5,
-            "name": "ddanilkaaaa",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "earth",
-            "description": "",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-          },
-          {
-            "id": 6,
-            "name": "deace",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "heaven",
-            "description": "",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-          },
-          {
-            "id": 7,
-            "name": "hyutjnh",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "heaven",
-            "description": "Ангел - участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": "@ED4MKM_AERO"
-            }
-          },
-          {
-            "id": 8,
-            "name": "jdh16",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "earth",
-            "description": "",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-          },
-          {
-            "id": 9,
-            "name": "maxxaumka",
-            "avatar": "assets/images/icons/maksimka.png",
-            "race": "earth",
-            "description": "Волшебник с самого начала активен на сервере. Он нейтрален ко всем расам и кланам и не состоит ни в одном клане. Живёт в кубе вместе с пользователем snekky_off, с которым изучает различные механизмы и машины.",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-          },
-          {
-            "id": 10,
-            "name": "nicotine",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "earth",
-            "description": "",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-          },
-          {
-            "id": 11,
-            "name": "pandamom",
-            "avatar": "assets/images/icons/pandamom.png",
-            "race": "earth",
-            "description": "Кото-человек просто кот присутствую хз когда сохраняю мирность в ФрикБурге бегаю",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-          },
-          {
-            "id": 12,
-            "name": "snekky_offc",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "heaven",
-            "description": "",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-      },
-          {
-            "id": 13,
-            "name": "Yaryna",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "hell",
-            "description": "Демоница — житель Логова Хантера, дружелюбная и общительная участница сервера.",
-            "joinDate": "",
-            "socials": {
-                "discord": "prus404",
-                "telegram": "@Prus404"
-            }
-      }, 
-          {
-            "id": 14,
-            "name": "Lemonchik",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "hell",
-            "description": "",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-      }, 
-          {
-            "id": 15,
-            "name": "tropic_yt2021",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "earth",
-            "description": "",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-      }, 
-          {
-            "id": 16,
-            "name": "Ayaz_ak",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "earth",
-            "description": "",
-            "joinDate": "",
-            "socials": {
-                "discord": "",
-                "telegram": ""
-            }
-      }
+          }
+        },
+        {
+          "id": 7,
+          "name": "hyutjnh",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "heaven",
+          "description": "Ангел - участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис",
+          "joinDate": "",
+          "socials": {
+              "discord": "",
+              "telegram": "@ED4MKM_AERO"
+          }
+        },
+        {
+          "id": 8,
+          "name": "jdh16",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "",
+          "socials": {
+              "discord": "",
+              "telegram": ""
+          }
+        },
+        {
+          "id": 9,
+          "name": "maxxaumka",
+          "avatar": "assets/images/icons/maksimka.png",
+          "race": "earth",
+          "description": "Волшебник с самого начала активен на сервере. Он нейтрален ко всем расам и кланам и не состоит ни в одном клане. Живёт в кубе вместе с пользователем snekky_off, с которым изучает различные механизмы и машины.",
+          "joinDate": "",
+          "socials": {
+              "discord": "",
+              "telegram": ""
+          }
+        },
+        {
+          "id": 10,
+          "name": "nicotine",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "",
+          "socials": {
+              "discord": "",
+              "telegram": ""
+          }
+        },
+        {
+          "id": 11,
+          "name": "pandamom",
+          "avatar": "assets/images/icons/pandamom.png",
+          "race": "earth",
+          "description": "Кото-человек просто кот присутствую хз когда сохраняю мирность в ФрикБурге бегаю",
+          "joinDate": "",
+          "socials": {
+              "discord": "",
+              "telegram": ""
+          }
+        },
+        {
+          "id": 12,
+          "name": "snekky_offc",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "heaven",
+          "description": "",
+          "joinDate": "",
+          "socials": {
+              "discord": "",
+              "telegram": ""
+          }
+    },
+        {
+          "id": 13,
+          "name": "Yaryna",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "hell",
+          "description": "Демоница — житель Логова Хантера, дружелюбная и общительная участница сервера.",
+          "joinDate": "",
+          "socials": {
+              "discord": "prus404",
+              "telegram": "@Prus404"
+          }
+    }, 
+        {
+          "id": 14,
+          "name": "Lemonchik",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "hell",
+          "description": "",
+          "joinDate": "",
+          "socials": {
+              "discord": "",
+              "telegram": ""
+          }
+    }, 
+        {
+          "id": 15,
+          "name": "tropic_yt2021",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "",
+          "socials": {
+              "discord": "",
+              "telegram": ""
+          }
+    }, 
+        {
+          "id": 16,
+          "name": "Ayaz_ak",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "",
+          "socials": {
+              "discord": "",
+              "telegram": ""
+          }
+    }
 
-    ]
-  }
+  ]
+}

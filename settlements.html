@@ -38,18 +38,30 @@
                 </div>
             </div>
             
+            <style>
+                .nav-image-index {
+                    width: 35;
+                    height: 35px;
+                    display: inline-block;
+                }
+                    </style>
+
             <div class="nav-menu">
-                <a href="index.html" class="nav-item" data-text="ГЛАВНАЯ">
-                    <span class="nav-icon">⛏️</span>
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index"></span>
                     ГЛАВНАЯ
                 </a>
-                <a href="players.html" class="nav-item" data-text="ИГРОКИ">
-                    <span class="nav-icon">👥</span>
+                <a href="players.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index"></span>
                     ИГРОКИ
                 </a>
-                <a href="settlements.html" class="nav-item active" data-text="ПОСЕЛЕНИЯ">
-                    <span class="nav-icon">🏰</span>
+                <a href="settlements.html" class="nav-item active">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index"></span>
                     ПОСЕЛЕНИЯ
+                </a>
+                <a href="gallery.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index"></span>
+                    ГАЛЕРЕЯ
                 </a>
             </div>
 
@@ -110,15 +122,19 @@
                         <div class="point-pulse"></div>
                         <div class="point-glow"></div>
                     </div>
-                    <div class="map-point earth" style="top: 45%; left: 50%;" data-settlement="База Тропика">
+                    <div class="map-point earth" style="top: 62%; left: 80%;" data-settlement="База Тропика">
                         <div class="point-pulse"></div>
                         <div class="point-glow"></div>
                     </div>
-                    <div class="map-point earth" style="top: 20%; left: 15%;" data-settlement="ВДНХ">
+                    <div class="map-point earth" style="top: 65%; left: 59%;" data-settlement="ВДНХ">
                         <div class="point-pulse"></div>
                         <div class="point-glow"></div>
                     </div>
-                    <div class="map-point heaven" style="top: 95%; left: 90%;" data-settlement="База Ангелов">
+                    <div class="map-point heaven" style="top: 50%; left: 35%;" data-settlement="База Ангелов">
+                        <div class="point-pulse"></div>
+                        <div class="point-glow"></div>
+                    </div>
+                    <div class="map-point earth" style="top: 30%; left: 08%;" data-settlement="Максимка">
                         <div class="point-pulse"></div>
                         <div class="point-glow"></div>
                     </div>
@@ -142,25 +158,361 @@
                     </div>
                 </div>
             </div>
+            <style>
+                .resized-image {
+                    width: 25px;
+                    height: 25px;
+                    display: inline-block;
+                }
 
+                .resized-image2 {
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+                }
+
+                .resized-image3 {
+                    width: 30px;
+                    height: 30px;
+                    display: inline-block;
+                }
+
+                .resized-image_map {
+                    width: 25px;
+                    height: 25px;
+                    display: inline-block;
+                }
+
+.resized-image_map2 {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+                .settlements-search {
+    padding-left: 65px;
+    width: 350px;
+    height: 50px;
+    background-image: url('assets/images/icons/icon_search.gif');
+    background-size: 40px 40px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+}
+
+.settlement-banner {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Базовые стили для десктопов */
+.resized-image {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+
+.resized-image2 {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.resized-image3 {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.resized-image_map {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+
+.resized-image_map2 {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.settlements-search {
+    padding-left: 65px;
+    width: 350px;
+    height: 50px;
+    background-image: url('assets/images/icons/icon_search.gif');
+    background-size: 40px 40px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+}
+
+.settlement-banner {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .resized-image {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .resized-image2 {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .resized-image3 {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .resized-image_map {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .resized-image_map2 {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .settlements-search {
+        padding-left: 55px;
+        width: 300px;
+        height: 45px;
+        background-size: 35px 35px;
+    }
+}
+
+/* Большие телефоны (576px - 767px) */
+@media (max-width: 767px) {
+    .resized-image {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .resized-image2 {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .resized-image3 {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .resized-image_map {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .resized-image_map2 {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .settlements-search {
+        padding-left: 50px;
+        width: 280px;
+        height: 42px;
+        background-size: 32px 32px;
+        background-position: 8px center;
+    }
+    
+    .settlement-banner {
+        margin-bottom: 12px;
+    }
+}
+
+/* Средние телефоны (425px - 575px) */
+@media (max-width: 575px) {
+    .resized-image {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .resized-image2 {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .resized-image3 {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .resized-image_map {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .resized-image_map2 {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .settlements-search {
+        padding-left: 45px;
+        width: 100%;
+        max-width: 250px;
+        height: 40px;
+        background-size: 28px 28px;
+        background-position: 8px center;
+        font-size: 14px;
+    }
+    
+    .settlement-banner {
+        margin-bottom: 10px;
+        border-radius: 6px;
+    }
+    
+    .banner-image {
+        border-radius: 6px;
+    }
+}
+
+/* Маленькие телефоны (375px - 424px) */
+@media (max-width: 424px) {
+    .resized-image {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .resized-image2 {
+        width: 13px;
+        height: 13px;
+    }
+    
+    .resized-image3 {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .resized-image_map {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .resized-image_map2 {
+        width: 13px;
+        height: 13px;
+    }
+    
+    .settlements-search {
+        padding-left: 42px;
+        width: 100%;
+        max-width: 220px;
+        height: 38px;
+        background-size: 26px 26px;
+        background-position: 8px center;
+        font-size: 13px;
+    }
+}
+
+/* Очень маленькие телефоны (до 374px) */
+@media (max-width: 374px) {
+    .resized-image {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .resized-image2 {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .resized-image3 {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .resized-image_map {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .resized-image_map2 {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .settlements-search {
+        padding-left: 40px;
+        width: 100%;
+        max-width: 200px;
+        height: 36px;
+        background-size: 24px 24px;
+        background-position: 8px center;
+        font-size: 12px;
+    }
+    
+    .settlement-banner {
+        margin-bottom: 8px;
+        border-radius: 4px;
+    }
+    
+    .banner-image {
+        border-radius: 4px;
+    }
+}
+
+/* Дополнительно для ориентации */
+@media (max-height: 500px) and (orientation: landscape) {
+    .resized-image3 {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .settlements-search {
+        height: 35px;
+        background-size: 25px 25px;
+    }
+}
+
+/* Высокопиксельные экраны (Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .settlements-search {
+        background-image: url('assets/images/icons/icon_search@2x.gif');
+    }
+}
+                    </style>
             <div class="settlements-filter">
-                <input type="text" class="settlements-search" placeholder="🔍 Поиск поселения..." id="settlementsSearch">
+                <input type="text" class="settlements-search" placeholder="Поиск поселения..." id="settlementsSearch">
                 
                 <div class="filter-buttons">
                     <button class="settlement-filter-btn active" data-filter="all">
-                        <span class="filter-icon">🌟</span>
+                        <span class="filter-icon"><img src="assets/images/icons/index_icon_players.gif" class="resized-image"></span>
                         ВСЕ
                     </button>
                     <button class="settlement-filter-btn" data-filter="hell">
-                        <span class="filter-icon">🔥</span>
+                        <span class="filter-icon"><img src="assets/images/icons/icon_demon.gif" class="resized-image"></span>
                         ДЕМОНЫ
                     </button>
                     <button class="settlement-filter-btn" data-filter="heaven">
-                        <span class="filter-icon">👼</span>
+                        <span class="filter-icon"><img src="assets/images/icons/icon_angel.gif" class="resized-image"></span>
                         АНГЕЛЫ
                     </button>
                     <button class="settlement-filter-btn" data-filter="earth">
-                        <span class="filter-icon">🌍</span>
+                        <span class="filter-icon"><img src="assets/images/icons/icon_terrestrial.gif" class="resized-image"></span>
                         ЗЕМНЫЕ
                     </button>
                 </div>
@@ -170,11 +522,12 @@
                 <div class="settlement-card earth-settlement visible" data-race="earth" data-settlement-id="1">
                     <div class="settlement-visual">
                         <div class="settlement-image earth">
+                            <img src="assets/images/icons/settlements/boris.png" class="settlement-banner-link" target="_blank" style="height: 105%;">
+                            </a>
                             <div class="settlement-glow"></div>
-                            <div class="population-badge">👥 8</div>
+                            <div class="population-badge"><img src="assets/images/icons/index_icon_players.gif" class="resized-image3"> 8</div>
                             <div class="war-status-badge defensive">🏹 В боевой готовности</div>
                         </div>
-                    </div>
                     
                     <div class="settlement-content">
                         <div class="settlement-header">
@@ -183,13 +536,13 @@
                         </div>
                         
                         <div class="settlement-leader">
-                            <span class="leader-label">👑 Лидер:</span>
+                            <span class="leader-label"><img src="assets/images/icons/icon_leader.gif" class="resized-image3"> ЛИДЕР:</span>
                             <span class="leader-name">_Kot_Baris_</span>
                         </div>
                         
                         <div class="settlement-location">
-                            <span class="location-icon">📍</span>
-                            <span class="location-text">Земля</span>
+                            <span class="location-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="resized-image3"></span>
+                            <span class="location-text">ЗЕМЛЯ</span>
                         </div>
                         
                         <div class="settlement-description">
@@ -197,7 +550,7 @@
                         </div>
                         
                         <div class="settlement-features">
-                            <h4>🚀 Особенности</h4>
+                            <h4><img src="assets/images/icons/icon_peculiarities.gif" class="resized-image3"> ОСОБЕННОСТИ</h4>
                             <div class="features-list">
                                 <span class="feature-tag">Свобода слова и действий</span>
                                 <span class="feature-tag">Адекватные люди</span>
@@ -205,7 +558,7 @@
                         </div>
                         
                         <div class="settlement-coordinates">
-                            <span class="coordinates-label">📌 Координаты города:</span>
+                            <span class="coordinates-label">📌 КООРДИНАТЫ ГОРОДА:</span>
                             <code class="coordinates-value">30 86 1018</code>
                         </div>
                     </div>
@@ -215,6 +568,55 @@
                     </div>
                 </div>
             </div>
+
+            <div class="settlement-card hell-settlement visible" data-race="hell" data-settlement-id="2">
+                <div class="settlement-visual">
+                    <div class="settlement-image hell">
+                        <img src="" class="settlement-banner-link" target="_blank" style="height: 105%;">
+                        </a>
+                        <div class="settlement-glow"></div>
+                        <div class="population-badge"><img src="assets/images/icons/index_icon_players.gif" class="resized-image3"> 1</div>
+                        <div class="war-status-badge defensive">Скоро</div>
+                    </div>
+                
+                <div class="settlement-content">
+                    <div class="settlement-header">
+                        <h3 class="settlement-name">Логово Хантера</h3>
+                        <span class="settlement-race-badge">Демоны</span>
+                    </div>
+                    
+                    <div class="settlement-leader">
+                        <span class="leader-label"><img src="assets/images/icons/icon_leader.gif" class="resized-image3"> ЛИДЕР:</span>
+                        <span class="leader-name">stalker_hunter_</span>
+                    </div>
+                    
+                    <div class="settlement-location">
+                        <span class="location-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="resized-image3"></span>
+                        <span class="location-text">ПОД ЗЕМЛЁЙ</span>
+                    </div>
+                    
+                    <div class="settlement-description">
+                        <p>Скоро</p>
+                    </div>
+                    
+                    <div class="settlement-features">
+                        <h4><img src="assets/images/icons/icon_peculiarities.gif" class="resized-image3"> ОСОБЕННОСТИ</h4>
+                        <div class="features-list">
+                            <span class="feature-tag">Скоро</span>
+                        </div>
+                    </div>
+                    
+                    <div class="settlement-coordinates">
+                        <span class="coordinates-label">📌 КООРДИНАТЫ БАЗЫ:</span>
+                        <code class="coordinates-value">212 80 495</code>
+                    </div>
+                </div>
+                
+                <div class="settlement-footer">
+                    <span class="established-date">Основано 11.10.2025</span>
+                </div>
+            </div>
+        </div>
         </section>
     </main>
 

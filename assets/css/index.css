@@ -307,7 +307,7 @@
     position: relative;
 }
 
-.floating-block {
+/* .floating-block {
     width: 60px;
     height: 60px;
     background: linear-gradient(135deg, var(--mc-accent), #5e35b1);
@@ -325,7 +325,7 @@
     bottom: 0;
     background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.3) 50%, transparent 52%);
     border-radius: 10px;
-}
+} */
 
 @keyframes blockFloat {
     0%, 100% { transform: translateY(0px) rotate(0deg); }

@@ -410,8 +410,8 @@
 
 .settlement-image {
     position: relative;
-    width: 100%;
-    height: 200px;
+    width: auto;
+    height: 300px;
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -421,19 +421,42 @@
     overflow: hidden;
 }
 
+/* Добавьте фоновое изображение для каждой расы */
 .settlement-image.hell {
-    background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
+    background: linear-gradient(135deg, var(--hell-dark), var(--hell-color)), 
+                url('assets/image/icon/seyt/boris.png') center/cover;
     border-color: var(--hell-glow);
 }
 
 .settlement-image.heaven {
-    background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
+    background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color)), 
+                url('assets/image/icon/seyt/boris.png') center/cover;
     border-color: var(--heaven-glow);
 }
 
 .settlement-image.earth {
-    background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth-color)), 
+                url('assets/image/icon/seyt/boris.png') center/cover;
     border-color: var(--earth-glow);
+}
+
+/* Стили для кликабельной ссылки-баннера */
+.settlement-banner-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* Сделайте остальные элементы поверх ссылки */
+.settlement-glow,
+.population-badge,
+.war-status-badge {
+    position: relative;
+    z-index: 3;
 }
 
 .settlement-glow {
@@ -508,6 +531,7 @@
 }
 
 .leader-name {
+    font-size: 25px;
     color: var(--text-primary);
     font-weight: bold;
 }
@@ -522,6 +546,7 @@
 }
 
 .settlement-description {
+    font-size: 15px;
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 1.5rem;

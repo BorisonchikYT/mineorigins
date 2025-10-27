@@ -83,7 +83,7 @@ function renderSettlementsGrid(settlements) {
     if (settlements.length === 0) {
         grid.innerHTML = `
             <div class="no-settlements-message">
-                <h3>🏰 Поселения не найдены</h3>
+                <h3>Поселения не найдены</h3>
                 <p>Попробуйте обновить страницу или проверьте файл данных</p>
             </div>
         `;
@@ -124,18 +124,6 @@ mapContainer.innerHTML = `
             <div class="legend-item">
                 <div class="legend-color earth"></div>
                 <span>Земные</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color glhell"></div>
-                <span>◈ Адские</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color glheaven"></div>
-                <span>◈ Райские</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color glearth"></div>
-                <span>◈ Земные</span>
             </div>
         </div>
     </div>
@@ -523,8 +511,8 @@ function hideMapTooltip() {
 // Расчет позиции на карте по координатам Minecraft
 function calculateMapPosition(coords) {
     // Настройте эти значения под размеры вашей карты
-    const mapSizeX = 5000; // Размер мира по X
-    const mapSizeZ = 5000; // Размер мира по Z
+    const mapSizeX = 1500; // Размер мира по X
+    const mapSizeZ = 1500; // Размер мира по Z
     
     // Преобразуем координаты Minecraft в проценты для позиционирования
     const x = ((coords.x + mapSizeX/2) / mapSizeX) * 100;
@@ -1217,10 +1205,7 @@ function getRaceIcon(race) {
     const icons = {
         'hell': '🔥',
         'heaven': '👼',
-        'earth': '🌍',
-        'glhell': '🔥',
-        'glheaven': '👼',
-        'glearth': '🌍'
+        'earth': '🌍'
     };
     return icons[race] || '👤';
 }
