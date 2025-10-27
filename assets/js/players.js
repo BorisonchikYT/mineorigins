@@ -207,7 +207,7 @@ function showPlayerProfile(player) {
                     <div class="contacts-list">
                         ${socials.discord ? `
                             <div class="contact-item discord">
-                                <span class="contact-icon">🎮</span>
+                                <span class="contact-icon"><img src="https://emoji.gg/emoji/888314-discord" alt="" class="contact-icon"></span>
                                 <div class="contact-info">
                                     <strong>Discord</strong>
                                     <span>${socials.discord}</span>
@@ -217,7 +217,7 @@ function showPlayerProfile(player) {
                         ` : ''}
                         ${socials.telegram ? `
                             <div class="contact-item telegram">
-                                <span class="contact-icon">✈️</span>
+                                <span class="contact-icon"><img src="https://emoji.gg/emoji/78169-telegram-logo" alt="" class="contact-icon"></span>
                                 <div class="contact-info">
                                     <strong>Telegram</strong>
                                     <span>${socials.telegram}</span>
@@ -237,7 +237,7 @@ function showPlayerProfile(player) {
                         ` : ''}
                     </div>
                 </div>
-                ` : '<div class="no-contacts-detailed"><p>❌ Контакты не указаны</p></div>'}
+                ` : '<div class="no-contacts-detailed"><p>Контакты не указаны</p></div>'}
             </div>
         </div>
     `;
@@ -536,7 +536,7 @@ function loadDemoPlayersData() {
             "joinDate": "",
             "socials": {
                 "discord": "",
-                "telegram": ""
+                "telegram": "@ED4MKM_AERO"
             }
           },
           {
