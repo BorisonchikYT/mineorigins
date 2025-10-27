@@ -322,7 +322,6 @@ function playRaceSound(race) {
             setTimeout(() => modal.remove(), 300);
         }
     });
-}
 
 function initCursorEffect() {
     const cursor = document.querySelector('.minecraft-cursor');
