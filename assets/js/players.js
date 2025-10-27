@@ -72,8 +72,8 @@ function renderPlayersGrid(players) {
     if (players.length === 0) {
         grid.innerHTML = `
             <div class="no-players-message">
-                <h3>🤷‍♂️ Игроки не найдены</h3>
-                <p>Попробуйте обновить страницу или проверьте файл данных</p>
+                <h3>Игроки не найдены</h3>
+                <p>Если не исправится, сообщите разработчику</p>
             </div>
         `;
         return;
@@ -125,9 +125,9 @@ function createPlayerCard(player) {
         </div>
         ${hasSocials ? `
         <div class="player-contacts">
-            ${socials.discord ? `<a href="#" class="contact-link discord" title="Discord">🎮 ${socials.discord}</a>` : ''}
-            ${socials.telegram ? `<a href="#" class="contact-link telegram" title="Telegram">✈️ ${socials.telegram}</a>` : ''}
-            ${socials.tiktok ? `<a href="#" class="contact-link tiktok" title="TikTok">🎵 ${socials.tiktok}</a>` : ''}
+            ${socials.discord ? `<a href="https://discord.gg/yvjewMujcx" class="contact-link discord" title="Discord">🎮 ${socials.discord}</a>` : ''}
+            ${socials.telegram ? `<a href="https://t.me/mine_origins" class="contact-link telegram" title="Telegram">✈️ ${socials.telegram}</a>` : ''}
+            
         </div>
         ` : '<div class="player-contacts"><span class="no-contacts">Нет контактов</span></div>'}
         <div class="player-footer">
@@ -157,7 +157,7 @@ function createPlayerCard(player) {
             e.preventDefault();
             e.stopPropagation();
             const contactType = link.classList[1];
-            const contactInfo = link.textContent.replace(/[🎮✈️🎵]/g, '').trim();
+            const contactInfo = link.textContent.replace(/[🎮✈️]/g, '').trim();
             showContactInfo(contactType, contactInfo);
         });
     });
@@ -532,7 +532,7 @@ function loadDemoPlayersData() {
             "name": "hyutjnh",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "heaven",
-            "description": "",
+            "description": "Ангел - участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис.",
             "joinDate": "",
             "socials": {
                 "discord": "",
