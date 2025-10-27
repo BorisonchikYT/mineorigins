@@ -391,9 +391,9 @@ function initTypewriterEffect() {
 // Вспомогательная функция
 function getRaceName(race) {
     const races = {
-        hell: 'Адская',
-        heaven: 'Райская',
-        earth: 'Земная'
+        hell: 'Демоны',
+        heaven: 'Ангелы',
+        earth: 'Земные'
     };
     return races[race] || 'Неизвестно';
 }
