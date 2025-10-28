@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ᴍɪɴᴇ ᴏʀɪɢɪɴs</title>
+    <link rel="stylesheet" href="assets/css/captcha.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Аналитика для страницы капчи -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W4D0RR61VG');
+    </script>
+</head>
+<body class="captcha-page">
+    <div class="captcha-container">
+        <div class="captcha-header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>ᴍɪɴᴇ ᴏʀɪɢɪɴs</span>
+            </div>
+            <div class="security-level">
+                <i class="fas fa-lock"></i>
+                Капта
+            </div>
+        </div>
+
+        <div class="captcha-content">
+            <div class="verification-panel">
+                <h1>Пройдите капчу</h1>
+                <p class="verification-desc">
+                    Это необходимо для защиты от авто запросов. 
+                    Проверка требуется один раз в 24 часа.
+                </p>
+
+                <div class="progress-indicator">
+                    <div class="progress-step active">
+                        <div class="step-number">1</div>
+                        <span>Выбор задания</span>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number">2</div>
+                        <span>Выполнение</span>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number">3</div>
+                        <span>Подтверждение</span>
+                    </div>
+                </div>
+
+                <div class="captcha-card" id="captchaCard">
+                    <!-- Капча будет загружена здесь динамически -->
+                    <div class="captcha-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Загрузка задания...</p>
+                    </div>
+                </div>
+
+                <div class="attempts-counter" id="attemptsCounter">
+                    Попытки: <span id="attemptsCount">0</span>/3
+                </div>
+
+                <div class="captcha-controls">
+                    <button class="btn-secondary" id="skipCaptcha">
+                        <i class="fas fa-sync-alt"></i>
+                        Другое задание
+                    </button>
+                    <button class="btn-primary" id="verifyCaptcha" disabled>
+                        <i class="fas fa-check"></i>
+                        Подтвердить
+                    </button>
+                </div>
+
+                <div class="captcha-info">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        24 часасовая
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-shield"></i>
+                        Защита
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-robot"></i>
+                        Блокировка ботов
+                    </div>
+                </div>
+
+                <div class="security-tips">
+                    <h4>Советы по безопасности:</h4>
+                    <ul>
+                        <li>Не передавайте данные проверки третьим лицам</li>
+                        <li>Убедитесь, что вас не отслеживают</li>
+                        <li>Используйте надежные пароли</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="security-sidebar">
+                <div class="sidebar-header">
+                    <h3><i class="fas fa-user-shield"></i> Безопасность</h3>
+                    <div class="security-badge">
+                        <span>ACTIVE</span>
+                    </div>
+                </div>
+
+                <div class="security-features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <div class="feature-info">
+                            <span class="feature-title">Проверка личности</span>
+                            <span class="feature-desc">Когнитивные тесты для людей</span>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="feature-info">
+                            <span class="feature-title">Адаптивная сложность</span>
+                            <span class="feature-desc">Задания разного уровня</span>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <div class="feature-info">
+                            <span class="feature-title">Интерактивные задачи</span>
+                            <span class="feature-desc">Разнообразные типы проверок</span>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="feature-info">
+                            <span class="feature-title">Временная защита</span>
+                            <span class="feature-desc">Проверка каждые 24 часа</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-number">99.7%</span>
+                            <span class="stat-label">Успешных проверок</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-number">0.2%</span>
+                            <span class="stat-label">Ложных срабатываний</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="verification-status">
+                    <h4>Статус проверки:</h4>
+                    <div class="status-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Личность: <strong id="identityStatus">Не подтверждена</strong></span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-shield-check"></i>
+                        <span>Безопасность: <strong id="securityStatus">Проверяется</strong></span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Время: <strong id="timeStatus">--:--</strong></span>
+                    </div>
+                </div>
+
+                <div class="support-info">
+                    <p><i class="fas fa-life-ring"></i> Нужна помощь? </p>
+                    <a href="#" class="support-link">
+                        <i class="fas fa-question-circle"></i>
+                        Справка по проверке
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="captcha-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <strong>ᴍɪɴᴇ ᴏʀɪɢɪɴs - Защита</strong>
+                    <span>Система защиты от ботов</span>
+                </div>
+                <div class="footer-section">
+                    <span>Версия защиты 1.0.0</span>
+                    <span>•</span>
+                    <span id="currentTime">--:--:--</span>
+                </div>
+                <div class="footer-section">
+                    <span>&copy; 2025 ᴍɪɴᴇ ᴏʀɪɢɪɴs</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно помощи -->
+    <div class="modal-overlay" id="helpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-question-circle"></i> Помощь по проверке</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="help-section">
+                    <h4>Как работает система проверки?</h4>
+                    <p>Система использует различные типы когнитивных тестов для подтверждения того, что вы человек, а не автоматическая программа.</p>
+                </div>
+
+                <div class="help-section">
+                    <h4>Типы заданий:</h4>
+                    <ul>
+                        <li><strong>Математические:</strong> Решите простой пример</li>
+                        <li><strong>Пазлы:</strong> Расставьте числа по порядку</li>
+                        <li><strong>Изображения:</strong> Выберите правильные картинки</li>
+                        <li><strong>Последовательности:</strong> Запомните и повторите</li>
+                        <li><strong>Логические:</strong> Ответьте на вопрос</li>
+                        <li><strong>Память:</strong> Запомните последовательность</li>
+                    </ul>
+                </div>
+
+                <div class="help-section">
+                    <h4>Часто задаваемые вопросы:</h4>
+                    <div class="faq-item">
+                        <strong>Почему требуется проверка?</strong>
+                        <p>Для защиты от авто запросов и поддержания производительности сайта.</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Как часто нужно проходить проверку?</strong>
+                        <p>Один раз в 24 часа для каждого устройства и браузера.</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Сохраняются ли мои данные?</strong>
+                        <p>Нет, все проверки происходят локально в вашем браузере.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="understandBtn">Понятно</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключение скриптов -->
+    <script src="assets/js/captcha/captcha-data.js"></script>
+    <script src="assets/js/captcha/captcha.js"></script>
+    
+    <!-- Дополнительный функционал для страницы капчи -->
+    <script>
+        // Дополнительные функции для страницы капчи
+        class CaptchaPageManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.updateTime();
+                this.setupEventListeners();
+                this.startTimeUpdater();
+                this.loadReturnUrl();
+            }
+
+            updateTime() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('ru-RU');
+                const dateString = now.toLocaleDateString('ru-RU');
+                
+                document.getElementById('currentTime').textContent = timeString;
+                
+                // Обновляем статус времени в сайдбаре
+                const timeStatus = document.getElementById('timeStatus');
+                if (timeStatus) {
+                    timeStatus.textContent = timeString;
+                }
+            }
+
+            startTimeUpdater() {
+                setInterval(() => {
+                    this.updateTime();
+                }, 1000);
+            }
+
+            setupEventListeners() {
+                // Модальное окно помощи
+                const supportLink = document.querySelector('.support-link');
+                const helpModal = document.getElementById('helpModal');
+                const closeModal = document.getElementById('closeModal');
+                const understandBtn = document.getElementById('understandBtn');
+
+                if (supportLink && helpModal) {
+                    supportLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        helpModal.style.display = 'flex';
+                    });
+                }
+
+                if (closeModal) {
+                    closeModal.addEventListener('click', () => {
+                        helpModal.style.display = 'none';
+                    });
+                }
+
+                if (understandBtn) {
+                    understandBtn.addEventListener('click', () => {
+                        helpModal.style.display = 'none';
+                    });
+                }
+
+                // Закрытие модального окна по клику вне его
+                if (helpModal) {
+                    helpModal.addEventListener('click', (e) => {
+                        if (e.target === helpModal) {
+                            helpModal.style.display = 'none';
+                        }
+                    });
+                }
+
+                // Отслеживание прогресса
+                this.setupProgressTracking();
+            }
+
+            setupProgressTracking() {
+                // Обновляем прогресс при взаимодействии с капчей
+                const verifyBtn = document.getElementById('verifyCaptcha');
+                const skipBtn = document.getElementById('skipCaptcha');
+
+                if (verifyBtn) {
+                    verifyBtn.addEventListener('click', () => {
+                        this.updateProgress(2);
+                    });
+                }
+
+                if (skipBtn) {
+                    skipBtn.addEventListener('click', () => {
+                        this.updateProgress(1);
+                    });
+                }
+            }
+
+            updateProgress(step) {
+                const steps = document.querySelectorAll('.progress-step');
+                steps.forEach((stepEl, index) => {
+                    if (index < step) {
+                        stepEl.classList.add('completed');
+                        stepEl.classList.add('active');
+                    } else if (index === step) {
+                        stepEl.classList.add('active');
+                        stepEl.classList.remove('completed');
+                    } else {
+                        stepEl.classList.remove('active', 'completed');
+                    }
+                });
+            }
+
+            loadReturnUrl() {
+                // Показываем куда вернется пользователь после проверки
+                const urlParams = new URLSearchParams(window.location.search);
+                const returnUrl = urlParams.get('return');
+                
+                if (returnUrl) {
+                    try {
+                        const returnHost = new URL(returnUrl).hostname;
+                        if (returnHost === window.location.hostname) {
+                            console.log('Возврат на:', returnUrl);
+                        }
+                    } catch (e) {
+                        console.log('Некорректный URL возврата');
+                    }
+                }
+            }
+
+            updateSecurityStatus(status) {
+                const securityStatus = document.getElementById('securityStatus');
+                const identityStatus = document.getElementById('identityStatus');
+                
+                if (status === 'success') {
+                    if (securityStatus) securityStatus.innerHTML = '<span style="color: var(--success)">Подтверждена</span>';
+                    if (identityStatus) identityStatus.innerHTML = '<span style="color: var(--success)">Подтверждена</span>';
+                } else if (status === 'checking') {
+                    if (securityStatus) securityStatus.innerHTML = '<span style="color: var(--warning)">Проверяется</span>';
+                } else {
+                    if (securityStatus) securityStatus.innerHTML = '<span style="color: var(--danger)">Не подтверждена</span>';
+                }
+            }
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            window.captchaPageManager = new CaptchaPageManager();
+            
+            // Интеграция с основной системой капчи
+            if (window.captchaSystem) {
+                // Обновляем статус безопасности при успешной проверке
+                const originalHandleSuccess = window.captchaSystem.handleSuccess;
+                window.captchaSystem.handleSuccess = function() {
+                    window.captchaPageManager.updateSecurityStatus('success');
+                    window.captchaPageManager.updateProgress(3);
+                    return originalHandleSuccess.apply(this, arguments);
+                };
+
+                // Обновляем счетчик попыток
+                const originalHandleFailure = window.captchaSystem.handleFailure;
+                window.captchaSystem.handleFailure = function() {
+                    window.captchaPageManager.updateSecurityStatus('failed');
+                    return originalHandleFailure.apply(this, arguments);
+                };
+
+                // Обновляем прогресс при загрузке новой капчи
+                const originalLoadRandomCaptcha = window.captchaSystem.loadRandomCaptcha;
+                window.captchaSystem.loadRandomCaptcha = function() {
+                    window.captchaPageManager.updateProgress(1);
+                    return originalLoadRandomCaptcha.apply(this, arguments);
+                };
+            }
+        });
+
+        // Аналитика для страницы капчи
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', {
+                    'page_title': 'Captcha Verification - MineOrigins',
+                    'page_location': window.location.href
+                });
+            }
+        });
+    </script>
+
+    <style>
+        /* Дополнительные стили для страницы капчи */
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .progress-indicator::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-light);
+            z-index: 1;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .progress-step.active .step-number {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .progress-step.completed .step-number {
+            border-color: var(--success);
+            background: var(--success);
+            color: white;
+        }
+
+        .progress-step span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .progress-step.active span {
+            color: var(--text-primary);
+        }
+
+        .attempts-counter {
+            text-align: center;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .captcha-loading {
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .captcha-loading i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .security-tips {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .security-tips h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .security-tips ul {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+        }
+
+        .security-tips li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .security-badge {
+            background: var(--success);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .feature-info {
+            flex: 1;
+        }
+
+        .feature-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-desc {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-icon.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .stat-icon.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .stat-data {
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .verification-status {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .verification-status h4 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .status-item i {
+            color: var(--primary);
+            width: 20px;
+        }
+
+        .support-info {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .support-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .support-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Модальное окно */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .modal-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .help-section {
+            margin-bottom: 2rem;
+        }
+
+        .help-section h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .help-section p, .help-section li {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .help-section ul {
+            padding-left: 1.5rem;
+        }
+
+        .help-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-light);
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+            
+            .progress-step span {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</body>
+</html>

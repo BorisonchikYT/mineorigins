@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="assets/css/faq.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/images/MineOrigins.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="manifest" href="assets/json/manifest.json">
     <meta name="theme-color" content="#7e57c2">
@@ -328,5 +329,23 @@
     <script src="assets/js/config.js"></script>
     <script src="assets/js/analytics.js"></script>
     <script src="assets/js/stats.js"></script>
+
+    <!-- Капча -->
+<script src="assets/js/captcha/captcha-system.js"></script>
+
+<!-- Аналитика -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
+<script>
+    // Ждем проверки капчи перед инициализацией аналитики
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof CaptchaManager !== 'undefined' && CaptchaManager.checkStatus()) {
+            // Инициализация аналитики только после успешной капчи
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-W4D0RR61VG');
+        }
+    });
+</script>
 </body>
 </html>
