@@ -551,7 +551,7 @@
 /* Подсказка на карте */
 .map-tooltip {
     position: absolute;
-    margin-top: 150px;
+    margin-top: 125px;
     background: rgba(15, 15, 23, 0.95);
     border: 1px solid var(--mc-accent);
     border-radius: 10px;

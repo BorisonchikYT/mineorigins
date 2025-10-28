@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитика - MineOrigins</title>
+    <link rel="stylesheet" href="assets/css/stats.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Аналитика -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W4D0RR61VG');
+    </script>
+</head>
+<body class="analytics-page">
+    <!-- Анимированный фон -->
+    <div class="analytics-bg">
+        <div class="data-streams">
+            <div class="stream stream-1"></div>
+            <div class="stream stream-2"></div>
+            <div class="stream stream-3"></div>
+        </div>
+        <div class="floating-data">
+            <div class="data-point" style="--delay: 0s; --x: 10%; --y: 20%;"></div>
+            <div class="data-point" style="--delay: 1s; --x: 80%; --y: 60%;"></div>
+            <div class="data-point" style="--delay: 2s; --x: 40%; --y: 80%;"></div>
+            <div class="data-point" style="--delay: 3s; --x: 70%; --y: 30%;"></div>
+            <div class="data-point" style="--delay: 4s; --x: 20%; --y: 70%;"></div>
+        </div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="analytics-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo-glow">
+                    <i class="fas fa-analytics"></i>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-main">MineAnalytics</span>
+                    <span class="brand-sub">Dashboard</span>
+                </div>
+            </div>
+            
+            <div class="nav-center">
+                <div class="time-filter">
+                    <button class="time-btn active" data-range="realtime">
+                        <i class="fas fa-bolt"></i>
+                        Реальное время
+                    </button>
+                    <button class="time-btn" data-range="today">
+                        <i class="fas fa-calendar-day"></i>
+                        Сегодня
+                    </button>
+                    <button class="time-btn" data-range="week">
+                        <i class="fas fa-chart-line"></i>
+                        Неделя
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <div class="live-indicator">
+                    <div class="pulse-dot"></div>
+                    <span>LIVE DATA</span>
+                </div>
+                <button class="refresh-btn" id="refreshData">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="analytics-main">
+        <!-- Заголовок -->
+        <header class="analytics-header">
+            <div class="header-content">
+                <div class="title-section">
+                    <h1 class="main-title">
+                        <span class="title-cyber">АНАЛИТИКА</span>
+                        <span class="title-sub">MINEORIGINS</span>
+                    </h1>
+                    <p class="header-desc">Мониторинг трафика и поведения пользователей в реальном времени</p>
+                </div>
+                <div class="header-stats">
+                    <div class="update-info">
+                        <i class="fas fa-clock"></i>
+                        Обновлено: <span id="updateTime">только что</span>
+                    </div>
+                    <div class="server-status">
+                        <i class="fas fa-server"></i>
+                        Система: <span class="status-online">ОНЛАЙН</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Основные метрики -->
+        <section class="metrics-section">
+            <div class="metrics-grid">
+                <!-- Онлайн пользователи -->
+                <div class="metric-card users-card">
+                    <div class="card-glow"></div>
+                    <div class="metric-header">
+                        <div class="metric-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Онлайн сейчас</h3>
+                            <div class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +12.5%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-value" id="onlineNow">24</div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <span>75% от пика</span>
+                    </div>
+                </div>
+
+                <!-- Посещения -->
+                <div class="metric-card visits-card">
+                    <div class="card-glow"></div>
+                    <div class="metric-header">
+                        <div class="metric-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Посещения сегодня</h3>
+                            <div class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +8.2%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-value" id="todayVisits">1,568</div>
+                    <div class="metric-chart mini">
+                        <div class="chart-bars">
+                            <div class="bar" style="height: 60%"></div>
+                            <div class="bar" style="height: 80%"></div>
+                            <div class="bar" style="height: 45%"></div>
+                            <div class="bar" style="height: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Время на сайте -->
+                <div class="metric-card time-card">
+                    <div class="card-glow"></div>
+                    <div class="metric-header">
+                        <div class="metric-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Среднее время</h3>
+                            <div class="metric-change neutral">
+                                <i class="fas fa-minus"></i>
+                                +1.8%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-value" id="avgSession">3:45</div>
+                    <div class="metric-details">
+                        <div class="detail-item">
+                            <span>Максимум:</span>
+                            <strong>12:30</strong>
+                        </div>
+                        <div class="detail-item">
+                            <span>Минимум:</span>
+                            <strong>0:45</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Отскоки -->
+                <div class="metric-card bounce-card">
+                    <div class="card-glow"></div>
+                    <div class="metric-header">
+                        <div class="metric-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Уровень отскока</h3>
+                            <div class="metric-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                -5.3%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-value" id="bounceRate">42%</div>
+                    <div class="metric-comparison">
+                        <div class="comparison-item">
+                            <span>В среднем:</span>
+                            <span class="value">48%</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span>Цель:</span>
+                            <span class="value target">35%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Графики и детальная аналитика -->
+        <section class="analytics-grid">
+            <!-- График посещений -->
+            <div class="analytics-card wide">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-line"></i> Динамика посещений</h3>
+                    <div class="card-controls">
+                        <select class="chart-range">
+                            <option value="7d">7 дней</option>
+                            <option value="30d" selected>30 дней</option>
+                            <option value="90d">90 дней</option>
+                        </select>
+                        <button class="chart-export">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-visits" id="visitsChart">
+                        <div class="chart-area">
+                            <div class="grid-lines">
+                                <div class="line"></div>
+                                <div class="line"></div>
+                                <div class="line"></div>
+                                <div class="line"></div>
+                            </div>
+                            <div class="data-line"></div>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="color-dot primary"></div>
+                                <span>Уникальные посетители</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="color-dot secondary"></div>
+                                <span>Все посещения</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Источники трафика -->
+            <div class="analytics-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-traffic-light"></i> Источники трафика</h3>
+                </div>
+                <div class="traffic-sources">
+                    <div class="source-item">
+                        <div class="source-icon organic">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="source-info">
+                            <span class="source-name">Поисковые системы</span>
+                            <span class="source-value">45.2%</span>
+                        </div>
+                        <div class="source-bar">
+                            <div class="bar-fill" style="width: 45.2%"></div>
+                        </div>
+                    </div>
+                    <div class="source-item">
+                        <div class="source-icon social">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="source-info">
+                            <span class="source-name">Социальные сети</span>
+                            <span class="source-value">30.7%</span>
+                        </div>
+                        <div class="source-bar">
+                            <div class="bar-fill" style="width: 30.7%"></div>
+                        </div>
+                    </div>
+                    <div class="source-item">
+                        <div class="source-icon direct">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="source-info">
+                            <span class="source-name">Прямые заходы</span>
+                            <span class="source-value">15.8%</span>
+                        </div>
+                        <div class="source-bar">
+                            <div class="bar-fill" style="width: 15.8%"></div>
+                        </div>
+                    </div>
+                    <div class="source-item">
+                        <div class="source-icon referral">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="source-info">
+                            <span class="source-name">Реферальные</span>
+                            <span class="source-value">8.3%</span>
+                        </div>
+                        <div class="source-bar">
+                            <div class="bar-fill" style="width: 8.3%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Популярные страницы -->
+            <div class="analytics-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-fire"></i> Популярные страницы</h3>
+                </div>
+                <div class="popular-pages">
+                    <div class="page-item">
+                        <div class="page-rank">1</div>
+                        <div class="page-info">
+                            <span class="page-title">Главная страница</span>
+                            <span class="page-url">/index.html</span>
+                        </div>
+                        <div class="page-stats">
+                            <span class="page-views">1,247</span>
+                            <div class="page-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-item">
+                        <div class="page-rank">2</div>
+                        <div class="page-info">
+                            <span class="page-title">Страница игроков</span>
+                            <span class="page-url">/players.html</span>
+                        </div>
+                        <div class="page-stats">
+                            <span class="page-views">892</span>
+                            <div class="page-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-item">
+                        <div class="page-rank">3</div>
+                        <div class="page-info">
+                            <span class="page-title">Поселения</span>
+                            <span class="page-url">/settlements.html</span>
+                        </div>
+                        <div class="page-stats">
+                            <span class="page-views">756</span>
+                            <div class="page-trend neutral">
+                                <i class="fas fa-minus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- География -->
+            <div class="analytics-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-globe-americas"></i> География</h3>
+                </div>
+                <div class="geo-distribution">
+                    <div class="country-item">
+                        <span class="country-flag">🇷🇺</span>
+                        <span class="country-name">Россия</span>
+                        <span class="country-percent">42%</span>
+                        <div class="country-bar">
+                            <div class="bar-fill" style="width: 42%"></div>
+                        </div>
+                    </div>
+                    <div class="country-item">
+                        <span class="country-flag">🇺🇦</span>
+                        <span class="country-name">Украина</span>
+                        <span class="country-percent">18%</span>
+                        <div class="country-bar">
+                            <div class="bar-fill" style="width: 18%"></div>
+                        </div>
+                    </div>
+                    <div class="country-item">
+                        <span class="country-flag">🇧🇾</span>
+                        <span class="country-name">Беларусь</span>
+                        <span class="country-percent">12%</span>
+                        <div class="country-bar">
+                            <div class="bar-fill" style="width: 12%"></div>
+                        </div>
+                    </div>
+                    <div class="country-item">
+                        <span class="country-flag">🇰🇿</span>
+                        <span class="country-name">Казахстан</span>
+                        <span class="country-percent">8%</span>
+                        <div class="country-bar">
+                            <div class="bar-fill" style="width: 8%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Устройства -->
+            <div class="analytics-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-mobile-alt"></i> Устройства</h3>
+                </div>
+                <div class="devices-chart">
+                    <div class="device-item">
+                        <div class="device-icon mobile">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="device-data">
+                            <span class="device-type">Мобильные</span>
+                            <span class="device-percent">58.3%</span>
+                        </div>
+                    </div>
+                    <div class="device-item">
+                        <div class="device-icon desktop">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="device-data">
+                            <span class="device-type">Десктоп</span>
+                            <span class="device-percent">35.1%</span>
+                        </div>
+                    </div>
+                    <div class="device-item">
+                        <div class="device-icon tablet">
+                            <i class="fas fa-tablet-alt"></i>
+                        </div>
+                        <div class="device-data">
+                            <span class="device-type">Планшеты</span>
+                            <span class="device-percent">6.6%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Действия -->
+        <section class="actions-section">
+            <div class="actions-grid">
+                <button class="action-btn export-btn">
+                    <i class="fas fa-file-excel"></i>
+                    <span>Экспорт в Excel</span>
+                </button>
+                <button class="action-btn pdf-btn">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>PDF отчет</span>
+                </button>
+                <button class="action-btn share-btn">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Поделиться</span>
+                </button>
+                <button class="action-btn settings-btn">
+                    <i class="fas fa-cog"></i>
+                    <span>Настройки</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="analytics-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <i class="fas fa-analytics"></i>
+                    <span>MineAnalytics</span>
+                </div>
+                <p>Система мониторинга и аналитики проекта MineOrigins</p>
+            </div>
+            <div class="footer-section">
+                <h4>Метрики</h4>
+                <a href="#">Посещения</a>
+                <a href="#">Поведение</a>
+                <a href="#">Конверсия</a>
+                <a href="#">Аудитория</a>
+            </div>
+            <div class="footer-section">
+                <h4>Интеграции</h4>
+                <a href="#">Яндекс.Метрика</a>
+                <a href="#">Google Analytics</a>
+                <a href="#">API доступ</a>
+            </div>
+            <div class="footer-section">
+                <h4>Поддержка</h4>
+                <a href="#">Документация</a>
+                <a href="#">Обновления</a>
+                <a href="#">Обратная связь</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 MineAnalytics Dashboard. Все права защищены.</p>
+            <div class="footer-stats">
+                <span>Версия: 2.1.0</span>
+                <span>•</span>
+                <span>Данные обновляются каждые 5 минут</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/analytics.js"></script>
+    <script src="assets/js/stats.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/analytics.js"></script>
+    <script src="assets/js/stats.js"></script>
+</body>
+</html>

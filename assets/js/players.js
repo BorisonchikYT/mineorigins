@@ -301,9 +301,9 @@ function showPremiumNotification(platform, info, isFallback = false) {
     notification.className = 'copy-notification premium';
     
     const platformConfig = {
-        discord: { icon: '⚡', color: '#5865F2', glow: 'rgba(88, 101, 242, 0.3)' },
-        telegram: { icon: '📱', color: '#0088cc', glow: 'rgba(0, 136, 204, 0.3)' },
-        tiktok: { icon: '🎵', color: '#ff0050', glow: 'rgba(255, 0, 80, 0.3)' }
+        discord: { icon: '<img src="assets/images/icons/icon_discord.gif" class="nav-image-index">', color: '#5865F2', glow: 'rgba(88, 101, 242, 0.3)' },
+        telegram: { icon: '<img src="assets/images/icons/icon_telegram.gif" class="nav-image-index">', color: '#0088cc', glow: 'rgba(0, 136, 204, 0.3)' },
+        tiktok: { icon: '', color: '#ff0050', glow: 'rgba(255, 0, 80, 0.3)' }
     };
     
     const config = platformConfig[platform.toLowerCase()] || { 

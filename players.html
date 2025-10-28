@@ -1,6 +1,44 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T93BX3SQ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-W4D0RR61VG');
+    </script>
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104901220', 'ym');
+    
+        ym(104901220, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            ecommerce: "dataLayer",
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104901220" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ᴍɪɴᴇ ᴏʀɪɢɪɴs</title>
@@ -8,6 +46,34 @@
     <link rel="stylesheet" href="assets/css/players.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="assets/json/manifest.json">
+    <meta name="theme-color" content="#7e57c2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MineOrigins">
+
+    <!-- Иконки для Apple -->
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
+    <link rel="apple-touch-startup-image" href="assets/images/splash/splash-screen.png">
+
+    <!-- Preload критических ресурсов -->
+<link rel="preload" href="assets/css/style.css" as="style">
+<link rel="preload" href="assets/images/MineOrigins.png" as="image">
+
+<!-- Preconnect к внешним ресурсам -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Предзагрузка шрифтов -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<!-- Noscript fallback для шрифтов -->
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</noscript>
+
 </head>
 <body>
     <div class="bg-animation">
@@ -47,24 +113,28 @@
                 }
                     </style>
 
-            <div class="nav-menu">
-                <a href="index.html" class="nav-item">
-                    <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index"></span>
-                    ГЛАВНАЯ
-                </a>
-                <a href="players.html" class="nav-item active">
-                    <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index"></span>
-                    ИГРОКИ
-                </a>
-                <a href="settlements.html" class="nav-item">
-                    <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index"></span>
-                    ПОСЕЛЕНИЯ
-                </a>
-                <a href="gallery.html" class="nav-item">
-                    <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index"></span>
-                    ГАЛЕРЕЯ
-                </a>
-            </div>
+<div class="nav-menu">
+    <a href="index.html" class="nav-item">
+        <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index"></span>
+        ГЛАВНАЯ
+    </a>
+    <a href="players.html" class="nav-item active">
+        <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index"></span>
+        ИГРОКИ
+    </a>
+    <a href="settlements.html" class="nav-item">
+        <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index"></span>
+        ПОСЕЛЕНИЯ
+    </a>
+    <a href="gallery.html" class="nav-item">
+        <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index"></span>
+        ГАЛЕРЕЯ
+    </a>
+    <a href="faq.html" class="nav-item">
+        <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
+        FAQ
+    </a>
+</div>
 
             <div class="server-status">
                 <div class="status-indicator online"></div>
@@ -177,7 +247,6 @@
         </section>
     </main>
 
-
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -189,7 +258,8 @@
                 <a href="index.html">Главная</a>
                 <a href="players.html">Игроки</a>
                 <a href="settlements.html">Поселения</a>
-                <a href="gallery.html">Галерия</a>
+                <a href="gallery.html">Галерея</a>
+                <a href="faq.html">FAQ</a>
             </div>
             <div class="footer-section">
                 <h4>МЫ В СОЦ СЕТЯХ</h4>
@@ -204,5 +274,11 @@
     </footer>
 
     <script src="assets/js/players.js"></script>
+    <script src="assets/js/manifest.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/preload-manager.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/analytics.js"></script>
+    <script src="assets/js/stats.js"></script>
 </body>
 </html>
