@@ -760,6 +760,18 @@ function loadDemoPlayersData() {
               "discord": "a.l.t.y.n",
               "telegram": "@Ayaz_ak"
           }
+    },
+    {
+      "id": 17,
+      "name": "Cartoshka_",
+      "avatar": "assets/images/icons/cartoskha_.png",
+      "race": "hell",
+      "description": "",
+      "joinDate": "2025-10-28",
+      "socials": {
+          "discord": ".cartoshka_",
+          "telegram": ""
+      }
     }
     ];
     renderPlayersGrid(demoPlayers);

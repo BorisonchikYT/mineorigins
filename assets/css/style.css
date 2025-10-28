@@ -50,6 +50,12 @@ body {
     position: relative;
 }
 
+.avamineorigins {
+    width: 55;
+    height: 55px;
+    display: inline-block;
+}
+
 /* Анимированный фон */
 .bg-animation {
     position: fixed;
@@ -295,6 +301,16 @@ body {
 .status-indicator.online {
     background: #00ff00;
     box-shadow: 0 0 10px #00ff00;
+}
+
+.status-indicator.online {
+    background: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+.status-indicator.offline {
+    background: #ff4444;
+    box-shadow: 0 0 10px #ff4444;
 }
 
 @keyframes statusPulse {

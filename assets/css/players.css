@@ -337,26 +337,6 @@
         background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
         border-color: var(--earth-glow);
     }
-
-    .status-indicator {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        border: 2px solid var(--mc-dark);
-    }
-    
-    .status-indicator.online {
-        background: #00ff00;
-        box-shadow: 0 0 10px #00ff00;
-    }
-    
-    .status-indicator.offline {
-        background: #ff4444;
-        box-shadow: 0 0 10px #ff4444;
-    }
     
     .level-badge {
         position: absolute;
