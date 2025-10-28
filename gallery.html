@@ -74,30 +74,30 @@
 <!-- Добавить после .section-header -->
 <div class="gallery-stats">
     <div class="gallery-stat stat-total">
-        <span class="stat-icon">🖼️</span>
+        <span class="stat-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index"></span>
         <div class="stat-info">
-            <div class="stat-number">0</div>
+            <div class="stat-number">3</div>
             <div class="stat-label">Всего фото</div>
         </div>
     </div>
     <div class="gallery-stat stat-builds">
-        <span class="stat-icon">🏰</span>
+        <span class="stat-icon"><img src="assets/images/icons/icon_build.webp" class="nav-image-index"></span>
         <div class="stat-info">
-            <div class="stat-number">0</div>
+            <div class="stat-number">1</div>
             <div class="stat-label">Построек</div>
         </div>
     </div>
     <div class="gallery-stat stat-nature">
-        <span class="stat-icon">👥</span>
+        <span class="stat-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index"></span>
         <div class="stat-info">
-            <div class="stat-number">0</div>
+            <div class="stat-number">1</div>
             <div class="stat-label">Общие фото</div>
         </div>
     </div>
     <div class="gallery-stat stat-events">
-        <span class="stat-icon">☠️</span>
+        <span class="stat-icon"><img src="assets/images/icons/events.webp" class="nav-image-index"></span>
         <div class="stat-info">
-            <div class="stat-number">0</div>
+            <div class="stat-number">1</div>
             <div class="stat-label">Событий</div>
         </div>
     </div>
@@ -121,80 +121,47 @@
 
             <div class="gallery-filters" style="margin-top: 25px;">
                 <button class="filter-btn active" data-filter="all">Все</button>
-                <button class="filter-btn" data-filter="builds">Постройки</button>
-                <button class="filter-btn" data-filter="nature">Общие фото</button>
-                <button class="filter-btn" data-filter="events">События</button>
+                <button class="filter-btn" data-filter="builds">Постройки</button> <!-- builds -->
+                <button class="filter-btn" data-filter="nature">Общие фото</button> <!-- nature -->
+                <button class="filter-btn" data-filter="events">События</button> <!-- events -->
             </div>
 
             <div class="gallery-grid">
-                <!-- Изображения будут загружаться из папки assets/image/gallery/ -->
-                <!-- Для примера добавлю несколько карточек, которые будут заменены реальными изображениями -->
-                
-                <!-- <div class="gallery-item" data-category="builds">
-                    <div class="gallery-card">
-                        <div class="image-container">
-                            <img src="assets/image/gallery/build1.jpg" alt="Постройка игрока" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQyZDNkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+0J/QvtC00YDQttCw0YLQuNC5INC/0L7RgNGP0LbQtdC90LjRjzwvdGV4dD48L3N2Zz4='">
-                            <div class="image-overlay">
-                                <div class="overlay-content">
-                                    <h3>Великий Замок</h3>
-                                    <p>Построен игроком NotchMaster</p>
-                                    <div class="image-stats">
-                                        <span class="stat">🏰 Замок</span>
-                                        <span class="stat">⏱️ 2 недели</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+                <style>
+.angelima {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: 18px;
+    height: 18px;
+}
 
+.angel-icon {
+    background: none;
+    width: 18px;
+    height: 18px;
+    filter: brightness(1.1);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.angel-icon:hover {
+    transform: scale(1.1);
+}
+                        </style>
                 <div class="gallery-item" data-category="nature">
                     <div class="gallery-card">
                         <div class="image-container">
-                            <img src="assets/images/icons/osfon1.jpg" alt="Общий скрин" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQyZDNkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J/QvtC00YDQttCw0YLQuNC5INC/0L7RgNGP0LbQtdC90LjRjzwvdGV4dD48L3N2Zz4='">
+                            <img src="assets/images/icons/osfon1.jpg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQyZDNkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J/QvtC00YDQttCw0YLQuNC5INC/0L7RgNGP0LbQtdC90LjRjzwvdGV4dD48L3N2Zz4='">
                             <div class="image-overlay">
                                 <div class="overlay-content">
                                     <h3>Общий скрин сервера #1</h3>
                                     <p>25.10.2025</p>
                                     <div class="image-stats">
-                                        <span class="stat">👼 Рай</span>
+                                        <span class="angelima">
+                                            <img src="assets/images/icons/icon_angel.gif" class="angel-icon"> Рай
+                                        </span>
                                         
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- <div class="gallery-item" data-category="events">
-                    <div class="gallery-card">
-                        <div class="image-container">
-                            <img src="assets/image/gallery/event1.jpg" alt="Ивент на сервере" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjN2U1N2MyIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+0KPQstC10LbQtNGP0L08L3RleHQ+PC9zdmc+='">
-                            <div class="image-overlay">
-                                <div class="overlay-content">
-                                    <h3>Королевская Битва</h3>
-                                    <p>Еженедельное PvP событие</p>
-                                    <div class="image-stats">
-                                        <span class="stat">⚔️ PvP</span>
-                                        <span class="stat">👥 15 игроков</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="gallery-item" data-category="players">
-                    <div class="gallery-card">
-                        <div class="image-container">
-                            <img src="assets/image/gallery/player1.jpg" alt="Игроки сервера" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGZjM2Y3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+0JjQs9C00L7QstC+0LU8L3RleHQ+PC9zdmc+='">
-                            <div class="image-overlay">
-                                <div class="overlay-content">
-                                    <h3>Команда строителей</h3>
-                                    <p>Совместный проект игроков</p>
-                                    <div class="image-stats">
-                                        <span class="stat">👨‍👩‍👧‍👦 Группа</span>
-                                        <span class="stat">🏗️ Строительство</span>
                                     </div>
                                 </div>
                             </div>
@@ -205,14 +172,14 @@
                 <div class="gallery-item" data-category="builds">
                     <div class="gallery-card">
                         <div class="image-container">
-                            <img src="assets/image/gallery/build2.jpg" alt="Город игроков" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQyZDNkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+0JPQvtC00YDQttCw0YLQuNC5INC/0L7RgNGP0LbQtdC90LjRjzwvdGV4dD48L3N2Zz4='">
+                            <img src="assets/images/icons/build1.jpg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQyZDNkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J/QvtC00YDQttCw0YLQuNC5INC/0L7RgNGP0LbQtdC90LjRjzwvdGV4dD48L3N2Zz4='">
                             <div class="image-overlay">
                                 <div class="overlay-content">
-                                    <h3>Столица Сервера</h3>
-                                    <p>Главный город поселения</p>
+                                    <h3>Строительство СФБ</h3>
+                                    <p>20.10.2025</p>
                                     <div class="image-stats">
-                                        <span class="stat">🏙️ Город</span>
-                                        <span class="stat">🏠 25 домов</span>
+                                        <span class="">Станция ФБ</span>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -220,23 +187,24 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-category="nature">
+                <div class="gallery-item" data-category="builds">
                     <div class="gallery-card">
                         <div class="image-container">
-                            <img src="assets/image/gallery/nature2.jpg" alt="Подземелье" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjOGJjMzRhIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+0J/RgNC40YHRgtCw0L3RgzwvdGV4dD48L3N2Zz4='">
+                            <img src="assets/images/icons/build1.jpg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQyZDNkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J/QvtC00YDQttCw0YLQuNC5INC/0L7RgNGP0LbQtdC90LjRjzwvdGV4dD48L3N2Zz4='">
                             <div class="image-overlay">
                                 <div class="overlay-content">
-                                    <h3>Пещера Кристаллов</h3>
-                                    <p>Уникальное природное образование</p>
+                                    <h3>Зомби Апокалипсис</h3>
+                                    <p>17.10.2025</p>
                                     <div class="image-stats">
-                                        <span class="stat">💎 Кристаллы</span>
-                                        <span class="stat">🕳️ Пещера</span>
+                                        <span class="">Станция ФБ</span>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
+
             </div>
 
             <!-- <div class="gallery-load-more">
@@ -259,12 +227,12 @@
                 <a href="index.html">Главная</a>
                 <a href="players.html">Игроки</a>
                 <a href="settlements.html">Поселения</a>
-                <a href="gallery.html">Галерея</a>
+                <a href="gallery.html">Галерия</a>
             </div>
             <div class="footer-section">
                 <h4>МЫ В СОЦ СЕТЯХ</h4>
-                <a href="https://discord.gg/KK4dCevPah">Discord</a>
-                <a href="https://t.me/mine_origins">Telegram</a>
+                <a href="https://discord.gg/KK4dCevPah"> Discord</a>
+                <a href="https://t.me/mine_origins"> Telegram</a>
             </div>
         </div>
         <div class="footer-bottom">

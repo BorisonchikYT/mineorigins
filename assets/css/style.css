@@ -513,6 +513,7 @@ body {
 .footer-section a::before {
     content: '▶';
     position: absolute;
+    margin-right: 40px;
     left: 0;
     transition: transform var(--transition-fast);
 }

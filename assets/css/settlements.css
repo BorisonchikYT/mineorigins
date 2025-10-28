@@ -1,27 +1,54 @@
-/* Страница поселений */
+/* ===== ПРЕМИАЛЬНАЯ СТРАНИЦА ПОСЕЛЕНИЙ ===== */
 .settlements-section {
-    padding: 2rem 0;
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Статистика поселений */
+.settlements-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(126, 87, 194, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(79, 195, 247, 0.1) 0%, transparent 50%),
+        linear-gradient(45deg, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    animation: hologramScan 8s linear infinite;
+}
+
+/* ===== ПРЕМИАЛЬНАЯ СТАТИСТИКА ===== */
 .settlements-stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin: 3rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin: 5rem 0;
+    perspective: 1000px;
 }
 
 .settlement-stat {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 2rem;
+    background: linear-gradient(135deg, 
+        rgba(30, 30, 50, 0.9) 0%,
+        rgba(20, 20, 40, 0.95) 50%,
+        rgba(30, 30, 50, 0.9) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
+    padding: 3rem 2.5rem;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    transition: all var(--transition-fast);
+    gap: 2rem;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .settlement-stat::before {
@@ -31,62 +58,381 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: left var(--transition-slow);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.8s ease;
+}
+
+.settlement-stat::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(126, 87, 194, 0.3),
+        rgba(79, 195, 247, 0.3),
+        rgba(255, 107, 107, 0.3),
+        transparent
+    );
+    animation: rotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .settlement-stat:hover::before {
     left: 100%;
 }
 
+.settlement-stat:hover::after {
+    opacity: 1;
+}
+
 .settlement-stat:hover {
-    transform: translateY(-5px);
+    transform: 
+        translateY(-15px) 
+        rotateX(5deg) 
+        rotateY(5deg);
     border-color: var(--mc-accent);
-    box-shadow: 0 10px 30px rgba(126, 87, 194, 0.2);
+    box-shadow: 
+        0 25px 50px rgba(126, 87, 194, 0.4),
+        0 0 30px rgba(126, 87, 194, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    animation: quantumPulse 2s ease-in-out;
 }
 
 .stat-visual {
     position: relative;
+    transform-style: preserve-3d;
 }
 
 .stat-3d-icon {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    animation: iconFloat 3s ease-in-out infinite;
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: hologramFloat 6s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-@keyframes iconFloat {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
+.stat-3d-icon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+.stat-3d-icon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%);
+    border-radius: 20px;
+    animation: hologramScan 3s linear infinite;
+}
+
+.settlement-stat:hover .stat-3d-icon::before {
+    opacity: 1;
 }
 
 .stat-data {
     flex: 1;
+    position: relative;
+    z-index: 2;
 }
 
 .stat-number {
-    font-size: 3rem;
+    font-size: 4.5rem;
     font-weight: 900;
     line-height: 1;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, 
+        #ff6b6b 0%,
+        #4ecdc4 25%,
+        #45b7d1 50%,
+        #96ceb4 75%,
+        #feca57 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    background-size: 300% 300%;
+    animation: premiumGradient 8s ease infinite;
+    text-shadow: 0 0 30px currentColor;
+    position: relative;
+    display: inline-block;
+}
+
+.stat-number::before {
+    content: attr(data-target);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: linear-gradient(135deg, 
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    z-index: -1;
+    animation: textGlitch 4s ease-in-out infinite;
+}
+
+.stat-number::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--mc-accent), 
+        transparent);
+    transform: scaleX(0);
+    transition: transform 0.6s ease;
+}
+
+.settlement-stat:hover .stat-number::after {
+    transform: scaleX(1);
 }
 
 .stat-label {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: neonFlicker 4s infinite;
+    position: relative;
+    display: inline-block;
+}
+
+.stat-label::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--mc-accent);
+    transition: width 0.6s ease;
+    box-shadow: 0 0 10px var(--mc-accent);
+}
+
+.settlement-stat:hover .stat-label::after {
+    width: 100%;
+}
+
+/* ===== НОВЫЕ АНИМАЦИИ ===== */
+@keyframes hologramFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotateX(0deg) scale(1);
+        filter: hue-rotate(0deg) brightness(1);
+    }
+    25% { 
+        transform: translateY(-15px) rotateX(10deg) scale(1.05);
+        filter: hue-rotate(90deg) brightness(1.2);
+    }
+    50% { 
+        transform: translateY(-8px) rotateX(-5deg) scale(0.95);
+        filter: hue-rotate(180deg) brightness(0.9);
+    }
+    75% { 
+        transform: translateY(-12px) rotateX(5deg) scale(1.02);
+        filter: hue-rotate(270deg) brightness(1.1);
+    }
+}
+
+@keyframes quantumPulse {
+    0% { 
+        transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1);
+        box-shadow: 
+            0 25px 50px rgba(126, 87, 194, 0.4),
+            0 0 30px rgba(126, 87, 194, 0.3);
+    }
+    50% { 
+        transform: translateY(-20px) rotateX(8deg) rotateY(8deg) scale(1.05);
+        box-shadow: 
+            0 35px 70px rgba(126, 87, 194, 0.6),
+            0 0 50px rgba(126, 87, 194, 0.5);
+    }
+    100% { 
+        transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1);
+        box-shadow: 
+            0 25px 50px rgba(126, 87, 194, 0.4),
+            0 0 30px rgba(126, 87, 194, 0.3);
+    }
+}
+
+@keyframes premiumGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes hologramScan {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes neonFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 15px var(--mc-accent),
+            0 0 20px var(--mc-accent),
+            0 0 35px var(--mc-accent),
+            0 0 40px var(--mc-accent);
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+        opacity: 0.8;
+    }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        opacity: 0.5;
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        filter: hue-rotate(180deg);
+    }
+}
+
+@keyframes textGlitch {
+    0%, 100% {
+        transform: translate(0);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translate(-2px, 1px);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(1px, -1px);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translate(-1px, 2px);
+        opacity: 0.5;
+    }
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 1200px) {
+    .settlements-stats {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .settlements-section {
+        padding: 2rem 0;
+    }
+    
+    .settlements-stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+    
+    .settlement-stat {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .stat-3d-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+    
+    .stat-number {
+        font-size: 3.5rem;
+    }
+    
+    .stat-label {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .settlement-stat {
+        padding: 1.5rem 1rem;
+    }
+    
+    .stat-3d-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+    
+    .stat-number {
+        font-size: 3rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
 }
 
 /* Карта мира - ОБНОВЛЕНО */
@@ -1668,7 +2014,231 @@
     }
     
     .filter-group {
-        min-width: auto;
+        min-width: auto;/* ===== ПРЕМИАЛЬНЫЕ АНИМАЦИИ И ЭФФЕКТЫ ===== */
+
+        @keyframes hologramFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(0deg); 
+                filter: hue-rotate(0deg);
+            }
+            25% { 
+                transform: translateY(-10px) rotateX(5deg); 
+                filter: hue-rotate(90deg);
+            }
+            50% { 
+                transform: translateY(-5px) rotateX(-3deg); 
+                filter: hue-rotate(180deg);
+            }
+            75% { 
+                transform: translateY(-8px) rotateX(2deg); 
+                filter: hue-rotate(270deg);
+            }
+        }
+        
+        @keyframes quantumPulse {
+            0% { 
+                transform: scale(1);
+                box-shadow: 
+                    0 0 20px var(--mc-accent),
+                    0 0 40px var(--mc-accent),
+                    0 0 60px var(--mc-accent);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 
+                    0 0 30px var(--mc-accent),
+                    0 0 60px var(--mc-accent),
+                    0 0 90px var(--mc-accent);
+            }
+            100% { 
+                transform: scale(1);
+                box-shadow: 
+                    0 0 20px var(--mc-accent),
+                    0 0 40px var(--mc-accent),
+                    0 0 60px var(--mc-accent);
+            }
+        }
+        
+        @keyframes matrixRain {
+            0% {
+                background-position: 0% 0%;
+                opacity: 0.1;
+            }
+            100% {
+                background-position: 0% 100%;
+                opacity: 0.3;
+            }
+        }
+        
+        @keyframes neonFlicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 
+                    0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 15px var(--mc-accent),
+                    0 0 20px var(--mc-accent),
+                    0 0 35px var(--mc-accent),
+                    0 0 40px var(--mc-accent);
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes particleStorm {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: 
+                    translate(
+                        calc(var(--tx) * 100px),
+                        calc(var(--ty) * 100px)
+                    ) 
+                    rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes cyberGlitch {
+            0% {
+                transform: translate(0);
+                filter: hue-rotate(0deg);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+                filter: hue-rotate(90deg);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+                filter: hue-rotate(180deg);
+            }
+            60% {
+                transform: translate(2px, 2px);
+                filter: hue-rotate(270deg);
+            }
+            80% {
+                transform: translate(2px, -2px);
+                filter: hue-rotate(360deg);
+            }
+            100% {
+                transform: translate(0);
+                filter: hue-rotate(360deg);
+            }
+        }
+        
+        @keyframes hologramScan {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+        
+        /* ===== ПРЕМИАЛЬНАЯ СТРАНИЦА ПОСЕЛЕНИЙ ===== */
+        
+        .settlements-section {
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .settlements-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(126, 87, 194, 0.1) 50%, transparent 70%),
+                radial-gradient(circle at 20% 80%, rgba(255, 68, 68, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(79, 195, 247, 0.1) 0%, transparent 50%);
+            animation: matrixRain 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        /* ===== ПРЕМИАЛЬНАЯ СТАТИСТИКА ===== */
+        
+        .settlements-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin: 5rem 0;
+            perspective: 1000px;
+        }
+        
+        .settlement-stat {
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 50, 0.9) 0%,
+                rgba(20, 20, 40, 0.95) 50%,
+                rgba(30, 30, 50, 0.9) 100%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 3rem 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        
+        .settlement-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: left 1s ease;
+        }
+        
+        .settlement-stat:hover::before {
+            left: 100%;
+        }
+        
+        .settlement-stat:hover {
+            transform: 
+                translateY(-15px) 
+                rotateX(5deg) 
+                rotateY(5deg);
+            border-color: var(--mc-accent);
+            box-shadow: 
+                0 25px 50px rgba(126, 87, 194, 0.4),
+                0 0 30px rgba(126, 87, 194, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: quantumPulse 2s ease-in-out;
+        }
     }
     
     .filter-buttons {
