@@ -46,8 +46,8 @@
     <link rel="stylesheet" href="assets/css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="icon" href="assets/images/MineOrigins.png" type="image/png">
-    <link rel="manifest" href="assets/json/manifest.json">
+    <link defer rel="icon" href="assets/images/MineOriginsAva.png" type="image/png">
+    <link defer rel="manifest" href="assets/json/manifest.json">
     <meta name="theme-color" content="#7e57c2">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -59,7 +59,9 @@
 
     <!-- Preload критических ресурсов -->
 <link rel="preload" href="assets/css/style.css" as="style">
+<link rel="preload" href="assets/css/index.css" as="style">
 <link rel="preload" href="assets/images/MineOrigins.png" as="image">
+<link rel="preload" href="assets/images/MineOriginsAva.png" as="image">
 
 <!-- Preconnect к внешним ресурсам -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -347,16 +349,16 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/manifest.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/preload-manager.js"></script>
-    <script src="assets/js/config.js"></script>
-    <script src="assets/js/analytics.js"></script>
-    <script src="assets/js/stats.js"></script>
+    <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/manifest.js"></script>
+    <script defer src="assets/js/main.js"></script>
+    <script defer src="assets/js/preload-manager.js"></script>
+    <script defer src="assets/js/config.js"></script>
+    <script defer src="assets/js/analytics.js"></script>
+    <script defer src="assets/js/stats.js"></script>
 
     <!-- Капча -->
-<script src="assets/js/captcha/captcha-system.js"></script>
+<script defer src="assets/js/captcha/captcha-system.js"></script>
 
 <!-- Аналитика -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
