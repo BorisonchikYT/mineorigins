@@ -36,18 +36,28 @@
     box-sizing: border-box;
 }
 
+/* Подключение шрифта Minecraft из локального файла */
 @font-face {
     font-family: 'Minecraft';
-    src: url('https://fonts.cdnfonts.com/css/minecraft-4');
+    src: url('../fonts/MinecraftTen-VGORe.woff') format('woff'),
+         url('https://fonts.cdnfonts.com/css/minecraft-4') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Для лучшей производительности */
 }
+
+/* Подключение Orbitron (пример через Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
 
 body {
     background: linear-gradient(135deg, var(--mc-darker) 0%, var(--mc-dark) 50%, #1a1a2e 100%);
     color: var(--text-primary);
-    font-family: 'Orbitron', 'Minecraft', sans-serif;
+    font-family: 'Minecraft', 'Orbitron', sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
     position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 .avamineorigins {
@@ -211,6 +221,7 @@ body {
 }
 
 .brand-text h1 {
+    font-family: 'Minecraft', 'Orbitron', sans-serif;
     font-size: 1.2rem;
     background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
     -webkit-background-clip: text;

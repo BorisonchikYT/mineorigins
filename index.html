@@ -42,6 +42,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ᴍɪɴᴇ ᴏʀɪɢɪɴs</title>
+    
+    <!-- CSS файлы -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -55,17 +57,46 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MineOrigins">
     <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
-    <link rel="icon" type="image/png" href="assets/images/icons/icon-192x192.png">
 
-    <!-- Preload критических ресурсов -->
+    <!-- Оптимизированный preload -->
     <link rel="preload" href="assets/css/style.css" as="style">
     <link rel="preload" href="assets/css/index.css" as="style">
     <link rel="preload" href="assets/images/MineOrigins.png" as="image">
-    <link rel="preload" href="assets/images/MineOriginsAva.png" as="image">
+    <!-- Favicon НЕ предзагружаем -->
 
     <!-- Preconnect к внешним ресурсам -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style>
+        .nav-image-index, .resized-image {
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        /* Временные стили для отсутствующих изображений */
+        .nav-menu img[alt="FAQ"] {
+            background: #666;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        
+        /* Стили для статуса сервера */
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: inline-block;
+        }
+        
+        .status-indicator.online { background: #4CAF50; }
+        .status-indicator.offline { background: #f44336; }
+        .status-indicator.loading { background: #ff9800; }
+        .status-indicator.error { background: #9c27b0; }
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -85,48 +116,40 @@
         <div class="nav-container">
             <div class="nav-brand">
                 <div class="brand-logo">
-                    <img src="assets/images/MineOrigins.png" class="avamineorigins" alt="Mine Origins Logo">
+                    <img src="assets/images/MineOrigins.png" class="avamineorigins" alt="Mine Origins Logo" onerror="this.style.display='none'">
                 </div>
                 <div class="brand-text">
-                    <h1>ᴍɪɴᴇ</h1>
-                    <span>ᴏʀɪɢɪɴs</span>
+                    <h1>MINE</h1>
+                    <span>ORIGINS</span>
                 </div>
             </div>
 
-            <style>
-                .nav-image-index {
-                    width: 35px;
-                    height: 35px;
-                    display: inline-block;
-                }
-            </style>
-
             <div class="nav-menu">
                 <a href="index.html" class="nav-item active">
-                    <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index" alt="Главная"></span>
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index" alt="Главная" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIGZpbGw9IiM2NjYiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPkhvbWU8L3RleHQ+PC9zdmc+'"></span>
                     ГЛАВНАЯ
                 </a>
                 <a href="players.html" class="nav-item">
-                    <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index" alt="Игроки"></span>
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index" alt="Игроки" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIGZpbGw9IiM2NjYiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPlBsYXllcnM8L3RleHQ+PC9zdmc+'"></span>
                     ИГРОКИ
                 </a>
                 <a href="settlements.html" class="nav-item">
-                    <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index" alt="Поселения"></span>
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index" alt="Поселения" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIGZpbGw9IiM2NjYiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPlNldHRsZW1lbnRzPC90ZXh0Pjwvc3ZnPg=='"></span>
                     ПОСЕЛЕНИЯ
                 </a>
                 <a href="gallery.html" class="nav-item">
-                    <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index" alt="Галерея"></span>
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index" alt="Галерея" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIGZpbGw9IiM2NjYiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPkdhbGxlcnk8L3RleHQ+PC9zdmc+'"></span>
                     ГАЛЕРЕЯ
                 </a>
                 <a href="faq.html" class="nav-item">
-                    <span class="nav-icon"><img src="assets/images/icons/icon_faq.png" class="nav-image-index" alt="FAQ"></span>
+                    <span class="nav-icon"><img src="assets/images/icons/icon_faq.png" class="nav-image-index" alt="FAQ" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIGZpbGw9IiM2NjYiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPkZBUTwvdGV4dD48L3N2Zz4='"></span>
                     FAQ
                 </a>
             </div>
 
             <div class="server-status">
-                <div class="status-indicator online"></div>
-                <span class="status-text">ОНЛАЙН</span>
+                <div class="status-indicator loading"></div>
+                <span class="status-text">ЗАГРУЗКА...</span>
             </div>
         </div>
     </nav>
@@ -149,32 +172,41 @@
                     <p>Присоединяйся к нам на сервер, переходы в Telegram канал и скачивай сборку</p>
                 </div>
 
-                <style>
-                .resized-image {
-                    width: 50px;
-                    height: 50px;
-                    display: inline-block;
-                }
-                </style>
-
                 <div class="action-buttons">
                     <a href="https://discord.gg/KK4dCevPah" class="action-btn discord-btn">
                         <span class="btn-glow"></span>
-                        <span class="btn-icon"></span>
-                        <img src="assets/images/icons/icon_discord.gif" class="resized-image" alt="Discord"> Discord Сервер
+                        <img src="assets/images/icons/icon_discord.gif" class="resized-image" alt="Discord" onerror="this.style.display='none'"> 
+                        Discord Сервер
                     </a>
                     <a href="https://t.me/mine_origins" class="action-btn telegram-btn">
                         <span class="btn-glow"></span>
-                        <span class="btn-icon"></span>
-                        <img src="assets/images/icons/icon_telegram.gif" class="resized-image" alt="Telegram"> Telegram Канал
+                        <img src="assets/images/icons/icon_telegram.gif" class="resized-image" alt="Telegram" onerror="this.style.display='none'"> 
+                        Telegram Канал
                     </a>
+                </div>
+            </div>
+
+            <div class="server-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-data">
+                        <div class="stat-number" data-target="0">0</div>
+                        <div class="stat-label">Игроков онлайн</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-data">
+                        <div class="stat-number" data-target="0">0</div>
+                        <div class="stat-label">Всего игроков</div>
+                    </div>
                 </div>
             </div>
 
             <div class="races-showcase">
                 <div class="race-card hell-race" data-race="hell">
                     <div class="race-visual">
-                        <div class="race-icon"><img src="assets/images/icons/icon_demon.gif" class="resized-image" alt="Демоны"></div>
+                        <div class="race-icon"><img src="assets/images/icons/icon_demon.gif" class="resized-image" alt="Демоны" onerror="this.innerHTML='🔥'"></div>
                         <div class="race-glow"></div>
                     </div>
                     <div class="race-info">
@@ -189,7 +221,7 @@
 
                 <div class="race-card heaven-race" data-race="heaven">
                     <div class="race-visual">
-                        <div class="race-icon"><img src="assets/images/icons/icon_angel.gif" class="resized-image" alt="Ангелы"></div>
+                        <div class="race-icon"><img src="assets/images/icons/icon_angel.gif" class="resized-image" alt="Ангелы" onerror="this.innerHTML='👼'"></div>
                         <div class="race-glow"></div>
                     </div>
                     <div class="race-info">
@@ -204,7 +236,7 @@
 
                 <div class="race-card earth-race" data-race="earth">
                     <div class="race-visual">
-                        <div class="race-icon"><img src="assets/images/icons/icon_terrestrial.gif" class="resized-image" alt="Земные"></div>
+                        <div class="race-icon"><img src="assets/images/icons/icon_terrestrial.gif" class="resized-image" alt="Земные" onerror="this.innerHTML='🌍'"></div>
                         <div class="race-glow"></div>
                     </div>
                     <div class="race-info">
@@ -229,7 +261,7 @@
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="feature-animation">
-                        <div class="rotating-item"><img src="assets/images/icons/icon_earth.gif" class="resized-image" alt="Расы"></div>
+                        <div class="rotating-item"><img src="assets/images/icons/icon_earth.gif" class="resized-image" alt="Расы" onerror="this.innerHTML='🎭'"></div>
                     </div>
                     <div class="feature-content">
                         <h3>РАСЫ</h3>
@@ -239,7 +271,7 @@
 
                 <div class="feature-item">
                     <div class="feature-animation">
-                        <div class="rotating-item"><img src="assets/images/icons/icon_diamond.gif" class="resized-image" alt="Моды"></div>
+                        <div class="rotating-item"><img src="assets/images/icons/icon_diamond.gif" class="resized-image" alt="Моды" onerror="this.innerHTML='⚙️'"></div>
                     </div>
                     <div class="feature-content">
                         <h3>МНОГОМОДОВЫЙ</h3>
@@ -249,11 +281,31 @@
 
                 <div class="feature-item">
                     <div class="feature-animation">
-                        <div class="rotating-item"><img src="assets/images/icons/index_icon_players.gif" class="resized-image" alt="Игроки"></div>
+                        <div class="rotating-item"><img src="assets/images/icons/index_icon_players.gif" class="resized-image" alt="Игроки" onerror="this.innerHTML='👥'"></div>
                     </div>
                     <div class="feature-content">
                         <h3>ИГРОКИ</h3>
                         <p>Среди игроков вы встретите стримеров, ютуберов, тиктокеров, и когда они будут снимать или вести стрим, сможете поучаствовать.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="online-stats">
+            <div class="stats-container">
+                <h3>ОНЛАЙН СТАТИСТИКА</h3>
+                <div class="stats-grid">
+                    <div class="online-chart">
+                        <div class="chart-placeholder">
+                            <p>График онлайна будет отображаться здесь</p>
+                            <small>Для работы требуется веб-сервер</small>
+                        </div>
+                    </div>
+                    <div class="players-online">
+                        <h4>СЕЙЧАС ИГРАЮТ</h4>
+                        <div class="online-list" id="onlineList">
+                            <div class="no-players">Данные загружаются...</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -286,35 +338,41 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/stats.js"></script>
-    
-    <!-- Условная загрузка PWA скриптов только если они существуют -->
-    <script>
-        // Проверяем существование файлов перед загрузкой
-        const scriptsToLoad = [
-            'assets/js/preload-manager.js',
-            'assets/js/service-worker.js',
-            'assets/js/manifest.js'
-        ];
+    <script defer src="assets/js/main.js"></script>
 
-        scriptsToLoad.forEach(scriptPath => {
-            // В реальном проекте лучше проверить существование файла
-            const script = document.createElement('script');
-            script.src = scriptPath;
-            script.defer = true;
-            document.body.appendChild(script);
-        });
-    </script>
-
-    <!-- Упрощенная капча система -->
-    <script>
-        // Простая заглушка для капчи
-        window.CaptchaManager = {
-            checkStatus: function() {
-                return true; // Всегда возвращаем true для демонстрации
+        <!-- Условная загрузка дополнительных скриптов -->
+        <script>
+            // Проверяем, работаем ли мы на localhost или через файловую систему
+            const isLocalServer = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+            
+            if (isLocalServer) {
+                // Загружаем полные версии скриптов только на сервере
+                const scripts = ['assets/js/stats.js', 'assets/js/main.js'];
+                scripts.forEach(src => {
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.defer = true;
+                    document.body.appendChild(script);
+                });
             }
-        };
-    </script>
-</body>
-</html>
+        </script>
+
+            <!-- Капча -->
+<script defer src="assets/js/captcha/captcha-system.js"></script>
+
+<!-- Аналитика -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
+<script>
+    // Ждем проверки капчи перед инициализацией аналитики
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof CaptchaManager !== 'undefined' && CaptchaManager.checkStatus()) {
+            // Инициализация аналитики только после успешной капчи
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-W4D0RR61VG');
+        }
+    });
+</script>
+    </body>
+    </html>

@@ -103,8 +103,8 @@
                     <img src="assets/images/MineOrigins.png" class="avamineorigins">
                 </div>
                 <div class="brand-text">
-                    <h1>ᴍɪɴᴇ</h1>
-                    <span>ᴏʀɪɢɪɴs</span>
+                    <h1>MINE</h1>
+                    <span>ORIGINS</span>
                 </div>
             </div>
             
@@ -317,8 +317,6 @@
     <script src="/assets/js/app-install.js"></script>
     <script defer src="assets/js/faq.js"></script>
     <script defer src="assets/js/main.js"></script>
-    <script defer src="assets/js/manifest.js"></script>
-    <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/preload-manager.js"></script>
     <script defer src="assets/js/config.js"></script>
     <script defer src="assets/js/analytics.js"></script>
@@ -330,14 +328,34 @@
 <!-- Аналитика -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
 <script>
-    // Ждем проверки капчи перед инициализацией аналитики
     document.addEventListener('DOMContentLoaded', function() {
-        if (typeof CaptchaManager !== 'undefined' && CaptchaManager.checkStatus()) {
-            // Инициализация аналитики только после успешной капчи
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-W4D0RR61VG');
+        // Безопасная инициализация аналитики
+        function initializeAnalytics() {
+            try {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-W4D0RR61VG');
+                console.log('✅ Google Analytics инициализирован');
+            } catch (error) {
+                console.warn('⚠️ Ошибка инициализации аналитики:', error);
+            }
+        }
+
+        // Проверяем наличие CaptchaManager безопасно
+        if (typeof CaptchaManager !== 'undefined' && 
+            typeof CaptchaManager.checkStatus === 'function') {
+            
+            if (CaptchaManager.checkStatus()) {
+                initializeAnalytics();
+            } else {
+                console.log('⏳ Ожидание верификации капчи...');
+                // Запускаем без капчи через 3 секунды
+                setTimeout(initializeAnalytics, 3000);
+            }
+        } else {
+            console.warn('⚠️ CaptchaManager не найден, запускаем аналитику напрямую');
+            initializeAnalytics();
         }
     });
 </script>

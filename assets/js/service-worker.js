@@ -24,6 +24,49 @@ const CRITICAL_URLS = [
   '/manifest.json'
 ];
 
+// Оптимизированная регистрация Service Worker
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    const swUrl = '/service-worker.js'; // Теперь в корне
+    
+    navigator.serviceWorker.register(swUrl, {
+      scope: '/'
+    })
+    .then(registration => {
+      console.log('🎯 Service Worker зарегистрирован для scope:', registration.scope);
+      
+      // Проверка обновлений
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        console.log('🔄 Обнаружено обновление Service Worker');
+        
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            console.log('📦 Новый контент доступен!');
+            // Можно показать уведомление пользователю
+          }
+        });
+      });
+    })
+    .catch(error => {
+      console.error('❌ Ошибка регистрации Service Worker:', error);
+    });
+
+    // Обработка обновлений
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      console.log('🔄 Controller изменен, перезагрузка страницы...');
+      window.location.reload();
+    });
+  }
+}
+
+// Зарегистрировать после загрузки DOM
+document.addEventListener('DOMContentLoaded', registerServiceWorker);
+
+// Зарегистрировать после загрузки DOM
+document.addEventListener('DOMContentLoaded', registerServiceWorker);
+// Зарегистрировать после загрузки DOM
+document.addEventListener('DOMContentLoaded', registerServiceWorker);
 // Статические ресурсы (версионированные)
 const STATIC_URLS = [
   '/assets/js/players.js',
@@ -359,5 +402,22 @@ async function updateContent() {
     console.log('Контент обновлен в фоне');
   } catch (error) {
     console.error('Ошибка при обновлении контента:', error);
+  }
+}
+
+// В стратегиях кэширования добавьте:
+async function fetchWithTimeout(request, timeout = 5000) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+  
+  try {
+    const response = await fetch(request, { 
+      signal: controller.signal 
+    });
+    clearTimeout(timeoutId);
+    return response;
+  } catch (error) {
+    clearTimeout(timeoutId);
+    throw error;
   }
 }
