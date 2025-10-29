@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Страница не найдена - Ошибка 404</title>
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/Error/404/404.css">
+    <link rel="stylesheet" href="./assets/Error/404/404.css">
+    <!-- Или если в корне: -->
+    <!-- <link rel="stylesheet" href="404.css"> -->
 </head>
 <body>
     <div class="error-container">
@@ -20,16 +20,12 @@
                 <button class="btn btn-primary" onclick="goBack()">Вернуться назад</button>
                 <button class="btn btn-secondary" onclick="goHome()">На главную</button>
             </div>
-            <div class="error-search">
-                <input type="text" id="searchInput" placeholder="Поиск по сайту...">
-                <button class="btn btn-search" onclick="performSearch()">Найти</button>
-            </div>
         </div>
         <div class="error-animation">
             <div class="ghost"></div>
         </div>
     </div>
 
-    <script src="/assets/Error/404/404.js"></script>
+    <script src="./assets/Error/404/404.js"></script>
 </body>
 </html>

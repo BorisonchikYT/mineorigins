@@ -1,0 +1,18 @@
+[build]
+  publish = "public"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/404"
+  to = "/error.html"
+  status = 404
+
+# Обработка ошибок
+[[redirects]]
+  from = "/*"
+  to = "/error.html"
+  status = 404
