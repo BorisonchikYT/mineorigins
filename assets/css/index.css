@@ -457,42 +457,574 @@
     letter-spacing: 1px;
 }
 
-/* Адаптивность для главной */
+/* Планшеты (768px - 1024px) */
 @media (max-width: 1024px) {
     .hero-section {
         grid-template-columns: 1fr;
         gap: 3rem;
+        min-height: auto;
+        padding: 3rem 0;
+    }
+
+    .main-title {
+        font-size: 3rem;
         text-align: center;
     }
-    
+
+    .title-subtext {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .server-description {
+        font-size: 1.1rem;
+        text-align: center;
+        padding-left: 0;
+        border-left: none;
+        border-top: 3px solid var(--mc-accent);
+        padding-top: 1rem;
+    }
+
+    .server-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .action-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .races-showcase {
+        gap: 1rem;
+    }
+
+    .race-card {
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .race-visual {
+        width: 60px;
+        height: 60px;
+    }
+
+    .race-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .race-stats {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
-    
+
+    .feature-item {
+        padding: 2rem 1.5rem;
+    }
+
+    .feature-animation {
+        height: 80px;
+    }
+
+    .rotating-item {
+        font-size: 2.5rem;
+    }
+
     .stats-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .online-stats {
+        padding: 2rem;
+        margin: 3rem 0;
+    }
+
+    .stats-container h3 {
+        font-size: 1.7rem;
     }
 }
 
+/* Мобильные устройства (576px - 768px) */
 @media (max-width: 768px) {
+    .hero-section {
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+
     .main-title {
         font-size: 2.5rem;
     }
-    
+
+    .title-word {
+        font-size: 2.2rem;
+    }
+
+    .fabric-label, .version-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .server-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
     .server-stats {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
-    
+
+    .stat-card {
+        padding: 1.2rem;
+        gap: 0.8rem;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
     .action-buttons {
         flex-direction: column;
+        align-items: center;
     }
-    
+
+    .action-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .races-showcase {
+        gap: 0.8rem;
+    }
+
     .race-card {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
+        padding: 1.2rem;
     }
-    
+
+    .race-visual {
+        width: 70px;
+        height: 70px;
+    }
+
+    .race-info h3 {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+
+    .race-info p {
+        margin-bottom: 0.8rem;
+    }
+
+    .race-stats {
+        justify-content: center;
+    }
+
+    .race-stats .stat {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .features-section {
+        margin: 4rem 0;
+    }
+
     .features-grid {
         grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .feature-item {
+        padding: 1.5rem 1rem;
+    }
+
+    .feature-animation {
+        height: 70px;
+        margin-bottom: 1.5rem;
+    }
+
+    .rotating-item {
+        font-size: 2rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .feature-content p {
+        font-size: 0.9rem;
+    }
+
+    .online-stats {
+        padding: 1.5rem;
+        margin: 2rem 0;
+        border-radius: 20px;
+    }
+
+    .stats-container h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .online-chart,
+    .players-online {
+        padding: 1.5rem;
+    }
+
+    .players-online h4 {
+        font-size: 1.1rem;
+    }
+
+    .online-player {
+        padding: 0.6rem;
+        gap: 0.8rem;
+    }
+
+    .player-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .player-name {
+        font-size: 0.9rem;
+    }
+
+    .player-race {
+        font-size: 0.7rem;
+    }
+}
+
+/* Маленькие мобильные устройства (до 576px) */
+@media (max-width: 576px) {
+    .hero-section {
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+    }
+
+    .main-title {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .title-word {
+        font-size: 1.8rem;
+    }
+
+    .title-subtext {
+        margin-bottom: 1.5rem;
+    }
+
+    .fabric-label, .version-badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .server-description {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+
+    .server-stats {
+        gap: 0.8rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+        gap: 0.6rem;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .stat-number {
+        font-size: 1.7rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .action-buttons {
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .races-showcase {
+        gap: 0.6rem;
+    }
+
+    .race-card {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+
+    .race-visual {
+        width: 60px;
+        height: 60px;
+    }
+
+    .race-icon {
+        font-size: 2rem;
+    }
+
+    .race-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .race-info p {
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .race-stats .stat {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .features-section {
+        margin: 3rem 0;
+    }
+
+    .features-grid {
+        gap: 1rem;
+    }
+
+    .feature-item {
+        padding: 1.2rem 0.8rem;
+        border-radius: 15px;
+    }
+
+    .feature-animation {
+        height: 60px;
+        margin-bottom: 1.2rem;
+    }
+
+    .rotating-item {
+        font-size: 1.8rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .feature-content p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .online-stats {
+        padding: 1.2rem;
+        margin: 1.5rem 0;
+        border-radius: 15px;
+    }
+
+    .stats-container h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .online-chart,
+    .players-online {
+        padding: 1.2rem;
+        border-radius: 12px;
+    }
+
+    .players-online h4 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .online-list {
+        gap: 0.6rem;
+    }
+
+    .online-player {
+        padding: 0.5rem;
+        gap: 0.6rem;
+    }
+
+    .player-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .player-name {
+        font-size: 0.85rem;
+    }
+
+    .player-race {
+        font-size: 0.65rem;
+    }
+}
+
+/* Очень маленькие устройства (до 400px) */
+@media (max-width: 400px) {
+    .main-title {
+        font-size: 1.7rem;
+    }
+
+    .title-word {
+        font-size: 1.5rem;
+    }
+
+    .title-subtext {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .server-description {
+        font-size: 0.85rem;
+    }
+
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .race-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-item {
+        padding: 1rem 0.6rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1rem;
+    }
+
+    .feature-content p {
+        font-size: 0.8rem;
+    }
+
+    .online-stats {
+        padding: 1rem;
+    }
+
+    .stats-container h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Адаптация изображений для всех размеров */
+@media (max-width: 768px) {
+    .resized-image {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .nav-image-index {
+        width: 25px !important;
+        height: 25px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .resized-image {
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    .nav-image-index {
+        width: 22px !important;
+        height: 22px !important;
+    }
+}
+
+/* Отключение сложных анимаций на мобильных для производительности */
+@media (max-width: 768px) {
+    .race-card:hover {
+        transform: none;
+    }
+
+    .race-card:hover .race-glow {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    .race-card:hover .race-icon {
+        transform: none;
+    }
+
+    .feature-item:hover {
+        transform: none;
+    }
+
+    .stat-card:hover {
+        transform: none;
+    }
+
+    .online-player:hover {
+        transform: none;
+    }
+}
+
+/* Портретная ориентация */
+@media (max-width: 768px) and (orientation: portrait) {
+    .hero-section {
+        min-height: 70vh;
+    }
+}
+
+/* Ландшафтная ориентация для мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 100vh;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .races-showcase {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .race-card {
+        flex: 0 0 calc(50% - 1rem);
+        min-width: 200px;
+    }
+}
+
+/* Высокопиксельные дисплеи */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2), 
+       (max-width: 768px) and (min-resolution: 192dpi) {
+    .race-icon,
+    .rotating-item {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
     }
 }

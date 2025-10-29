@@ -373,68 +373,6 @@
     }
 }
 
-/* ===== АДАПТИВНОСТЬ ===== */
-@media (max-width: 1200px) {
-    .settlements-stats {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .settlements-section {
-        padding: 2rem 0;
-    }
-    
-    .settlements-stats {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin: 3rem 0;
-    }
-    
-    .settlement-stat {
-        padding: 2rem 1.5rem;
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
-    }
-    
-    .stat-3d-icon {
-        width: 80px;
-        height: 80px;
-        font-size: 2.5rem;
-    }
-    
-    .stat-number {
-        font-size: 3.5rem;
-    }
-    
-    .stat-label {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .settlement-stat {
-        padding: 1.5rem 1rem;
-    }
-    
-    .stat-3d-icon {
-        width: 70px;
-        height: 70px;
-        font-size: 2rem;
-    }
-    
-    .stat-number {
-        font-size: 3rem;
-    }
-    
-    .stat-label {
-        font-size: 0.9rem;
-        letter-spacing: 1px;
-    }
-}
-
 /* Карта мира - ОБНОВЛЕНО */
 .world-map {
     margin: 4rem 0;
@@ -1342,63 +1280,6 @@
     color: var(--text-secondary);
 }
 
-/* Адаптивность для страницы поселений */
-@media (max-width: 1024px) {
-    .settlements-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .settlements-grid {
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    }
-    
-    .settlement-details {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .settlements-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .settlements-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .settlement-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-    
-    .modal-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-    }
-    
-    .settlement-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .settlement-details {
-        grid-template-columns: 1fr;
-    }
-    
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .modal-footer {
-        flex-direction: column;
-    }
-    
-    .map-container {
-        height: 300px;
-    }
-}
-
 
 /* Дополнительные стили для settlements */
 .advanced-filters {
@@ -1842,22 +1723,6 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Адаптивность для новых элементов */
-@media (max-width: 768px) {
-    .residents-list {
-        grid-template-columns: 1fr;
-    }
-    
-    .war-status-badge {
-        font-size: 0.7rem;
-        padding: 0.3rem 0.6rem;
-    }
-    
-    .settlement-coordinates {
-        font-size: 0.8rem;
-    }
-}
-
 /* Стили для уведомлений о точках пути и профилях */
 .waypoint-notification .notification-content,
 .leader-profile-notification .notification-content {
@@ -2006,247 +1871,747 @@
     border-color: var(--mc-accent);
 }
 
-/* Адаптивность фильтров */
-@media (max-width: 768px) {
+
+/* ===== АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ ===== */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .settlements-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .settlements-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+    
+    .settlement-stat {
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .stat-3d-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+    
+    .stat-number {
+        font-size: 3.5rem;
+    }
+    
+    .settlements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .settlement-image {
+        height: 250px;
+        font-size: 3rem;
+    }
+    
+    .map-container {
+        margin: 2rem 0;
+    }
+    
+    .map-legend {
+        bottom: 15px;
+        right: 15px;
+        padding: 0.8rem;
+    }
+    
+    .settlements-filter {
+        gap: 0.8rem;
+        margin: 1.5rem 0;
+    }
+    
+    .settlement-filter-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .settlements-search {
+        max-width: 300px;
+        padding: 0.8rem 1.2rem;
+    }
+    
     .advanced-filters {
-        flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
+        padding: 1.2rem;
     }
     
     .filter-group {
-        min-width: auto;/* ===== ПРЕМИАЛЬНЫЕ АНИМАЦИИ И ЭФФЕКТЫ ===== */
+        min-width: 130px;
+    }
+}
 
-        @keyframes hologramFloat {
-            0%, 100% { 
-                transform: translateY(0px) rotateX(0deg); 
-                filter: hue-rotate(0deg);
-            }
-            25% { 
-                transform: translateY(-10px) rotateX(5deg); 
-                filter: hue-rotate(90deg);
-            }
-            50% { 
-                transform: translateY(-5px) rotateX(-3deg); 
-                filter: hue-rotate(180deg);
-            }
-            75% { 
-                transform: translateY(-8px) rotateX(2deg); 
-                filter: hue-rotate(270deg);
-            }
-        }
-        
-        @keyframes quantumPulse {
-            0% { 
-                transform: scale(1);
-                box-shadow: 
-                    0 0 20px var(--mc-accent),
-                    0 0 40px var(--mc-accent),
-                    0 0 60px var(--mc-accent);
-            }
-            50% { 
-                transform: scale(1.1);
-                box-shadow: 
-                    0 0 30px var(--mc-accent),
-                    0 0 60px var(--mc-accent),
-                    0 0 90px var(--mc-accent);
-            }
-            100% { 
-                transform: scale(1);
-                box-shadow: 
-                    0 0 20px var(--mc-accent),
-                    0 0 40px var(--mc-accent),
-                    0 0 60px var(--mc-accent);
-            }
-        }
-        
-        @keyframes matrixRain {
-            0% {
-                background-position: 0% 0%;
-                opacity: 0.1;
-            }
-            100% {
-                background-position: 0% 100%;
-                opacity: 0.3;
-            }
-        }
-        
-        @keyframes neonFlicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                text-shadow: 
-                    0 0 5px #fff,
-                    0 0 10px #fff,
-                    0 0 15px var(--mc-accent),
-                    0 0 20px var(--mc-accent),
-                    0 0 35px var(--mc-accent),
-                    0 0 40px var(--mc-accent);
-                opacity: 1;
-            }
-            20%, 24%, 55% {
-                text-shadow: none;
-                opacity: 0.8;
-            }
-        }
-        
-        @keyframes particleStorm {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: 
-                    translate(
-                        calc(var(--tx) * 100px),
-                        calc(var(--ty) * 100px)
-                    ) 
-                    rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        @keyframes cyberGlitch {
-            0% {
-                transform: translate(0);
-                filter: hue-rotate(0deg);
-            }
-            20% {
-                transform: translate(-2px, 2px);
-                filter: hue-rotate(90deg);
-            }
-            40% {
-                transform: translate(-2px, -2px);
-                filter: hue-rotate(180deg);
-            }
-            60% {
-                transform: translate(2px, 2px);
-                filter: hue-rotate(270deg);
-            }
-            80% {
-                transform: translate(2px, -2px);
-                filter: hue-rotate(360deg);
-            }
-            100% {
-                transform: translate(0);
-                filter: hue-rotate(360deg);
-            }
-        }
-        
-        @keyframes hologramScan {
-            0% {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-        }
-        
-        /* ===== ПРЕМИАЛЬНАЯ СТРАНИЦА ПОСЕЛЕНИЙ ===== */
-        
-        .settlements-section {
-            padding: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .settlements-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(45deg, transparent 30%, rgba(126, 87, 194, 0.1) 50%, transparent 70%),
-                radial-gradient(circle at 20% 80%, rgba(255, 68, 68, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(79, 195, 247, 0.1) 0%, transparent 50%);
-            animation: matrixRain 20s linear infinite;
-            pointer-events: none;
-        }
-        
-        /* ===== ПРЕМИАЛЬНАЯ СТАТИСТИКА ===== */
-        
-        .settlements-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin: 5rem 0;
-            perspective: 1000px;
-        }
-        
-        .settlement-stat {
-            background: linear-gradient(135deg, 
-                rgba(30, 30, 50, 0.9) 0%,
-                rgba(20, 20, 40, 0.95) 50%,
-                rgba(30, 30, 50, 0.9) 100%);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 25px;
-            padding: 3rem 2.5rem;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.1);
-        }
-        
-        .settlement-stat::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.1),
-                rgba(255, 255, 255, 0.2),
-                rgba(255, 255, 255, 0.1),
-                transparent
-            );
-            transition: left 1s ease;
-        }
-        
-        .settlement-stat:hover::before {
-            left: 100%;
-        }
-        
-        .settlement-stat:hover {
-            transform: 
-                translateY(-15px) 
-                rotateX(5deg) 
-                rotateY(5deg);
-            border-color: var(--mc-accent);
-            box-shadow: 
-                0 25px 50px rgba(126, 87, 194, 0.4),
-                0 0 30px rgba(126, 87, 194, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            animation: quantumPulse 2s ease-in-out;
-        }
+/* Мобильные устройства (576px - 768px) */
+@media (max-width: 768px) {
+    .settlements-section {
+        padding: 2rem 1rem;
     }
     
+    .settlements-stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .settlement-stat {
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stat-3d-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+    
+    .stat-number {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+        font-size: 1rem;
+    }
+    
+    .settlements-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .settlement-image {
+        height: 200px;
+        font-size: 2.5rem;
+    }
+    
+    .population-badge,
+    .level-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .settlement-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .settlement-name {
+        font-size: 1.3rem;
+    }
+    
+    .settlement-leader {
+        font-size: 0.9rem;
+    }
+    
+    .settlement-description {
+        font-size: 0.9rem;
+    }
+    
+    .features-list {
+        gap: 0.4rem;
+    }
+    
+    .feature-tag {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .settlement-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .view-details-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Карта */
+    .map-container {
+        margin: 1.5rem 0;
+        border-radius: 15px;
+    }
+    
+    .map-point {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .map-legend {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    .legend-items {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    /* Фильтры */
+    .settlements-filter {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .settlement-filter-btn {
+        justify-content: center;
+    }
+    
+    .settlements-search {
+        max-width: none;
+    }
+    
+    .advanced-filters {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .filter-group {
+        min-width: auto;
+    }
+    
+    /* Модальные окна */
+    .settlement-modal .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .modal-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .settlement-image-large {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+    }
+    
+    .settlement-info h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-body {
+        padding: 1.5rem;
+    }
+    
+    .settlement-stats-detailed,
+    .settlement-details-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .features-grid-detailed {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 1rem 1.5rem;
+    }
+    
+    .visit-btn,
+    .share-btn {
+        width: 100%;
+    }
+    
+    /* Уведомления */
+    .visit-notification .notification-content,
+    .waypoint-notification .notification-content {
+        width: 95%;
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .notification-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .copy-coords-btn,
+    .close-notification {
+        width: 100%;
+        margin: 0;
+    }
+    
+    /* Галерея */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
+    /* Жители */
+    .residents-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+    
+    .resident-item {
+        padding: 0.6rem;
+    }
+    
+    /* Отключаем сложные анимации для производительности */
+    .settlement-stat::after,
+    .stat-3d-icon::before,
+    .stat-3d-icon::after {
+        display: none;
+    }
+    
+    .settlement-stat:hover {
+        transform: translateY(-5px);
+    }
+    
+    .point-pulse,
+    .point-glow {
+        animation: none;
+    }
+}
+
+/* Маленькие мобильные устройства (до 576px) */
+@media (max-width: 576px) {
+    .settlements-section {
+        padding: 1.5rem 0.8rem;
+    }
+    
+    .settlements-stats {
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .settlement-stat {
+        padding: 1.2rem 0.8rem;
+        border-radius: 20px;
+    }
+    
+    .stat-3d-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+        border-radius: 15px;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    
+    .settlements-grid {
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .settlement-card {
+        border-radius: 15px;
+    }
+    
+    .settlement-image {
+        height: 180px;
+        font-size: 2rem;
+        border-radius: 12px;
+    }
+    
+    .population-badge,
+    .level-badge,
+    .war-status-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .settlement-content {
+        padding: 1rem;
+    }
+    
+    .settlement-name {
+        font-size: 1.2rem;
+    }
+    
+    .settlement-leader {
+        font-size: 0.85rem;
+    }
+    
+    .leader-name {
+        font-size: 0.9rem;
+    }
+    
+    .settlement-description {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+    
+    .settlement-features h4 {
+        font-size: 0.9rem;
+    }
+    
+    .feature-tag {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .established-date {
+        font-size: 0.75rem;
+    }
+    
+    .view-details-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Карта */
+    .map-container {
+        border-radius: 12px;
+    }
+    
+    .map-point {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .map-tooltip {
+        min-width: 150px;
+        padding: 0.8rem;
+    }
+    
+    .tooltip-content strong {
+        font-size: 1rem;
+    }
+    
+    .tooltip-content span {
+        font-size: 0.75rem;
+    }
+    
+    /* Фильтры */
     .filter-buttons {
         gap: 0.5rem;
     }
     
     .settlement-filter-btn {
-        padding: 0.8rem 1rem;
+        padding: 0.7rem 1rem;
         font-size: 0.8rem;
+    }
+    
+    .settlements-search {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .advanced-filters {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+    
+    .filter-group label {
+        font-size: 0.75rem;
+    }
+    
+    .filter-group select {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Модальные окна */
+    .modal-header {
+        padding: 1rem;
+    }
+    
+    .settlement-image-large {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+        border-radius: 15px;
+    }
+    
+    .settlement-info h2 {
+        font-size: 1.3rem;
+    }
+    
+    .settlement-level {
+        font-size: 0.9rem;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .detail-item {
+        padding: 0.8rem;
+    }
+    
+    .feature-item-detailed {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+    
+    .feature-content strong {
+        font-size: 0.9rem;
+    }
+    
+    .feature-desc {
+        font-size: 0.75rem;
+    }
+    
+    .map-overview {
+        height: 150px;
+    }
+    
+    .coordinate-item {
+        padding: 0.6rem;
+    }
+    
+    .coord-label,
+    .coord-value {
+        font-size: 0.8rem;
+    }
+    
+    /* Уведомления */
+    .visit-notification .notification-content,
+    .waypoint-notification .notification-content {
+        padding: 1rem;
+    }
+    
+    .notification-content h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .notification-content pre {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .copy-coords-btn,
+    .close-notification {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Галерея */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+    
+    .gallery-item {
+        aspect-ratio: 16/9;
+    }
+    
+    /* Жители */
+    .residents-list {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .resident-item {
+        padding: 0.5rem;
+    }
+    
+    .resident-avatar {
+        font-size: 1rem;
+        width: 25px;
+    }
+    
+    .resident-name {
+        font-size: 0.8rem;
+    }
+    
+    .leader-tag,
+    .deputy-tag {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.3rem;
+    }
+    
+    /* Быстрая информация */
+    .quick-settlement-info {
+        max-width: 200px;
+        padding: 1rem;
+    }
+    
+    .info-content h4 {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .info-stats span {
+        font-size: 0.8rem;
+    }
+    
+    .close-info {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Очень маленькие устройства (до 400px) */
+@media (max-width: 400px) {
+    .settlements-section {
+        padding: 1rem 0.5rem;
+    }
+    
+    .settlement-stat {
+        padding: 1rem 0.6rem;
+    }
+    
+    .stat-3d-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .settlement-image {
+        height: 150px;
+        font-size: 1.8rem;
+    }
+    
+    .settlement-name {
+        font-size: 1.1rem;
+    }
+    
+    .features-list {
+        justify-content: center;
+    }
+    
+    .map-point {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .settlement-filter-btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Ландшафтная ориентация для мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+    .settlements-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .settlements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .settlement-image {
+        height: 120px;
+    }
+    
+    .modal-header {
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .settlement-modal .modal-content {
+        max-height: 80vh;
+    }
+}
+
+/* Оптимизация для слабых устройств */
+@media (prefers-reduced-motion: reduce) {
+    .settlement-stat,
+    .stat-3d-icon,
+    .map-point,
+    .settlement-card,
+    .feature-tag,
+    .settlement-filter-btn,
+    .resident-item {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .settlement-stat::before,
+    .settlement-stat::after {
+        display: none;
+    }
+}
+
+/* Высокопиксельные дисплеи */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+    .settlement-stat,
+    .settlement-card {
+        border-width: 0.5px;
+    }
+}
+
+/* Темный режим по умолчанию для мобильных */
+@media (max-width: 768px) {
+    .settlements-section::before {
+        opacity: 0.5;
+    }
+}
+
+/* Предотвращение масштабирования на iOS */
+@media (max-width: 768px) {
+    .settlements-search,
+    .filter-group select {
+        font-size: 16px;
+    }
+}
+
+/* Улучшенная поддержка тач-устройств */
+@media (max-width: 768px) {
+    .map-point {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .view-details-btn,
+    .visit-btn,
+    .share-btn,
+    .copy-coords-btn,
+    .close-notification {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .settlement-filter-btn {
+        min-height: 40px;
+    }
+}
+
+/* Оптимизация скроллбара для мобильных */
+@media (max-width: 768px) {
+    .settlement-modal .modal-content,
+    .visit-notification .notification-content,
+    .waypoint-notification .notification-content {
+        scrollbar-width: thin;
+    }
+    
+    .settlement-modal .modal-content::-webkit-scrollbar,
+    .visit-notification .notification-content::-webkit-scrollbar,
+    .waypoint-notification .notification-content::-webkit-scrollbar {
+        width: 4px;
     }
 }
