@@ -9,8 +9,10 @@ class PreloadManager {
     preloadCritical() {
       const criticalResources = [
         '/assets/css/style.css',
+        'assets/images/MineOriginsAva.png',
         '/assets/images/MineOrigins.png',
-        '/assets/images/icons/index_icon_house.png'
+        '/assets/images/icons/index_icon_house.png',
+        '/assets/images/icons/main.js'
       ];
   
       criticalResources.forEach(resource => {
@@ -25,6 +27,14 @@ class PreloadManager {
       }
   
       const pagesToPreload = [
+        'index.html',
+        '',
+        'players.html',
+        'settlements.html', 
+        'gallery.html',
+        'faq.html',
+        '/index.html',
+        '/',
         '/players.html',
         '/settlements.html', 
         '/gallery.html',

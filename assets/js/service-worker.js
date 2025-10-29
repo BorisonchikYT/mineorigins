@@ -20,7 +20,8 @@ const CRITICAL_URLS = [
   '/assets/css/settlements.css',
   '/assets/css/gallery.css',
   '/assets/css/faq.css',
-  '/assets/js/main.js'
+  '/assets/js/main.js',
+  '/manifest.json'
 ];
 
 // Статические ресурсы (версионированные)
@@ -108,6 +109,21 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Особые случаи - manifest.json
+  if (url.pathname.endsWith('manifest.json')) {
+    event.respondWith(
+      caches.match(request).then(response => {
+        return response || fetch(request).then(networkResponse => {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAMES.STATIC)
+            .then(cache => cache.put(request, responseClone));
+          return networkResponse;
+        });
+      })
+    );
+    return;
+  }
+
   // Для API запросов - Network First
   if (url.pathname.includes('/api/')) {
     event.respondWith(networkFirstStrategy(request));
@@ -122,7 +138,7 @@ self.addEventListener('fetch', (event) => {
 
   // Для CSS и JS - Cache First с обновлением
   if (request.destination === 'style' || request.destination === 'script') {
-    event.respondWith(cacheFirstStrategy(request, CACHE_NAMES.STATIC));
+    event.respondWith(cacheFirstStrategy(request, event, CACHE_NAMES.STATIC));
     return;
   }
 
@@ -141,7 +157,7 @@ self.addEventListener('fetch', (event) => {
 /**
  * Cache First - для статических ресурсов
  */
-async function cacheFirstStrategy(request, cacheName) {
+async function cacheFirstStrategy(request, event, cacheName) {
   const cache = await caches.open(cacheName);
   const cachedResponse = await cache.match(request);
   
@@ -199,10 +215,15 @@ async function staleWhileRevalidateStrategy(request, cacheName) {
   // Обновляем кэш в фоне
   const fetchPromise = fetch(request).then(networkResponse => {
     if (networkResponse.status === 200) {
-      cache.put(request, networkResponse);
+      const responseClone = networkResponse.clone();
+      caches.open(cacheName)
+        .then(cache => cache.put(request, responseClone));
     }
     return networkResponse;
-  }).catch(() => { /* Игнорируем ошибки */ });
+  }).catch(() => { 
+    // Игнорируем ошибки для фонового обновления
+    return cachedResponse;
+  });
   
   // Возвращаем кэшированную версию сразу, если есть
   return cachedResponse || fetchPromise;
@@ -225,15 +246,24 @@ async function imageCacheStrategy(request) {
       // Проверяем размер кэша перед сохранением
       const keys = await cache.keys();
       if (keys.length < 100) { // Максимум 100 изображений
-        cache.put(request, networkResponse.clone());
+        await cache.put(request, networkResponse.clone());
       }
     }
     return networkResponse;
   } catch (error) {
-    return new Response('', { 
-      status: 404, 
-      headers: { 'Content-Type': 'image/svg+xml' } 
-    });
+    const fallbackResponse = await caches.match(request);
+    if (fallbackResponse) {
+      return fallbackResponse;
+    }
+    
+    // Возвращаем пустой SVG если изображение не найдено
+    return new Response(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="#f0f0f0"/><text x="50" y="50" text-anchor="middle" dy=".3em" font-family="Arial" font-size="10">No Image</text></svg>',
+      { 
+        status: 404, 
+        headers: { 'Content-Type': 'image/svg+xml' } 
+      }
+    );
   }
 }
 
@@ -270,15 +300,64 @@ async function fetchAndCache(request, cacheName) {
  * Оффлайн ответ
  */
 function offlineResponse() {
-  return new Response('Ресурс недоступен в оффлайн режиме', {
-    status: 503,
-    headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-  });
+  return new Response(
+    `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Оффлайн - MineOrigins</title>
+        <style>
+            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+            .offline { color: #666; }
+        </style>
+    </head>
+    <body>
+        <div class="offline">
+            <h1>📶 Оффлайн режим</h1>
+            <p>Соединение с интернетом отсутствует</p>
+            <p>Некоторые функции могут быть недоступны</p>
+        </div>
+    </body>
+    </html>
+    `,
+    {
+      status: 503,
+      headers: { 
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'no-cache'
+      }
+    }
+  );
 }
 
 // Фоновая синхронизация (если нужна)
 self.addEventListener('sync', (event) => {
   if (event.tag === 'background-sync') {
     console.log('🔄 Фоновая синхронизация...');
+    event.waitUntil(doBackgroundSync());
   }
 });
+
+async function doBackgroundSync() {
+  // Здесь можно реализовать фоновую синхронизацию данных
+  console.log('Выполняется фоновая синхронизация...');
+}
+
+// Периодическая синхронизация (для обновления контента)
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'content-update') {
+    console.log('🔄 Периодическое обновление контента...');
+    event.waitUntil(updateContent());
+  }
+});
+
+async function updateContent() {
+  // Обновление кэша в фоне
+  try {
+    const cache = await caches.open(CACHE_NAMES.DYNAMIC);
+    // Логика обновления контента
+    console.log('Контент обновлен в фоне');
+  } catch (error) {
+    console.error('Ошибка при обновлении контента:', error);
+  }
+}

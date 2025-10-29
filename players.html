@@ -47,7 +47,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link defer rel="icon" href="assets/images/MineOriginsAva.png" type="image/png">
-    <link rel="manifest" href="assets/json/manifest.json">
+
+    <!-- В разделе head каждой страницы добавьте: -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MineOrigins">
+    <link rel="apple-touch-icon" href="/assets/images/icons/icon-152x152.png">
+    <link rel="icon" type="image/png" href="/assets/images/icons/icon-192x192.png">
+
     <meta name="theme-color" content="#7e57c2">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -278,7 +287,8 @@
             <p>Minecraft™ является товарным знаком Mojang AB</p>
         </div>
     </footer>
-    
+
+    <script src="/assets/js/app-install.js"></script>
     <script defer src="assets/json/players.json"></script>
     <script defer src="assets/js/s2.js"></script>
     <script defer src="assets/js/players.js"></script>
