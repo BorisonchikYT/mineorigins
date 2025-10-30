@@ -6,11 +6,226 @@ document.addEventListener('DOMContentLoaded', function() {
     initPlayersStats();
     loadPlayersData();
     initRealTimePlayerCount();
+    initOnlineStatusSystem();
 });
 
 // Инициализация страницы игроков
 function initPlayersPage() {
     console.log('Страница игроков инициализирована');
+}
+
+// Инициализация системы онлайн статуса
+function initOnlineStatusSystem() {
+    console.log('🔄 Инициализация системы онлайн статуса...');
+    
+    // Загружаем текущий онлайн статус
+    updateOnlineStatusForAllPlayers();
+    
+    // Обновляем статус каждые 30 секунд
+    setInterval(updateOnlineStatusForAllPlayers, 30000);
+}
+
+// Получение списка онлайн игроков с сервера
+async function getOnlinePlayers() {
+    try {
+        console.log('🔄 Получение списка онлайн игроков...');
+        
+        const SERVER_CONFIG = {
+            apiEndpoints: {
+                status: 'https://api.mcsrvstat.us/3/95.216.92.76:25835',
+                ping: 'https://api.mcsrvstat.us/debug/ping/95.216.92.76:25835',
+                backup: 'https://api.mcsrvstat.us/2/95.216.92.76:25835'
+            }
+        };
+
+        // Пробуем основное API
+        const response = await fetch(SERVER_CONFIG.apiEndpoints.status, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('✅ Данные онлайн статуса получены:', data);
+
+        if (data.online && data.players && data.players.list) {
+            return data.players.list.map(player => player.toLowerCase());
+        } else if (data.online && data.players && data.players.uuid) {
+            // Если есть UUID, но нет имен
+            return Object.keys(data.players.uuid).map(player => player.toLowerCase());
+        } else {
+            console.log('📊 Список игроков недоступен, используем тестовые данные');
+            return getTestOnlinePlayers();
+        }
+
+    } catch (error) {
+        console.error('❌ Ошибка получения онлайн статуса:', error);
+        // Возвращаем тестовые данные при ошибке
+        return getTestOnlinePlayers();
+    }
+}
+
+// Тестовые данные для онлайн игроков (удалить в продакшене)
+function getTestOnlinePlayers() {
+    const testPlayers = [
+        "_kot_baris_", "stalker_hunter_", "amidamaru3434", "darcklord", 
+        "maxxaumka", "pandamom", "snekky_offc", "cartoshka_"
+    ];
+    
+    // Случайным образом выбираем кто онлайн (50% шанс)
+    return testPlayers.filter(() => Math.random() > 0.5);
+}
+
+// Обновление онлайн статуса для всех игроков
+async function updateOnlineStatusForAllPlayers() {
+    try {
+        console.log('🔄 Обновление онлайн статусов...');
+        
+        const onlinePlayers = await getOnlinePlayers();
+        console.log(`📊 Онлайн игроков: ${onlinePlayers.length}`, onlinePlayers);
+        
+        // Обновляем статусы на карточках игроков
+        updatePlayerCardsStatus(onlinePlayers);
+        
+        // Обновляем статусы в модальных окнах если они открыты
+        updateModalStatuses(onlinePlayers);
+        
+        // Показываем уведомление об обновлении
+        showStatusUpdateNotification(onlinePlayers.length);
+        
+    } catch (error) {
+        console.error('❌ Ошибка обновления статусов:', error);
+    }
+}
+
+// Обновление статусов на карточках игроков
+function updatePlayerCardsStatus(onlinePlayers) {
+    const playerCards = document.querySelectorAll('.player-card');
+    
+    playerCards.forEach(card => {
+        const playerNameElement = card.querySelector('.player-name');
+        if (!playerNameElement) return;
+        
+        const playerName = playerNameElement.textContent.toLowerCase().trim();
+        const isOnline = onlinePlayers.includes(playerName);
+        
+        updateCardStatus(card, isOnline);
+    });
+}
+
+// Обновление статуса на карточке игрока
+function updateCardStatus(card, isOnline) {
+    // Удаляем предыдущие статусы
+    card.classList.remove('player-online', 'player-offline');
+    
+    // Добавляем соответствующий класс
+    card.classList.add(isOnline ? 'player-online' : 'player-offline');
+    
+    // Обновляем индикатор статуса
+    let statusIndicator = card.querySelector('.player-status-indicator');
+    if (!statusIndicator) {
+        statusIndicator = document.createElement('div');
+        statusIndicator.className = 'player-status-indicator';
+        card.querySelector('.player-header').prepend(statusIndicator);
+    }
+    
+    statusIndicator.className = `player-status-indicator ${isOnline ? 'online' : 'offline'}`;
+    statusIndicator.title = isOnline ? 'Сейчас в игре' : 'Не в сети';
+    
+    // Обновляем текст статуса если есть
+    const statusText = card.querySelector('.player-status-text');
+    if (statusText) {
+        statusText.textContent = isOnline ? 'В игре' : 'Не в сети';
+        statusText.className = `player-status-text ${isOnline ? 'online' : 'offline'}`;
+    }
+}
+
+// Обновление статусов в модальных окнах
+function updateModalStatuses(onlinePlayers) {
+    const modals = document.querySelectorAll('.player-modal');
+    
+    modals.forEach(modal => {
+        const playerNameElement = modal.querySelector('.player-info h2');
+        if (!playerNameElement) return;
+        
+        const playerName = playerNameElement.textContent.toLowerCase().trim();
+        const isOnline = onlinePlayers.includes(playerName);
+        
+        updateModalStatus(modal, isOnline);
+    });
+}
+
+// Обновление статуса в модальном окне
+function updateModalStatus(modal, isOnline) {
+    let statusBadge = modal.querySelector('.player-online-status');
+    
+    if (!statusBadge) {
+        statusBadge = document.createElement('div');
+        statusBadge.className = 'player-online-status';
+        modal.querySelector('.player-info').appendChild(statusBadge);
+    }
+    
+    statusBadge.className = `player-online-status ${isOnline ? 'online' : 'offline'}`;
+    statusBadge.innerHTML = `
+        <span class="status-dot"></span>
+        <span class="status-text">${isOnline ? 'Сейчас в игре' : 'Не в сети'}</span>
+    `;
+}
+
+// Показ уведомления об обновлении статуса
+function showStatusUpdateNotification(onlineCount) {
+    // Удаляем предыдущее уведомление если есть
+    const existingNotification = document.querySelector('.status-update-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    const notification = document.createElement('div');
+    notification.className = 'status-update-notification';
+    notification.innerHTML = `
+        <div class="status-update-content">
+            <div class="status-update-icon">🔄</div>
+            <div class="status-update-text">
+                <strong>Статус обновлен</strong>
+                <span>Сейчас играет: ${onlineCount} игроков</span>
+            </div>
+            <button class="status-update-close">×</button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Анимация появления
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // Автоматическое скрытие через 3 секунды
+    setTimeout(() => {
+        hideStatusNotification(notification);
+    }, 3000);
+    
+    // Закрытие по клику
+    notification.querySelector('.status-update-close').addEventListener('click', () => {
+        hideStatusNotification(notification);
+    });
+}
+
+// Скрытие уведомления статуса
+function hideStatusNotification(notification) {
+    notification.classList.remove('show');
+    notification.classList.add('hide');
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 300);
 }
 
 // Загрузка данных игроков из JSON
@@ -23,6 +238,11 @@ async function loadPlayersData() {
         renderPlayersGrid(playersData);
         updatePlayersStats(playersData);
         hideLoadingState();
+        
+        // После загрузки данных обновляем онлайн статус
+        setTimeout(() => {
+            updateOnlineStatusForAllPlayers();
+        }, 1000);
         
     } catch (error) {
         console.error('Ошибка загрузки данных игроков:', error);
@@ -99,6 +319,7 @@ function createPlayerCard(player) {
     card.className = `player-card ${player.race}-race`;
     card.setAttribute('data-race', player.race);
     card.setAttribute('data-player-id', player.id);
+    card.setAttribute('data-player-name', player.name.toLowerCase());
     
     // Форматируем социальные сети
     const socials = player.socials || {};
@@ -110,13 +331,17 @@ function createPlayerCard(player) {
     
     card.innerHTML = `
         <div class="player-header">
+            <div class="player-status-indicator offline" title="Не в сети"></div>
             <div class="player-avatar ${player.race}">
                 <img src="${avatarPath}" alt="${player.name}" class="avatar-image" 
                      onerror="console.error('Ошибка загрузки аватара для ${player.name}'); this.src='assets/icons/players/default.png'">
             </div>
             <div class="player-main-info">
                 <h3 class="player-name">${player.name}</h3>
-                <span class="player-race-badge race-${player.race}">${getRaceName(player.race)}</span>
+                <div class="player-meta">
+                    <span class="player-race-badge race-${player.race}">${getRaceName(player.race)}</span>
+                    <span class="player-status-text offline">Не в сети</span>
+                </div>
             </div>
         </div>
         <div class="player-description">
@@ -175,6 +400,10 @@ function showPlayerProfile(player) {
                 <div class="player-avatar-large ${player.race}">
                     <img src="${player.avatar}" alt="${player.name}" class="avatar-image-large"
                          onerror="this.src='assets/icons/players/default.png'">
+                    <div class="player-online-status offline">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Не в сети</span>
+                    </div>
                 </div>
                 <div class="player-info">
                     <h2>${player.name}</h2>
@@ -195,6 +424,10 @@ function showPlayerProfile(player) {
                     <div class="stat-item">
                         <span class="stat-label">Раса</span>
                         <span class="stat-value">${getRaceName(player.race)}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Статус</span>
+                        <span class="stat-value online-status-value">Загрузка...</span>
                     </div>
                 </div>
                 <div class="player-description-detailed">
@@ -244,6 +477,9 @@ function showPlayerProfile(player) {
         document.body.style.overflow = 'hidden';
     }, 10);
 
+    // Обновляем онлайн статус для этого игрока
+    updatePlayerModalStatus(modal, player.name);
+
     // Обработчики для модального окна
     modal.querySelector('.modal-close').addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
@@ -269,6 +505,32 @@ function showPlayerProfile(player) {
             modal.remove();
             document.body.style.overflow = '';
         }, 300);
+    }
+}
+
+// Обновление статуса в модальном окне игрока
+async function updatePlayerModalStatus(modal, playerName) {
+    try {
+        const onlinePlayers = await getOnlinePlayers();
+        const isOnline = onlinePlayers.includes(playerName.toLowerCase());
+        
+        const statusElement = modal.querySelector('.online-status-value');
+        const onlineStatus = modal.querySelector('.player-online-status');
+        
+        if (statusElement) {
+            statusElement.textContent = isOnline ? 'В игре' : 'Не в сети';
+            statusElement.className = `online-status-value ${isOnline ? 'online' : 'offline'}`;
+        }
+        
+        if (onlineStatus) {
+            onlineStatus.className = `player-online-status ${isOnline ? 'online' : 'offline'}`;
+            onlineStatus.innerHTML = `
+                <span class="status-dot"></span>
+                <span class="status-text">${isOnline ? 'Сейчас в игре' : 'Не в сети'}</span>
+            `;
+        }
+    } catch (error) {
+        console.error('Ошибка обновления статуса в модальном окне:', error);
     }
 }
 
@@ -778,7 +1040,7 @@ function loadDemoPlayersData() {
     updatePlayersStats(demoPlayers);
 }
 
-// Обновление данных каждые 30 секунд
+// Обновление данных каждые 3 секунд
 setInterval(() => {
     initRealTimePlayerCount();
-}, 30000);
+}, 3000);

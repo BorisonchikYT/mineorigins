@@ -1,34 +1,25 @@
-// preload-manager.js - Менеджер предзагрузки ресурсов (исправленная версия)
+// preload-manager.js - Менеджер предзагрузки ресурсов (исправленная для локальных файлов)
 class PreloadManager {
   constructor() {
       this.loadedResources = new Set();
       this.pendingResources = new Map();
       this.isOnline = navigator.onLine;
+      this.isLocalFile = window.location.protocol === 'file:';
       this.basePath = this.detectBasePath();
       
-      // Слушаем изменения состояния сети
-      window.addEventListener('online', () => {
-          this.isOnline = true;
-          console.log('🟢 Онлайн: возобновляем предзагрузку');
-      });
-      
-      window.addEventListener('offline', () => {
-          this.isOnline = false;
-          console.log('🔴 Оффлайн: приостанавливаем предзагрузку');
-      });
+      console.log('🌐 Режим:', this.isLocalFile ? 'Локальный файл' : 'Веб-сервер');
+      console.log('📁 Базовый путь:', this.basePath);
   }
 
   // Автоматическое определение базового пути
   detectBasePath() {
-      // Получаем текущий путь к HTML файлу
       const currentPath = window.location.pathname;
-      const isLocalFile = window.location.protocol === 'file:';
       
-      if (isLocalFile) {
+      if (this.isLocalFile) {
           // Для локальных файлов определяем путь относительно текущей директории
           const pathParts = currentPath.split('/');
           pathParts.pop(); // Убираем имя текущего файла
-          return pathParts.join('/') || '/';
+          return pathParts.join('/') || '';
       } else {
           // Для веб-сервера используем корень
           return '/';
@@ -47,34 +38,29 @@ class PreloadManager {
           path = path.substring(2);
       }
       
-      return this.basePath + (this.basePath.endsWith('/') ? '' : '/') + path;
+      // Для локальных файлов не добавляем ведущий слеш
+      if (this.isLocalFile) {
+          return this.basePath + (this.basePath && !this.basePath.endsWith('/') ? '/' : '') + path;
+      } else {
+          return '/' + path;
+      }
   }
 
-  // Проверка доступности ресурса
+  // Упрощенная проверка доступности ресурса (без HTTP запросов для локальных файлов)
   async checkResourceExists(url) {
+      // Для локальных файлов просто предполагаем, что ресурсы существуют
+      if (this.isLocalFile) {
+          return true;
+      }
+      
+      // Только для веб-сервера делаем реальные проверки
       try {
-          // Для локальных файлов используем XMLHttpRequest вместо fetch
-          if (window.location.protocol === 'file:') {
-              return await new Promise((resolve) => {
-                  const xhr = new XMLHttpRequest();
-                  xhr.open('HEAD', url, true);
-                  xhr.onreadystatechange = function() {
-                      if (xhr.readyState === 4) {
-                          resolve(xhr.status === 0 || xhr.status === 200);
-                      }
-                  };
-                  xhr.onerror = () => resolve(false);
-                  xhr.ontimeout = () => resolve(false);
-                  xhr.send();
-              });
-          } else {
-              const response = await fetch(url, { 
-                  method: 'HEAD',
-                  mode: 'same-origin',
-                  cache: 'no-cache'
-              });
-              return response.ok;
-          }
+          const response = await fetch(url, { 
+              method: 'HEAD',
+              mode: 'same-origin',
+              cache: 'no-cache'
+          });
+          return response.ok;
       } catch (error) {
           console.warn('⚠️ Проверка ресурса не удалась:', url, error.message);
           return false;
@@ -91,20 +77,33 @@ class PreloadManager {
           'assets/js/main.js'
       ];
 
+      console.log('🔄 Начинаем предзагрузку критических ресурсов...');
+
       for (const resource of criticalResources) {
           const normalizedPath = this.normalizePath(resource);
-          const exists = await this.checkResourceExists(normalizedPath);
           
-          if (exists) {
+          // Для локальных файлов пропускаем проверку существования
+          if (this.isLocalFile) {
               await this.preloadResource(normalizedPath);
           } else {
-              console.warn('⚠️ Критический ресурс не найден, пропускаем:', normalizedPath);
+              const exists = await this.checkResourceExists(normalizedPath);
+              if (exists) {
+                  await this.preloadResource(normalizedPath);
+              } else {
+                  console.warn('⚠️ Ресурс не найден, пропускаем:', normalizedPath);
+              }
           }
       }
   }
 
   // Предзагрузка ресурсов для других страниц
   async preloadPages() {
+      // Для локальных файлов предзагрузка страниц не работает
+      if (this.isLocalFile) {
+          console.log('📁 Локальный режим: предзагрузка страниц недоступна');
+          return;
+      }
+
       // Проверяем условия для предзагрузки
       if (!this.isOnline) {
           console.log('📶 Оффлайн режим: пропускаем предзагрузку');
@@ -127,11 +126,7 @@ class PreloadManager {
           'faq.html'
       ];
 
-      // Для локальных файлов предзагрузка страниц не работает из-за CORS
-      if (window.location.protocol === 'file:') {
-          console.log('📁 Локальный режим: предзагрузка страниц недоступна');
-          return;
-      }
+      console.log('🔄 Предзагрузка страниц...');
 
       // Используем requestIdleCallback для фоновой загрузки
       const preloadTask = async () => {
@@ -146,7 +141,6 @@ class PreloadManager {
               preloadTask();
           }, { timeout: 2000 });
       } else {
-          // Fallback для браузеров без requestIdleCallback
           setTimeout(preloadTask, 1000);
       }
   }
@@ -168,9 +162,7 @@ class PreloadManager {
           link.rel = 'preload';
           
           // Определяем тип ресурса
-          if (url.endsWith('.css')) {
-              link.as = 'style';
-          } else if (url.endsWith('.js')) {
+          if (url.endsWith('.js')) {
               link.as = 'script';
           } else if (url.match(/\.(png|jpg|jpeg|gif|webp|svg)$/)) {
               link.as = 'image';
@@ -182,34 +174,77 @@ class PreloadManager {
           
           // Обработчики событий
           link.onload = () => {
-              console.log('✅ Ресурс предзагружен:', url);
+              console.log('✅ Ресурс предзагружен:', this.getShortPath(url));
               this.resourceLoaded(url);
           };
           
           link.onerror = (error) => {
-              console.warn('❌ Ошибка предзагрузки ресурса:', url, error);
+              console.warn('❌ Ошибка предзагрузки ресурса:', this.getShortPath(url));
               this.pendingResources.delete(url);
+              
+              // Для локальных файлов игнорируем ошибки предзагрузки
+              if (this.isLocalFile) {
+                  this.resourceLoaded(url);
+              }
           };
 
           document.head.appendChild(link);
           this.pendingResources.set(url, link);
           
+          // Для локальных файлов добавляем таймаут на случай, если onload не сработает
+          if (this.isLocalFile) {
+              setTimeout(() => {
+                  if (this.pendingResources.has(url)) {
+                      console.log('⏰ Таймаут предзагрузки (локальный файл):', this.getShortPath(url));
+                      this.resourceLoaded(url);
+                  }
+              }, 1000);
+          }
+          
       } catch (error) {
           console.error('🚨 Ошибка при создании preload ссылки:', error);
+          // Для локальных файлов отмечаем ресурс как загруженный даже при ошибке
+          if (this.isLocalFile) {
+              this.resourceLoaded(url);
+          }
       }
+  }
+
+  // Укорачивает путь для логов
+  getShortPath(fullPath) {
+      const parts = fullPath.split('/');
+      return parts.slice(-3).join('/');
   }
 
   // Альтернативный метод предзагрузки CSS
   async preloadCSS(url) {
       try {
-          // Создаем link элемент для предзагрузки
+          // Для локальных файлов просто загружаем CSS без предзагрузки
+          if (this.isLocalFile) {
+              const cssLink = document.createElement('link');
+              cssLink.rel = 'stylesheet';
+              cssLink.href = url;
+              cssLink.onload = () => {
+                  console.log('✅ CSS загружен:', this.getShortPath(url));
+                  this.resourceLoaded(url);
+              };
+              cssLink.onerror = () => {
+                  console.warn('❌ Ошибка загрузки CSS:', this.getShortPath(url));
+                  this.resourceLoaded(url); // Все равно отмечаем как загруженный
+              };
+              document.head.appendChild(cssLink);
+              this.pendingResources.set(url, cssLink);
+              return;
+          }
+
+          // Для веб-сервера используем стандартную предзагрузку
           const preloadLink = document.createElement('link');
           preloadLink.rel = 'preload';
           preloadLink.as = 'style';
           preloadLink.href = url;
           
           preloadLink.onload = () => {
-              console.log('✅ CSS предзагружен:', url);
+              console.log('✅ CSS предзагружен:', this.getShortPath(url));
               this.resourceLoaded(url);
               
               // Теперь загружаем CSS для применения
@@ -220,7 +255,7 @@ class PreloadManager {
           };
           
           preloadLink.onerror = () => {
-              console.warn('❌ Ошибка предзагрузки CSS:', url);
+              console.warn('❌ Ошибка предзагрузки CSS:', this.getShortPath(url));
               this.pendingResources.delete(url);
           };
 
@@ -229,22 +264,20 @@ class PreloadManager {
           
       } catch (error) {
           console.error('🚨 Ошибка предзагрузки CSS:', error);
+          // Для локальных файлов отмечаем как загруженный
+          if (this.isLocalFile) {
+              this.resourceLoaded(url);
+          }
       }
   }
 
-  // Предзагрузка всей страницы (исправленная)
+  // Предзагрузка страницы
   async preloadPage(url) {
-      if (!this.isOnline) {
+      if (!this.isOnline || this.isLocalFile) {
           return;
       }
 
       try {
-          // Для локальных файлов prefetch не работает
-          if (window.location.protocol === 'file:') {
-              console.log('📁 Локальный файл: prefetch недоступен для', url);
-              return;
-          }
-
           // Проверяем доступность страницы
           const exists = await this.checkResourceExists(url);
           
@@ -254,22 +287,19 @@ class PreloadManager {
               link.href = url;
               
               link.onload = () => {
-                  console.log('✅ Страница предзагружена:', url);
+                  console.log('✅ Страница предзагружена:', this.getShortPath(url));
               };
               
               link.onerror = (error) => {
-                  console.warn('❌ Ошибка предзагрузки страницы:', url, error);
+                  console.warn('❌ Ошибка предзагрузки страницы:', this.getShortPath(url));
               };
 
               document.head.appendChild(link);
           } else {
-              console.warn('⚠️ Страница не найдена, пропускаем предзагрузку:', url);
+              console.warn('⚠️ Страница не найдена:', this.getShortPath(url));
           }
       } catch (error) {
-          // Игнорируем ошибки предзагрузки, они не критичны
-          if (error.name !== 'AbortError') {
-              console.warn('⚠️ Не удалось предзагрузить страницу:', url, error.message);
-          }
+          console.warn('⚠️ Не удалось предзагрузить страницу:', this.getShortPath(url));
       }
   }
 
@@ -281,7 +311,6 @@ class PreloadManager {
   // Оптимизация загрузки изображений
   lazyLoadImages() {
       if (!('IntersectionObserver' in window)) {
-          // Fallback для старых браузеров
           this.loadImagesImmediately();
           return;
       }
@@ -295,14 +324,13 @@ class PreloadManager {
               }
           });
       }, {
-          rootMargin: '50px 0px', // Начинаем загружать за 50px до появления в viewport
+          rootMargin: '50px 0px',
           threshold: 0.1
       });
 
       document.querySelectorAll('img[data-src]').forEach(img => {
-          // Устанавливаем placeholder если нужно
           if (!img.src) {
-              img.src = this.createPlaceholder(img.dataset.width, img.dataset.height);
+              img.src = this.createPlaceholder();
           }
           imageObserver.observe(img);
       });
@@ -329,14 +357,11 @@ class PreloadManager {
           img.src = normalizedSrc;
           img.classList.remove('lazy');
           img.classList.add('loaded');
-          console.log('🖼️ Изображение загружено:', normalizedSrc);
       };
       
       image.onerror = () => {
-          console.warn('❌ Ошибка загрузки изображения:', normalizedSrc);
+          console.warn('❌ Ошибка загрузки изображения:', this.getShortPath(normalizedSrc));
           img.classList.add('image-error');
-          // Устанавливаем fallback изображение
-          img.src = this.createPlaceholder(img.dataset.width, img.dataset.height);
       };
       
       image.src = normalizedSrc;
@@ -355,7 +380,6 @@ class PreloadManager {
 
   // Оптимизация загрузки шрифтов
   optimizeFonts() {
-      // Предзагрузка шрифтов Google
       const fontLinks = [
           'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap',
           'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap'
@@ -388,26 +412,10 @@ class PreloadManager {
           const fontLink = document.createElement('link');
           fontLink.rel = 'stylesheet';
           fontLink.href = fontUrl;
-          fontLink.onload = () => {
-              console.log('✅ Шрифт загружен:', fontUrl);
-          };
-          fontLink.onerror = () => {
-              console.warn('❌ Ошибка загрузки шрифта:', fontUrl);
-          };
           document.head.appendChild(fontLink);
       } catch (error) {
           console.warn('⚠️ Ошибка загрузки шрифта:', error);
       }
-  }
-
-  // Очистка ресурсов
-  cleanup() {
-      this.pendingResources.forEach((link, url) => {
-          if (link.parentNode) {
-              link.parentNode.removeChild(link);
-          }
-      });
-      this.pendingResources.clear();
   }
 
   // Получение статуса загрузки
@@ -416,6 +424,7 @@ class PreloadManager {
           loaded: Array.from(this.loadedResources),
           pending: Array.from(this.pendingResources.keys()),
           online: this.isOnline,
+          isLocalFile: this.isLocalFile,
           basePath: this.basePath
       };
   }
@@ -424,31 +433,23 @@ class PreloadManager {
 // Инициализация менеджера предзагрузки
 const preloadManager = new PreloadManager();
 
-// Запуск оптимизаций когда DOM готов
+// Запуск оптимизаций
 function initializePreloadManager() {
   try {
-      console.log('🚀 Инициализация PreloadManager...');
-      console.log('📁 Базовый путь:', preloadManager.basePath);
-      console.log('🌐 Онлайн статус:', preloadManager.isOnline);
-      
       preloadManager.optimizeFonts();
       preloadManager.lazyLoadImages();
       
-      // Предзагрузка критических ресурсов с задержкой
+      // Предзагрузка с задержкой
       const onWindowLoad = () => {
           setTimeout(() => {
               preloadManager.preloadCritical().then(() => {
-                  console.log('✅ Критические ресурсы загружены');
-              }).catch(error => {
-                  console.error('❌ Ошибка загрузки критических ресурсов:', error);
+                  console.log('✅ Все критические ресурсы обработаны');
               });
               
               // Предзагрузка других страниц
               setTimeout(() => {
                   preloadManager.preloadPages().then(() => {
-                      console.log('✅ Предзагрузка страниц завершена');
-                  }).catch(error => {
-                      console.error('❌ Ошибка предзагрузки страниц:', error);
+                      console.log('✅ Предзагрузка завершена');
                   });
               }, 500);
           }, 100);
@@ -473,8 +474,3 @@ if (document.readyState === 'loading') {
 
 // Глобальная функция для отладки
 window.getPreloadStatus = () => preloadManager.getStatus();
-
-// Экспорт для использования в других модулях
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = PreloadManager;
-}
