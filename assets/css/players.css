@@ -147,6 +147,64 @@
     color: transparent;
 }
 
+
+.stat-number2 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.stat-badge.hell .stat-number2 {
+    background: linear-gradient(45deg, var(--hell-color), var(--hell-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.heaven .stat-number2 {
+    background: linear-gradient(45deg, var(--heaven-color), var(--heaven-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.earth .stat-number2 {
+    background: linear-gradient(45deg, var(--earth-color), var(--earth-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.glhell .stat-number2 {
+    background: linear-gradient(45deg, var(--hell-color), var(--hell-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.glheaven .stat-number2 {
+    background: linear-gradient(45deg, var(--heaven-color), var(--heaven-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.glearth .stat-number2 {
+    background: linear-gradient(45deg, var(--earth-color), var(--earth-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.total .stat-number2 {
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
 .stat-label {
     font-size: 0.9rem;
     color: var(--text-secondary);

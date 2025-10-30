@@ -46,51 +46,71 @@
     <link rel="stylesheet" href="assets/css/players.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <link defer rel="icon" href="assets/images/MineOriginsAva.png" type="image/png">
+    <link rel="icon" href="assets/images/MineOriginsAva.png" type="image/png">
 
-    <!-- В разделе head каждой страницы добавьте: -->
+    <!-- PWA манифест -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4a90e2">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MineOrigins">
-    <link rel="apple-touch-icon" href="/assets/images/icons/icon-152x152.png">
-    <link rel="icon" type="image/png" href="/assets/images/icons/icon-192x192.png">
-
-    <meta name="theme-color" content="#7e57c2">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="MineOrigins">
-
-    <!-- Иконки для Apple -->
     <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
-    <link rel="apple-touch-startup-image" href="assets/images/splash/splash-screen.png">
+    <link rel="icon" type="image/png" href="assets/images/icons/icon-192x192.png">
 
-    <!-- Preload критических ресурсов -->
-<link rel="preload" href="assets/css/style.css" as="style">
-<link rel="preload" href="assets/js/players.js" as="style">
-<link rel="preload" href="assets/js/s2.js" as="style">
-<link rel="preload" href="assets/json/players.json" as="style">
-<link rel="preload" href="assets/css/players.css" as="style">
-<link rel="preload" href="assets/images/MineOrigins.png" as="image">
-<link rel="preload" href="assets/images/MineOriginsAva.png" as="image">
+    <!-- Preconnect к внешним ресурсам -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Preconnect к внешним ресурсам -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        .nav-image-index, .resized-image, .resized-image2 {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .nav-image-index {
+            width: 35px;
+            height: 35px;
+        }
+        
+        .resized-image {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .resized-image2 {
+            width: 30px;
+            height: 30px;
+        }
 
-<!-- Предзагрузка шрифтов -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<!-- Noscript fallback для шрифтов -->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-</noscript>
-
+        .players-search {
+            padding-left: 65px;
+            width: 350px;
+            height: 50px;
+            background-image: url('assets/images/icons/icon_search.gif');
+            background-size: 40px 40px;
+            background-position: 10px center;
+            background-repeat: no-repeat;
+        }
+        
+        /* Стили для статуса сервера */
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: inline-block;
+        }
+        
+        .status-indicator.online { background: #4CAF50; }
+        .status-indicator.offline { background: #f44336; }
+        .status-indicator.loading { background: #ff9800; }
+    </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T93BX3SQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <div class="bg-animation">
         <div class="floating-island hell-island" data-speed="2"></div>
         <div class="floating-island heaven-island" data-speed="1.5"></div>
@@ -98,62 +118,44 @@
         <div class="particles"></div>
     </div>
 
-    <!-- <div class="minecraft-cursor"></div> -->
-
     <nav class="main-nav">
         <div class="nav-container">
             <div class="nav-brand">
                 <div class="brand-logo">
-                    <img src="assets/images/MineOrigins.png" class="avamineorigins">
-                    <!-- <div class="cube-3d">
-                        <div class="face front"></div>
-                        <div class="face back"></div>
-                        <div class="face right"></div>
-                        <div class="face left"></div>
-                        <div class="face top"></div>
-                        <div class="face bottom"></div>
-                    </div> -->
+                    <img src="assets/images/MineOrigins.png" class="avamineorigins" alt="Mine Origins Logo" onerror="this.style.display='none'">
                 </div>
                 <div class="brand-text">
                     <h1>MINE</h1>
                     <span>ORIGINS</span>
                 </div>
             </div>
-            
-            <style>
-                .nav-image-index {
-                    width: 35;
-                    height: 35px;
-                    display: inline-block;
-                }
-                    </style>
 
-<div class="nav-menu">
-    <a href="index.html" class="nav-item">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index"></span>
-        ГЛАВНАЯ
-    </a>
-    <a href="players.html" class="nav-item active">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index"></span>
-        ИГРОКИ
-    </a>
-    <a href="settlements.html" class="nav-item">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index"></span>
-        ПОСЕЛЕНИЯ
-    </a>
-    <a href="gallery.html" class="nav-item">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index"></span>
-        ГАЛЕРЕЯ
-    </a>
-    <a href="faq.html" class="nav-item">
-        <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
-        FAQ
-    </a>
-</div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index" alt="Главная" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIGZpbGw9IiM2NjYiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPkhvbWU8L3RleHQ+PC9zdmc+'"></span>
+                    ГЛАВНАЯ
+                </a>
+                <a href="players.html" class="nav-item active">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index" alt="Игроки" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIGZpbGw9IiM2NjYiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPlBsYXllcnM8L3RleHQ+PC9zdmc+'"></span>
+                    ИГРОКИ
+                </a>
+                <a href="settlements.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index" alt="Поселения" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIGZpbGw9IiM2NjYiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPlNldHRsZW1lbnRzPC90ZXh0Pjwvc3ZnPg=='"></span>
+                    ПОСЕЛЕНИЯ
+                </a>
+                <a href="gallery.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index" alt="Галерея" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAzNSAzNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzUiIGhlaWdodD0iMzUiIGZpbGw9IiM2NjYiLz48dGV4dCB4PSI1MCIgeT0iMTgiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiPkdhbGxlcnk8L3RleHQ+PC9zdmc+'"></span>
+                    ГАЛЕРЕЯ
+                </a>
+                <a href="faq.html" class="nav-item">
+                    <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
+                    FAQ
+                </a>
+            </div>
 
             <div class="server-status">
-                <div class="status-indicator online"></div>
-                <span class="status-text">ОНЛАЙН</span>
+                <div class="status-indicator loading"></div>
+                <span class="status-text">ЗАГРУЗКА...</span>
             </div>
         </div>
     </nav>
@@ -163,91 +165,65 @@
             <div class="section-header">
                 <h2 class="section-title">ИГРОКИ</h2>
                 <div class="title-underline"></div>
-                <!-- <p class="section-subtitle">Знакомьтесь с нашим дружным сообществом</p> -->
             </div>
-
-            <style>
-                .resized-image {
-                    width: 50px; /* или нужный вам размер */
-                    height: 50px;
-                    display: inline-block; /* важно для изображений внутри текста */
-                }
-                    </style>
 
             <div class="players-stats-overview">
                 <div class="players-stat">
                     <div class="stat-badge hell">
-                        <span class="stat-icon"><img src="assets/images/icons/icon_demon.gif" class="resized-image"></span>
+                        <span class="stat-icon"><img src="assets/images/icons/icon_demon.gif" class="resized-image" alt="Демоны" onerror="this.style.display='none'"></span>
                         <div class="stat-info">
-                            <div class="stat-number" data-target="4">4</div>
+                            <div class="stat-number2" data-target="4">4</div>
                             <div class="stat-label">Демоны</div>
                         </div>
                     </div>
                 </div>
                 <div class="players-stat">
                     <div class="stat-badge heaven">
-                        <span class="stat-icon"><img src="assets/images/icons/icon_angel.gif" class="resized-image"></span>
+                        <span class="stat-icon"><img src="assets/images/icons/icon_angel.gif" class="resized-image" alt="Ангелы" onerror="this.style.display='none'"></span>
                         <div class="stat-info">
-                            <div class="stat-number" data-target="4">4</div>
+                            <div class="stat-number2" data-target="4">4</div>
                             <div class="stat-label">Ангелы</div>
                         </div>
                     </div>
                 </div>
                 <div class="players-stat">
                     <div class="stat-badge earth">
-                        <span class="stat-icon"><img src="assets/images/icons/icon_terrestrial.gif" class="resized-image"></span>
+                        <span class="stat-icon"><img src="assets/images/icons/icon_terrestrial.gif" class="resized-image" alt="Земные" onerror="this.style.display='none'"></span>
                         <div class="stat-info">
-                            <div class="stat-number" data-target="9">9</div>
+                            <div class="stat-number2" data-target="9">9</div>
                             <div class="stat-label">Земные</div>
                         </div>
                     </div>
                 </div>
                 <div class="players-stat">
                     <div class="stat-badge total">
-                        <span class="stat-icon"><img src="assets/images/icons/index_icon_players.gif" class="resized-image"></span>
+                        <span class="stat-icon"><img src="assets/images/icons/index_icon_players.gif" class="resized-image" alt="Всего" onerror="this.style.display='none'"></span>
                         <div class="stat-info">
-                            <div class="stat-number" data-target="17">17</div>
+                            <div class="stat-number2" data-target="17">17</div>
                             <div class="stat-label">Всего</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <style>
-                .resized-image2 {
-                    width: 30px;
-                    height: 30px;
-                    display: inline-block;
-                }
-
-                .players-search {
-    padding-left: 65px;
-    width: 350px;
-    height: 50px;
-    background-image: url('assets/images/icons/icon_search.gif');
-    background-size: 40px 40px;
-    background-position: 10px center;
-    background-repeat: no-repeat;
-}
-                    </style>
             <div class="players-controls">
                 <input type="text" class="players-search" placeholder="Поиск игрока..." id="playersSearch">
                 
                 <div class="players-filter">
                     <button class="filter-btn active" data-filter="all">
-                        <span class="filter-icon"><img src="assets/images/icons/index_icon_players.gif" class="resized-image2"></span>
+                        <span class="filter-icon"><img src="assets/images/icons/index_icon_players.gif" class="resized-image2" alt="Все" onerror="this.style.display='none'"></span>
                         ВСЕ ИГРОКИ
                     </button>
                     <button class="filter-btn" data-filter="hell">
-                        <span class="filter-icon"><img src="assets/images/icons/icon_demon.gif" class="resized-image2"></span>
+                        <span class="filter-icon"><img src="assets/images/icons/icon_demon.gif" class="resized-image2" alt="Демоны" onerror="this.style.display='none'"></span>
                         ДЕМОНЫ
                     </button>
                     <button class="filter-btn" data-filter="heaven">
-                        <span class="filter-icon"><img src="assets/images/icons/icon_angel.gif" class="resized-image2"></span>
+                        <span class="filter-icon"><img src="assets/images/icons/icon_angel.gif" class="resized-image2" alt="Ангелы" onerror="this.style.display='none'"></span>
                         АНГЕЛЫ
                     </button>
                     <button class="filter-btn" data-filter="earth">
-                        <span class="filter-icon"><img src="assets/images/icons/icon_terrestrial.gif" class="resized-image2"></span>
+                        <span class="filter-icon"><img src="assets/images/icons/icon_terrestrial.gif" class="resized-image2" alt="Земные" onerror="this.style.display='none'"></span>
                         ЗЕМНЫЕ
                     </button>
                 </div>
@@ -278,8 +254,8 @@
             </div>
             <div class="footer-section">
                 <h4>МЫ В СОЦ СЕТЯХ</h4>
-                <a href="https://discord.gg/KK4dCevPah"> Discord</a>
-                <a href="https://t.me/mine_origins"> Telegram</a>
+                <a href="https://discord.gg/KK4dCevPah">Discord</a>
+                <a href="https://t.me/mine_origins">Telegram</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -288,34 +264,393 @@
         </div>
     </footer>
 
-    <script src="/assets/js/app-install.js"></script>
-    <script defer src="assets/json/players.json"></script>
-    <script defer src="assets/js/s2.js"></script>
+    <!-- Основные скрипты -->
     <script defer src="assets/js/players.js"></script>
     <script defer src="assets/js/main.js"></script>
-    <script defer src="assets/js/manifest.js"></script>
-    <script defer src="assets/js/main.js"></script>
-    <script defer src="assets/js/preload-manager.js"></script>
-    <script defer src="assets/js/config.js"></script>
-    <script defer src="assets/js/analytics.js"></script>
-    <script defer src="assets/js/stats.js"></script>
 
-    <!-- Капча -->
-<script defer src="assets/js/captcha/captcha-system.js"></script>
+    <!-- Условная загрузка дополнительных скриптов -->
+    <script>
+        // Проверяем существование файлов перед загрузкой
+        const scriptsToLoad = [
+            'assets/js/s2.js',
+            'assets/js/preload-manager.js',
+            'assets/js/stats.js'
+        ];
 
-<!-- Аналитика -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
-<script>
-    // Ждем проверки капчи перед инициализацией аналитики
-    document.addEventListener('DOMContentLoaded', function() {
-        if (typeof CaptchaManager !== 'undefined' && CaptchaManager.checkStatus()) {
-            // Инициализация аналитики только после успешной капчи
+        // Функция для проверки существования файла
+        function checkFileExists(url) {
+            return new Promise((resolve) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('HEAD', url, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        resolve(xhr.status === 0 || xhr.status === 200);
+                    }
+                };
+                xhr.onerror = () => resolve(false);
+                xhr.send();
+            });
+        }
+
+        // Загружаем только существующие файлы
+        document.addEventListener('DOMContentLoaded', async function() {
+            for (const scriptPath of scriptsToLoad) {
+                const exists = await checkFileExists(scriptPath);
+                if (exists) {
+                    const script = document.createElement('script');
+                    script.src = scriptPath;
+                    script.defer = true;
+                    document.body.appendChild(script);
+                    console.log('✅ Загружен скрипт:', scriptPath);
+                } else {
+                    console.log('⚠️ Скрипт не найден, пропускаем:', scriptPath);
+                }
+            }
+
+            // Загружаем данные игроков
+            loadPlayersData();
+        });
+
+        // Заглушка для CaptchaManager
+        window.CaptchaManager = {
+            checkStatus: function() {
+                return true;
+            }
+        };
+
+        // Функция загрузки данных игроков
+        async function loadPlayersData() {
+            const playersGrid = document.getElementById('playersGrid');
+            if (!playersGrid) return;
+
+            try {
+                // Для локальных файлов используем встроенные данные
+                if (window.location.protocol === 'file:') {
+                    console.log('📁 Локальный режим: используем встроенные данные игроков');
+                    displayPlayers(getLocalPlayersData());
+                    return;
+                }
+
+                // Для веб-сервера пытаемся загрузить JSON
+                const response = await fetch('assets/json/players.json');
+                if (response.ok) {
+                    const players = await response.json();
+                    displayPlayers(players);
+                } else {
+                    throw new Error('JSON файл не найден');
+                }
+            } catch (error) {
+                console.warn('⚠️ Не удалось загрузить JSON, используем локальные данные:', error);
+                displayPlayers(getLocalPlayersData());
+            }
+        }
+
+        // Локальные данные игроков
+        function getLocalPlayersData() {
+            return [
+        {
+          "id": 1,
+          "name": "_Kot_Baris_",
+          "avatar": "assets/images/icons/kotbaris.png",
+          "race": "earth",
+          "description": "◈ Земной\nКото-человек, я лидер земной расы, создатель ФрикБургской Империи, хочет наладить мир между расами.",
+          "joinDate": "2025-10-11",
+          "socials": {
+            "discord": "borisonchik_yt",
+            "telegram": "@BorisonchikOfficial"
+          }
+        },
+        {
+          "id": 2,
+          "name": "stalker_hunter_",
+          "avatar": "assets/images/icons/stalker.png",
+          "race": "hell",
+          "description": "◈ Демон\nПадший Ангел — лидер адской расы, присутствует на сервере с открытия. Сохраняет нейтралитет между ФрикБургом и ВДНХ, наблюдает за порядком в аду и на поверхности.",
+          "joinDate": "2025-10-11",
+          "socials": {
+            "discord": "stalker_hunter_",
+            "telegram": "@Stalker_Hunter_s"
+          }
+        },
+        {
+          "id": 3,
+          "name": "amidamaru3434",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "heaven",
+          "description": "◈ Ангел\nСерафим — лидер райской расы, присутствует на сервере с открытия.",
+          "joinDate": "2025-10-14",
+          "socials": {
+            "discord": "bruhhhhsasa21",
+            "telegram": "@aza_matsuto"
+          }
+        },
+        {
+          "id": 4,
+          "name": "darcklord",
+          "avatar": "assets/images/icons/darcklord.png",
+          "race": "earth",
+          "description": "Дворф — бывший воин который просто хочет спокойно жить но приключения зовут его\nЖивет в городе Фрикбург  и хочет накопить золотых чтобы построить лучшую харчевню где люди и нелюди смогли бы давать и брать задания просто отдыхать и снимать жилье а так же участвовать в рейдах на замки и быть наемниками,",
+          "joinDate": "2025-10-11",
+          "socials": {
+            "discord": "bagriannik._33166",
+            "telegram": ""
+          }
+        },
+        {
+          "id": 5,
+          "name": "ddanilkaaaa",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "2025-10-13",
+          "socials": {
+              "discord": "ddanilkaaaa_83622",
+              "telegram": "@Ddanilkaaaa"
+          }
+        },
+        {
+          "id": 6,
+          "name": "deace",
+          "avatar": "assets/images/icons/deace.png",
+          "race": "heaven",
+          "description": "Ангел гигачад, является экзорцистом среди всех ангелов. Истребляет нечестей, демонов и даже людей (если нужно будет)",
+          "joinDate": "2025-10-25",
+          "socials": {
+              "discord": "winchikvpotoke_36739",
+              "telegram": "@Zkrtssikit"
+          }
+        },
+        {
+          "id": 7,
+          "name": "hyutjnh",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "heaven",
+          "description": "Ангел - участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис.",
+          "joinDate": "2025-10-18",
+          "socials": {
+              "discord": "last_troid_0079",
+              "telegram": "@ED4MKM_AERO"
+          }
+        },
+        {
+          "id": 8,
+          "name": "jdh16",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "2025-10-22",
+          "socials": {
+              "discord": "frozen_flames1703",
+              "telegram": "@Frozen2474"
+          }
+        },
+        {
+          "id": 9,
+          "name": "maxxaumka",
+          "avatar": "assets/images/icons/maksimka.png",
+          "race": "earth",
+          "description": "Волшебник с самого начала активен на сервере. Он нейтрален ко всем расам и кланам и не состоит ни в одном клане. Живёт в кубе вместе с пользователем snekky_off, с которым изучает различные механизмы и машины.",
+          "joinDate": "2025-10-13",
+          "socials": {
+              "discord": "maxxaumka6679",
+              "telegram": "@KOT_B_palbto"
+          }
+        },
+        {
+          "id": 10,
+          "name": "nicotine",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "2025-10-12",
+          "socials": {
+              "discord": "maximus7915",
+              "telegram": "@Maxim_beb"
+          }
+        },
+        {
+          "id": 11,
+          "name": "pandamom",
+          "avatar": "assets/images/icons/pandamom.png",
+          "race": "earth",
+          "description": "Кото-человек просто кот присутствую хз когда сохраняю мирность в ФрикБурге бегаю",
+          "joinDate": "2025-10-11",
+          "socials": {
+              "discord": "pisde4",
+              "telegram": "@Heyheyhey223"
+          }
+        },
+        {
+          "id": 12,
+          "name": "snekky_offc",
+          "avatar": "assets/images/icons/snekky.png",
+          "race": "heaven",
+          "description": "Из-за скучного мира ангелов, я решил покинуть небеса. Долгое время я бродил по миру, где и встретил земного механика Максаумка. Его заинтересовал мир технологий. После долгих исследований на базе - Океаническая Черепах он смог стать Кибер-Ангелом",
+          "joinDate": "2025-10-11",
+          "socials": {
+              "discord": "linar9341",
+              "telegram": "@FV_4_0_0_5"
+          }
+    },
+        {
+          "id": 13,
+          "name": "Yaryna",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "hell",
+          "description": "Демоница — житель Логова Хантера, дружелюбная и общительная участница сервера.",
+          "joinDate": "",
+          "socials": {
+              "discord": "prus404",
+              "telegram": "@Prus404"
+          }
+    }, 
+        {
+          "id": 14,
+          "name": "Lemonchik",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "hell",
+          "description": "",
+          "joinDate": "",
+          "socials": {
+              "discord": "yt_lymonchuk",
+              "telegram": "@Motosport_52"
+          }
+    }, 
+        {
+          "id": 15,
+          "name": "tropic_yt2021",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "",
+          "socials": {
+              "discord": "trop1c_.",
+              "telegram": "@tropic_mc"
+          }
+    }, 
+        {
+          "id": 16,
+          "name": "Ayaz_ak",
+          "avatar": "assets/images/icons/ERROR.png",
+          "race": "earth",
+          "description": "",
+          "joinDate": "",
+          "socials": {
+              "discord": "a.l.t.y.n",
+              "telegram": "@Ayaz_ak"
+          }
+    },
+    {
+      "id": 17,
+      "name": "Cartoshka_",
+      "avatar": "assets/images/icons/cartoskha_.png",
+      "race": "hell",
+      "description": "",
+      "joinDate": "2025-10-28",
+      "socials": {
+          "discord": ".cartoshka_",
+          "telegram": ""
+      }}
+        ];
+        }
+
+        // Функция отображения игроков
+        function displayPlayers(players) {
+            const playersGrid = document.getElementById('playersGrid');
+            if (!playersGrid) return;
+
+            playersGrid.innerHTML = '';
+
+            if (players.length === 0) {
+                playersGrid.innerHTML = '<div class="no-players">Игроки не найдены</div>';
+                return;
+            }
+
+            players.forEach(player => {
+                const playerCard = document.createElement('div');
+                playerCard.className = `player-card ${player.race} ${player.status}`;
+                playerCard.innerHTML = `
+                    <div class="player-header">
+                        <div class="player-avatar">${player.avatar}</div>
+                        <div class="player-badges">
+                            <span class="status-badge ${player.status}">${player.status === 'online' ? 'ОНЛАЙН' : 'ОФФЛАЙН'}</span>
+                        </div>
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">${player.name}</h3>
+                        <div class="player-race">${getRaceName(player.race)}</div>
+                        <div class="player-level">Уровень: ${player.level}</div>
+                    </div>
+                    <div class="player-footer">
+                        <div class="join-date">С ${formatDate(player.join_date)}</div>
+                    </div>
+                `;
+                playersGrid.appendChild(playerCard);
+            });
+
+            // Обновляем статистику
+            updatePlayersStats(players);
+        }
+
+        // Вспомогательные функции
+        function getRaceName(race) {
+            const races = {
+                'hell': 'Демон',
+                'heaven': 'Ангел', 
+                'earth': 'Земной'
+            };
+            return races[race] || 'Неизвестно';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ru-RU');
+        }
+
+        function updatePlayersStats(players) {
+            const stats = {
+                hell: players.filter(p => p.race === 'hell').length,
+                heaven: players.filter(p => p.race === 'heaven').length,
+                earth: players.filter(p => p.race === 'earth').length,
+                total: players.length
+            };
+
+            // Обновляем цифры в статистике
+            document.querySelectorAll('.stat-number').forEach(stat => {
+                const target = stat.getAttribute('data-target');
+                if (target && stats[target] !== undefined) {
+                    stat.textContent = stats[target];
+                }
+            });
+        }
+
+        // Обновляем статус сервера
+        function updateServerStatus(status, text) {
+            const statusIndicator = document.querySelector('.status-indicator');
+            const statusText = document.querySelector('.status-text');
+            
+            if (statusIndicator && statusText) {
+                statusIndicator.className = 'status-indicator ' + status;
+                statusText.textContent = text;
+            }
+        }
+
+        // Имитация загрузки статуса сервера
+        setTimeout(() => {
+            updateServerStatus('online', 'ОНЛАЙН');
+        }, 2000);
+    </script>
+
+    <!-- Аналитика -->
+    <script>
+        // Упрощенная инициализация аналитики
+        document.addEventListener('DOMContentLoaded', function() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-W4D0RR61VG');
-        }
-    });
-</script>
+            console.log('✅ Аналитика инициализирована');
+        });
+    </script>
 </body>
 </html>

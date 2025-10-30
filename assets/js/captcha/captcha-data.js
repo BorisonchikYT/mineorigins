@@ -551,7 +551,7 @@ class CaptchaUtils {
     static validateTimeAnswer(input, answer) {
         return input.trim() === answer;
     }
-
+    
     static validateGeographyAnswer(selected, answer) {
         return selected === answer;
     }
