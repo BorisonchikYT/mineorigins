@@ -58,7 +58,7 @@ class AppInstallManager {
     setupEventListeners() {
       // Событие перед установкой
       window.addEventListener('beforeinstallprompt', (e) => {
-        console.log('🚀 beforeinstallprompt сработал');
+        // console.log('🚀 beforeinstallprompt сработал');
         e.preventDefault();
         this.deferredPrompt = e;
         this.showInstallButton();
@@ -66,7 +66,7 @@ class AppInstallManager {
       
       // Приложение установлено
       window.addEventListener('appinstalled', (e) => {
-        console.log('✅ Приложение установлено!');
+        // console.log('✅ Приложение установлено!');
         this.isInstalled = true;
         this.hideInstallButton();
         this.showInstallSuccess();
@@ -80,7 +80,7 @@ class AppInstallManager {
       // Проверяем, установлено ли уже приложение
       if (window.matchMedia('(display-mode: standalone)').matches) {
         this.isInstalled = true;
-        console.log('📱 Приложение запущено в standalone режиме');
+        // console.log('📱 Приложение запущено в standalone режиме');
       }
     }
     
@@ -95,10 +95,10 @@ class AppInstallManager {
         const { outcome } = await this.deferredPrompt.userChoice;
         
         if (outcome === 'accepted') {
-          console.log('✅ Пользователь принял установку');
+          // console.log('✅ Пользователь принял установку');
           this.hideInstallButton();
         } else {
-          console.log('❌ Пользователь отклонил установку');
+          // console.log('❌ Пользователь отклонил установку');
         }
         
         this.deferredPrompt = null;

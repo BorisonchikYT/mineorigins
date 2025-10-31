@@ -33,16 +33,16 @@ function registerServiceWorker() {
       scope: '/'
     })
     .then(registration => {
-      console.log('🎯 Service Worker зарегистрирован для scope:', registration.scope);
+      // console.log('🎯 Service Worker зарегистрирован для scope:', registration.scope);
       
       // Проверка обновлений
       registration.addEventListener('updatefound', () => {
         const newWorker = registration.installing;
-        console.log('🔄 Обнаружено обновление Service Worker');
+        // console.log('🔄 Обнаружено обновление Service Worker');
         
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            console.log('📦 Новый контент доступен!');
+            // console.log('📦 Новый контент доступен!');
             // Можно показать уведомление пользователю
           }
         });
@@ -54,7 +54,7 @@ function registerServiceWorker() {
 
     // Обработка обновлений
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      console.log('🔄 Controller изменен, перезагрузка страницы...');
+      // console.log('🔄 Controller изменен, перезагрузка страницы...');
       window.location.reload();
     });
   }
@@ -96,7 +96,7 @@ const MAX_DYNAMIC_ITEMS = 50;
 
 // Установка - стратегия параллельного кеширования
 self.addEventListener('install', (event) => {
-  console.log('🔄 Service Worker: Установка (оптимизированная v2)...');
+  // console.log('🔄 Service Worker: Установка (оптимизированная v2)...');
   
   event.waitUntil(
     Promise.all([
@@ -112,7 +112,7 @@ self.addEventListener('install', (event) => {
       caches.open(CACHE_NAMES.IMAGES)
         .then(cache => cache.addAll(PRELOAD_IMAGES))
     ]).then(() => {
-      console.log('✅ Все ресурсы закэшированы');
+      // console.log('✅ Все ресурсы закэшированы');
       return self.skipWaiting();
     }).catch(error => {
       console.error('❌ Ошибка кеширования:', error);
@@ -122,7 +122,7 @@ self.addEventListener('install', (event) => {
 
 // Активация - умная очистка старых кэшей
 self.addEventListener('activate', (event) => {
-  console.log('🔥 Service Worker: Активация v2...');
+  // console.log('🔥 Service Worker: Активация v2...');
   
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -130,13 +130,13 @@ self.addEventListener('activate', (event) => {
         cacheNames.map((cacheName) => {
           // Удаляем все кеши, кроме текущих версий
           if (!Object.values(CACHE_NAMES).includes(cacheName)) {
-            console.log('🗑️ Удаление старого кэша:', cacheName);
+            // console.log('🗑️ Удаление старого кэша:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
-      console.log('✅ Service Worker активирован и готов');
+      // console.log('✅ Service Worker активирован и готов');
       return self.clients.claim();
     })
   );
@@ -376,20 +376,20 @@ function offlineResponse() {
 // Фоновая синхронизация (если нужна)
 self.addEventListener('sync', (event) => {
   if (event.tag === 'background-sync') {
-    console.log('🔄 Фоновая синхронизация...');
+    // console.log('🔄 Фоновая синхронизация...');
     event.waitUntil(doBackgroundSync());
   }
 });
 
 async function doBackgroundSync() {
   // Здесь можно реализовать фоновую синхронизацию данных
-  console.log('Выполняется фоновая синхронизация...');
+  // console.log('Выполняется фоновая синхронизация...');
 }
 
 // Периодическая синхронизация (для обновления контента)
 self.addEventListener('periodicsync', (event) => {
   if (event.tag === 'content-update') {
-    console.log('🔄 Периодическое обновление контента...');
+    // console.log('🔄 Периодическое обновление контента...');
     event.waitUntil(updateContent());
   }
 });
@@ -399,7 +399,7 @@ async function updateContent() {
   try {
     const cache = await caches.open(CACHE_NAMES.DYNAMIC);
     // Логика обновления контента
-    console.log('Контент обновлен в фоне');
+    // console.log('Контент обновлен в фоне');
   } catch (error) {
     console.error('Ошибка при обновлении контента:', error);
   }

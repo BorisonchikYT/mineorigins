@@ -259,5 +259,5 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
     
-    console.log('FAQ система инициализирована успешно!');
+   //  console.log('FAQ система инициализирована успешно!');
 });

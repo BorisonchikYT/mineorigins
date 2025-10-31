@@ -48,7 +48,7 @@
         await new Promise(resolve => window.addEventListener('load', resolve));
       }
 
-      console.log('🔄 Регистрируем Service Worker...');
+      // console.log('🔄 Регистрируем Service Worker...');
 
       const registration = await Promise.race([
         navigator.serviceWorker.register(CONFIG.swPath, { scope: CONFIG.scope }),
@@ -57,27 +57,27 @@
         )
       ]);
 
-      console.log('✅ Service Worker зарегистрирован для scope:', registration.scope);
+      // console.log('✅ Service Worker зарегистрирован для scope:', registration.scope);
 
       // Проверка обновлений
       registration.addEventListener('updatefound', () => {
         const newWorker = registration.installing;
-        console.log('🔄 Обнаружено обновление Service Worker');
+        // console.log('🔄 Обнаружено обновление Service Worker');
         
         newWorker.addEventListener('statechange', () => {
-          console.log('📊 Состояние SW:', newWorker.state);
+          // console.log('📊 Состояние SW:', newWorker.state);
           
           switch (newWorker.state) {
             case 'installed':
               if (navigator.serviceWorker.controller) {
-                console.log('🔄 Новый контент доступен!');
+                // console.log('🔄 Новый контент доступен!');
                 showUpdateNotification();
               } else {
-                console.log('✅ Контент закэширован для оффлайн использования');
+                // console.log('✅ Контент закэширован для оффлайн использования');
               }
               break;
             case 'activated':
-              console.log('✅ Service Worker активирован');
+              // console.log('✅ Service Worker активирован');
               break;
           }
         });
@@ -85,21 +85,21 @@
 
       // Обработка сообщений от Service Worker
       navigator.serviceWorker.addEventListener('message', (event) => {
-        console.log('📨 Сообщение от Service Worker:', event.data);
+        // console.log('📨 Сообщение от Service Worker:', event.data);
         
         switch (event.data.type) {
           case 'CACHE_READY':
-            console.log('✅ Кэш готов');
+            // console.log('✅ Кэш готов');
             break;
           case 'OFFLINE_READY':
-            console.log('📶 Приложение готово к оффлайн работе');
+            // console.log('📶 Приложение готово к оффлайн работе');
             break;
         }
       });
 
       // Обработка контроллера
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        console.log('🔄 Controller изменен, обновляем страницу...');
+        // console.log('🔄 Controller изменен, обновляем страницу...');
         window.location.reload();
       });
 
@@ -152,7 +152,7 @@
 
   // Инициализация
   function init() {
-    console.log('🚀 Инициализация Service Worker...');
+    // console.log('🚀 Инициализация Service Worker...');
     
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
       registerServiceWorker();

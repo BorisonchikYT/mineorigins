@@ -342,13 +342,13 @@ class AnalyticsDashboard {
 
     loadDataForRange(range) {
         // Здесь будет загрузка данных для выбранного диапазона
-        console.log('Loading data for range:', range);
+        // console.log('Loading data for range:', range);
         this.updateChart();
     }
 
     updateChartData(range) {
         // Обновление данных графика на основе выбранного диапазона
-        console.log('Updating chart for range:', range);
+        // console.log('Updating chart for range:', range);
         this.updateChart();
     }
 

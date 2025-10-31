@@ -7,8 +7,8 @@ class PreloadManager {
       this.isLocalFile = window.location.protocol === 'file:';
       this.basePath = this.detectBasePath();
       
-      console.log('🌐 Режим:', this.isLocalFile ? 'Локальный файл' : 'Веб-сервер');
-      console.log('📁 Базовый путь:', this.basePath);
+      // console.log('🌐 Режим:', this.isLocalFile ? 'Локальный файл' : 'Веб-сервер');
+      // console.log('📁 Базовый путь:', this.basePath);
   }
 
   // Автоматическое определение базового пути
@@ -77,7 +77,7 @@ class PreloadManager {
           'assets/js/main.js'
       ];
 
-      console.log('🔄 Начинаем предзагрузку критических ресурсов...');
+      // console.log('🔄 Начинаем предзагрузку критических ресурсов...');
 
       for (const resource of criticalResources) {
           const normalizedPath = this.normalizePath(resource);
@@ -100,13 +100,13 @@ class PreloadManager {
   async preloadPages() {
       // Для локальных файлов предзагрузка страниц не работает
       if (this.isLocalFile) {
-          console.log('📁 Локальный режим: предзагрузка страниц недоступна');
+          // console.log('📁 Локальный режим: предзагрузка страниц недоступна');
           return;
       }
 
       // Проверяем условия для предзагрузки
       if (!this.isOnline) {
-          console.log('📶 Оффлайн режим: пропускаем предзагрузку');
+          // console.log('📶 Оффлайн режим: пропускаем предзагрузку');
           return;
       }
 
@@ -114,7 +114,7 @@ class PreloadManager {
       if ('connection' in navigator) {
           const connection = navigator.connection;
           if (connection.saveData || connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
-              console.log('🐌 Медленное соединение: пропускаем предзагрузку');
+              // console.log('🐌 Медленное соединение: пропускаем предзагрузку');
               return;
           }
       }
@@ -126,7 +126,7 @@ class PreloadManager {
           'faq.html'
       ];
 
-      console.log('🔄 Предзагрузка страниц...');
+      // console.log('🔄 Предзагрузка страниц...');
 
       // Используем requestIdleCallback для фоновой загрузки
       const preloadTask = async () => {
@@ -174,7 +174,7 @@ class PreloadManager {
           
           // Обработчики событий
           link.onload = () => {
-              console.log('✅ Ресурс предзагружен:', this.getShortPath(url));
+              // console.log('✅ Ресурс предзагружен:', this.getShortPath(url));
               this.resourceLoaded(url);
           };
           
@@ -195,7 +195,7 @@ class PreloadManager {
           if (this.isLocalFile) {
               setTimeout(() => {
                   if (this.pendingResources.has(url)) {
-                      console.log('⏰ Таймаут предзагрузки (локальный файл):', this.getShortPath(url));
+                      // console.log('⏰ Таймаут предзагрузки (локальный файл):', this.getShortPath(url));
                       this.resourceLoaded(url);
                   }
               }, 1000);
@@ -225,7 +225,7 @@ class PreloadManager {
               cssLink.rel = 'stylesheet';
               cssLink.href = url;
               cssLink.onload = () => {
-                  console.log('✅ CSS загружен:', this.getShortPath(url));
+                  // console.log('✅ CSS загружен:', this.getShortPath(url));
                   this.resourceLoaded(url);
               };
               cssLink.onerror = () => {
@@ -244,7 +244,7 @@ class PreloadManager {
           preloadLink.href = url;
           
           preloadLink.onload = () => {
-              console.log('✅ CSS предзагружен:', this.getShortPath(url));
+              // console.log('✅ CSS предзагружен:', this.getShortPath(url));
               this.resourceLoaded(url);
               
               // Теперь загружаем CSS для применения
@@ -287,7 +287,7 @@ class PreloadManager {
               link.href = url;
               
               link.onload = () => {
-                  console.log('✅ Страница предзагружена:', this.getShortPath(url));
+                  // console.log('✅ Страница предзагружена:', this.getShortPath(url));
               };
               
               link.onerror = (error) => {
@@ -443,13 +443,13 @@ function initializePreloadManager() {
       const onWindowLoad = () => {
           setTimeout(() => {
               preloadManager.preloadCritical().then(() => {
-                  console.log('✅ Все критические ресурсы обработаны');
+                  // console.log('✅ Все критические ресурсы обработаны');
               });
               
               // Предзагрузка других страниц
               setTimeout(() => {
                   preloadManager.preloadPages().then(() => {
-                      console.log('✅ Предзагрузка завершена');
+                      // console.log('✅ Предзагрузка завершена');
                   });
               }, 500);
           }, 100);

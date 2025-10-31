@@ -1,19 +1,65 @@
-// Функционал галереи
+// Функционал галереи с улучшенным отображением и модальным окном
 class Gallery {
     constructor() {
         this.currentFilter = 'all';
         this.visibleItems = 6;
         this.itemsPerLoad = 6;
-        this.allItems = [];
         this.isLoading = false;
+        this.currentModalIndex = 0;
+        this.currentModalItems = [];
         this.init();
     }
 
     init() {
+        this.processGalleryItems();
         this.bindEvents();
         this.initStats();
         this.initModal();
         this.preloadImages();
+    }
+
+    // Обработка элементов галереи для улучшенного отображения
+    processGalleryItems() {
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            const images = item.querySelectorAll('img');
+            
+            if (images.length > 0) {
+                this.setupMultipleImages(item, images);
+            }
+        });
+    }
+
+    // Настройка отображения нескольких изображений
+    setupMultipleImages(item, images) {
+        const imageContainer = item.querySelector('.image-container');
+        const mainImage = images[0];
+        
+        // Помечаем карточку как имеющую несколько изображений
+        item.querySelector('.gallery-card').classList.add('multiple-images');
+        
+        // Создаем бейдж количества изображений
+        const countBadge = document.createElement('div');
+        countBadge.className = 'image-count-badge';
+        countBadge.textContent = `${images.length} фото`;
+        imageContainer.appendChild(countBadge);
+        
+        // Добавляем второе изображение (если есть)
+        if (images.length >= 2) {
+            const secondaryImage = document.createElement('img');
+            secondaryImage.src = images[1].src;
+            secondaryImage.alt = images[1].alt;
+            secondaryImage.className = 'secondary-image top-right';
+            imageContainer.appendChild(secondaryImage);
+        }
+        
+        // Добавляем третье изображение (если есть)
+        if (images.length >= 3) {
+            const thirdImage = document.createElement('img');
+            thirdImage.src = images[2].src;
+            thirdImage.alt = images[2].alt;
+            thirdImage.className = 'secondary-image bottom-right';
+            imageContainer.appendChild(thirdImage);
+        }
     }
 
     bindEvents() {
@@ -23,17 +69,21 @@ class Gallery {
         });
 
         // Загрузка больше
-        document.getElementById('loadMore').addEventListener('click', () => this.loadMore());
+        const loadMoreBtn = document.getElementById('loadMore');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => this.loadMore());
+        }
 
-        // Закрытие модального окна
-        document.querySelector('.modal-close').addEventListener('click', () => this.closeModal());
-        document.querySelector('.modal-overlay').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) this.closeModal();
+        // Обработчики для карточек
+        document.querySelectorAll('.gallery-card').forEach(card => {
+            card.addEventListener('click', (e) => this.handleCardClick(e));
         });
 
         // Закрытие по ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') this.closeModal();
+            if (e.key === 'ArrowRight') this.nextImage();
+            if (e.key === 'ArrowLeft') this.prevImage();
         });
     }
 
@@ -42,8 +92,7 @@ class Gallery {
         const categories = {
             builds: document.querySelectorAll('[data-category="builds"]').length,
             nature: document.querySelectorAll('[data-category="nature"]').length,
-            events: document.querySelectorAll('[data-category="events"]').length,
-            players: document.querySelectorAll('[data-category="players"]').length
+            events: document.querySelectorAll('[data-category="events"]').length
         };
 
         document.querySelector('.stat-total .stat-number').textContent = totalItems;
@@ -53,15 +102,61 @@ class Gallery {
     }
 
     initModal() {
-        this.modal = document.querySelector('.modal-overlay');
-        this.modalImage = this.modal.querySelector('.modal-image');
-        this.modalTitle = this.modal.querySelector('.modal-title');
-        this.modalDescription = this.modal.querySelector('.modal-description');
-        this.modalStats = this.modal.querySelector('.modal-stats');
+        // Создаем модальное окно если его нет
+        if (!document.querySelector('.gallery-modal')) {
+            this.createModal();
+        }
+        
+        this.modal = document.querySelector('.gallery-modal');
+        this.modalImages = this.modal.querySelector('.gallery-modal-images');
+        this.modalTitle = this.modal.querySelector('.gallery-modal-title');
+        this.modalDescription = this.modal.querySelector('.gallery-modal-description');
+        this.modalDate = this.modal.querySelector('.gallery-modal-date');
+        this.modalTags = this.modal.querySelector('.gallery-modal-tags');
+        this.modalCounter = this.modal.querySelector('.gallery-modal-counter');
+        
+        // Навигация
+        this.modal.querySelector('.gallery-modal-prev').addEventListener('click', () => this.prevImage());
+        this.modal.querySelector('.gallery-modal-next').addEventListener('click', () => this.nextImage());
+        this.modal.querySelector('.gallery-modal-close').addEventListener('click', () => this.closeModal());
+        
+        // Закрытие по клику на оверлей
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) this.closeModal();
+        });
+    }
+
+    createModal() {
+        const modalHTML = `
+            <div class="gallery-modal">
+                <div class="gallery-modal-content">
+                    <button class="gallery-modal-close">×</button>
+                    <div class="gallery-modal-counter">1/1</div>
+                    <div class="gallery-modal-nav">
+                        <button class="gallery-modal-prev">‹</button>
+                        <button class="gallery-modal-next">›</button>
+                    </div>
+                    <div class="gallery-modal-body">
+                        <div class="gallery-modal-images"></div>
+                        <div class="gallery-modal-info">
+                            <h3 class="gallery-modal-title"></h3>
+                            <p class="gallery-modal-description"></p>
+                            <div class="gallery-modal-meta">
+                                <div class="gallery-modal-date">
+                                    <i class="fas fa-calendar"></i>
+                                    <span class="date-text"></span>
+                                </div>
+                                <div class="gallery-modal-tags"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
 
     preloadImages() {
-        // Предзагрузка изображений для лучшего UX
         const images = document.querySelectorAll('.image-container img');
         images.forEach(img => {
             const src = img.getAttribute('src');
@@ -83,7 +178,7 @@ class Gallery {
         button.classList.add('active');
 
         this.currentFilter = filter;
-        this.visibleItems = 6; // Сбрасываем счетчик
+        this.visibleItems = 6;
         this.applyFilter();
     }
 
@@ -97,7 +192,6 @@ class Gallery {
             if (this.currentFilter === 'all' || category === this.currentFilter) {
                 if (visibleCount < this.visibleItems) {
                     item.classList.remove('hidden');
-                    // Добавляем задержку для анимации
                     item.style.transitionDelay = `${index * 0.1}s`;
                     visibleCount++;
                 } else {
@@ -123,37 +217,156 @@ class Gallery {
         });
     }
 
+    handleCardClick(e) {
+        const card = e.currentTarget;
+        const item = card.closest('.gallery-item');
+        this.openModal(item);
+    }
+
+    openModal(item) {
+        // Собираем все изображения из элемента
+        const images = Array.from(item.querySelectorAll('img')).map(img => ({
+            src: img.src,
+            alt: img.alt
+        }));
+        
+        const title = item.querySelector('h3')?.textContent || 'Без названия';
+        const description = item.querySelector('p')?.textContent || '';
+        const stats = item.querySelectorAll('.stat');
+        const category = item.getAttribute('data-category');
+
+        this.currentModalItems = images;
+        this.currentModalIndex = 0;
+
+        this.updateModalContent(title, description, stats, category);
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    updateModalContent(title, description, stats, category) {
+        // Очищаем контейнер изображений
+        this.modalImages.innerHTML = '';
+        
+        // Добавляем изображения
+        this.currentModalItems.forEach((image, index) => {
+            const container = document.createElement('div');
+            container.className = 'gallery-modal-image-container';
+            
+            const img = document.createElement('img');
+            img.src = image.src;
+            img.alt = image.alt;
+            img.className = 'gallery-modal-image';
+            
+            container.appendChild(img);
+            this.modalImages.appendChild(container);
+        });
+
+        // Обновляем информацию
+        this.modalTitle.textContent = title;
+        this.modalDescription.textContent = description;
+        
+        // Дата из описания (первая строка)
+        const dateMatch = description.match(/\d{2}\.\d{2}\.\d{4}/);
+        if (dateMatch) {
+            this.modalDate.querySelector('.date-text').textContent = dateMatch[0];
+        }
+        
+        // Теги из статистики
+        this.modalTags.innerHTML = '';
+        stats.forEach(stat => {
+            const tag = document.createElement('span');
+            tag.className = 'gallery-modal-tag';
+            tag.textContent = stat.textContent;
+            this.modalTags.appendChild(tag);
+        });
+        
+        // Добавляем тег категории
+        const categoryTag = document.createElement('span');
+        categoryTag.className = `gallery-modal-tag category-${category}`;
+        categoryTag.textContent = this.getCategoryName(category);
+        this.modalTags.appendChild(categoryTag);
+
+        this.updateModalCounter();
+    }
+
+    getCategoryName(category) {
+        const names = {
+            'builds': 'Постройки',
+            'nature': 'Общие фото',
+            'events': 'События',
+            'players': 'Игроки'
+        };
+        return names[category] || category;
+    }
+
+    updateModalCounter() {
+        this.modalCounter.textContent = `${this.currentModalIndex + 1}/${this.currentModalItems.length}`;
+    }
+
+    nextImage() {
+        if (this.currentModalItems.length <= 1) return;
+        
+        this.currentModalIndex = (this.currentModalIndex + 1) % this.currentModalItems.length;
+        this.scrollToCurrentImage();
+        this.updateModalCounter();
+    }
+
+    prevImage() {
+        if (this.currentModalItems.length <= 1) return;
+        
+        this.currentModalIndex = (this.currentModalIndex - 1 + this.currentModalItems.length) % this.currentModalItems.length;
+        this.scrollToCurrentImage();
+        this.updateModalCounter();
+    }
+
+    scrollToCurrentImage() {
+        const containers = this.modalImages.querySelectorAll('.gallery-modal-image-container');
+        if (containers[this.currentModalIndex]) {
+            containers[this.currentModalIndex].scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'center'
+            });
+        }
+    }
+
+    closeModal() {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = '';
+        this.currentModalIndex = 0;
+        this.currentModalItems = [];
+    }
+
     async loadMore() {
         if (this.isLoading) return;
 
         const loadMoreBtn = document.getElementById('loadMore');
         this.isLoading = true;
         
-        // Показываем индикатор загрузки
-        loadMoreBtn.classList.add('loading');
-        loadMoreBtn.disabled = true;
+        if (loadMoreBtn) {
+            loadMoreBtn.classList.add('loading');
+            loadMoreBtn.disabled = true;
+        }
 
         try {
-            // Имитация загрузки с сервера
             await this.simulateLoad();
-            
             this.visibleItems += this.itemsPerLoad;
             this.applyFilter();
-            
         } catch (error) {
             console.error('Ошибка загрузки:', error);
             this.showError('Ошибка загрузки изображений');
         } finally {
             this.isLoading = false;
-            loadMoreBtn.classList.remove('loading');
-            loadMoreBtn.disabled = false;
+            if (loadMoreBtn) {
+                loadMoreBtn.classList.remove('loading');
+                loadMoreBtn.disabled = false;
+            }
         }
     }
 
     simulateLoad() {
         return new Promise((resolve) => {
             setTimeout(() => {
-                // В реальном приложении здесь будет AJAX запрос
                 resolve();
             }, 1500);
         });
@@ -161,7 +374,11 @@ class Gallery {
 
     updateLoadMoreButton() {
         const loadMoreBtn = document.getElementById('loadMore');
-        const totalFiltered = document.querySelectorAll(`.gallery-item${this.currentFilter === 'all' ? '' : `[data-category="${this.currentFilter}"]`}`).length;
+        if (!loadMoreBtn) return;
+        
+        const totalFiltered = document.querySelectorAll(
+            `.gallery-item${this.currentFilter === 'all' ? '' : `[data-category="${this.currentFilter}"]`}`
+        ).length;
         
         if (this.visibleItems >= totalFiltered) {
             loadMoreBtn.style.display = 'none';
@@ -170,43 +387,7 @@ class Gallery {
         }
     }
 
-    openModal(item) {
-        const img = item.querySelector('img');
-        const title = item.querySelector('h3').textContent;
-        const description = item.querySelector('p').textContent;
-        const stats = item.querySelectorAll('.stat');
-
-        this.modalImage.src = img.src;
-        this.modalImage.alt = img.alt;
-        this.modalTitle.textContent = title;
-        this.modalDescription.textContent = description;
-
-        // Обновляем статистику в модальном окне
-        this.modalStats.innerHTML = '';
-        stats.forEach(stat => {
-            const statElement = document.createElement('span');
-            statElement.className = 'stat';
-            statElement.textContent = stat.textContent;
-            this.modalStats.appendChild(statElement);
-        });
-
-        this.modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    closeModal() {
-        this.modal.classList.remove('active');
-        document.body.style.overflow = '';
-        
-        // Сбрасываем атрибуты после закрытия
-        setTimeout(() => {
-            this.modalImage.src = '';
-            this.modalImage.alt = '';
-        }, 300);
-    }
-
     showError(message) {
-        // Создаем уведомление об ошибке
         const errorDiv = document.createElement('div');
         errorDiv.style.cssText = `
             position: fixed;
@@ -229,45 +410,12 @@ class Gallery {
     }
 }
 
-// Инициализация галереи при загрузке страницы
+// Инициализация галереи
 document.addEventListener('DOMContentLoaded', () => {
-    const gallery = new Gallery();
-
-    // Добавляем обработчики клика на карточки
-    document.querySelectorAll('.gallery-card').forEach(card => {
-        card.addEventListener('click', function() {
-            gallery.openModal(this.closest('.gallery-item'));
-        });
-    });
-
-    // Добавляем обработчики клавиатуры для навигации
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-            // Навигация между изображениями (можно доработать)
-            e.preventDefault();
-        }
-    });
-
-    // Lazy loading для изображений
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
+    new Gallery();
 });
 
-// CSS анимация для уведомлений
+// Добавляем CSS анимации
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideInRight {
@@ -279,11 +427,6 @@ style.textContent = `
             transform: translateX(0);
             opacity: 1;
         }
-    }
-    
-    .gallery-item {
-        view-timeline-name: --item;
-        view-timeline-axis: block;
     }
 `;
 document.head.appendChild(style);

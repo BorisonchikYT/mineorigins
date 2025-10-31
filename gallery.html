@@ -42,10 +42,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ᴍɪɴᴇ ᴏʀɪɢɪɴs</title>
-    
-    <title>MineOrigins - Сервер про рас</title>
     <meta name="description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
-    <meta name="keywords" content="minecraft, origins, моды, сервера, скачать, Minecraft Origins, способности, расы, Minecraft Origins про рас, StalkerHunter">
+    <meta name="keywords" content="minecraft, MineOrigins, mineorigins, origins, моды, сервера, скачать, Minecraft Origins, способности, расы, Minecraft Origins про рас, StalkerHunter">
         <!-- Open Graph -->
         <meta property="og:title" content="MineOrigins - Сервер про рас">
         <meta property="og:description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
@@ -103,8 +101,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MineOrigins">
-    <link rel="apple-touch-icon" href="/assets/images/icons/icon-152x152.png">
-    <link rel="icon" type="image/png" href="/assets/images/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
+    <link rel="icon" type="image/png" href="assets/images/icons/icon-192x192.png">
 
     <meta name="theme-color" content="#7e57c2">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -115,11 +113,10 @@
     <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
     <link rel="apple-touch-startup-image" href="assets/images/splash/splash-screen.png">
 
-    <!-- Preload критических ресурсов -->
+<!-- Preload критических ресурсов -->
 <link rel="preload" href="assets/css/style.css" as="style">
 <link rel="preload" href="assets/css/gallery.css" as="style">
 <link rel="preload" href="assets/images/MineOrigins.png" as="image">
-<link rel="preload" href="assets/images/MineOriginsAva.png" as="image">
 
 <!-- Preconnect к внешним ресурсам -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -174,32 +171,22 @@
                 }
                     </style>
 
-<div class="nav-menu">
-    <a href="index.html" class="nav-item">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index"></span>
-        ГЛАВНАЯ
-    </a>
-    <a href="players.html" class="nav-item">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index"></span>
-        ИГРОКИ
-    </a>
-    <a href="settlements.html" class="nav-item">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index"></span>
-        ПОСЕЛЕНИЯ
-    </a>
-    <a href="gallery.html" class="nav-item active">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index"></span>
-        ГАЛЕРЕЯ
-    </a>
-    <a href="faq.html" class="nav-item">
-        <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
-        FAQ
-    </a>
-</div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index" alt="Главная"></span>ГЛАВНАЯ</a>
+                <a href="players.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index" alt="Игроки"></span>ИГРОКИ</a>
+                <a href="settlements.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index"></span>ПОСЕЛЕНИЯ</a>
+                <a href="gallery.html" class="nav-item active">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index"></span>ГАЛЕРЕЯ</a>
+                <a href="faq.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/faq.png" class="nav-image-index"></span>FAQ</a>
+            </div>
 
             <div class="server-status">
-                <div class="status-indicator online"></div>
-                <span class="status-text">ОНЛАЙН</span>
+                <div class="status-indicator loading"></div>
+                <span class="status-text">ЗАГРУЗКА...</span>
             </div>
         </div>
     </nav>
@@ -290,16 +277,18 @@
     transform: scale(1.1);
 }
                         </style>
+                
                 <div class="gallery-item" data-category="nature">
                     <div class="gallery-card">
                         <div class="image-container">
-                            <img src="assets/images/gallery/nature/osfon1.jpg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQyZDNkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J/QvtC00YDQttCw0YLQuNC5INC/0L7RgNGP0LbQtdC90LjRjzwvdGV4dD48L3N2Zz4='">
+                            <img src="assets/images/gallery/nature/osfon1.jpg">
                             <div class="image-overlay">
                                 <div class="overlay-content">
-                                    <h3>Общий скрин сервера #1</h3>
-                                    <p>25.10.2025</p>
+                                    <h3>Общий скрин</h3>
+                                    <p>25.10.2025 | Общий скрин сервера</p>
                                     <div class="image-stats">
-                                        <span class="">Рай</span>
+                                        <span class="stat">#1</span>
+                                        <span class="stat">#Рай</span>
                                     </div>
                                 </div>
                             </div>
@@ -310,13 +299,13 @@
                 <div class="gallery-item" data-category="builds">
                     <div class="gallery-card">
                         <div class="image-container">
-                            <img src="assets/images/gallery/builds/build1.jpg" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQyZDNkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J/QvtC00YDQttCw0YLQuNC5INC/0L7RgNGP0LbQtdC90LjRjzwvdGV4dD48L3N2Zz4='">
+                            <img src="assets/images/gallery/builds/build1.jpg">
                             <div class="image-overlay">
                                 <div class="overlay-content">
-                                    <h3>Строительство СФБ</h3>
-                                    <p>20.10.2025</p>
+                                    <h3>Станция ФБ</h3>
+                                    <p>20.10.2025 | Строительство СФБ</p>
                                     <div class="image-stats">
-                                        <span class="">#1 | Станция ФБ</span>
+                                        <span class="stat">#СФБ</span>
                                     </div>
                                 </div>
                             </div>
@@ -327,14 +316,14 @@
                 <div class="gallery-item" data-category="events">
                     <div class="gallery-card">
                         <div class="image-container">
-                            <img src="assets/images/gallery/events/event1.png" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQyZDNkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J/QvtC00YDQttCw0YLQuNC5INC/0L7RgNGP0LbQtdC90LjRjzwvdGV4dD48L3N2Zz4='">
+                            <img src="assets/images/gallery/events/event1.png">
                             <div class="image-overlay">
                                 <div class="overlay-content">
                                     <h3>Зомби Апокалипсис</h3>
-                                    <p>17.10.2025</p>
+                                    <p>17.10.2025 | Начало безумия</p>
                                     <div class="image-stats">
-                                        <span class="">Первые нашествия</span>
-                                        <span class="">#1 | Окресности ФБ</span>
+                                        <span class="stat">#окресности ФБ</span>
+                                        <span class="stat">#событие</span>
                                     </div>
                                 </div>
                             </div>
@@ -342,6 +331,27 @@
                     </div>
                 </div>
 
+                <div class="gallery-item" data-category="builds">
+                    <div class="gallery-card">
+                        <div class="image-container">
+                            <img src="assets/images/gallery/builds/build2-1.jpg">
+                            <img src="assets/images/gallery/builds/build2-2.jpg" style="display: none;">
+                            <img src="assets/images/gallery/builds/build2-3.jpg" style="display: none;">
+                            <img src="assets/images/gallery/builds/build2-4.jpg" style="display: none;">
+                            
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <h3>Сцена ЛХ</h3>
+                                    <p>30.10.2025 | Строительство сцены</p>
+                                    <div class="image-stats">
+                                        <span class="stat">#сцена</span>
+                                        <span class="stat">#строительство</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- <div class="gallery-load-more">
@@ -381,31 +391,31 @@
 
     <script defer src="assets/js/service-worker.js"></script>
 
-    <script src="/assets/js/app-install.js"></script>
     <script defer src="assets/js/gallery.js"></script>
     <script defer src="assets/js/main.js"></script>
-    <script defer src="assets/js/manifest.js"></script>
-    <script defer src="assets/js/preload-manager.js"></script>
-    <script defer src="assets/js/analytics/analytics.js"></script>
-    <script defer src="assets/js/analytics/config.js"></script>
     <script defer src="assets/js/stats.js"></script>
-
+    
     <!-- Капча -->
-<script defer src="assets/js/captcha/captcha-system.js"></script>
+    <script defer src="assets/js/captcha/captcha-system.js"></script>
 
 <!-- Аналитика -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
 <script>
-    // Ждем проверки капчи перед инициализацией аналитики
+    // Упрощенная инициализация аналитики без проверки капчи
     document.addEventListener('DOMContentLoaded', function() {
-        if (typeof CaptchaManager !== 'undefined' && CaptchaManager.checkStatus()) {
-            // Инициализация аналитики только после успешной капчи
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-W4D0RR61VG');
-        }
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W4D0RR61VG');
+        console.log('✅ Аналитика инициализирована');
     });
+
+    // Заглушка для CaptchaManager если файл не загрузился
+    window.CaptchaManager = {
+        checkStatus: function() {
+            return true; // Всегда возвращаем true для локальной разработки
+        }
+    };
 </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 // Скрипт для страницы игроков с данными из JSON
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM загружен, инициализируем страницу игроков');
+    // console.log('DOM загружен, инициализируем страницу игроков');
     initPlayersPage();
     initPlayersFilter();
     initPlayersStats();
@@ -11,12 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Инициализация страницы игроков
 function initPlayersPage() {
-    console.log('Страница игроков инициализирована');
+    // console.log('Страница игроков инициализирована');
 }
 
 // Инициализация системы онлайн статуса
 function initOnlineStatusSystem() {
-    console.log('🔄 Инициализация системы онлайн статуса...');
+    // console.log('🔄 Инициализация системы онлайн статуса...');
     
     // Загружаем текущий онлайн статус
     updateOnlineStatusForAllPlayers();
@@ -28,7 +28,7 @@ function initOnlineStatusSystem() {
 // Получение списка онлайн игроков с сервера
 async function getOnlinePlayers() {
     try {
-        console.log('🔄 Получение списка онлайн игроков...');
+        // console.log('🔄 Получение списка онлайн игроков...');
         
         const SERVER_CONFIG = {
             apiEndpoints: {
@@ -51,7 +51,7 @@ async function getOnlinePlayers() {
         }
 
         const data = await response.json();
-        console.log('✅ Данные онлайн статуса получены:', data);
+        // console.log('✅ Данные онлайн статуса получены:', data);
 
         if (data.online && data.players && data.players.list) {
             return data.players.list.map(player => player.toLowerCase());
@@ -59,7 +59,7 @@ async function getOnlinePlayers() {
             // Если есть UUID, но нет имен
             return Object.keys(data.players.uuid).map(player => player.toLowerCase());
         } else {
-            console.log('📊 Список игроков недоступен, используем тестовые данные');
+            // console.log('📊 Список игроков недоступен, используем тестовые данные');
             return getTestOnlinePlayers();
         }
 
@@ -84,10 +84,10 @@ function getTestOnlinePlayers() {
 // Обновление онлайн статуса для всех игроков
 async function updateOnlineStatusForAllPlayers() {
     try {
-        console.log('🔄 Обновление онлайн статусов...');
+        // console.log('🔄 Обновление онлайн статусов...');
         
         const onlinePlayers = await getOnlinePlayers();
-        console.log(`📊 Онлайн игроков: ${onlinePlayers.length}`, onlinePlayers);
+        // console.log(`📊 Онлайн игроков: ${onlinePlayers.length}`, onlinePlayers);
         
         // Обновляем статусы на карточках игроков
         updatePlayerCardsStatus(onlinePlayers);
@@ -255,6 +255,14 @@ async function loadPlayersData() {
 async function fetchPlayersData() {
     try {
         console.log('Пытаемся загрузить players.json...');
+        
+        // Для локального режима используем встроенные данные
+        if (window.location.protocol === 'file:') {
+            console.log('📁 Локальный режим: используем встроенные данные игроков');
+            return getLocalPlayersData();
+        }
+        
+        // Для веб-сервера загружаем JSON
         const response = await fetch('assets/json/players.json');
         console.log('Ответ сервера:', response);
         
@@ -286,7 +294,7 @@ function renderPlayersGrid(players) {
         return;
     }
 
-    console.log(`Рендерим ${players.length} игроков`);
+    // console.log(`Рендерим ${players.length} игроков`);
     grid.innerHTML = '';
 
     if (players.length === 0) {
@@ -300,7 +308,7 @@ function renderPlayersGrid(players) {
     }
 
     players.forEach((player, index) => {
-        console.log(`Создаем карточку для игрока: ${player.name}`);
+        // console.log(`Создаем карточку для игрока: ${player.name}`);
         const playerCard = createPlayerCard(player);
         grid.appendChild(playerCard);
         
@@ -313,7 +321,7 @@ function renderPlayersGrid(players) {
 
 // Создание карточки игрока
 function createPlayerCard(player) {
-    console.log(`Создание карточки для ${player.name}`, player);
+    // console.log(`Создание карточки для ${player.name}`, player);
     
     const card = document.createElement('div');
     card.className = `player-card ${player.race}-race`;
@@ -327,11 +335,10 @@ function createPlayerCard(player) {
     
     // Проверяем наличие аватара
     const avatarPath = player.avatar || 'assets/icons/players/default.png';
-    console.log(`Аватар для ${player.name}: ${avatarPath}`);
+    // console.log(`Аватар для ${player.name}: ${avatarPath}`);
     
     card.innerHTML = `
         <div class="player-header">
-            <div class="player-status-indicator offline" title="Не в сети"></div>
             <div class="player-avatar ${player.race}">
                 <img src="${avatarPath}" alt="${player.name}" class="avatar-image" 
                      onerror="console.error('Ошибка загрузки аватара для ${player.name}'); this.src='assets/icons/players/default.png'">
@@ -340,7 +347,6 @@ function createPlayerCard(player) {
                 <h3 class="player-name">${player.name}</h3>
                 <div class="player-meta">
                     <span class="player-race-badge race-${player.race}">${getRaceName(player.race)}</span>
-                    <span class="player-status-text offline">Не в сети</span>
                 </div>
             </div>
         </div>
@@ -400,10 +406,6 @@ function showPlayerProfile(player) {
                 <div class="player-avatar-large ${player.race}">
                     <img src="${player.avatar}" alt="${player.name}" class="avatar-image-large"
                          onerror="this.src='assets/icons/players/default.png'">
-                    <div class="player-online-status offline">
-                        <span class="status-dot"></span>
-                        <span class="status-text">Не в сети</span>
-                    </div>
                 </div>
                 <div class="player-info">
                     <h2>${player.name}</h2>
@@ -743,22 +745,242 @@ function initPlayersStats() {
     });
 }
 
+
+// Локальные данные игроков
+function getLocalPlayersData() {
+    return [
+        {
+            "id": 1,
+            "name": "_Kot_Baris_",
+            "avatar": "assets/images/icons/kotbaris.png",
+            "race": "earth",
+            "description": "◈ Земной\nКото-человек, я лидер земной расы, создатель ФрикБургской Империи, хочет наладить мир между расами.",
+            "joinDate": "2025-10-11",
+            "socials": {
+              "discord": "borisonchik_yt",
+              "telegram": "@BorisonchikOfficial"
+            }
+          },
+          {
+            "id": 2,
+            "name": "stalker_hunter_",
+            "avatar": "assets/images/icons/stalker.png",
+            "race": "hell",
+            "description": "◈ Демон\nПадший Ангел — лидер адской расы, присутствует на сервере с открытия. Сохраняет нейтралитет между ФрикБургом и ВДНХ, наблюдает за порядком в аду и на поверхности.",
+            "joinDate": "2025-10-11",
+            "socials": {
+              "discord": "stalker_hunter_",
+              "telegram": "@Stalker_Hunter_s"
+            }
+          },
+          {
+            "id": 3,
+            "name": "amidamaru3434",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "heaven",
+            "description": "◈ Ангел\nСерафим — лидер райской расы, присутствует на сервере с открытия.",
+            "joinDate": "2025-10-14",
+            "socials": {
+              "discord": "bruhhhhsasa21",
+              "telegram": "@aza_matsuto"
+            }
+          },
+          {
+            "id": 4,
+            "name": "darcklord",
+            "avatar": "assets/images/icons/darcklord.png",
+            "race": "earth",
+            "description": "Дворф — бывший воин который просто хочет спокойно жить но приключения зовут его\nЖивет в городе Фрикбург  и хочет накопить золотых чтобы построить лучшую харчевню где люди и нелюди смогли бы давать и брать задания просто отдыхать и снимать жилье а так же участвовать в рейдах на замки и быть наемниками,",
+            "joinDate": "2025-10-11",
+            "socials": {
+              "discord": "bagriannik._33166",
+              "telegram": ""
+            }
+          },
+          {
+            "id": 5,
+            "name": "ddanilkaaaa",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "earth",
+            "description": "",
+            "joinDate": "2025-10-13",
+            "socials": {
+                "discord": "ddanilkaaaa_83622",
+                "telegram": "@Ddanilkaaaa"
+            }
+          },
+          {
+            "id": 6,
+            "name": "deace",
+            "avatar": "assets/images/icons/deace.png",
+            "race": "heaven",
+            "description": "Ангел гигачад, является экзорцистом среди всех ангелов. Истребляет нечестей, демонов и даже людей (если нужно будет)",
+            "joinDate": "2025-10-25",
+            "socials": {
+                "discord": "winchikvpotoke_36739",
+                "telegram": "@Zkrtssikit"
+            }
+          },
+          {
+            "id": 7,
+            "name": "hyutjnh",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "heaven",
+            "description": "Ангел - участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис.",
+            "joinDate": "2025-10-18",
+            "socials": {
+                "discord": "last_troid_0079",
+                "telegram": "@ED4MKM_AERO"
+            }
+          },
+          {
+            "id": 8,
+            "name": "jdh16",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "earth",
+            "description": "",
+            "joinDate": "2025-10-22",
+            "socials": {
+                "discord": "frozen_flames1703",
+                "telegram": "@Frozen2474"
+            }
+          },
+          {
+            "id": 9,
+            "name": "maxxaumka",
+            "avatar": "assets/images/icons/maksimka.png",
+            "race": "earth",
+            "description": "Волшебник с самого начала активен на сервере. Он нейтрален ко всем расам и кланам и не состоит ни в одном клане. Живёт в кубе вместе с пользователем snekky_off, с которым изучает различные механизмы и машины.",
+            "joinDate": "2025-10-13",
+            "socials": {
+                "discord": "maxxaumka6679",
+                "telegram": "@KOT_B_palbto"
+            }
+          },
+          {
+            "id": 10,
+            "name": "nicotine",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "earth",
+            "description": "",
+            "joinDate": "2025-10-12",
+            "socials": {
+                "discord": "maximus7915",
+                "telegram": "@Maxim_beb"
+            }
+          },
+          {
+            "id": 11,
+            "name": "pandamom",
+            "avatar": "assets/images/icons/pandamom.png",
+            "race": "earth",
+            "description": "Кото-человек просто кот присутствую хз когда сохраняю мирность в ФрикБурге бегаю",
+            "joinDate": "2025-10-11",
+            "socials": {
+                "discord": "pisde4",
+                "telegram": "@Heyheyhey223"
+            }
+          },
+          {
+            "id": 12,
+            "name": "snekky_offc",
+            "avatar": "assets/images/icons/snekky.png",
+            "race": "heaven",
+            "description": "Из-за скучного мира ангелов, я решил покинуть небеса. Долгое время я бродил по миру, где и встретил земного механика Максаумка. Его заинтересовал мир технологий. После долгих исследований на базе - Океаническая Черепах он смог стать Кибер-Ангелом",
+            "joinDate": "2025-10-11",
+            "socials": {
+                "discord": "linar9341",
+                "telegram": "@FV_4_0_0_5"
+            }
+      },
+          {
+            "id": 13,
+            "name": "Yaryna",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "hell",
+            "description": "Демоница — житель Логова Хантера, дружелюбная и общительная участница сервера.",
+            "joinDate": "",
+            "socials": {
+                "discord": "prus404",
+                "telegram": "@Prus404"
+            }
+      }, 
+          {
+            "id": 14,
+            "name": "Lemonchik",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "hell",
+            "description": "",
+            "joinDate": "",
+            "socials": {
+                "discord": "yt_lymonchuk",
+                "telegram": "@Motosport_52"
+            }
+      }, 
+          {
+            "id": 15,
+            "name": "tropic_yt2021",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "earth",
+            "description": "",
+            "joinDate": "",
+            "socials": {
+                "discord": "trop1c_.",
+                "telegram": "@tropic_mc"
+            }
+      }, 
+          {
+            "id": 16,
+            "name": "Ayaz_ak",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "earth",
+            "description": "",
+            "joinDate": "",
+            "socials": {
+                "discord": "a.l.t.y.n",
+                "telegram": "@Ayaz_ak"
+            }
+      },
+      {
+        "id": 17,
+        "name": "Cartoshka_",
+        "avatar": "assets/images/icons/cartoskha_.png",
+        "race": "hell",
+        "description": "",
+        "joinDate": "2025-10-28",
+        "socials": {
+            "discord": ".cartoshka_",
+            "telegram": ""
+        }
+      }
+    ];
+}
+
 // Обновление статистики на основе данных
-async function updatePlayersStats(players) {
+function updatePlayersStats(players) {
     const raceCounts = {
-        hell: 1,
-        heaven: 4,
-        earth: 7
+        hell: 0,
+        heaven: 0,
+        earth: 0,
+        total: players.length
     };
     
     players.forEach(player => {
-        raceCounts[player.race]++;
+        if (raceCounts.hasOwnProperty(player.race)) {
+            raceCounts[player.race]++;
+        }
     });
     
-    document.querySelector('.stat-badge.hell .stat-number').textContent = raceCounts.hell;
-    document.querySelector('.stat-badge.heaven .stat-number').textContent = raceCounts.heaven;
-    document.querySelector('.stat-badge.earth .stat-number').textContent = raceCounts.earth;
-    document.querySelector('.stat-badge.total .stat-number').textContent = players.length;
+    // Безопасное обновление элементов
+    const hellElement = document.querySelector('.stat-badge.hell .stat-number2');
+    const heavenElement = document.querySelector('.stat-badge.heaven .stat-number2');
+    const earthElement = document.querySelector('.stat-badge.earth .stat-number2');
+    const totalElement = document.querySelector('.stat-badge.total .stat-number2');
+    
+    if (hellElement) hellElement.textContent = raceCounts.hell;
+    if (heavenElement) heavenElement.textContent = raceCounts.heaven;
+    if (earthElement) earthElement.textContent = raceCounts.earth;
+    if (totalElement) totalElement.textContent = raceCounts.total;
 }
 
 // Анимация счетчика
@@ -830,217 +1052,24 @@ function hideLoadingState() {
 // Загрузка демо данных при ошибке
 function loadDemoPlayersData() {
     console.log('Загружаем демо данные...');
-    const demoPlayers = [
-        {
-          "id": 1,
-          "name": "_Kot_Baris_",
-          "avatar": "assets/images/icons/kotbaris.png",
-          "race": "earth",
-          "description": "◈ Земной\nКото-человек, я лидер земной расы, создатель ФрикБургской Империи, хочет наладить мир между расами.",
-          "joinDate": "2025-10-11",
-          "socials": {
-            "discord": "borisonchik_yt",
-            "telegram": "@BorisonchikOfficial"
-          }
-        },
-        {
-          "id": 2,
-          "name": "stalker_hunter_",
-          "avatar": "assets/images/icons/stalker.png",
-          "race": "hell",
-          "description": "◈ Демон\nПадший Ангел — лидер адской расы, присутствует на сервере с открытия. Сохраняет нейтралитет между ФрикБургом и ВДНХ, наблюдает за порядком в аду и на поверхности.",
-          "joinDate": "2025-10-11",
-          "socials": {
-            "discord": "stalker_hunter_",
-            "telegram": "@Stalker_Hunter_s"
-          }
-        },
-        {
-          "id": 3,
-          "name": "amidamaru3434",
-          "avatar": "assets/images/icons/ERROR.png",
-          "race": "heaven",
-          "description": "◈ Ангел\nСерафим — лидер райской расы, присутствует на сервере с открытия.",
-          "joinDate": "2025-10-14",
-          "socials": {
-            "discord": "bruhhhhsasa21",
-            "telegram": "@aza_matsuto"
-          }
-        },
-        {
-          "id": 4,
-          "name": "darcklord",
-          "avatar": "assets/images/icons/darcklord.png",
-          "race": "earth",
-          "description": "Дворф — бывший воин который просто хочет спокойно жить но приключения зовут его\nЖивет в городе Фрикбург  и хочет накопить золотых чтобы построить лучшую харчевню где люди и нелюди смогли бы давать и брать задания просто отдыхать и снимать жилье а так же участвовать в рейдах на замки и быть наемниками,",
-          "joinDate": "2025-10-11",
-          "socials": {
-            "discord": "bagriannik._33166",
-            "telegram": ""
-          }
-        },
-        {
-          "id": 5,
-          "name": "ddanilkaaaa",
-          "avatar": "assets/images/icons/ERROR.png",
-          "race": "earth",
-          "description": "",
-          "joinDate": "2025-10-13",
-          "socials": {
-              "discord": "ddanilkaaaa_83622",
-              "telegram": "@Ddanilkaaaa"
-          }
-        },
-        {
-          "id": 6,
-          "name": "deace",
-          "avatar": "assets/images/icons/deace.png",
-          "race": "heaven",
-          "description": "Ангел гигачад, является экзорцистом среди всех ангелов. Истребляет нечестей, демонов и даже людей (если нужно будет)",
-          "joinDate": "2025-10-25",
-          "socials": {
-              "discord": "winchikvpotoke_36739",
-              "telegram": "@Zkrtssikit"
-          }
-        },
-        {
-          "id": 7,
-          "name": "hyutjnh",
-          "avatar": "assets/images/icons/ERROR.png",
-          "race": "heaven",
-          "description": "Ангел - участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис.",
-          "joinDate": "2025-10-18",
-          "socials": {
-              "discord": "last_troid_0079",
-              "telegram": "@ED4MKM_AERO"
-          }
-        },
-        {
-          "id": 8,
-          "name": "jdh16",
-          "avatar": "assets/images/icons/ERROR.png",
-          "race": "earth",
-          "description": "",
-          "joinDate": "2025-10-22",
-          "socials": {
-              "discord": "frozen_flames1703",
-              "telegram": "@Frozen2474"
-          }
-        },
-        {
-          "id": 9,
-          "name": "maxxaumka",
-          "avatar": "assets/images/icons/maksimka.png",
-          "race": "earth",
-          "description": "Волшебник с самого начала активен на сервере. Он нейтрален ко всем расам и кланам и не состоит ни в одном клане. Живёт в кубе вместе с пользователем snekky_off, с которым изучает различные механизмы и машины.",
-          "joinDate": "2025-10-13",
-          "socials": {
-              "discord": "maxxaumka6679",
-              "telegram": "@KOT_B_palbto"
-          }
-        },
-        {
-          "id": 10,
-          "name": "nicotine",
-          "avatar": "assets/images/icons/ERROR.png",
-          "race": "earth",
-          "description": "",
-          "joinDate": "2025-10-12",
-          "socials": {
-              "discord": "maximus7915",
-              "telegram": "@Maxim_beb"
-          }
-        },
-        {
-          "id": 11,
-          "name": "pandamom",
-          "avatar": "assets/images/icons/pandamom.png",
-          "race": "earth",
-          "description": "Кото-человек просто кот присутствую хз когда сохраняю мирность в ФрикБурге бегаю",
-          "joinDate": "2025-10-11",
-          "socials": {
-              "discord": "pisde4",
-              "telegram": "@Heyheyhey223"
-          }
-        },
-        {
-          "id": 12,
-          "name": "snekky_offc",
-          "avatar": "assets/images/icons/snekky.png",
-          "race": "heaven",
-          "description": "Из-за скучного мира ангелов, я решил покинуть небеса. Долгое время я бродил по миру, где и встретил земного механика Максаумка. Его заинтересовал мир технологий. После долгих исследований на базе - Океаническая Черепах он смог стать Кибер-Ангелом",
-          "joinDate": "2025-10-11",
-          "socials": {
-              "discord": "linar9341",
-              "telegram": "@FV_4_0_0_5"
-          }
-    },
-        {
-          "id": 13,
-          "name": "Yaryna",
-          "avatar": "assets/images/icons/ERROR.png",
-          "race": "hell",
-          "description": "Демоница — житель Логова Хантера, дружелюбная и общительная участница сервера.",
-          "joinDate": "",
-          "socials": {
-              "discord": "prus404",
-              "telegram": "@Prus404"
-          }
-    }, 
-        {
-          "id": 14,
-          "name": "Lemonchik",
-          "avatar": "assets/images/icons/ERROR.png",
-          "race": "hell",
-          "description": "",
-          "joinDate": "",
-          "socials": {
-              "discord": "yt_lymonchuk",
-              "telegram": "@Motosport_52"
-          }
-    }, 
-        {
-          "id": 15,
-          "name": "tropic_yt2021",
-          "avatar": "assets/images/icons/ERROR.png",
-          "race": "earth",
-          "description": "",
-          "joinDate": "",
-          "socials": {
-              "discord": "trop1c_.",
-              "telegram": "@tropic_mc"
-          }
-    }, 
-        {
-          "id": 16,
-          "name": "Ayaz_ak",
-          "avatar": "assets/images/icons/ERROR.png",
-          "race": "earth",
-          "description": "",
-          "joinDate": "",
-          "socials": {
-              "discord": "a.l.t.y.n",
-              "telegram": "@Ayaz_ak"
-          }
-    },
-    {
-      "id": 17,
-      "name": "Cartoshka_",
-      "avatar": "assets/images/icons/cartoskha_.png",
-      "race": "hell",
-      "description": "",
-      "joinDate": "2025-10-28",
-      "socials": {
-          "discord": ".cartoshka_",
-          "telegram": ""
-      }
-    }
-    ];
+    const demoPlayers = getLocalPlayersData();
     renderPlayersGrid(demoPlayers);
     updatePlayersStats(demoPlayers);
 }
+
+// Удаляем проблемный код из players.html и заменяем его на:
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM загружен, инициализируем страницу игроков');
+    initPlayersPage();
+    initPlayersFilter();
+    initPlayersStats();
+    loadPlayersData();
+    initRealTimePlayerCount();
+    initOnlineStatusSystem();
+});
 
 // Обновление данных каждые 3 секунд
 setInterval(() => {
     initRealTimePlayerCount();
 }, 3000);
+

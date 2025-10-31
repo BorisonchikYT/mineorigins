@@ -547,6 +547,307 @@
     opacity: 0.7;
 }
 
+/* Стили для карточек с несколькими изображениями */
+.gallery-card.multiple-images .image-container {
+    position: relative;
+    overflow: visible;
+}
+
+.gallery-card.multiple-images .main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.gallery-card.multiple-images .secondary-image {
+    position: absolute;
+    border: 2px solid var(--mc-darker);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all var(--transition-fast);
+}
+
+.gallery-card.multiple-images .secondary-image.top-right {
+    top: -8px;
+    right: -8px;
+    width: 40%;
+    height: 40%;
+    z-index: 2;
+    border-radius: 8px;
+}
+
+.gallery-card.multiple-images .secondary-image.bottom-right {
+    bottom: -8px;
+    right: -8px;
+    width: 35%;
+    height: 35%;
+    z-index: 2;
+    border-radius: 6px;
+}
+
+.gallery-card.multiple-images:hover .secondary-image {
+    transform: scale(1.05);
+    border-color: var(--mc-accent);
+}
+
+/* Бейдж количества изображений */
+.image-count-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(126, 87, 194, 0.9);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 3;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Улучшенное модальное окно галереи */
+.gallery-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 15, 0.98);
+    backdrop-filter: blur(15px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+}
+
+.gallery-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.gallery-modal-content {
+    background: rgba(20, 20, 30, 0.95);
+    border: 2px solid var(--mc-accent);
+    border-radius: 20px;
+    max-width: 95vw;
+    max-height: 95vh;
+    width: auto;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform var(--transition-slow);
+    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+    overflow: hidden;
+}
+
+.gallery-modal.active .gallery-modal-content {
+    transform: scale(1);
+}
+
+.gallery-modal-body {
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+}
+
+.gallery-modal-images {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 2rem;
+    gap: 1rem;
+    min-height: 400px;
+    align-items: center;
+}
+
+.gallery-modal-image-container {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    max-width: 800px;
+    max-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.gallery-modal-info {
+    padding: 1.5rem 2rem;
+    background: rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.gallery-modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.gallery-modal-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.gallery-modal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.gallery-modal-date {
+    background: rgba(126, 87, 194, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gallery-modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.gallery-modal-tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.gallery-modal-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.gallery-modal-prev,
+.gallery-modal-next {
+    background: rgba(126, 87, 194, 0.8);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(10px);
+    pointer-events: all;
+}
+
+.gallery-modal-prev:hover,
+.gallery-modal-next:hover {
+    background: var(--mc-accent);
+    transform: scale(1.1);
+}
+
+.gallery-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255,68,68,0.8);
+    border: none;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(10px);
+    z-index: 3;
+}
+
+.gallery-modal-close:hover {
+    background: var(--hell-color);
+    transform: rotate(90deg);
+}
+
+.gallery-modal-counter {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+/* Адаптивность для модального окна */
+@media (max-width: 768px) {
+    .gallery-modal-content {
+        max-width: 98vw;
+        max-height: 98vh;
+        border-radius: 15px;
+    }
+    
+    .gallery-modal-images {
+        padding: 1rem;
+        min-height: 300px;
+    }
+    
+    .gallery-modal-info {
+        padding: 1rem;
+    }
+    
+    .gallery-modal-title {
+        font-size: 1.2rem;
+    }
+    
+    .gallery-modal-description {
+        font-size: 0.9rem;
+    }
+    
+    .gallery-modal-prev,
+    .gallery-modal-next {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .gallery-modal-close {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}
+
 /* ===== АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ - ГАЛЕРЕЯ ===== */
 
 /* Планшеты (768px - 1024px) */

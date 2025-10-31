@@ -42,10 +42,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ᴍɪɴᴇ ᴏʀɪɢɪɴs</title>
-    
-    <title>MineOrigins - Сервер про рас</title>
     <meta name="description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
-    <meta name="keywords" content="minecraft, origins, моды, сервера, скачать, Minecraft Origins, способности, расы, Minecraft Origins про рас, StalkerHunter">
+    <meta name="keywords" content="minecraft, MineOrigins, mineorigins, origins, моды, сервера, скачать, Minecraft Origins, способности, расы, Minecraft Origins про рас, StalkerHunter">
         <!-- Open Graph -->
         <meta property="og:title" content="MineOrigins - Сервер про рас">
         <meta property="og:description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
@@ -103,8 +101,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MineOrigins">
-    <link rel="apple-touch-icon" href="/assets/images/icons/icon-152x152.png">
-    <link rel="icon" type="image/png" href="/assets/images/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
+    <link rel="icon" type="image/png" href="assets/images/icons/icon-192x192.png">
 
     <meta name="theme-color" content="#7e57c2">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -115,11 +113,10 @@
     <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
     <link rel="apple-touch-startup-image" href="assets/images/splash/splash-screen.png">
 
-    <!-- Preload критических ресурсов -->
+<!-- Preload критических ресурсов -->
 <link rel="preload" href="assets/css/style.css" as="style">
 <link rel="preload" href="assets/css/settlements.css" as="style">
 <link rel="preload" href="assets/images/MineOrigins.png" as="image">
-<link rel="preload" href="assets/images/MineOriginsAva.png" as="image">
 
 <!-- Preconnect к внешним ресурсам -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -175,32 +172,22 @@
                     </style>
 
 
-<div class="nav-menu">
-    <a href="index.html" class="nav-item">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index"></span>
-        ГЛАВНАЯ
-    </a>
-    <a href="players.html" class="nav-item">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index"></span>
-        ИГРОКИ
-    </a>
-    <a href="settlements.html" class="nav-item active">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index"></span>
-        ПОСЕЛЕНИЯ
-    </a>
-    <a href="gallery.html" class="nav-item">
-        <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index"></span>
-        ГАЛЕРЕЯ
-    </a>
-    <a href="faq.html" class="nav-item">
-        <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
-        FAQ
-    </a>
-</div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index" alt="Главная"></span>ГЛАВНАЯ</a>
+                <a href="players.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index" alt="Игроки"></span>ИГРОКИ</a>
+                <a href="settlements.html" class="nav-item active">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index"></span>ПОСЕЛЕНИЯ</a>
+                <a href="gallery.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.gif" class="nav-image-index"></span>ГАЛЕРЕЯ</a>
+                <a href="faq.html" class="nav-item">
+                    <span class="nav-icon"><img src="assets/images/icons/faq.png" class="nav-image-index"></span>FAQ</a>
+            </div>
 
             <div class="server-status">
-                <div class="status-indicator online"></div>
-                <span class="status-text">ОНЛАЙН</span>
+                <div class="status-indicator loading"></div>
+                <span class="status-text">ЗАГРУЗКА...</span>
             </div>
         </div>
     </nav>
@@ -624,13 +611,6 @@
         background-size: 25px 25px;
     }
 }
-
-/* Высокопиксельные экраны (Retina) */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .settlements-search {
-        background-image: url('assets/images/icons/icon_search@2x.gif');
-    }
-}
                     </style>
             <div class="settlements-filter">
                 <input type="text" class="settlements-search" placeholder="Поиск поселения..." id="settlementsSearch">
@@ -784,31 +764,30 @@
         </div>
     </footer>
 
-    <script src="/assets/js/app-install.js"></script>
     <script defer src="assets/js/main.js"></script>
-    <script defer src="assets/js/manifest.js"></script>
-    <script defer src="assets/js/main.js"></script>
-    <script defer src="assets/js/preload-manager.js"></script>
-    <script defer src="assets/js/config.js"></script>
-    <script defer src="assets/js/analytics.js"></script>
     <script defer src="assets/js/stats.js"></script>
-
+    
     <!-- Капча -->
-<script defer src="assets/js/captcha/captcha-system.js"></script>
-
-<!-- Аналитика -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
-<script>
-    // Ждем проверки капчи перед инициализацией аналитики
-    document.addEventListener('DOMContentLoaded', function() {
-        if (typeof CaptchaManager !== 'undefined' && CaptchaManager.checkStatus()) {
-            // Инициализация аналитики только после успешной капчи
+    <script defer src="assets/js/captcha/captcha-system.js"></script>
+    
+    <!-- Аналитика -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
+    <script>
+        // Упрощенная инициализация аналитики без проверки капчи
+        document.addEventListener('DOMContentLoaded', function() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-W4D0RR61VG');
-        }
-    });
-</script>
+            console.log('✅ Аналитика инициализирована');
+        });
+    
+        // Заглушка для CaptchaManager если файл не загрузился
+        window.CaptchaManager = {
+            checkStatus: function() {
+                return true; // Всегда возвращаем true для локальной разработки
+            }
+        };
+    </script>
 </body>
 </html>

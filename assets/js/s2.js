@@ -1,7 +1,7 @@
 
         // Инициализация страницы
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Страница поселений загружена');
+            // console.log('Страница поселений загружена');
             initSettlementsPage();
             initSettlementsStats();
             initMapInteractions();
@@ -10,7 +10,7 @@
 
         // Инициализация страницы поселений
         function initSettlementsPage() {
-            console.log('Инициализация страницы поселений');
+            // console.log('Инициализация страницы поселений');
             
             // Анимация появления карточек
             const cards = document.querySelectorAll('.settlement-card');
@@ -221,7 +221,7 @@
         // Показ деталей поселения по имени
         function showSettlementDetailsByName(settlementName) {
             // В реальном проекте здесь будет открытие модального окна с деталями
-            console.log('Показ деталей поселения:', settlementName);
+            // console.log('Показ деталей поселения:', settlementName);
         }
 
         // Инициализация фильтров

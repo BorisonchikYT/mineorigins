@@ -707,20 +707,17 @@
 
 /* Добавьте фоновое изображение для каждой расы */
 .settlement-image.hell {
-    background: linear-gradient(135deg, var(--hell-dark), var(--hell-color)), 
-                url('assets/image/icon/seyt/boris.png') center/cover;
+    background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
     border-color: var(--hell-glow);
 }
 
 .settlement-image.heaven {
-    background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color)), 
-                url('assets/image/icon/seyt/boris.png') center/cover;
+    background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
     border-color: var(--heaven-glow);
 }
 
 .settlement-image.earth {
-    background: linear-gradient(135deg, var(--earth-dark), var(--earth-color)), 
-                url('assets/image/icon/seyt/boris.png') center/cover;
+    background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
     border-color: var(--earth-glow);
 }
 

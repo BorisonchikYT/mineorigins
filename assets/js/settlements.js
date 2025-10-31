@@ -128,7 +128,7 @@ let favoriteSettlements = JSON.parse(localStorage.getItem('favoriteSettlements')
 
 // Основная функция инициализации
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎮 Инициализация страницы поселений...');
+    // console.log('🎮 Инициализация страницы поселений...');
     initSettlementsPage();
     initEventListeners();
     renderAllSettlements();
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Инициализация страницы
 function initSettlementsPage() {
-    console.log('✨ Страница поселений инициализирована');
+    // console.log('✨ Страница поселений инициализирована');
     
     // Добавляем премиальные эффекты к заголовку
     const title = document.querySelector('.section-title');
@@ -404,7 +404,7 @@ function clearFilters() {
 
 // Инициализация карты мира
 function initWorldMap() {
-    console.log('🗺️ Инициализация карты мира...');
+    // console.log('🗺️ Инициализация карты мира...');
     
     const mapPoints = document.querySelectorAll('.map-point');
     mapPoints.forEach(point => {

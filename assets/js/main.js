@@ -1,12 +1,10 @@
 // Главный скрипт с реальной статистикой сервера Minecraft
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎮 Начало загрузки статистики игроков');
     
     initAnimations();
     initServerStats();
     initOnlineStats();
     initRaceCards();
-    initCursorEffect();
     initScrollAnimations();
     initTypewriterEffect();
     initRealTimeStats();
@@ -36,45 +34,39 @@ class PlayersDataManager {
         this.loaded = false;
     }
 
-    // Загрузка данных игроков из players.json
-    async loadPlayersData() {
-        try {
-            console.log('🔄 Загрузка данных игроков...');
-            const response = await fetch('assets/json/players.json');
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log('✅ Данные игроков загружены:', data.players.length, 'игроков');
-            
-            this.playersData = data.players;
-            this.loaded = true;
-            
-            return this.playersData;
-            
-        } catch (error) {
-            console.error('❌ Ошибка загрузки данных игроков:', error);
-            // Используем демо данные как fallback
+// Загрузка данных игроков из players.json
+async loadPlayersData() {
+    try {
+        console.log('Загрузка данных игроков...');
+        
+        // Для локального режима используем встроенные данные
+        if (window.location.protocol === 'file:') {
             this.playersData = this.getDemoPlayersData();
             this.loaded = true;
             return this.playersData;
         }
-    }
-
-    // Получение информации об игроке по имени
-    getPlayerInfo(playerName) {
-        if (!this.playersData || !this.loaded) {
-            return null;
+        
+        const response = await fetch('assets/json/players.json');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const player = this.playersData.find(p => 
-            p.name.toLowerCase() === playerName.toLowerCase()
-        );
-
-        return player || null;
+        const data = await response.json();
+        
+        this.playersData = data.players;
+        this.loaded = true;
+        
+        return this.playersData;
+        
+    } catch (error) {
+        console.error('❌ Ошибка загрузки данных игроков:', error);
+        // Используем демо данные как fallback
+        this.playersData = this.getDemoPlayersData();
+        this.loaded = true;
+        return this.playersData;
     }
+}
 
     // Демо данные игроков (fallback)
     getDemoPlayersData() {
@@ -87,11 +79,11 @@ class PlayersDataManager {
                 "description": "◈ Земной\nКото-человек, я лидер земной расы, создатель ФрикБургской Империи, хочет наладить мир между расами.",
                 "joinDate": "2025-10-11",
                 "socials": {
-                    "discord": "borisonchik_yt",
-                    "telegram": "@BorisonchikOfficial"
+                  "discord": "borisonchik_yt",
+                  "telegram": "@BorisonchikOfficial"
                 }
-            },
-            {
+              },
+              {
                 "id": 2,
                 "name": "stalker_hunter_",
                 "avatar": "assets/images/icons/stalker.png",
@@ -99,11 +91,190 @@ class PlayersDataManager {
                 "description": "◈ Демон\nПадший Ангел — лидер адской расы, присутствует на сервере с открытия. Сохраняет нейтралитет между ФрикБургом и ВДНХ, наблюдает за порядком в аду и на поверхности.",
                 "joinDate": "2025-10-11",
                 "socials": {
-                    "discord": "stalker_hunter_",
-                    "telegram": "@Stalker_Hunter_s"
+                  "discord": "stalker_hunter_",
+                  "telegram": "@Stalker_Hunter_s"
                 }
+              },
+              {
+                "id": 3,
+                "name": "amidamaru3434",
+                "avatar": "assets/images/icons/ERROR.png",
+                "race": "heaven",
+                "description": "◈ Ангел\nСерафим — лидер райской расы, присутствует на сервере с открытия.",
+                "joinDate": "2025-10-14",
+                "socials": {
+                  "discord": "bruhhhhsasa21",
+                  "telegram": "@aza_matsuto"
+                }
+              },
+              {
+                "id": 4,
+                "name": "darcklord",
+                "avatar": "assets/images/icons/darcklord.png",
+                "race": "earth",
+                "description": "Дворф — бывший воин который просто хочет спокойно жить но приключения зовут его\nЖивет в городе Фрикбург  и хочет накопить золотых чтобы построить лучшую харчевню где люди и нелюди смогли бы давать и брать задания просто отдыхать и снимать жилье а так же участвовать в рейдах на замки и быть наемниками,",
+                "joinDate": "2025-10-11",
+                "socials": {
+                  "discord": "bagriannik._33166",
+                  "telegram": ""
+                }
+              },
+              {
+                "id": 5,
+                "name": "ddanilkaaaa",
+                "avatar": "assets/images/icons/ERROR.png",
+                "race": "earth",
+                "description": "",
+                "joinDate": "2025-10-13",
+                "socials": {
+                    "discord": "ddanilkaaaa_83622",
+                    "telegram": "@Ddanilkaaaa"
+                }
+              },
+              {
+                "id": 6,
+                "name": "deace",
+                "avatar": "assets/images/icons/deace.png",
+                "race": "heaven",
+                "description": "Ангел гигачад, является экзорцистом среди всех ангелов. Истребляет нечестей, демонов и даже людей (если нужно будет)",
+                "joinDate": "2025-10-25",
+                "socials": {
+                    "discord": "winchikvpotoke_36739",
+                    "telegram": "@Zkrtssikit"
+                }
+              },
+              {
+                "id": 7,
+                "name": "hyutjnh",
+                "avatar": "assets/images/icons/ERROR.png",
+                "race": "heaven",
+                "description": "Ангел - участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис.",
+                "joinDate": "2025-10-18",
+                "socials": {
+                    "discord": "last_troid_0079",
+                    "telegram": "@ED4MKM_AERO"
+                }
+              },
+              {
+                "id": 8,
+                "name": "jdh16",
+                "avatar": "assets/images/icons/ERROR.png",
+                "race": "earth",
+                "description": "",
+                "joinDate": "2025-10-22",
+                "socials": {
+                    "discord": "frozen_flames1703",
+                    "telegram": "@Frozen2474"
+                }
+              },
+              {
+                "id": 9,
+                "name": "maxxaumka",
+                "avatar": "assets/images/icons/maksimka.png",
+                "race": "earth",
+                "description": "Волшебник с самого начала активен на сервере. Он нейтрален ко всем расам и кланам и не состоит ни в одном клане. Живёт в кубе вместе с пользователем snekky_off, с которым изучает различные механизмы и машины.",
+                "joinDate": "2025-10-13",
+                "socials": {
+                    "discord": "maxxaumka6679",
+                    "telegram": "@KOT_B_palbto"
+                }
+              },
+              {
+                "id": 10,
+                "name": "nicotine",
+                "avatar": "assets/images/icons/ERROR.png",
+                "race": "earth",
+                "description": "",
+                "joinDate": "2025-10-12",
+                "socials": {
+                    "discord": "maximus7915",
+                    "telegram": "@Maxim_beb"
+                }
+              },
+              {
+                "id": 11,
+                "name": "pandamom",
+                "avatar": "assets/images/icons/pandamom.png",
+                "race": "earth",
+                "description": "Кото-человек просто кот присутствую хз когда сохраняю мирность в ФрикБурге бегаю",
+                "joinDate": "2025-10-11",
+                "socials": {
+                    "discord": "pisde4",
+                    "telegram": "@Heyheyhey223"
+                }
+              },
+              {
+                "id": 12,
+                "name": "snekky_offc",
+                "avatar": "assets/images/icons/snekky.png",
+                "race": "heaven",
+                "description": "Из-за скучного мира ангелов, я решил покинуть небеса. Долгое время я бродил по миру, где и встретил земного механика Максаумка. Его заинтересовал мир технологий. После долгих исследований на базе - Океаническая Черепах он смог стать Кибер-Ангелом",
+                "joinDate": "2025-10-11",
+                "socials": {
+                    "discord": "linar9341",
+                    "telegram": "@FV_4_0_0_5"
+                }
+          },
+              {
+                "id": 13,
+                "name": "Yaryna",
+                "avatar": "assets/images/icons/ERROR.png",
+                "race": "hell",
+                "description": "Демоница — житель Логова Хантера, дружелюбная и общительная участница сервера.",
+                "joinDate": "",
+                "socials": {
+                    "discord": "prus404",
+                    "telegram": "@Prus404"
+                }
+          }, 
+              {
+                "id": 14,
+                "name": "Lemonchik",
+                "avatar": "assets/images/icons/ERROR.png",
+                "race": "hell",
+                "description": "",
+                "joinDate": "",
+                "socials": {
+                    "discord": "yt_lymonchuk",
+                    "telegram": "@Motosport_52"
+                }
+          }, 
+              {
+                "id": 15,
+                "name": "tropic_yt2021",
+                "avatar": "assets/images/icons/ERROR.png",
+                "race": "earth",
+                "description": "",
+                "joinDate": "",
+                "socials": {
+                    "discord": "trop1c_.",
+                    "telegram": "@tropic_mc"
+                }
+          }, 
+              {
+                "id": 16,
+                "name": "Ayaz_ak",
+                "avatar": "assets/images/icons/ERROR.png",
+                "race": "earth",
+                "description": "",
+                "joinDate": "",
+                "socials": {
+                    "discord": "a.l.t.y.n",
+                    "telegram": "@Ayaz_ak"
+                }
+          },
+          {
+            "id": 17,
+            "name": "Cartoshka_",
+            "avatar": "assets/images/icons/cartoskha_.png",
+            "race": "hell",
+            "description": "",
+            "joinDate": "2025-10-28",
+            "socials": {
+                "discord": ".cartoshka_",
+                "telegram": ""
             }
-            // ... остальные игроки
+          }
         ];
     }
 }
@@ -120,7 +291,6 @@ class MinecraftServerAPI {
     // Основной метод получения статуса
     async getServerStatus() {
         try {
-            console.log('🔄 Запрос к основному API...');
             
             // Добавляем timestamp для избежания кеширования
             const timestamp = Date.now();
@@ -140,7 +310,6 @@ class MinecraftServerAPI {
             }
 
             const data = await response.json();
-            console.log('✅ Данные сервера получены:', data);
 
             // Сбрасываем счетчик повторений при успехе
             this.retryCount = 0;
@@ -152,7 +321,6 @@ class MinecraftServerAPI {
             this.retryCount++;
             
             if (this.retryCount <= this.maxRetries) {
-                console.log(`🔄 Повторная попытка ${this.retryCount}/${this.maxRetries}...`);
                 return await this.tryBackupAPIs();
             } else {
                 throw new Error('Все API недоступны после нескольких попыток');
@@ -162,7 +330,6 @@ class MinecraftServerAPI {
 
     // Обработка данных сервера
     processServerData(data) {
-        console.log('🔧 Обработка данных сервера:', data);
         
         // Обработка списка игроков
         let playersList = [];
@@ -185,7 +352,7 @@ class MinecraftServerAPI {
         }
 
         // Обработка MOTD
-        let motdText = 'Minecraft Origins Server';
+        let motdText = 'MineOrigins Server';
         if (data.motd) {
             if (data.motd.clean && Array.isArray(data.motd.clean)) {
                 motdText = data.motd.clean.join(' ');
@@ -216,7 +383,6 @@ class MinecraftServerAPI {
             lastUpdated: new Date().toLocaleTimeString()
         };
 
-        console.log('📊 Обработанные данные:', result);
         return result;
     }
 
@@ -236,7 +402,6 @@ class MinecraftServerAPI {
 
         for (const apiUrl of backupAPIs) {
             try {
-                console.log(`🔄 Попытка backup API: ${apiUrl}`);
                 const timestamp = Date.now();
                 const urlWithTimestamp = `${apiUrl}?t=${timestamp}`;
                 
@@ -250,7 +415,6 @@ class MinecraftServerAPI {
                 
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(`✅ Backup API сработал: ${apiUrl}`, data);
                     return this.processBackupData(data, apiUrl);
                 } else {
                     throw new Error(`HTTP ${response.status}`);
@@ -267,7 +431,6 @@ class MinecraftServerAPI {
 
     // Обработка данных из backup API
     processBackupData(data, apiUrl) {
-        console.log(`🔧 Обработка backup данных от ${apiUrl}:`, data);
         
         let playersList = [];
         let hasRealPlayerData = false;
@@ -285,7 +448,7 @@ class MinecraftServerAPI {
                     list: playersList
                 },
                 version: data.version?.name_clean || 'Неизвестно',
-                motd: data.motd?.clean || 'Minecraft Origins Server',
+                motd: data.motd?.clean || 'MineOrigins Server',
                 hasRealPlayerData: hasRealPlayerData,
                 lastUpdated: new Date().toLocaleTimeString()
             };
@@ -302,7 +465,7 @@ class MinecraftServerAPI {
                     list: playersList
                 },
                 version: data.version || 'Неизвестно',
-                motd: data.description || 'Minecraft Origins Server',
+                motd: data.description || 'MineOrigins Server',
                 hasRealPlayerData: hasRealPlayerData,
                 lastUpdated: new Date().toLocaleTimeString()
             };
@@ -314,7 +477,6 @@ class MinecraftServerAPI {
 
     // Fallback данные когда все API недоступны
     getFallbackData() {
-        console.log('🔄 Используем fallback данные');
         return {
             online: false,
             players: {
@@ -338,7 +500,6 @@ const playersManager = new PlayersDataManager();
 // Реальная статистика сервера
 async function initRealTimeStats() {
     try {
-        console.log('🎮 Инициализация реальной статистики...');
         
         // Показываем загрузку
         updateServerStatus('loading', 'Загрузка...');
@@ -351,7 +512,6 @@ async function initRealTimeStats() {
         // Получаем реальные данные сервера
         const serverData = await serverAPI.getServerStatus();
         
-        console.log('📈 Обновление интерфейса с данными:', serverData);
         
         if (serverData.online && !serverData.isFallback) {
             updateServerStatus('online', 'ОНЛАЙН');
@@ -367,7 +527,6 @@ async function initRealTimeStats() {
             serverAPI.currentData = serverData;
             serverAPI.lastUpdate = Date.now();
             
-            console.log('✅ Статистика успешно обновлена');
             
         } else if (serverData.isFallback) {
             // Все API недоступны
@@ -395,7 +554,7 @@ async function initRealTimeStats() {
 async function updateOnlinePlayers(players, hasRealPlayerData) {
     const onlineList = document.getElementById('onlineList');
     if (!onlineList) {
-        console.warn('❌ Элемент onlineList не найден');
+        console.warn('❌ Элемент onlineList');
         return;
     }
 
@@ -403,7 +562,6 @@ async function updateOnlinePlayers(players, hasRealPlayerData) {
     onlineList.innerHTML = '';
 
     if (players && players.length > 0 && hasRealPlayerData) {
-        console.log(`📊 Отображаем ${players.length} реальных игроков:`, players);
         
         // Отображаем реальных игроков с их данными
         for (const playerName of players.slice(0, 15)) {
@@ -426,17 +584,14 @@ async function updateOnlinePlayers(players, hasRealPlayerData) {
         }
     } else if (players && players.length > 0 && !hasRealPlayerData) {
         // Если есть онлайн игроки, но нет реальных данных от API
-        console.log('📊 Есть онлайн игроки, но нет данных от API');
         onlineList.innerHTML = `
             <div class="no-players">
-                <div class="no-players-icon">👥</div>
                 <div class="no-players-text">На сервере играют ${players.length} игроков</div>
                 <div class="no-players-subtext">Список игроков недоступен</div>
             </div>
         `;
     } else {
         // Если нет игроков онлайн
-        console.log('📊 Нет игроков онлайн');
         onlineList.innerHTML = `
             <div class="no-players">
                 <div class="no-players-text">Сейчас на сервере нет игроков</div>
@@ -628,9 +783,6 @@ function updateServerChart(serverData) {
                     <div class="progress-fill" style="width: ${(currentOnline / maxPlayers) * 100}%"></div>
                 </div>
             </div>
-            <div class="chart-history">
-                ${generateHistoryBars(currentOnline, maxPlayers)}
-            </div>
         </div>
     `;
 
@@ -678,10 +830,11 @@ function showOfflineMessage(customMessage = null) {
         const offlineMessage = document.createElement('div');
         offlineMessage.className = 'offline-message';
         offlineMessage.innerHTML = `
-            <div class="offline-icon">🔌</div>
             <h3>Сервер временно недоступен</h3>
-            <p>${customMessage || 'Мы уже работаем над решением проблемы. Попробуйте обновить страницу через несколько минут.'}</p>
-            <button class="retry-btn" onclick="initRealTimeStats()">🔄 Обновить</button>
+            <p>${customMessage || 'Возможные причины:'}</p>
+            <p>Отсутствие подключение к интернету</p>
+            <p>Включенный или выключенный VPN</p>
+            <p>Ошибки браузера (Перезагрузите браузер)</p>
         `;
         
         mainContent.prepend(offlineMessage);
@@ -751,11 +904,9 @@ function initAnimations() {
 }
 
 function initServerStats() {
-    console.log('🔄 Инициализация статистики сервера...');
 }
 
 function initOnlineStats() {
-    console.log('🔄 Инициализация онлайн статистики...');
 }
 
 function initRaceCards() {
@@ -774,215 +925,8 @@ function initRaceCards() {
     });
 }
 
-// УЛЬТИМАТИВНЫЙ ЭФФЕКТ КУРСОРА В СТИЛЕ GENSHIN IMPACT
-function initUltimateGenshinCursor() {
-    // ПОЛНОЕ БЛОКИРОВАНИЕ ВСЕХ СТАНДАРТНЫХ КУРСОРОВ ПРИНУДИТЕЛЬНО
-    const disableAllCursors = () => {
-        const styles = `
-            * {
-                cursor: none !important;
-                caret-color: transparent !important;
-            }
-            
-            *:hover {
-                cursor: none !important;
-            }
-            
-            html, body, div, span, applet, object, iframe,
-            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-            a, abbr, acronym, address, big, cite, code,
-            del, dfn, em, img, ins, kbd, q, s, samp,
-            small, strike, strong, sub, sup, tt, var,
-            b, u, i, center,
-            dl, dt, dd, ol, ul, li,
-            fieldset, form, label, legend,
-            table, caption, tbody, tfoot, thead, tr, th, td,
-            article, aside, canvas, details, embed, 
-            figure, figcaption, footer, header, hgroup, 
-            menu, nav, output, ruby, section, summary,
-            time, mark, audio, video {
-                cursor: none !important;
-            }
-            
-            input, textarea, [contenteditable] {
-                cursor: none !important;
-            }
-            
-            button, select, a {
-                cursor: none !important;
-            }
-            
-            ::selection {
-                background: rgba(255, 215, 0, 0.3) !important;
-            }
-            
-            ::-webkit-scrollbar {
-                display: none !important;
-            }
-            
-            *::-webkit-scursor {
-                display: none !important;
-            }
-        `;
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = styles;
-        document.head.appendChild(styleSheet);
-        
-        // Дополнительное принудительное отключение через JavaScript
-        document.addEventListener('mouseover', (e) => {
-            e.target.style.cursor = 'none !important';
-        });
-        
-        document.addEventListener('mousedown', (e) => {
-            e.target.style.cursor = 'none !important';
-        });
-    };
-
-    disableAllCursors();
-
-    // Создание многослойного курсора
-    const createCursorLayer = (className, content, styles) => {
-        const layer = document.createElement('div');
-        layer.className = `genshin-cursor-${className}`;
-        if (content) layer.innerHTML = content;
-        layer.style.cssText = styles;
-        document.body.appendChild(layer);
-        return layer;
-    };
-
-    // Основной курсор с кастомным изображением
-    const mainCursor = createCursorLayer('main', '', `
-        position: fixed;
-        width: 32px;
-        height: 32px;
-        background: url('assets/images/cursor/genshin-cursor.png') center/contain no-repeat;
-        pointer-events: none;
-        z-index: 10000;
-        transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        mix-blend-mode: screen;
-        user-select: none;
-        filter: 
-            drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))
-            drop-shadow(0 0 20px rgba(255, 140, 0, 0.6))
-            brightness(1.1);
-    `);
-
-
-    // Эффект свечения
-    const cursorGlow = createCursorLayer('glow', '', `
-        position: fixed;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9998;
-        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
-        opacity: 0.6;
-        filter: blur(5px);
-    `);
-
-    // Обработчики событий с улучшенной производительностью
-    let mouseX = 0, mouseY = 0;
-    let lastX = 0, lastY = 0;
-
-    const updateCursorPosition = (x, y) => {
-        // Мгновенное позиционирование основного курсора
-        mainCursor.style.left = `${x - 16}px`;
-        mainCursor.style.top = `${y - 16}px`;
-        
-        // Плавное следование ауры и свечения
-        const auraX = parseFloat(cursorAura.style.left) || x - 25;
-        const auraY = parseFloat(cursorAura.style.top) || y - 25;
-        
-        cursorAura.style.left = `${auraX + (x - 25 - auraX) * 0.3}px`;
-        cursorAura.style.top = `${auraY + (y - 25 - auraY) * 0.3}px`;
-        
-        cursorGlow.style.left = `${auraX + (x - 35 - auraX) * 0.2}px`;
-        cursorGlow.style.top = `${auraY + (y - 35 - auraY) * 0.2}px`;
-        
-        lastX = x;
-        lastY = y;
-    };
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        updateCursorPosition(mouseX, mouseY);
-    });
-
-    // Эпические эффекты при клике
-    document.addEventListener('mousedown', (e) => {
-        mainCursor.style.transform = 'scale(1.8)';
-        mainCursor.style.filter = 'drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) drop-shadow(0 0 30px rgba(255, 140, 0, 0.8)) brightness(1.3)';
-        cursorAura.style.transform = 'scale(1.5)';
-        cursorAura.style.borderColor = 'rgba(255, 69, 0, 0.9)';
-        cursorAura.style.boxShadow = '0 0 50px rgba(255, 69, 0, 0.8)';
-        cursorGlow.style.transform = 'scale(1.8)';
-        cursorGlow.style.opacity = '0.8';
-    });
-
-    document.addEventListener('mouseup', () => {
-        resetCursorAppearance();
-    });
-
-    function resetCursorAppearance() {
-        mainCursor.style.transform = 'scale(1)';
-        mainCursor.style.filter = 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 140, 0, 0.6)) brightness(1.1)';
-        cursorAura.style.transform = 'scale(1)';
-        cursorAura.style.borderColor = 'rgba(255, 215, 0, 0.8)';
-        cursorAura.style.boxShadow = '0 0 30px rgba(255, 140, 0, 0.6)';
-        cursorGlow.style.transform = 'scale(1)';
-        cursorGlow.style.opacity = '0.6';
-    }
-
-    // Интерактивные состояния
-    document.addEventListener('mouseover', (e) => {
-        if (e.target.matches('a, button, [role="button"], input, select, textarea, [onclick]')) {
-            mainCursor.style.transform = 'scale(1.4)';
-            mainCursor.style.filter = 'drop-shadow(0 0 12px rgba(255, 107, 107, 0.9)) drop-shadow(0 0 25px rgba(255, 69, 0, 0.7)) brightness(1.2)';
-            cursorAura.style.borderColor = 'rgba(255, 107, 107, 0.9)';
-            cursorAura.style.boxShadow = '0 0 40px rgba(255, 107, 107, 0.7)';
-        }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-        if (e.target.matches('a, button, [role="button"], input, select, textarea, [onclick]')) {
-            resetCursorAppearance();
-        }
-    });
-
-    // Адаптация к скроллу
-    window.addEventListener('scroll', () => {
-        updateCursorPosition(mouseX, mouseY);
-    });
-
-    // Видимость курсора
-    document.addEventListener('mouseleave', () => {
-        mainCursor.style.opacity = '0';
-        cursorAura.style.opacity = '0';
-        cursorGlow.style.opacity = '0';
-    });
-
-    document.addEventListener('mouseenter', () => {
-        mainCursor.style.opacity = '1';
-        cursorAura.style.opacity = '0.8';
-        cursorGlow.style.opacity = '0.6';
-    });
-
-    console.log('🎮✨ УЛЬТИМАТИВНЫЙ ЭФФЕКТ КУРСОРА GENSHIN IMPACT АКТИВИРОВАН!');
-}
-
-// Автоматическая инициализация курсора
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initUltimateGenshinCursor);
-} else {
-    initUltimateGenshinCursor();
-}
-
 // Периодическое обновление статистики
 setInterval(() => {
-    console.log('🔄 Автообновление статистики...');
     initRealTimeStats();
 }, 60000); // Каждую минуту
 
@@ -991,7 +935,6 @@ document.addEventListener('click', function(e) {
     if (e.target.classList.contains('refresh-stats') || 
         e.target.closest('.refresh-stats')) {
         e.preventDefault();
-        console.log('🔄 Принудительное обновление статистики...');
         initRealTimeStats();
     }
 });
@@ -1016,5 +959,3 @@ function initTypewriterEffect() {
 function initCursorEffect() {
     // Уже реализовано выше
 }
-
-console.log('🎮 Скрипт статистики сервера загружен и готов к работе!');
