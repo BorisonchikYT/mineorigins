@@ -60,6 +60,36 @@ body {
     padding: 0;
 }
 
+.nav-image-index, 
+.resized-image, 
+.avamineorigins,
+.race-icon img,
+.player-avatar img,
+.brand-logo img,
+.feature-animation img {
+    /* Блокировка drag & drop */
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    
+    /* Блокировка выделения */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    /* Блокировка событий мыши */
+    pointer-events: none;
+}
+
+/* Для контейнеров с картинками */
+.race-card,
+.feature-item,
+.nav-item {
+    -webkit-user-drag: none;
+}
+
 .avamineorigins {
     width: 55;
     height: 55px;

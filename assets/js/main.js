@@ -924,19 +924,39 @@ function initOnlineStats() {
 
 function initRaceCards() {
     const raceCards = document.querySelectorAll('.race-card');
-    
-    raceCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            const race = this.getAttribute('data-race');
-            playRaceSound(race);
-        });
+}
 
-        card.addEventListener('click', function() {
-            const race = this.getAttribute('data-race');
-            showRaceModal(race);
+// Блокировка перетаскивания изображений
+function disableImageDrag() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        // CSS свойства
+        img.style.userDrag = 'none';
+        img.style.webkitUserDrag = 'none';
+        img.style.MozUserDrag = 'none';
+        img.style.userSelect = 'none';
+        img.style.pointerEvents = 'none';
+        
+        // Атрибуты
+        img.setAttribute('draggable', 'false');
+        
+        // Обработчики событий
+        img.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+            return false;
+        });
+        
+        img.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            return false;
         });
     });
 }
+
+// Вызовите при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    disableImageDrag();
+});
 
 // Периодическое обновление статистики
 setInterval(() => {
