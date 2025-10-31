@@ -277,6 +277,19 @@ async loadPlayersData() {
           }
         ];
     }
+
+getPlayerInfo(playerName) {
+    if (!this.playersData || !Array.isArray(this.playersData)) {
+        return null;
+    }
+    
+    // Ищем игрока по имени (регистронезависимо)
+    const player = this.playersData.find(p => 
+        p.name && p.name.toLowerCase() === playerName.toLowerCase()
+    );
+    
+    return player || null;
+}
 }
 
 // Улучшенный класс для работы с API
@@ -612,7 +625,7 @@ function createPlayerElement(playerName, playerInfo) {
         
         playerElement.innerHTML = `
             <div class="player-avatar ${race}">
-                <img src="${avatarPath}" alt="${playerName}" 
+                <img src="${avatarPath}" alt="${playerName}" style="width: 40px; height: 40px" 
                      onerror="this.src='assets/images/icons/ERROR.png'">
             </div>
             <div class="player-info">
