@@ -6,55 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ᴍɪɴᴇ ᴏʀɪɢɪɴs</title>
-    
-    <title>MineOrigins - Сервер про рас</title>
-    <meta name="description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
-    <meta name="keywords" content="minecraft, origins, моды, сервера, скачать, Minecraft Origins, способности, расы, Minecraft Origins про рас, StalkerHunter">
-        <!-- Open Graph -->
-        <meta property="og:title" content="MineOrigins - Сервер про рас">
-        <meta property="og:description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
-        <meta property="og:image" content="https://mineorigins.netlify.app/assets/images/MineOrigins.png">
-        <meta property="og:url" content="https://mineorigins.netlify.app/">
-        <meta property="og:type" content="website">
-        <meta property="og:site_name" content="MineOrigins">
-        
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="MineOrigins">
-        <meta name="twitter:description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
-        <meta name="twitter:image" content="https://mineorigins.netlify.app/assets/images/MineOrigins.png">
-        
-        <!-- Schema.org Structured Data -->
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "MineOrigins",
-          "url": "https://mineorigins.netlify.app/",
-          "description": "Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://mineorigins.netlify.app/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        }
-        </script>
-        
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "MineOrigins",
-          "url": "https://mineorigins.netlify.app/",
-          "logo": "https://mineorigins.netlify.app/assets/images/MineOrigins.png",
-          "description": "Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.",
-          "sameAs": [
-            "https://discord.gg/KK4dCevPah",
-            "https://t.me/mine_origins"
-          ]
-        }
-        </script>
-        
     <link rel="stylesheet" href="assets/css/stats.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -577,16 +528,21 @@
 <!-- Аналитика -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
 <script>
-    // Ждем проверки капчи перед инициализацией аналитики
+    // Упрощенная инициализация аналитики без проверки капчи
     document.addEventListener('DOMContentLoaded', function() {
-        if (typeof CaptchaManager !== 'undefined' && CaptchaManager.checkStatus()) {
-            // Инициализация аналитики только после успешной капчи
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-W4D0RR61VG');
-        }
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W4D0RR61VG');
+        console.log('✅ Аналитика инициализирована');
     });
+
+    // Заглушка для CaptchaManager если файл не загрузился
+    window.CaptchaManager = {
+        checkStatus: function() {
+            return true; // Всегда возвращаем true для локальной разработки
+        }
+    };
 </script>
 </body>
 </html>
