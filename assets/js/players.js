@@ -135,12 +135,14 @@ function updateCardStatus(card, isOnline) {
     }
     
     statusIndicator.className = `player-status-indicator ${isOnline ? 'online' : 'offline'}`;
-    statusIndicator.title = isOnline ? 'Сейчас в игре' : 'Не в сети';
+    statusIndicator.title = isOnline ? 'Скоро' : 'Скоро';
+    // statusIndicator.title = isOnline ? 'Сейчас в игре' : 'Не в сети';
     
     // Обновляем текст статуса если есть
     const statusText = card.querySelector('.player-status-text');
     if (statusText) {
-        statusText.textContent = isOnline ? 'В игре' : 'Не в сети';
+        statusText.textContent = isOnline ? 'Скоро' : 'Скоро';
+        // statusText.textContent = isOnline ? 'В игре' : 'Не в сети';
         statusText.className = `player-status-text ${isOnline ? 'online' : 'offline'}`;
     }
 }
@@ -520,16 +522,18 @@ async function updatePlayerModalStatus(modal, playerName) {
         const onlineStatus = modal.querySelector('.player-online-status');
         
         if (statusElement) {
-            statusElement.textContent = isOnline ? 'В игре' : 'Не в сети';
+            statusElement.textContent = isOnline ? 'Скоро' : 'Скоро';
             statusElement.className = `online-status-value ${isOnline ? 'online' : 'offline'}`;
+            // В сети не в сети
         }
         
         if (onlineStatus) {
             onlineStatus.className = `player-online-status ${isOnline ? 'online' : 'offline'}`;
             onlineStatus.innerHTML = `
                 <span class="status-dot"></span>
-                <span class="status-text">${isOnline ? 'Сейчас в игре' : 'Не в сети'}</span>
+                <span class="status-text">СКОРО</span>
             `;
+            // ${isOnline ? 'Сейчас в игре' : 'Не в сети'}
         }
     } catch (error) {
         console.error('Ошибка обновления статуса в модальном окне:', error);
