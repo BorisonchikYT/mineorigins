@@ -758,7 +758,7 @@ function getLocalPlayersData() {
             "name": "_Kot_Baris_",
             "avatar": "assets/images/icons/kotbaris.png",
             "race": "earth",
-            "description": "◈ Земной\nКото-человек, я лидер земной расы, создатель ФрикБургской Империи, хочет наладить мир между расами.",
+            "description": "◈ Земной\nКото-человек — лидер земной расы, создатель ФрикБургской Империи, хочет наладить мир между расами.",
             "joinDate": "2025-10-11",
             "socials": {
               "discord": "borisonchik_yt",
@@ -806,7 +806,7 @@ function getLocalPlayersData() {
             "name": "ddanilkaaaa",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "earth",
-            "description": "",
+            "description": "Воин — ",
             "joinDate": "2025-10-13",
             "socials": {
                 "discord": "ddanilkaaaa_83622",
@@ -818,7 +818,7 @@ function getLocalPlayersData() {
             "name": "deace",
             "avatar": "assets/images/icons/deace.png",
             "race": "heaven",
-            "description": "Ангел гигачад, является экзорцистом среди всех ангелов. Истребляет нечестей, демонов и даже людей (если нужно будет)",
+            "description": "Ангел гигачад — является экзорцистом среди всех ангелов. Истребляет нечестей, демонов и даже людей (если нужно будет)",
             "joinDate": "2025-10-25",
             "socials": {
                 "discord": "winchikvpotoke_36739",
@@ -830,7 +830,7 @@ function getLocalPlayersData() {
             "name": "hyutjnh",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "heaven",
-            "description": "Ангел - участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис.",
+            "description": "Ангел — участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис.",
             "joinDate": "2025-10-18",
             "socials": {
                 "discord": "last_troid_0079",
@@ -842,7 +842,7 @@ function getLocalPlayersData() {
             "name": "jdh16",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "earth",
-            "description": "",
+            "description": "Человек — ",
             "joinDate": "2025-10-22",
             "socials": {
                 "discord": "frozen_flames1703",
@@ -854,7 +854,7 @@ function getLocalPlayersData() {
             "name": "maxxaumka",
             "avatar": "assets/images/icons/maksimka.png",
             "race": "earth",
-            "description": "Волшебник с самого начала активен на сервере. Он нейтрален ко всем расам и кланам и не состоит ни в одном клане. Живёт в кубе вместе с пользователем snekky_off, с которым изучает различные механизмы и машины.",
+            "description": "Волшебник — С самого начала активен на сервере. Он нейтрален ко всем расам и кланам и не состоит ни в одном клане. Живёт в кубе вместе с пользователем snekky_off, с которым изучает различные механизмы и машины.",
             "joinDate": "2025-10-13",
             "socials": {
                 "discord": "maxxaumka6679",
@@ -866,7 +866,7 @@ function getLocalPlayersData() {
             "name": "nicotine",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "earth",
-            "description": "",
+            "description": "Человек — Отсутствует",
             "joinDate": "2025-10-12",
             "socials": {
                 "discord": "maximus7915",
@@ -878,7 +878,7 @@ function getLocalPlayersData() {
             "name": "pandamom",
             "avatar": "assets/images/icons/pandamom.png",
             "race": "earth",
-            "description": "Кото-человек просто кот присутствую хз когда сохраняю мирность в ФрикБурге бегаю",
+            "description": "Кото-человек — просто кот присутствую хз когда сохраняю мирность в ФрикБурге бегаю",
             "joinDate": "2025-10-11",
             "socials": {
                 "discord": "pisde4",
@@ -890,7 +890,7 @@ function getLocalPlayersData() {
             "name": "snekky_offc",
             "avatar": "assets/images/icons/snekky.png",
             "race": "heaven",
-            "description": "Из-за скучного мира ангелов, я решил покинуть небеса. Долгое время я бродил по миру, где и встретил земного механика Максаумка. Его заинтересовал мир технологий. После долгих исследований на базе - Океаническая Черепах он смог стать Кибер-Ангелом",
+            "description": "Ангел — Из-за скучного мира ангелов, я решил покинуть небеса. Долгое время я бродил по миру, где и встретил земного механика Максаумка. Его заинтересовал мир технологий. После долгих исследований на базе - Океаническая Черепах он смог стать Кибер-Ангелом",
             "joinDate": "2025-10-11",
             "socials": {
                 "discord": "linar9341",
@@ -914,7 +914,7 @@ function getLocalPlayersData() {
             "name": "Lemonchik",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "hell",
-            "description": "",
+            "description": "Демон — Отсутствует",
             "joinDate": "",
             "socials": {
                 "discord": "yt_lymonchuk",
@@ -926,7 +926,7 @@ function getLocalPlayersData() {
             "name": "tropic_yt2021",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "earth",
-            "description": "",
+            "description": "Лис — Отсутствует",
             "joinDate": "",
             "socials": {
                 "discord": "trop1c_.",

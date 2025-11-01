@@ -395,7 +395,7 @@ class AnalyticsDashboard {
     shareDashboard() {
         if (navigator.share) {
             navigator.share({
-                title: 'MineAnalytics Dashboard',
+                title: 'MineOrigins Dashboard',
                 text: 'Посмотрите аналитику проекта MineOrigins',
                 url: window.location.href
             });
@@ -500,14 +500,14 @@ class AnalyticsDashboard {
         // Отслеживание просмотра страницы аналитики
         if (typeof gtag !== 'undefined') {
             gtag('event', 'page_view', {
-                'page_title': 'Analytics Dashboard',
+                'page_title': 'MineOrigins Dashboard',
                 'page_location': window.location.href
             });
         }
         
         if (typeof ym !== 'undefined') {
             ym(104901220, 'hit', window.location.href, {
-                title: 'Analytics Dashboard - MineOrigins'
+                title: 'Dashboard - MineOrigins'
             });
         }
     }
