@@ -274,6 +274,18 @@ async loadPlayersData() {
                 "discord": ".cartoshka_",
                 "telegram": ""
             }
+          },
+          {
+            "id": 18,
+            "name": "Chat_ty",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "heaven",
+            "description": "",
+            "joinDate": "2025-11-01",
+            "socials": {
+                "discord": "sy209chara",
+                "telegram": ""
+            }
           }
         ];
     }
