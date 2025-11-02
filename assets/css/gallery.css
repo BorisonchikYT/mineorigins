@@ -809,6 +809,9 @@
     z-index: 2;
 }
 
+
+
+
 /* Адаптивность для модального окна */
 @media (max-width: 768px) {
     .gallery-modal-content {

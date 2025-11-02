@@ -23,44 +23,66 @@ class Gallery {
         document.querySelectorAll('.gallery-item').forEach(item => {
             const images = item.querySelectorAll('img');
             
-            if (images.length > 0) {
-                this.setupMultipleImages(item, images);
+            // Проверяем, не обработан ли уже этот элемент
+            if (!item.classList.contains('processed')) {
+                if (images.length > 0) {
+                    this.setupMultipleImages(item, images);
+                }
+                item.classList.add('processed'); // Помечаем как обработанный
             }
         });
     }
 
-    // Настройка отображения нескольких изображений
-    setupMultipleImages(item, images) {
-        const imageContainer = item.querySelector('.image-container');
-        const mainImage = images[0];
+// Настройка отображения нескольких изображений
+setupMultipleImages(item, images) {
+    const imageContainer = item.querySelector('.image-container');
+    const mainImage = images[0];
+    
+    // Сохраняем оверлей
+    const originalOverlay = imageContainer.querySelector('.image-overlay');
+    
+    // Очищаем контейнер
+    imageContainer.innerHTML = '';
+    
+    // Добавляем основное изображение
+    const primaryImg = document.createElement('img');
+    primaryImg.src = mainImage.src;
+    primaryImg.alt = mainImage.alt;
+    primaryImg.className = 'primary-image';
+    imageContainer.appendChild(primaryImg);
+    
+    // Помечаем карточку как имеющую несколько изображений
+    item.querySelector('.gallery-card').classList.add('multiple-images');
+    
+    // Создаем бейдж количества изображений
+    const countBadge = document.createElement('div');
+    countBadge.className = 'image-count-badge';
+    countBadge.textContent = `${images.length} фото`;
+    imageContainer.appendChild(countBadge);
+    
+    // Добавляем дополнительные изображения
+    for (let i = 1; i < Math.min(images.length, 4); i++) {
+        const secondaryImage = document.createElement('img');
+        secondaryImage.src = images[i].src;
+        secondaryImage.alt = images[i].alt;
         
-        // Помечаем карточку как имеющую несколько изображений
-        item.querySelector('.gallery-card').classList.add('multiple-images');
-        
-        // Создаем бейдж количества изображений
-        const countBadge = document.createElement('div');
-        countBadge.className = 'image-count-badge';
-        countBadge.textContent = `${images.length} фото`;
-        imageContainer.appendChild(countBadge);
-        
-        // Добавляем второе изображение (если есть)
-        if (images.length >= 2) {
-            const secondaryImage = document.createElement('img');
-            secondaryImage.src = images[1].src;
-            secondaryImage.alt = images[1].alt;
+        // Распределяем позиции для дополнительных изображений
+        if (i === 1) {
             secondaryImage.className = 'secondary-image top-right';
-            imageContainer.appendChild(secondaryImage);
+        } else if (i === 2) {
+            secondaryImage.className = 'secondary-image bottom-right';
+        } else if (i === 3) {
+            secondaryImage.className = 'secondary-image bottom-left';
         }
         
-        // Добавляем третье изображение (если есть)
-        if (images.length >= 3) {
-            const thirdImage = document.createElement('img');
-            thirdImage.src = images[2].src;
-            thirdImage.alt = images[2].alt;
-            thirdImage.className = 'secondary-image bottom-right';
-            imageContainer.appendChild(thirdImage);
-        }
+        imageContainer.appendChild(secondaryImage);
     }
+    
+    // Восстанавливаем оверлей (клонируем оригинальный)
+    if (originalOverlay) {
+        imageContainer.appendChild(originalOverlay.cloneNode(true));
+    }
+}
 
     bindEvents() {
         // Фильтрация
@@ -430,3 +452,15 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+
+
+
+
+
+
+
+
+
+
+

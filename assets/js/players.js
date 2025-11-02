@@ -806,7 +806,7 @@ function getLocalPlayersData() {
             "name": "ddanilkaaaa",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "earth",
-            "description": "Воин — ",
+            "description": "Воин — Данилка который любит PvP сражения, заклятые враги:\n \"_Kot_Baris_\" и весь \"ФБ\"",
             "joinDate": "2025-10-13",
             "socials": {
                 "discord": "ddanilkaaaa_83622",
@@ -842,7 +842,7 @@ function getLocalPlayersData() {
             "name": "jdh16",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "earth",
-            "description": "Человек — ",
+            "description": "Человек — Отсутствует",
             "joinDate": "2025-10-22",
             "socials": {
                 "discord": "frozen_flames1703",
@@ -962,7 +962,7 @@ function getLocalPlayersData() {
         "name": "Chat_ty",
         "avatar": "assets/images/icons/ERROR.png",
         "race": "heaven",
-        "description": "",
+        "description": "Ангел — Он в тиме с \"Pandamom\", любит летать на крыльях.",
         "joinDate": "2025-11-01",
         "socials": {
             "discord": "sy209chara",
