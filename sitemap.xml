@@ -3,64 +3,48 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  
-  <!-- Главная страница - высший приоритет -->
   <url>
     <loc>https://mineorigins.netlify.app/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Страница игроков -->
   <url>
     <loc>https://mineorigins.netlify.app/players.html</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Страница поселений -->
   <url>
     <loc>https://mineorigins.netlify.app/settlements.html</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Статистика -->
   <url>
     <loc>https://mineorigins.netlify.app/stats.html</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Галерея -->
   <url>
     <loc>https://mineorigins.netlify.app/gallery.html</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Часто задаваемые вопросы -->
   <url>
     <loc>https://mineorigins.netlify.app/faq.html</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
-  <!-- CAPTCHA страница -->
   <url>
     <loc>https://mineorigins.netlify.app/captcha.html</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-
-  <!-- Страница 404 (включается для индексации кастомной страницы ошибок) -->
   <url>
     <loc>https://mineorigins.netlify.app/404.html</loc>
     <lastmod>2024-01-15</lastmod>
