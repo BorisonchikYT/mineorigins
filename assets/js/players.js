@@ -1132,6 +1132,8 @@ function updatePlayersStats(players) {
         hell: 0,
         heaven: 0,
         earth: 0,
+        timer: 0,
+        ii: "∞",
         total: players.length
     };
     
