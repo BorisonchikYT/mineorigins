@@ -24,26 +24,18 @@ const CRITICAL_URLS = [
   '/manifest.json'
 ];
 
-// Оптимизированная регистрация Service Worker
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
-    const swUrl = '/service-worker.js'; // Теперь в корне
+    const swUrl = '/service-worker.js'
     
     navigator.serviceWorker.register(swUrl, {
       scope: '/'
     })
     .then(registration => {
-      // console.log('🎯 Service Worker зарегистрирован для scope:', registration.scope);
-      
-      // Проверка обновлений
       registration.addEventListener('updatefound', () => {
         const newWorker = registration.installing;
-        // console.log('🔄 Обнаружено обновление Service Worker');
-        
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            // console.log('📦 Новый контент доступен!');
-            // Можно показать уведомление пользователю
           }
         });
       });
@@ -52,22 +44,15 @@ function registerServiceWorker() {
       console.error('❌ Ошибка регистрации Service Worker:', error);
     });
 
-    // Обработка обновлений
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      // console.log('🔄 Controller изменен, перезагрузка страницы...');
       window.location.reload();
     });
   }
 }
 
-// Зарегистрировать после загрузки DOM
 document.addEventListener('DOMContentLoaded', registerServiceWorker);
-
-// Зарегистрировать после загрузки DOM
 document.addEventListener('DOMContentLoaded', registerServiceWorker);
-// Зарегистрировать после загрузки DOM
 document.addEventListener('DOMContentLoaded', registerServiceWorker);
-// Статические ресурсы (версионированные)
 const STATIC_URLS = [
   '/assets/js/players.js',
   '/assets/js/s2.js',
@@ -77,7 +62,6 @@ const STATIC_URLS = [
   '/assets/images/world-map.png'
 ];
 
-// Изображения для предварительного кеширования
 const PRELOAD_IMAGES = [
   '/assets/images/icons/index_icon_house.png',
   '/assets/images/icons/index_icon_players.gif',
@@ -91,28 +75,21 @@ const PRELOAD_IMAGES = [
   '/assets/images/icons/icon_search.gif'
 ];
 
-// Максимальное количество элементов в динамическом кеше
 const MAX_DYNAMIC_ITEMS = 50;
 
-// Установка - стратегия параллельного кеширования
 self.addEventListener('install', (event) => {
-  // console.log('🔄 Service Worker: Установка (оптимизированная v2)...');
   
   event.waitUntil(
     Promise.all([
-      // Кешируем критические ресурсы
       caches.open(CACHE_NAMES.CRITICAL)
         .then(cache => cache.addAll(CRITICAL_URLS)),
       
-      // Кешируем статические ресурсы
       caches.open(CACHE_NAMES.STATIC)
         .then(cache => cache.addAll(STATIC_URLS)),
       
-      // Кешируем важные изображения
       caches.open(CACHE_NAMES.IMAGES)
         .then(cache => cache.addAll(PRELOAD_IMAGES))
     ]).then(() => {
-      // console.log('✅ Все ресурсы закэшированы');
       return self.skipWaiting();
     }).catch(error => {
       console.error('❌ Ошибка кеширования:', error);
@@ -120,39 +97,31 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Активация - умная очистка старых кэшей
 self.addEventListener('activate', (event) => {
-  // console.log('🔥 Service Worker: Активация v2...');
   
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          // Удаляем все кеши, кроме текущих версий
           if (!Object.values(CACHE_NAMES).includes(cacheName)) {
-            // console.log('🗑️ Удаление старого кэша:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
-      // console.log('✅ Service Worker активирован и готов');
       return self.clients.claim();
     })
   );
 });
 
-// Стратегия кэширования с приоритетами
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
   
-  // Пропускаем внешние запросы и не-GET запросы
   if (!url.origin.startsWith(self.location.origin) || request.method !== 'GET') {
     return;
   }
 
-  // Особые случаи - manifest.json
   if (url.pathname.endsWith('manifest.json')) {
     event.respondWith(
       caches.match(request).then(response => {
@@ -167,51 +136,40 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Для API запросов - Network First
   if (url.pathname.includes('/api/')) {
     event.respondWith(networkFirstStrategy(request));
     return;
   }
 
-  // Для HTML - Stale-While-Revalidate
   if (request.destination === 'document') {
     event.respondWith(staleWhileRevalidateStrategy(request, CACHE_NAMES.CRITICAL));
     return;
   }
 
-  // Для CSS и JS - Cache First с обновлением
   if (request.destination === 'style' || request.destination === 'script') {
     event.respondWith(cacheFirstStrategy(request, event, CACHE_NAMES.STATIC));
     return;
   }
 
-  // Для изображений - Cache First с ограничениями
   if (request.destination === 'image') {
     event.respondWith(imageCacheStrategy(request));
     return;
   }
 
-  // По умолчанию - Network First
   event.respondWith(networkFirstStrategy(request));
 });
 
-// Стратегии кэширования
-
-/**
- * Cache First - для статических ресурсов
- */
 async function cacheFirstStrategy(request, event, cacheName) {
   const cache = await caches.open(cacheName);
   const cachedResponse = await cache.match(request);
   
   if (cachedResponse) {
-    // Обновляем кэш в фоне
     event.waitUntil(
       fetch(request).then(response => {
         if (response.status === 200) {
           return cache.put(request, response);
         }
-      }).catch(() => { /* Игнорируем ошибки при обновлении */ })
+      }).catch(() => { })
     );
     return cachedResponse;
   }
@@ -219,9 +177,6 @@ async function cacheFirstStrategy(request, event, cacheName) {
   return fetchAndCache(request, cacheName);
 }
 
-/**
- * Network First - для динамического контента
- */
 async function networkFirstStrategy(request) {
   try {
     const networkResponse = await fetch(request);
@@ -229,7 +184,7 @@ async function networkFirstStrategy(request) {
     if (networkResponse.status === 200) {
       const cache = await caches.open(CACHE_NAMES.DYNAMIC);
       await cache.put(request, networkResponse.clone());
-      await cleanupDynamicCache(); // Очищаем старые записи
+      await cleanupDynamicCache();
     }
     
     return networkResponse;
@@ -239,7 +194,6 @@ async function networkFirstStrategy(request) {
       return cachedResponse;
     }
     
-    // Fallback для HTML страниц
     if (request.destination === 'document') {
       return caches.match('/offline.html') || offlineResponse();
     }
@@ -248,14 +202,10 @@ async function networkFirstStrategy(request) {
   }
 }
 
-/**
- * Stale-While-Revalidate - для HTML
- */
 async function staleWhileRevalidateStrategy(request, cacheName) {
   const cache = await caches.open(cacheName);
   const cachedResponse = await cache.match(request);
   
-  // Обновляем кэш в фоне
   const fetchPromise = fetch(request).then(networkResponse => {
     if (networkResponse.status === 200) {
       const responseClone = networkResponse.clone();
@@ -264,17 +214,12 @@ async function staleWhileRevalidateStrategy(request, cacheName) {
     }
     return networkResponse;
   }).catch(() => { 
-    // Игнорируем ошибки для фонового обновления
     return cachedResponse;
   });
   
-  // Возвращаем кэшированную версию сразу, если есть
   return cachedResponse || fetchPromise;
 }
 
-/**
- * Стратегия для изображений с ограничениями
- */
 async function imageCacheStrategy(request) {
   const cache = await caches.open(CACHE_NAMES.IMAGES);
   const cachedResponse = await cache.match(request);
@@ -286,9 +231,8 @@ async function imageCacheStrategy(request) {
   try {
     const networkResponse = await fetch(request);
     if (networkResponse.status === 200) {
-      // Проверяем размер кэша перед сохранением
       const keys = await cache.keys();
-      if (keys.length < 100) { // Максимум 100 изображений
+      if (keys.length < 100) {
         await cache.put(request, networkResponse.clone());
       }
     }
@@ -299,7 +243,6 @@ async function imageCacheStrategy(request) {
       return fallbackResponse;
     }
     
-    // Возвращаем пустой SVG если изображение не найдено
     return new Response(
       '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="#f0f0f0"/><text x="50" y="50" text-anchor="middle" dy=".3em" font-family="Arial" font-size="10">No Image</text></svg>',
       { 
@@ -310,21 +253,15 @@ async function imageCacheStrategy(request) {
   }
 }
 
-/**
- * Очистка динамического кэша
- */
 async function cleanupDynamicCache() {
   const cache = await caches.open(CACHE_NAMES.DYNAMIC);
   const keys = await cache.keys();
   
   if (keys.length > MAX_DYNAMIC_ITEMS) {
-    await cache.delete(keys[0]); // Удаляем самый старый элемент
+    await cache.delete(keys[0]);
   }
 }
 
-/**
- * Общая функция для получения и кэширования
- */
 async function fetchAndCache(request, cacheName) {
   try {
     const response = await fetch(request);
@@ -339,9 +276,6 @@ async function fetchAndCache(request, cacheName) {
   }
 }
 
-/**
- * Оффлайн ответ
- */
 function offlineResponse() {
   return new Response(
     `
@@ -373,39 +307,29 @@ function offlineResponse() {
   );
 }
 
-// Фоновая синхронизация (если нужна)
 self.addEventListener('sync', (event) => {
   if (event.tag === 'background-sync') {
-    // console.log('🔄 Фоновая синхронизация...');
     event.waitUntil(doBackgroundSync());
   }
 });
 
 async function doBackgroundSync() {
-  // Здесь можно реализовать фоновую синхронизацию данных
-  // console.log('Выполняется фоновая синхронизация...');
 }
 
-// Периодическая синхронизация (для обновления контента)
 self.addEventListener('periodicsync', (event) => {
   if (event.tag === 'content-update') {
-    // console.log('🔄 Периодическое обновление контента...');
     event.waitUntil(updateContent());
   }
 });
 
 async function updateContent() {
-  // Обновление кэша в фоне
   try {
     const cache = await caches.open(CACHE_NAMES.DYNAMIC);
-    // Логика обновления контента
-    // console.log('Контент обновлен в фоне');
   } catch (error) {
     console.error('Ошибка при обновлении контента:', error);
   }
 }
 
-// В стратегиях кэширования добавьте:
 async function fetchWithTimeout(request, timeout = 5000) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeout);

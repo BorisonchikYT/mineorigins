@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<script defer src="assets/js/loading.js"></script>
+<!-- <script defer src="assets/js/loading.js"></script> -->
 <html lang="ru">
 <head>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -52,7 +52,6 @@
     <title>ᴍɪɴᴇ ᴏʀɪɢɪɴs</title>
     <meta name="description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
     <meta name="keywords" content="minecraft, MineOrigins, mineorigins, origins, моды, сервера, скачать, Minecraft Origins, способности, расы, Minecraft Origins про рас, StalkerHunter">
-        <!-- Open Graph -->
         <meta property="og:title" content="MineOrigins - Сервер про рас">
         <meta property="og:description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
         <meta property="og:image" content="https://mineorigins.netlify.app/assets/images/MineOrigins.png">
@@ -60,13 +59,11 @@
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="MineOrigins">
         
-        <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="MineOrigins">
         <meta name="twitter:description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
         <meta name="twitter:image" content="https://mineorigins.netlify.app/assets/images/MineOrigins.png">
         
-        <!-- Schema.org Structured Data -->
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -103,7 +100,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link defer rel="icon" href="assets/images/MineOriginsAva.png" type="image/png">
 
-    <!-- В разделе head каждой страницы добавьте: -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4a90e2">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -117,24 +113,19 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MineOrigins">
 
-    <!-- Иконки для Apple -->
     <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
     <link rel="apple-touch-startup-image" href="assets/images/splash/splash-screen.png">
 
-<!-- Preload критических ресурсов -->
 <link rel="preload" href="assets/css/style.css" as="style">
 <link rel="preload" href="assets/css/gallery.css" as="style">
 <link rel="preload" href="assets/images/MineOrigins.png" as="image">
 
-<!-- Preconnect к внешним ресурсам -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Предзагрузка шрифтов -->
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<!-- Noscript fallback для шрифтов -->
 <noscript>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
@@ -156,14 +147,6 @@
             <div class="nav-brand">
                 <div class="brand-logo">
                     <img src="assets/images/MineOrigins.png" class="avamineorigins">
-                    <!-- <div class="cube-3d">
-                        <div class="face front"></div>
-                        <div class="face back"></div>
-                        <div class="face right"></div>
-                        <div class="face left"></div>
-                        <div class="face top"></div>
-                        <div class="face bottom"></div>
-                    </div> -->
                 </div>
                 <div class="brand-text">
                     <h1>MINE</h1>
@@ -186,7 +169,7 @@
                     <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index" alt="Игроки"></span>ИГРОКИ</a>
                 <a href="settlements.html" class="nav-item">
                     <span class="nav-icon"><img src="assets/images/icons/index_icon_settlements.gif" class="nav-image-index"></span>ПОСЕЛЕНИЯ</a>
-                <a href="gallery.html" class="nav-item active">
+                <a href="gallery.html" class="nav-item active" style="color: #ffffff">
                     <span class="nav-icon"><img src="assets/images/icons/index_icon_gallery.png" class="nav-image-index"></span>ГАЛЕРЕЯ</a>
                 <a href="faq.html" class="nav-item">
                     <span class="nav-icon"><img src="assets/images/icons/faq.png" class="nav-image-index"></span>FAQ</a>
@@ -204,10 +187,9 @@
             <div class="section-header">
                 <h2 class="section-title">ГАЛЕРЕЯ СЕРВЕРА</h2>
                 <div class="title-underline"></div>
-                <p class="section-subtitle">Лучшие моменты и постройки нашего сообщества</p>
+                <p class="section-subtitle">Лучшие моменты и постройки "MineOrigins"</p>
             </div>
 
-<!-- Добавить после .section-header -->
 <div class="gallery-stats">
     <div class="gallery-stat stat-total">
         <span class="stat-icon"><img src="assets/images/icons/index_icon_gallery.png" class="nav-image-index"></span>
@@ -239,27 +221,11 @@
     </div>
 </div>
 
-<!-- Добавить бейджи категорий в каждую .gallery-card -->
-<div class="category-badge category-builds">Постройки</div>
-
-<!-- Добавить модальное окно перед закрывающим </body> -->
-<div class="modal-overlay">
-    <div class="modal-content">
-        <button class="modal-close">×</button>
-        <img class="modal-image" src="" alt="">
-        <div class="modal-info">
-            <h3 class="modal-title"></h3>
-            <p class="modal-description"></p>
-            <div class="modal-stats"></div>
-        </div>
-    </div>
-</div>
-
             <div class="gallery-filters" style="margin-top: 25px;">
                 <button class="filter-btn active" data-filter="all">Все</button>
-                <button class="filter-btn" data-filter="builds">Постройки</button> <!-- builds -->
-                <button class="filter-btn" data-filter="nature">Общие фото</button> <!-- nature -->
-                <button class="filter-btn" data-filter="events">События</button> <!-- events -->
+                <button class="filter-btn" data-filter="builds">Постройки</button>
+                <button class="filter-btn" data-filter="nature">Общие фото</button>
+                <button class="filter-btn" data-filter="events">События</button>
             </div>
 
             <div class="gallery-grid">
@@ -285,10 +251,23 @@
     transform: scale(1.1);
 }
 </style>
-         
 
+
+                <div class="modal-overlay">
+                    <div class="modal-content">
+                        <button class="modal-close">×</button>
+                        <img class="modal-image" src="" alt="">
+                        <div class="modal-info">
+                            <h3 class="modal-title"></h3>
+                            <p class="modal-description"></p>
+                            <div class="modal-stats"></div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="gallery-item" data-category="events">
                     <div class="gallery-card">
+                        <div class="category-badge category-events">СОБЫТИЕ</div>
                         <div class="image-container">
                             <img src="assets/images/gallery/events/event2-2.jpg">
                             <img src="assets/images/gallery/events/event2-1.jpg" style="display: none;">
@@ -313,6 +292,7 @@
 
                 <div class="gallery-item" data-category="builds">
                     <div class="gallery-card">
+                        <div class="category-badge category-builds">ПОСТРОЙКИ</div>
                         <div class="image-container">
                             <img src="assets/images/gallery/builds/build2-1.jpg">
                             <img src="assets/images/gallery/builds/build2-2.jpg" style="display: none;">
@@ -335,6 +315,7 @@
 
                 <div class="gallery-item" data-category="nature">
                     <div class="gallery-card">
+                        <div class="category-badge category-nature">ОБЩИЕ ФОТО</div>
                         <div class="image-container">
                             <img src="assets/images/gallery/nature/osfon1.jpg">
                             <div class="image-overlay">
@@ -353,6 +334,7 @@
 
                 <div class="gallery-item" data-category="builds">
                     <div class="gallery-card">
+                        <div class="category-badge category-builds">ПОСТРОЙКИ</div>
                         <div class="image-container">
                             <img src="assets/images/gallery/builds/build1.jpg">
                             <div class="image-overlay">
@@ -370,6 +352,7 @@
 
                 <div class="gallery-item" data-category="events">
                     <div class="gallery-card">
+                        <div class="category-badge category-events">СОБЫТИЕ</div>
                         <div class="image-container">
                             <img src="assets/images/gallery/events/event1.png">
                             <div class="image-overlay">
@@ -386,34 +369,28 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="gallery-load-more">
-                <button class="load-more-btn" id="loadMore">
-                    <span class="btn-glow"></span>
-                    <span class="btn-text">Загрузить больше</span>
-                </button>
-            </div> -->
         </section>
     </main>
 
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-section">
-                <div class="footer-logo">ᴍɪɴᴇ ᴏʀɪɢɪɴs</div>
-                <p>Лучший сервер с расами, происхождениями и крутым выживанием.</p>
+                <div class="footer-logo">MineOrigins</div>
+                <p>Мы рады представить вам сервер, где вы сможете ощутить истинную свободу развития и творчества. Ключевой особенностью нашего проекта является наличие уникальной системы рас и происхождений, которая делает игровой процесс по-настоящему глубоким.</p>
+                <p>Желаем вам приятной и увлекательной игры!</p>
             </div>
             <div class="footer-section">
                 <h4>СТРАНИЦЫ</h4>
-                <a href="index.html">Главная</a>
-                <a href="players.html">Игроки</a>
-                <a href="settlements.html">Поселения</a>
-                <a href="gallery.html">Галерея</a>
-                <a href="faq.html">FAQ</a>
+                <a href="index.html">ГЛАВНАЯ</a>
+                <a href="players.html">НАШИ ИГРОКИ</a>
+                <a href="settlements.html">ПОСЕЛЕНИЯ (БАЗЫ)</a>
+                <a href="gallery.html" style="font-weight: bold; color: #ffffff">ГАЛЕРЕЯ СЕРВЕРА</a>
+                <a href="faq.html">ЧАСТО ЗАДАВАМЫЕ ВОПРОСЫ</a>
             </div>
             <div class="footer-section">
                 <h4>МЫ В СОЦ СЕТЯХ</h4>
-                <a href="https://discord.gg/KK4dCevPah"> Discord</a>
-                <a href="https://t.me/mine_origins"> Telegram</a>
+                <a href="https://discord.gg/KK4dCevPah">МЫ В DISCORD</a>
+                <a href="https://t.me/mine_origins">НАШ TELEGRAM КАНАЛ</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -427,26 +404,19 @@
     <script defer src="assets/js/gallery.js"></script>
     <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/stats.js"></script>
-    
-    <!-- Капча -->
     <script defer src="assets/js/captcha/captcha-system.js"></script>
-
-<!-- Аналитика -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
 <script>
-    // Упрощенная инициализация аналитики без проверки капчи
     document.addEventListener('DOMContentLoaded', function() {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-W4D0RR61VG');
-        console.log('✅ Аналитика инициализирована');
     });
 
-    // Заглушка для CaptchaManager если файл не загрузился
     window.CaptchaManager = {
         checkStatus: function() {
-            return true; // Всегда возвращаем true для локальной разработки
+            return true;
         }
     };
 </script>

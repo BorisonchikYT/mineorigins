@@ -623,6 +623,355 @@
         position: relative;
     }
     
+
+
+
+
+
+
+
+
+    
+
+/* Всплывающее уведомление статуса */
+.status-update-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, 
+        rgba(30, 30, 40, 0.95), 
+        rgba(20, 20, 30, 0.98));
+    border: 1px solid rgba(126, 87, 194, 0.3);
+    border-radius: 20px;
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100000000;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateX(400px) scale(0.9);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+}
+
+.status-update-content.show {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+}
+
+.status-update-content.hide {
+    transform: translateX(400px) scale(0.9);
+    opacity: 0;
+}
+
+.status-update-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(126, 87, 194, 0.2), 
+        transparent);
+    transition: left 0.8s ease;
+}
+
+.status-update-content:hover::before {
+    left: 100%;
+}
+
+.status-update-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: radial-gradient(
+        circle at 80% 20%,
+        rgba(126, 87, 194, 0.3) 0%,
+        transparent 50%
+    );
+    filter: blur(20px);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+.status-update-icon {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, 
+        rgba(126, 87, 194, 0.3), 
+        rgba(94, 53, 177, 0.2));
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: spin 3s linear infinite;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+.status-update-text {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.status-update-text strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #a8b9ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.status-update-text span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.status-update-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.3rem;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+}
+
+.status-update-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Прогресс бар для авто-закрытия */
+.status-update-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--mc-accent), #5e35b1);
+    border-radius: 0 2px 2px 0;
+    transition: width 5s linear;
+}
+
+.status-update-content.show .progress-fill {
+    width: 100%;
+}
+
+/* Анимации для уведомления */
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .status-update-content {
+        bottom: 20px;
+        right: 20px;
+        max-width: 320px;
+        padding: 1.2rem;
+        border-radius: 18px;
+    }
+    
+    .status-update-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        border-radius: 12px;
+    }
+    
+    .status-update-text strong {
+        font-size: 1rem;
+    }
+    
+    .status-update-text span {
+        font-size: 0.9rem;
+    }
+    
+    .status-update-close {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+    
+    .status-update-progress {
+        height: 2px;
+    }
+}
+
+@media (max-width: 576px) {
+    .status-update-content {
+        bottom: 15px;
+        right: 15px;
+        max-width: 280px;
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    .status-update-content {
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .status-update-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .status-update-text strong {
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .status-update-text span {
+        font-size: 0.85rem;
+    }
+    
+    .status-update-close {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .status-update-content {
+        bottom: 10px;
+        right: 10px;
+        max-width: 250px;
+        padding: 0.8rem;
+    }
+    
+    .status-update-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+    
+    .status-update-text strong {
+        font-size: 0.9rem;
+    }
+    
+    .status-update-text span {
+        font-size: 0.8rem;
+    }
+}
+
+/* Ландшафтная ориентация для мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+    .status-update-content {
+        bottom: 10px;
+        right: 10px;
+        max-width: 300px;
+    }
+}
+
+/* Поддержка reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .status-update-content {
+        transition: opacity 0.3s ease;
+    }
+    
+    .status-update-icon {
+        animation: none;
+    }
+    
+    .progress-fill {
+        transition: none;
+    }
+    
+    .status-update-close:hover {
+        transform: none;
+    }
+}
+
+/* Темная тема поддержка */
+@media (prefers-color-scheme: dark) {
+    .status-update-content {
+        background: linear-gradient(135deg, 
+            rgba(20, 20, 30, 0.95), 
+            rgba(10, 10, 20, 0.98));
+    }
+}
+
+/* Улучшенная поддержка тач-устройств */
+@media (max-width: 768px) {
+    .status-update-close {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     .player-avatar-large {
         position: relative;
         width: 100px;

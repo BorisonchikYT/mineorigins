@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<script defer src="assets/js/loading.js"></script>
+<!-- <script defer src="assets/js/loading.js"></script> -->
 <html lang="ru">
 <head>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -53,7 +53,6 @@
     <meta name="description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
     <meta name="keywords" content="minecraft, MineOrigins, mineorigins, origins, моды, сервера, скачать, Minecraft Origins, способности, расы, Minecraft Origins про рас, StalkerHunter">
         
-        <!-- Open Graph -->
         <meta property="og:site_name" content="MineOrigins">
         <meta property="og:title" content="MineOrigins - Сервер про рас">
         <meta property="og:description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
@@ -62,13 +61,11 @@
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="MineOrigins">
         
-        <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="MineOrigins">
         <meta name="twitter:description" content="Играйте вместе с другими 17 игроками, которые уже выберают MineOrigins.">
         <meta name="twitter:image" content="https://mineorigins.netlify.app/assets/images/MineOrigins.png">
         
-        <!-- Schema.org Structured Data -->
         <script type="application/ld+json">
             {
               "@context": "https://schema.org",
@@ -88,14 +85,12 @@
 
     <link rel="canonical" href="https://mineorigins.netlify.app/">
 
-    <!-- CSS файлы -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/images/MineOriginsAva.png" type="image/png">
 
-    <!-- PWA манифест -->
     <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
     <meta name="theme-color" content="#4a90e2">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -103,13 +98,10 @@
     <meta name="apple-mobile-web-app-title" content="MineOrigins">
     <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
 
-    <!-- Оптимизированный preload -->
     <link rel="preload" href="assets/css/style.css" as="style">
     <link rel="preload" href="assets/css/index.css" as="style">
     <link rel="preload" href="assets/images/MineOrigins.png" as="image">
-    <!-- Favicon НЕ предзагружаем -->
 
-    <!-- Preconnect к внешним ресурсам -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -161,7 +153,7 @@
         <div class="nav-container">
             <div class="nav-brand">
                 <div class="brand-logo">
-                    <img src="assets/images/MineOrigins.png" class="avamineorigins" alt="Mine Origins Logo" onerror="this.style.display='none'">
+                    <img src="assets/images/MineOriginsAva.png" class="avamineorigins" onerror="this.style.display='none'">
                 </div>
                 <div class="brand-text">
                     <h1>MINE</h1>
@@ -170,8 +162,8 @@
             </div>
 
             <div class="nav-menu">
-                <a href="index.html" class="nav-item active">
-                    <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index" alt="Главная"></span>ГЛАВНАЯ</a>
+                <a href="index.html" class="nav-item active" style="color: #ffffff">
+                    <span class="nav-icon"><img src="assets/images/icons/index_icon_house.png" class="nav-image-index"></span>ГЛАВНАЯ</a>
                 <a href="players.html" class="nav-item">
                     <span class="nav-icon"><img src="assets/images/icons/index_icon_players.gif" class="nav-image-index" alt="Игроки"></span>ИГРОКИ</a>
                 <a href="settlements.html" class="nav-item">
@@ -223,17 +215,10 @@
 
             <div class="server-stats">
                 <div class="stat-card">
-                    <div class="stat-icon">👥</div>
+                    <div class="stat-icon"><img src="assets/images/icons/index_icon_players.gif" class="resized-image" alt="Игроки" onerror="this.innerHTML='👥'"></div>
                     <div class="stat-data">
                         <div class="stat-number online-count" data-target="25">25</div>
                         <div class="stat-label">Игроков онлайн</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">📊</div>
-                    <div class="stat-data">
-                        <div class="stat-number total-count" data-target="25">25</div>
-                        <div class="stat-label">Всего игроков</div>
                     </div>
                 </div>
             </div>
@@ -351,21 +336,22 @@
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-section">
-                <div class="footer-logo">ᴍɪɴᴇ ᴏʀɪɢɪɴs</div>
-                <p>Лучший сервер с расами, происхождениями и крутым выживанием.</p>
+                <div class="footer-logo">MineOrigins</div>
+                <p>Мы рады представить вам сервер, где вы сможете ощутить истинную свободу развития и творчества. Ключевой особенностью нашего проекта является наличие уникальной системы рас и происхождений, которая делает игровой процесс по-настоящему глубоким.</p>
+                <p>Желаем вам приятной и увлекательной игры!</p>
             </div>
             <div class="footer-section">
                 <h4>СТРАНИЦЫ</h4>
-                <a href="index.html">Главная</a>
-                <a href="players.html">Игроки</a>
-                <a href="settlements.html">Поселения</a>
-                <a href="gallery.html">Галерея</a>
-                <a href="faq.html">FAQ</a>
+                <a href="index.html" style="font-weight: bold; color: #ffffff">ГЛАВНАЯ</a>
+                <a href="players.html">НАШИ ИГРОКИ</a>
+                <a href="settlements.html">ПОСЕЛЕНИЯ (БАЗЫ)</a>
+                <a href="gallery.html">ГАЛЕРЕЯ СЕРВЕРА</a>
+                <a href="faq.html">ЧАСТО ЗАДАВАМЫЕ ВОПРОСЫ</a>
             </div>
             <div class="footer-section">
                 <h4>МЫ В СОЦ СЕТЯХ</h4>
-                <a href="https://discord.gg/KK4dCevPah">Discord</a>
-                <a href="https://t.me/mine_origins">Telegram</a>
+                <a href="https://discord.gg/KK4dCevPah">МЫ В DISCORD</a>
+                <a href="https://t.me/mine_origins">НАШ TELEGRAM КАНАЛ</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -376,13 +362,10 @@
 
     <script defer src="assets/js/main.js"></script>
 
-        <!-- Условная загрузка дополнительных скриптов -->
         <script>
-            // Проверяем, работаем ли мы на localhost или через файловую систему
             const isLocalServer = window.location.protocol === 'http:' || window.location.protocol === 'https:';
             
             if (isLocalServer) {
-                // Загружаем полные версии скриптов только на сервере
                 const scripts = ['assets/js/stats.js', 'assets/js/main.js'];
                 scripts.forEach(src => {
                     const script = document.createElement('script');
@@ -393,25 +376,19 @@
             }
         </script>
 
-    <!-- Капча -->
     <script defer src="assets/js/captcha/captcha-system.js"></script>
-
-<!-- Аналитика -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
 <script>
-    // Упрощенная инициализация аналитики без проверки капчи
     document.addEventListener('DOMContentLoaded', function() {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-W4D0RR61VG');
-        console.log('✅ Аналитика инициализирована');
     });
 
-    // Заглушка для CaptchaManager если файл не загрузился
     window.CaptchaManager = {
         checkStatus: function() {
-            return true; // Всегда возвращаем true для локальной разработки
+            return true;
         }
     };
 </script>

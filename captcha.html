@@ -16,7 +16,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- В разделе head каждой страницы добавьте: -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4a90e2">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -25,8 +24,6 @@
     <link rel="apple-touch-icon" href="/assets/images/icons/icon-152x152.png">
     <link rel="icon" type="image/png" href="/assets/images/icons/icon-192x192.png">
 
-    
-    <!-- Аналитика для страницы капчи -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -38,77 +35,37 @@
 <body class="captcha-page">
     <div class="captcha-container">
         <div class="captcha-header">
-            <div class="logo">
-                <i class="fas fa-shield-alt"></i>
-                <span>ᴍɪɴᴇ ᴏʀɪɢɪɴs</span>
-            </div>
-            <div class="security-level">
-                <i class="fas fa-lock"></i>
-                Капта
-            </div>
-        </div>
+            <div class="logo"><i class="fas fa-shield-alt"></i><span>ᴍɪɴᴇ ᴏʀɪɢɪɴs</span></div>
+            <div class="security-level"><i class="fas fa-lock"></i>Капча</div></div>
 
         <div class="captcha-content">
             <div class="verification-panel">
                 <h1>Пройдите капчу</h1>
                 <p class="verification-desc">
                     Это необходимо для защиты от авто запросов. 
-                    Проверка требуется один раз в 24 часа.
-                </p>
+                    Проверка требуется один раз в 24 часа.</p>
 
                 <div class="progress-indicator">
-                    <div class="progress-step">
-                        <div class="step-number">1</div>
-                        <span>Выполнение</span>
-                    </div>
-                    <div class="progress-step">
-                        <div class="step-number">2</div>
-                        <span>Подтверждение</span>
-                    </div>
+                    <div class="progress-step"><div class="step-number">1</div><span>Выполнение</span></div>
+                    <div class="progress-step"><div class="step-number">2</div><span>Подтверждение</span></div>
                 </div>
 
                 <div class="captcha-card" id="captchaCard">
-                    <!-- Капча будет загружена здесь динамически -->
-                    <div class="captcha-loading">
-                        <i class="fas fa-spinner fa-spin"></i>
-                        <p>Загрузка задания...</p>
-                    </div>
+                    <div class="captcha-loading"><i class="fas fa-spinner fa-spin"></i><p>Загрузка задания...</p></div>
                 </div>
 
-                <div class="attempts-counter" id="attemptsCounter">
-                    Попытки: <span id="attemptsCount">0</span>/3
-                </div>
+                <div class="attempts-counter" id="attemptsCounter">Попытки: <span id="attemptsCount">0</span>/3</div>
 
-                <div class="captcha-controls">
-                    <button class="btn-primary" id="verifyCaptcha" disabled>
-                        <i class="fas fa-check"></i>
-                        Подтвердить
-                    </button>
-                </div>
+                <div class="captcha-controls"><button class="btn-primary" id="verifyCaptcha" disabled><i class="fas fa-check"></i>Подтвердить</button></div>
 
                 <div class="captcha-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        24 часасовая
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-shield"></i>
-                        Защита
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-robot"></i>
-                        Блокировка ботов
-                    </div>
+                <div class="info-item"><i class="fas fa-clock"></i>24 часасовая</div>
+                <div class="info-item"><i class="fas fa-shield"></i>Защита</div>
+                <div class="info-item"><i class="fas fa-robot"></i>Блокировка ботов</div>
                 </div>
 
                 <div class="security-tips">
-                    <h4>Советы по безопасности:</h4>
-                    <ul>
-                        <li>Не передавайте данные проверки третьим лицам</li>
-                        <li>Убедитесь, что вас не отслеживают</li>
-                        <li>Используйте надежные пароли</li>
-                    </ul>
-                </div>
+                    <h4>Советы по безопасности:</h4><ul><li>Не передавайте данные проверки третьим лицам</li><li>Убедитесь, что вас не отслеживают</li><li>Используйте надежные пароли</li></ul></div>
             </div>
 
             <div class="security-sidebar">
@@ -227,7 +184,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно помощи -->
     <div class="modal-overlay" id="helpModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -244,44 +200,25 @@
                     <h4>Типы заданий:</h4>
                     <ul>
                         <li><strong>Математические:</strong> Решите простой пример</li>
-                        <li><strong>Пазлы:</strong> Расставьте числа по порядку</li>
-                        <li><strong>Изображения:</strong> Выберите правильные картинки</li>
-                        <li><strong>Последовательности:</strong> Запомните и повторите</li>
                         <li><strong>Логические:</strong> Ответьте на вопрос</li>
                         <li><strong>Память:</strong> Запомните последовательность</li>
                     </ul>
                 </div>
                 
-                <div class="help-section">
-                     <h4>Часто задаваемые вопросы:</h4>
-                    <div class="faq-item">
-                        <strong>Почему требуется проверка?</strong>
-                        <p>Для защиты от авто запросов и поддержания производительности сайта.</p>
-                    </div>
-                    <div class="faq-item">
-                        <strong>Как часто нужно проходить проверку?</strong>
-                        <p>Один раз в 24 часа для каждого устройства и браузера.</p>
-                    </div>
-                    <div class="faq-item">
-                        <strong>Сохраняются ли мои данные?</strong>
-                        <p>Нет, все проверки происходят локально в вашем браузере.</p>
-                    </div>
+                <div class="help-section"><h4>Часто задаваемые вопросы:</h4>
+                    <div class="faq-item"><strong>Почему требуется проверка?</strong><p>Для защиты от авто запросов, ну и для красоты :).</p></div>
+                    <div class="faq-item"><strong>Как часто нужно проходить проверку?</strong><p>Один раз в 24 часа для каждого устройства и браузера.</p></div>
+                    <div class="faq-item"><strong>Сохраняются ли мои данные?</strong><p>Нет, все проверки происходят локально.</p></div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn-primary" id="understandBtn">Понятно</button>
-            </div>
+            <div class="modal-footer"><button class="btn-primary" id="understandBtn">ОК</button></div>
         </div>
     </div>
 
-    <!-- Подключение скриптов -->
     <script src="/assets/js/app-install.js"></script>
     <script src="assets/js/captcha/captcha-data.js"></script>
     <script src="assets/js/captcha/captcha.js"></script>
-    
-    <!-- Дополнительный функционал для страницы капчи -->
     <script>
-        // Дополнительные функции для страницы капчи
         class CaptchaPageManager {
             constructor() {
                 this.init();
@@ -300,8 +237,6 @@
                 const dateString = now.toLocaleDateString('ru-RU');
                 
                 document.getElementById('currentTime').textContent = timeString;
-                
-                // Обновляем статус времени в сайдбаре
                 const timeStatus = document.getElementById('timeStatus');
                 if (timeStatus) {
                     timeStatus.textContent = timeString;
@@ -315,7 +250,6 @@
             }
 
             setupEventListeners() {
-                // Модальное окно помощи
                 const supportLink = document.querySelector('.support-link');
                 const helpModal = document.getElementById('helpModal');
                 const closeModal = document.getElementById('closeModal');
@@ -339,8 +273,6 @@
                         helpModal.style.display = 'none';
                     });
                 }
-
-                // Закрытие модального окна по клику вне его
                 if (helpModal) {
                     helpModal.addEventListener('click', (e) => {
                         if (e.target === helpModal) {
@@ -349,12 +281,10 @@
                     });
                 }
 
-                // Отслеживание прогресса
                 this.setupProgressTracking();
             }
 
             setupProgressTracking() {
-                // Обновляем прогресс при взаимодействии с капчей
                 const verifyBtn = document.getElementById('verifyCaptcha');
                 const skipBtn = document.getElementById('skipCaptcha');
 
@@ -387,7 +317,6 @@
             }
 
             loadReturnUrl() {
-                // Показываем куда вернется пользователь после проверки
                 const urlParams = new URLSearchParams(window.location.search);
                 const returnUrl = urlParams.get('return');
                 
@@ -418,13 +347,10 @@
             }
         }
 
-        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             window.captchaPageManager = new CaptchaPageManager();
             
-            // Интеграция с основной системой капчи
             if (window.captchaSystem) {
-                // Обновляем статус безопасности при успешной проверке
                 const originalHandleSuccess = window.captchaSystem.handleSuccess;
                 window.captchaSystem.handleSuccess = function() {
                     window.captchaPageManager.updateSecurityStatus('success');
@@ -432,14 +358,12 @@
                     return originalHandleSuccess.apply(this, arguments);
                 };
 
-                // Обновляем счетчик попыток
                 const originalHandleFailure = window.captchaSystem.handleFailure;
                 window.captchaSystem.handleFailure = function() {
                     window.captchaPageManager.updateSecurityStatus('failed');
                     return originalHandleFailure.apply(this, arguments);
                 };
 
-                // Обновляем прогресс при загрузке новой капчи
                 const originalLoadRandomCaptcha = window.captchaSystem.loadRandomCaptcha;
                 window.captchaSystem.loadRandomCaptcha = function() {
                     window.captchaPageManager.updateProgress(1);
@@ -448,7 +372,6 @@
             }
         });
 
-        // Аналитика для страницы капчи
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'page_view', {
@@ -460,7 +383,6 @@
     </script>
 
     <style>
-        /* Дополнительные стили для страницы капчи */
         .progress-indicator {
             display: flex;
             justify-content: space-between;
@@ -722,7 +644,6 @@
             gap: 1rem;
         }
 
-        /* Модальное окно */
         .modal-overlay {
             display: none;
             position: fixed;

@@ -20,9 +20,9 @@
     --earth-dark: #558b2f;
     
     /* Текст */
-    --text-primary: #ffffff;
+    --text-primary: #d7e1ff;
     --text-secondary: #b0b0b0;
-    --text-accent: #ffd700;
+    --text-accent: #ff6123;
     
     /* Эффекты */
     --glow-intensity: 0.6;
@@ -177,17 +177,6 @@ body {
     100% { transform: translateY(-200px); }
 }
 
-/* Курсор Minecraft */
-.minecraft-cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    pointer-events: none;
-    z-index: 10000;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" fill="none" stroke="%23ffffff" stroke-width="2"/><rect x="6" y="6" width="8" height="8" fill="%23ffffff" opacity="0.5"/></svg>');
-    transition: transform 0.1s ease;
-}
-
 /* Навигация */
 .main-nav {
     position: fixed;
@@ -253,7 +242,7 @@ body {
 .brand-text h1 {
     font-family: 'Minecraft', 'Orbitron', sans-serif;
     font-size: 1.2rem;
-    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    background: linear-gradient(75deg, #ffb08b, #ff5b50);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -263,8 +252,7 @@ body {
 
 .brand-text span {
     font-size: 0.8rem;
-    color: var(--mc-accent);
-    font-weight: bold;
+    color: #ff5b50;
 }
 
 .nav-menu {
@@ -388,7 +376,7 @@ body {
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    background: linear-gradient(45deg, #ffb08b, #ff6123);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -536,10 +524,11 @@ body {
     font-size: 1.5rem;
     font-weight: 900;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    background: linear-gradient(45deg, #ffb08b, #ff6123);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    font-family: 'Minecraft';
     text-transform: uppercase;
 }
 

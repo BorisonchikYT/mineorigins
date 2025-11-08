@@ -1,6 +1,6 @@
 // Скрипт для страницы игроков с данными из JSON
 document.addEventListener('DOMContentLoaded', function() {
-    // console.log('DOM загружен, инициализируем страницу игроков');
+    console.log('DOM загружен, инициализируем страницу игроков');
     initPlayersPage();
     initPlayersFilter();
     initPlayersStats();
@@ -11,12 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Инициализация страницы игроков
 function initPlayersPage() {
-    // console.log('Страница игроков инициализирована');
+    console.log('Страница игроков инициализирована');
 }
 
 // Инициализация системы онлайн статуса
 function initOnlineStatusSystem() {
-    // console.log('🔄 Инициализация системы онлайн статуса...');
+    console.log('🔄 Инициализация системы онлайн статуса...');
     
     // Загружаем текущий онлайн статус
     updateOnlineStatusForAllPlayers();
@@ -25,10 +25,10 @@ function initOnlineStatusSystem() {
     setInterval(updateOnlineStatusForAllPlayers, 30000);
 }
 
-// Получение списка онлайн игроков с сервера
-async function getOnlinePlayers() {
+// Получение информации о сервере и количестве онлайн игроков
+async function getServerStatus() {
     try {
-        // console.log('🔄 Получение списка онлайн игроков...');
+        console.log('🔄 Получение статуса сервера...');
         
         const SERVER_CONFIG = {
             apiEndpoints: {
@@ -38,8 +38,8 @@ async function getOnlinePlayers() {
             }
         };
 
-        // Пробуем основное API
-        const response = await fetch(SERVER_CONFIG.apiEndpoints.status, {
+        // Пробуем основное API версии 3
+        let response = await fetch(SERVER_CONFIG.apiEndpoints.status, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -50,44 +50,121 @@ async function getOnlinePlayers() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
-        // console.log('✅ Данные онлайн статуса получены:', data);
+        let data = await response.json();
+        console.log('✅ Данные сервера получены (v3):', data);
 
-        if (data.online && data.players && data.players.list) {
-            return data.players.list.map(player => player.toLowerCase());
-        } else if (data.online && data.players && data.players.uuid) {
-            // Если есть UUID, но нет имен
-            return Object.keys(data.players.uuid).map(player => player.toLowerCase());
+        // Если сервер онлайн, возвращаем данные
+        if (data.online) {
+            return {
+                online: true,
+                players: {
+                    online: data.players?.online || 0,
+                    max: data.players?.max || 25,
+                    list: data.players?.list || []
+                },
+                version: data.version,
+                motd: data.motd
+            };
         } else {
-            // console.log('📊 Список игроков недоступен, используем тестовые данные');
-            return getTestOnlinePlayers();
+            throw new Error('Сервер оффлайн');
         }
 
     } catch (error) {
-        console.error('❌ Ошибка получения онлайн статуса:', error);
-        // Возвращаем тестовые данные при ошибке
-        return getTestOnlinePlayers();
+        console.error('❌ Ошибка получения статуса (v3):', error);
+        
+        // Пробуем резервное API версии 2
+        try {
+            console.log('🔄 Пробуем резервное API v2...');
+            const response = await fetch(SERVER_CONFIG.apiEndpoints.backup);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('✅ Данные сервера получены (v2):', data);
+
+            if (data.online) {
+                return {
+                    online: true,
+                    players: {
+                        online: data.players?.online || 0,
+                        max: data.players?.max || 25,
+                        list: data.players?.list || []
+                    },
+                    version: data.version,
+                    motd: data.motd
+                };
+            } else {
+                throw new Error('Сервер оффлайн (v2)');
+            }
+        } catch (error2) {
+            console.error('❌ Ошибка получения статуса (v2):', error2);
+            
+            // Возвращаем оффлайн статус
+            return {
+                online: false,
+                players: {
+                    online: 0,
+                    max: 25,
+                    list: []
+                },
+                version: 'Неизвестно',
+                motd: null
+            };
+        }
     }
 }
 
-// Тестовые данные для онлайн игроков (удалить в продакшене)
-function getTestOnlinePlayers() {
-    const testPlayers = [
-        "_kot_baris_", "stalker_hunter_", "amidamaru3434", "darcklord", 
-        "maxxaumka", "pandamom", "snekky_offc", "cartoshka_"
-    ];
-    
-    // Случайным образом выбираем кто онлайн (50% шанс)
-    return testPlayers.filter(() => Math.random() > 0.5);
+// Получение списка онлайн игроков с сервера
+async function getOnlinePlayers() {
+    try {
+        const serverStatus = await getServerStatus();
+        
+        if (!serverStatus.online) {
+            console.log('❌ Сервер оффлайн');
+            return [];
+        }
+
+        console.log(`📊 Онлайн игроков: ${serverStatus.players.online}/${serverStatus.players.max}`);
+        
+        // Если есть список игроков, возвращаем его
+        if (serverStatus.players.list && serverStatus.players.list.length > 0) {
+            const onlinePlayers = serverStatus.players.list.map(player => player.toLowerCase().trim());
+            console.log('👥 Список онлайн игроков:', onlinePlayers);
+            return onlinePlayers;
+        } else {
+            // Если список недоступен, но сервер онлайн
+            console.log('📋 Список игроков недоступен, но сервер онлайн');
+            return []; // Возвращаем пустой массив, так как имена игроков неизвестны
+        }
+
+    } catch (error) {
+        console.error('❌ Ошибка получения списка игроков:', error);
+        return [];
+    }
+}
+
+// Получение количества онлайн игроков
+async function getOnlinePlayersCount() {
+    try {
+        const serverStatus = await getServerStatus();
+        return serverStatus.online ? serverStatus.players.online : 0;
+    } catch (error) {
+        console.error('❌ Ошибка получения количества игроков:', error);
+        return 0;
+    }
 }
 
 // Обновление онлайн статуса для всех игроков
 async function updateOnlineStatusForAllPlayers() {
     try {
-        // console.log('🔄 Обновление онлайн статусов...');
+        console.log('🔄 Обновление онлайн статусов...');
         
         const onlinePlayers = await getOnlinePlayers();
-        // console.log(`📊 Онлайн игроков: ${onlinePlayers.length}`, onlinePlayers);
+        const onlineCount = await getOnlinePlayersCount();
+        
+        console.log(`📊 Онлайн игроков: ${onlineCount}`, onlinePlayers);
         
         // Обновляем статусы на карточках игроков
         updatePlayerCardsStatus(onlinePlayers);
@@ -95,17 +172,36 @@ async function updateOnlineStatusForAllPlayers() {
         // Обновляем статусы в модальных окнах если они открыты
         updateModalStatuses(onlinePlayers);
         
+        // Обновляем счетчик онлайн игроков
+        updateOnlineCounter(onlineCount);
+        
         // Показываем уведомление об обновлении
-        showStatusUpdateNotification(onlinePlayers.length);
+        showStatusUpdateNotification(onlineCount);
         
     } catch (error) {
         console.error('❌ Ошибка обновления статусов:', error);
     }
 }
 
+// Обновление счетчика онлайн игроков
+function updateOnlineCounter(onlineCount) {
+    // Обновляем в статистике
+    const onlineStatElement = document.querySelector('.player-count');
+    if (onlineStatElement) {
+        onlineStatElement.textContent = onlineCount;
+    }
+    
+    // Обновляем в заголовке если есть
+    const titleElement = document.querySelector('.online-players-count');
+    if (titleElement) {
+        titleElement.textContent = onlineCount;
+    }
+}
+
 // Обновление статусов на карточках игроков
 function updatePlayerCardsStatus(onlinePlayers) {
     const playerCards = document.querySelectorAll('.player-card');
+    let onlineDetected = 0;
     
     playerCards.forEach(card => {
         const playerNameElement = card.querySelector('.player-name');
@@ -114,8 +210,12 @@ function updatePlayerCardsStatus(onlinePlayers) {
         const playerName = playerNameElement.textContent.toLowerCase().trim();
         const isOnline = onlinePlayers.includes(playerName);
         
+        if (isOnline) onlineDetected++;
+        
         updateCardStatus(card, isOnline);
     });
+    
+    console.log(`🎯 Обновлено статусов: ${onlineDetected} онлайн из ${playerCards.length} карточек`);
 }
 
 // Обновление статуса на карточке игрока
@@ -131,18 +231,19 @@ function updateCardStatus(card, isOnline) {
     if (!statusIndicator) {
         statusIndicator = document.createElement('div');
         statusIndicator.className = 'player-status-indicator';
-        card.querySelector('.player-header').prepend(statusIndicator);
+        const header = card.querySelector('.player-header');
+        if (header) {
+            header.prepend(statusIndicator);
+        }
     }
     
     statusIndicator.className = `player-status-indicator ${isOnline ? 'online' : 'offline'}`;
-    statusIndicator.title = isOnline ? 'Скоро' : 'Скоро';
-    // statusIndicator.title = isOnline ? 'Сейчас в игре' : 'Не в сети';
+    statusIndicator.title = isOnline ? 'Сейчас в игре' : 'Не в сети';
     
     // Обновляем текст статуса если есть
     const statusText = card.querySelector('.player-status-text');
     if (statusText) {
-        statusText.textContent = isOnline ? 'Скоро' : 'Скоро';
-        // statusText.textContent = isOnline ? 'В игре' : 'Не в сети';
+        statusText.textContent = isOnline ? 'В игре' : 'Не в сети';
         statusText.className = `player-status-text ${isOnline ? 'online' : 'offline'}`;
     }
 }
@@ -169,7 +270,10 @@ function updateModalStatus(modal, isOnline) {
     if (!statusBadge) {
         statusBadge = document.createElement('div');
         statusBadge.className = 'player-online-status';
-        modal.querySelector('.player-info').appendChild(statusBadge);
+        const playerInfo = modal.querySelector('.player-info');
+        if (playerInfo) {
+            playerInfo.appendChild(statusBadge);
+        }
     }
     
     statusBadge.className = `player-online-status ${isOnline ? 'online' : 'offline'}`;
@@ -182,21 +286,23 @@ function updateModalStatus(modal, isOnline) {
 // Показ уведомления об обновлении статуса
 function showStatusUpdateNotification(onlineCount) {
     // Удаляем предыдущее уведомление если есть
-    const existingNotification = document.querySelector('.status-update-notification');
+    const existingNotification = document.querySelector('.status-update-content');
     if (existingNotification) {
         existingNotification.remove();
     }
     
     const notification = document.createElement('div');
-    notification.className = 'status-update-notification';
+    notification.className = 'status-update-content';
     notification.innerHTML = `
-        <div class="status-update-content">
-            <div class="status-update-icon">🔄</div>
-            <div class="status-update-text">
-                <strong>Статус обновлен</strong>
-                <span>Сейчас играет: ${onlineCount} игроков</span>
-            </div>
-            <button class="status-update-close">×</button>
+        <div class="status-update-glow"></div>
+        <div class="status-update-icon">🔄</div>
+        <div class="status-update-text">
+            <strong>Статус обновлен</strong>
+            <span>Сейчас играет: ${onlineCount} игроков</span>
+        </div>
+        <button class="status-update-close">×</button>
+        <div class="status-update-progress">
+            <div class="progress-fill"></div>
         </div>
     `;
     
@@ -205,15 +311,17 @@ function showStatusUpdateNotification(onlineCount) {
     // Анимация появления
     setTimeout(() => {
         notification.classList.add('show');
-    }, 10);
+    }, 100);
     
-    // Автоматическое скрытие через 3 секунды
-    setTimeout(() => {
+    // Автоматическое скрытие через 5 секунд
+    const autoHideTimeout = setTimeout(() => {
         hideStatusNotification(notification);
-    }, 3000);
+    }, 5000);
     
     // Закрытие по клику
-    notification.querySelector('.status-update-close').addEventListener('click', () => {
+    const closeBtn = notification.querySelector('.status-update-close');
+    closeBtn.addEventListener('click', () => {
+        clearTimeout(autoHideTimeout);
         hideStatusNotification(notification);
     });
 }
@@ -227,29 +335,52 @@ function hideStatusNotification(notification) {
         if (notification.parentNode) {
             notification.remove();
         }
-    }, 300);
+    }, 600);
 }
 
-// Загрузка данных игроков из JSON
-async function loadPlayersData() {
+// Обновление статуса в модальном окне игрока
+async function updatePlayerModalStatus(modal, playerName) {
     try {
-        console.log('Начинаем загрузку данных игроков...');
-        showLoadingState();
-        const playersData = await fetchPlayersData();
-        console.log('Данные успешно загружены:', playersData);
-        renderPlayersGrid(playersData);
-        updatePlayersStats(playersData);
-        hideLoadingState();
+        const onlinePlayers = await getOnlinePlayers();
+        const isOnline = onlinePlayers.includes(playerName.toLowerCase());
         
-        // После загрузки данных обновляем онлайн статус
-        setTimeout(() => {
-            updateOnlineStatusForAllPlayers();
-        }, 1000);
+        const statusElement = modal.querySelector('.online-status-value');
+        const onlineStatus = modal.querySelector('.player-online-status');
+        
+        if (statusElement) {
+            statusElement.textContent = isOnline ? 'В сети' : 'Не в сети';
+            statusElement.className = `online-status-value ${isOnline ? 'online' : 'offline'}`;
+        }
+        
+        if (onlineStatus) {
+            onlineStatus.className = `player-online-status ${isOnline ? 'online' : 'offline'}`;
+            onlineStatus.innerHTML = `
+                <span class="status-dot"></span>
+                <span class="status-text">${isOnline ? 'Сейчас в игре' : 'Не в сети'}</span>
+            `;
+        }
+    } catch (error) {
+        console.error('Ошибка обновления статуса в модальном окне:', error);
+    }
+}
+
+// Реальная статистика онлайна
+async function initRealTimePlayerCount() {
+    try {
+        const onlineCount = await getOnlinePlayersCount();
+        updateOnlineCounter(onlineCount);
+        
+        // Обновляем каждые 30 секунд
+        setInterval(async () => {
+            const count = await getOnlinePlayersCount();
+            updateOnlineCounter(count);
+        }, 30000);
         
     } catch (error) {
-        console.error('Ошибка загрузки данных игроков:', error);
-        console.log('Пробуем загрузить демо данные...');
-        loadDemoPlayersData();
+        console.error('Ошибка загрузки онлайна:', error);
+        // Используем случайное число как fallback
+        const fallbackCount = Math.floor(Math.random() * 10) + 1;
+        updateOnlineCounter(fallbackCount);
     }
 }
 
@@ -319,6 +450,29 @@ function renderPlayersGrid(players) {
             playerCard.classList.add('visible');
         }, index * 100);
     });
+}
+
+// Загрузка данных игроков из JSON
+async function loadPlayersData() {
+    try {
+        console.log('Начинаем загрузку данных игроков...');
+        showLoadingState();
+        const playersData = await fetchPlayersData();
+        console.log('Данные успешно загружены:', playersData);
+        renderPlayersGrid(playersData);
+        updatePlayersStats(playersData);
+        hideLoadingState();
+        
+        // После загрузки данных обновляем онлайн статус
+        setTimeout(() => {
+            updateOnlineStatusForAllPlayers();
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Ошибка загрузки данных игроков:', error);
+        console.log('Пробуем загрузить демо данные...');
+        loadDemoPlayersData();
+    }
 }
 
 // Создание карточки игрока
@@ -782,7 +936,7 @@ function getLocalPlayersData() {
             "name": "amidamaru3434",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "heaven",
-            "description": "◈ Ангел\nСерафим — лидер райской расы, присутствует на сервере с открытия.",
+            "description": "Ангел Серафим — бывший лидер ангелов.\nБыл изгнан из высших ангелов.",
             "joinDate": "2025-10-14",
             "socials": {
               "discord": "bruhhhhsasa21",
@@ -827,10 +981,10 @@ function getLocalPlayersData() {
           },
           {
             "id": 7,
-            "name": "hyutjnh",
+            "name": "ED4MKM_AERO",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "heaven",
-            "description": "Ангел — участник ангельской расы, присутствует на сервере с открытия(я ещё со временем блек альфы). Сохраняет нейтралитет между ФрикБургом, ЛХ и ВДНХ, наблюдает за порядком на поверхности, характер ламповый, люблю лис.",
+            "description": "Золотой Ангельский Лис — лидер ангелов.\nЯвляется самым первым участником проекта (еще со временем Black Alpha). Сохраняет нейтралитет между всеми фракциями, наблюдает за порядком на сервере. Очень любит лис.",
             "joinDate": "2025-10-18",
             "socials": {
                 "discord": "last_troid_0079",
@@ -1084,8 +1238,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initOnlineStatusSystem();
 });
 
-// Обновление данных каждые 3 секунд
+// Обновление данных каждые 3 секунды
 setInterval(() => {
     initRealTimePlayerCount();
 }, 3000);
-

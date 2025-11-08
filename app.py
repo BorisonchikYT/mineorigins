@@ -18,16 +18,12 @@ class ServerStatusChecker:
         self.client = MinecraftServerStatus()
     
     def get_server_status(self):
-        """Получение статуса сервера синхронно"""
         try:
-            # Проверяем онлайн статус
             is_online = self.client.is_server_online(SERVER_CONFIG['numeric_ip'])
             
             if is_online:
-                # Получаем полную информацию о сервере
                 status = self.client.get_server_status(SERVER_CONFIG['numeric_ip'])
                 
-                # Обрабатываем список игроков
                 players_list = []
                 if status.players and status.players.list:
                     players_list = [player.name if hasattr(player, 'name') else str(player) 
@@ -63,10 +59,8 @@ class ServerStatusChecker:
             }
     
     def close(self):
-        """Закрытие клиента"""
         self.client.close()
 
-# Создаем экземпляр проверяльщика статуса
 status_checker = ServerStatusChecker()
 
 @app.route('/')
@@ -75,7 +69,6 @@ def index():
 
 @app.route('/api/server-status')
 def server_status():
-    """API endpoint для получения статуса сервера"""
     try:
         status_data = status_checker.get_server_status()
         return jsonify(status_data)
@@ -88,14 +81,12 @@ def server_status():
 
 @app.route('/api/player-count')
 def player_count():
-    """API endpoint только для количества игроков"""
     try:
         online, max_players = status_checker.client.get_player_count(SERVER_CONFIG['numeric_ip'])
         return jsonify({'online': online, 'max': max_players})
     except Exception as e:
         return jsonify({'online': 0, 'max': 0, 'error': str(e)})
 
-# Асинхронная версия для более производительного использования
 async def get_server_status_async():
     """Асинхронное получение статуса сервера"""
     from mcsrvstatus import AsyncMinecraftServerStatus
@@ -105,7 +96,6 @@ async def get_server_status_async():
         
         if is_online:
             status = await client.get_server_status(SERVER_CONFIG['numeric_ip'])
-            # ... аналогичная обработка данных
             return status
         return None
 

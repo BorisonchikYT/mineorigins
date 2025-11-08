@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Страница не найдена - Ошибка 404</title>
-    <link rel="stylesheet" href="./assets/Error/404/404.css">
-
-    <!-- В разделе head каждой страницы добавьте: -->
+    <link rel="stylesheet" href="assets/Error/404/404.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4a90e2">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,8 +13,6 @@
     <link rel="apple-touch-icon" href="/assets/images/icons/icon-152x152.png">
     <link rel="icon" type="image/png" href="/assets/images/icons/icon-192x192.png">
 
-    <!-- Или если в корне: -->
-    <!-- <link rel="stylesheet" href="404.css"> -->
 </head>
 <body>
     <div class="error-container">
@@ -38,23 +34,18 @@
 
     <script src="/assets/js/app-install.js"></script>
     <script src="./assets/Error/404/404.js"></script>
-    
-    <!-- Аналитика -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4D0RR61VG"></script>
 <script>
-    // Упрощенная инициализация аналитики без проверки капчи
     document.addEventListener('DOMContentLoaded', function() {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-W4D0RR61VG');
-        console.log('✅ Аналитика инициализирована');
     });
 
-    // Заглушка для CaptchaManager если файл не загрузился
     window.CaptchaManager = {
         checkStatus: function() {
-            return true; // Всегда возвращаем true для локальной разработки
+            return true; 
         }
     };
 </script>

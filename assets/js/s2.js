@@ -1,18 +1,12 @@
-
-        // Инициализация страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            // console.log('Страница поселений загружена');
-            initSettlementsPage();
-            initSettlementsStats();
-            initMapInteractions();
-            initSettlementsFilter();
+document.addEventListener('DOMContentLoaded', function() {
+        initSettlementsPage();
+        initSettlementsStats();
+        initMapInteractions();
+        initSettlementsFilter();
         });
 
-        // Инициализация страницы поселений
         function initSettlementsPage() {
-            // console.log('Инициализация страницы поселений');
             
-            // Анимация появления карточек
             const cards = document.querySelectorAll('.settlement-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
@@ -21,7 +15,6 @@
             });
         }
 
-        // Инициализация статистики
         function initSettlementsStats() {
             const statNumbers = document.querySelectorAll('.stat-number[data-target]');
             
@@ -31,7 +24,6 @@
             });
         }
 
-        // Анимация счетчика
         function animateCounter(element, target, duration) {
             let start = 0;
             const increment = target / (duration / 16);
@@ -49,12 +41,10 @@
             update();
         }
 
-        // Инициализация интерактивной карты
         function initMapInteractions() {
             const mapContainer = document.querySelector('.map-container');
             if (!mapContainer) return;
 
-            // Добавляем обработчики для точек на карте
             const mapPoints = document.querySelectorAll('.map-point');
             mapPoints.forEach(point => {
                 point.addEventListener('click', function() {
@@ -72,7 +62,6 @@
                 });
             });
 
-            // Добавляем возможность масштабирования карты
             let scale = 1;
             const minScale = 0.5;
             const maxScale = 3;
@@ -88,7 +77,6 @@
             mapContainer.style.cursor = 'grab';
         }
 
-        // Показ подсказки на карте
         function showMapTooltip(settlementName, pointElement) {
             let tooltip = document.querySelector('.map-tooltip');
             if (!tooltip) {
@@ -97,7 +85,6 @@
                 document.body.appendChild(tooltip);
             }
 
-            // Получаем информацию о поселении
             const settlementInfo = getSettlementInfo(settlementName);
             
             tooltip.innerHTML = `
@@ -114,14 +101,12 @@
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
             
-            // Позиционируем подсказку рядом с точкой
             const tooltipWidth = 200;
             const tooltipHeight = 150;
             
             let left = rect.left + scrollLeft + (rect.width / 2);
             let top = rect.top + scrollTop - tooltipHeight - 10;
             
-            // Проверяем, чтобы подсказка не выходила за границы экрана
             if (left - tooltipWidth / 2 < 10) {
                 left = tooltipWidth / 2 + 10;
             }
@@ -138,7 +123,6 @@
             tooltip.classList.add('visible');
         }
 
-        // Скрытие подсказки
         function hideMapTooltip() {
             const tooltip = document.querySelector('.map-tooltip');
             if (tooltip) {
@@ -146,7 +130,6 @@
             }
         }
 
-        // Получение информации о поселении по имени
         function getSettlementInfo(name) {
             const settlements = {
                 'ФрикБургская Империя': {
@@ -218,15 +201,10 @@
             };
         }
 
-        // Показ деталей поселения по имени
         function showSettlementDetailsByName(settlementName) {
-            // В реальном проекте здесь будет открытие модального окна с деталями
-            // console.log('Показ деталей поселения:', settlementName);
         }
 
-        // Инициализация фильтров
         function initSettlementsFilter() {
-            // Кнопки фильтров по расе
             const filterButtons = document.querySelectorAll('.settlement-filter-btn');
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -238,7 +216,6 @@
                 });
             });
 
-            // Поиск
             const searchInput = document.querySelector('.settlements-search');
             if (searchInput) {
                 searchInput.addEventListener('input', () => {
@@ -247,7 +224,6 @@
             }
         }
 
-        // Применение фильтров
         function applyFilters() {
             const activeRaceFilter = document.querySelector('.settlement-filter-btn.active').getAttribute('data-filter');
             const searchTerm = document.querySelector('.settlements-search').value.toLowerCase();
@@ -262,17 +238,14 @@
 
                 let show = true;
 
-                // Фильтр по расе
                 if (activeRaceFilter !== 'all' && race !== activeRaceFilter) {
                     show = false;
                 }
 
-                // Поиск
                 if (searchTerm && !name.includes(searchTerm) && !leader.includes(searchTerm) && !location.includes(searchTerm)) {
                     show = false;
                 }
 
-                // Применение фильтра
                 if (show) {
                     card.style.display = 'flex';
                     setTimeout(() => card.classList.add('visible'), 50);
@@ -282,11 +255,9 @@
                 }
             });
 
-            // Обновляем статистику после фильтрации
             updateFilteredStats();
         }
 
-        // Обновление статистики для отфильтрованных данных
         function updateFilteredStats() {
             const visibleCards = document.querySelectorAll('.settlement-card[style*="display: flex"]');
             const totalPopulation = Array.from(visibleCards).reduce((sum, card) => {
@@ -298,14 +269,12 @@
                 return level >= 3;
             }).length;
 
-            // Обновляем счетчики в реальном времени
             const statNumbers = document.querySelectorAll('.settlements-stats .stat-number');
             if (statNumbers[0]) statNumbers[0].textContent = visibleCards.length;
             if (statNumbers[1]) statNumbers[1].textContent = totalPopulation;
             if (statNumbers[2]) statNumbers[2].textContent = activeProjects;
         }
 
-        // Показ уведомления
         function showToast(message) {
             const toast = document.createElement('div');
             toast.className = 'toast-notification';
@@ -325,7 +294,6 @@
             }, 3000);
         }
 
-        // Добавляем стили для уведомлений
         const toastStyles = document.createElement('style');
         toastStyles.textContent = `
             .toast-notification {
@@ -410,7 +378,6 @@
         `;
         document.head.appendChild(toastStyles);
 
-        // Обработчики для кнопок "Подробнее"
         document.querySelectorAll('.view-details-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -421,7 +388,6 @@
             });
         });
 
-        // Обработчики для клика по карточкам
         document.querySelectorAll('.settlement-card').forEach(card => {
             card.addEventListener('click', function() {
                 const settlementName = this.querySelector('.settlement-name').textContent;
@@ -429,7 +395,6 @@
             });
         });
 
-        // Анимация курсора Minecraft
         document.addEventListener('mousemove', function(e) {
             const cursor = document.querySelector('.minecraft-cursor');
             if (cursor) {

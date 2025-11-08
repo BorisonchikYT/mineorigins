@@ -1,478 +1,687 @@
-// Данные поселений
-const settlementsData = {
-    settlements: [
-        {
-            id: 1,
-            name: "ФрикБургская Империя",
-            image: "assets/images/settlements/frickburg.png",
-            leader: "_Kot_Baris_",
-            race: "earth",
-            description: "💪 Мы сильнее всех! Строим из блоков империи, куем из побед легенды – за Фрикбург, за победу!",
-            population: 8,
-            residents: ["_Kot_Baris_", "pandamom", "darcklord", "ddanilkaaaa", "jdh16", "maxxaumka", "nicotine", "tropic_yt2021"],
-            coordinates: { x: 30, y: 86, z: 1018 },
-            war_status: "defensive",
-            established: "2025-10-11",
-            level: 4,
-            features: ["Свобода слова и действий", "Адекватные люди", "Автоматические фермы"],
-            location: "Земля"
-        },
-        {
-            id: 2,
-            name: "Логово Хантера",
-            image: "assets/images/settlements/hunter_lair.png",
-            leader: "stalker_hunter_",
-            race: "hell",
-            description: "К демонам приходят не ради помощи — а ради сделки. Каждое слово здесь имеет цену.",
-            population: 3,
-            residents: ["stalker_hunter_", "Yaryna", "Lemonchik"],
-            coordinates: { x: 212, y: 80, z: 495 },
-            war_status: "neutral",
-            established: "2025-10-12",
-            level: 3,
-            features: ["Живут демоны и земные", "Лавовые водопады"],
-            location: "Под землёй"
-        }
-    ]
-};
+// settlements.js - Оптимизированная версия
 
-// Кэш элементов
-const DOM = {
-    grid: null,
-    search: null,
-    filters: null
-};
-
-// Состояние приложения
-const state = {
-    currentFilter: 'all',
-    currentSearch: '',
-    isLoading: false
-};
-
-// Инициализация
-class SettlementsApp {
+class SettlementsManager {
     constructor() {
+        this.settlements = [];
+        this.filteredSettlements = [];
+        this.currentFilter = 'all';
+        this.searchTerm = '';
+        this.isInitialized = false;
+        
+        // DOM элементы
+        this.elements = {
+            grid: document.getElementById('settlementsGrid'),
+            search: document.getElementById('settlementsSearch'),
+            filterBtns: document.querySelectorAll('.settlement-filter-btn'),
+            mapPoints: document.querySelectorAll('.map-point')
+        };
+        
         this.init();
     }
 
-    init() {
-        document.addEventListener('DOMContentLoaded', () => {
-            this.cacheDOM();
-            this.bindEvents();
+    async init() {
+        try {
+            await this.loadSettlementsData();
+            this.setupEventListeners();
             this.renderSettlements();
-            this.initMap();
-        });
+            this.setupMapInteractions();
+            this.isInitialized = true;
+            
+            console.log('✅ SettlementsManager initialized');
+        } catch (error) {
+            console.error('❌ Failed to initialize SettlementsManager:', error);
+            this.showError('Не удалось загрузить данные о поселениях');
+        }
     }
 
-    cacheDOM() {
-        DOM.grid = document.getElementById('settlementsGrid');
-        DOM.search = document.getElementById('settlementsSearch');
-        DOM.filters = document.querySelectorAll('.settlement-filter-btn');
+    async loadSettlementsData() {
+        // Временные данные - в реальном приложении загружаем с сервера
+        this.settlements = [
+            {
+                id: 1,
+                name: "ФрикБургская Империя",
+                race: "earth",
+                leader: "_Kot_Baris_",
+                population: 8,
+                level: "Империя",
+                location: "ЗЕМЛЯ",
+                description: "💪 Мы сильнее всех! Строим из блоков империи, куем из побед легенды – за Фрикбург, за победу!",
+                features: ["Объеденение всех рас", "Нейтральная империя"],
+                coordinates: "30 86 1018",
+                established: "11.10.25",
+                banner: "assets/images/icons/settlements/boris.png",
+                warStatus: "defensive"
+            },
+            {
+                id: 2,
+                name: "Логово Хантера",
+                race: "hell",
+                leader: "stalker_hunter_",
+                population: 1,
+                level: "Логово",
+                location: "ПОДЗЕМНЫЙ",
+                description: "К демонам приходят не ради помощи — а ради сделки. Каждое слово здесь имеет цену, каждая улыбка — намерение, а каждая искра — обещание будущего огня.",
+                features: ["Мы дружим с ФБ", "Мы поддерживаем со всеми расами связь"],
+                coordinates: "212 80 495",
+                established: "11.10.25",
+                banner: "assets/images/icons/settlements/no.gif",
+                warStatus: "defensive"
+            },
+            {
+                id: 3,
+                name: "База Тропика",
+                race: "earth",
+                leader: "tropic_yt2021",
+                population: 1,
+                level: "База",
+                location: "ТАЙГА",
+                description: "Отсутствует",
+                features: ["Отсутствует"],
+                coordinates: "1500 64 -800",
+                established: "13.10.25",
+                banner: "assets/images/icons/settlements/no.gif",
+                warStatus: "none"
+            },
+            {
+                id: 4,
+                name: "ВДНХ",
+                race: "earth",
+                leader: "jdh16",
+                population: 2,
+                level: "Поселение",
+                location: "ЗЕМЛЯ",
+                description: "Отсутствует",
+                features: ["Отсутствует"],
+                coordinates: "450 70 600",
+                established: "14.10.25",
+                banner: "assets/images/icons/settlements/no.gif",
+                warStatus: "none"
+            },
+            {
+                id: 5,
+                name: "База Ангелов",
+                race: "heaven",
+                leader: "amidamaru3434",
+                population: 1,
+                level: "База",
+                location: "ГОРЫ",
+                description: "Отсутствует",
+                features: ["Отсутствует"],
+                coordinates: "100 120 -200",
+                established: "15.10.25",
+                banner: "assets/images/icons/settlements/no.gif",
+                warStatus: "none"
+            },
+            {
+                id: 6,
+                name: "Максимка",
+                race: "earth",
+                leader: "maxxaumka",
+                population: 1,
+                level: "Поселение",
+                location: "ОСТРОВ",
+                description: "Отсутствует",
+                features: ["Северное расположение"],
+                coordinates: "-800 70 -1500",
+                established: "16.10.25",
+                banner: "assets/images/icons/settlements/no.gif",
+                warStatus: "none"
+            },
+            {
+                id: 7,
+                name: "База механиков",
+                race: "earth",
+                leader: "maxxaumka snekky_offc",
+                population: 2,
+                level: "База",
+                location: "АНТРОПОГЕННЫЙ ОСТРОВ",
+                description: "Отсутствует",
+                features: ["Технологии", "Механизмы"],
+                coordinates: "1200 65 1800",
+                established: "17.10.25",
+                banner: "assets/images/icons/settlements/no.gif",
+                warStatus: "none"
+            }
+        ];
+        
+        this.filteredSettlements = [...this.settlements];
     }
 
-    bindEvents() {
-        // Поиск с debounce
-        if (DOM.search) {
-            DOM.search.addEventListener('input', this.debounce((e) => {
-                state.currentSearch = e.target.value.toLowerCase();
+    setupEventListeners() {
+        // Поиск
+        if (this.elements.search) {
+            this.elements.search.addEventListener('input', (e) => {
+                this.searchTerm = e.target.value.toLowerCase().trim();
                 this.filterSettlements();
-            }, 300));
+            });
         }
 
         // Фильтры
-        DOM.filters.forEach(btn => {
+        this.elements.filterBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                this.handleFilterClick(e.target);
+                const filter = e.currentTarget.dataset.filter;
+                this.setFilter(filter);
             });
         });
 
-        // Предотвращение множественных кликов
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('action-btn')) {
-                this.handleActionClick(e);
-            }
+        // Глобальные обработчики
+        document.addEventListener('click', this.handleGlobalClick.bind(this));
+    }
+
+    setupMapInteractions() {
+        this.elements.mapPoints.forEach(point => {
+            point.addEventListener('mouseenter', this.handleMapPointHover.bind(this));
+            point.addEventListener('mouseleave', this.handleMapPointLeave.bind(this));
+            point.addEventListener('click', this.handleMapPointClick.bind(this));
         });
     }
 
-    // Дебаунс для поиска
-    debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-
-    handleFilterClick(button) {
-        DOM.filters.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        state.currentFilter = button.dataset.filter;
-        this.filterSettlements();
-    }
-
-    handleActionClick(e) {
-        const button = e.target;
-        const settlementId = button.dataset.id;
+    handleMapPointHover(e) {
+        const settlementName = e.currentTarget.dataset.settlement;
+        const settlement = this.settlements.find(s => s.name === settlementName);
         
-        if (button.disabled) return;
-        
-        button.disabled = true;
-        
-        if (button.classList.contains('visit-btn')) {
-            this.visitSettlement(settlementId);
-        } else if (button.classList.contains('details-btn')) {
-            this.showDetails(settlementId);
-        } else if (button.classList.contains('copy-coords-btn')) {
-            this.copyCoordinates(settlementId);
+        if (settlement) {
+            this.showMapTooltip(e.currentTarget, settlement);
         }
-        
-        setTimeout(() => {
-            button.disabled = false;
-        }, 1000);
     }
 
-    renderSettlements() {
-        if (!DOM.grid) return;
-
-        const fragment = document.createDocumentFragment();
-        
-        settlementsData.settlements.forEach(settlement => {
-            const card = this.createSettlementCard(settlement);
-            fragment.appendChild(card);
-        });
-
-        DOM.grid.innerHTML = '';
-        DOM.grid.appendChild(fragment);
+    handleMapPointLeave() {
+        this.hideMapTooltip();
     }
 
-    createSettlementCard(settlement) {
-        const card = document.createElement('div');
-        card.className = `settlement-card ${settlement.race}-settlement`;
-        card.dataset.race = settlement.race;
-        card.dataset.id = settlement.id;
+    handleMapPointClick(e) {
+        const settlementName = e.currentTarget.dataset.settlement;
+        const settlement = this.settlements.find(s => s.name === settlementName);
+        
+        if (settlement) {
+            this.showSettlementModal(settlement);
+        }
+    }
 
-        card.innerHTML = `
-            <div class="settlement-visual">
-                <div class="settlement-image ${settlement.race}">
-                    <img src="${settlement.image}" alt="${settlement.name}" 
-                         loading="lazy"
-                         onerror="this.src='assets/images/settlements/default_settlement.png'">
-                    <div class="settlement-overlay">
-                        <div class="population-badge">
-                            <img src="assets/images/icons/index_icon_players.gif" class="icon-sm"> 
-                            ${settlement.population}
-                        </div>
-                        <div class="war-status-badge ${settlement.war_status}">
-                            ${this.getWarStatusIcon(settlement.war_status)}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="settlement-content">
-                <div class="settlement-header">
-                    <h3 class="settlement-name">${settlement.name}</h3>
-                    <span class="settlement-race ${settlement.race}">
-                        ${this.getRaceIcon(settlement.race)} ${this.getRaceName(settlement.race)}
-                    </span>
-                </div>
-                
-                <div class="settlement-info">
-                    <div class="info-item">
-                        <span class="label">👑 Лидер:</span>
-                        <span class="value">${settlement.leader}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">📍 Локация:</span>
-                        <span class="value">${settlement.location}</span>
-                    </div>
-                </div>
-                
-                <div class="settlement-description">
-                    <p>${settlement.description}</p>
-                </div>
-                
-                <div class="settlement-features">
-                    <h4>✨ Особенности</h4>
-                    <div class="features-grid">
-                        ${settlement.features.slice(0, 3).map(feature => 
-                            `<span class="feature-tag">${feature}</span>`
-                        ).join('')}
-                    </div>
-                </div>
-                
-                <div class="settlement-coordinates">
-                    <div class="coords-display">
-                        <span class="label">🎯 Координаты:</span>
-                        <code>${settlement.coordinates.x} ${settlement.coordinates.y} ${settlement.coordinates.z}</code>
-                    </div>
-                    <button class="copy-coords-btn" data-id="${settlement.id}">
-                        📋
-                    </button>
-                </div>
-            </div>
-            
-            <div class="settlement-footer">
-                <div class="settlement-meta">
-                    <span class="level">Ур. ${settlement.level}</span>
-                    <span class="date">${this.formatDate(settlement.established)}</span>
-                </div>
-                <div class="settlement-actions">
-                    <button class="action-btn visit-btn" data-id="${settlement.id}">
-                        🎮 Посетить
-                    </button>
-                    <button class="action-btn details-btn" data-id="${settlement.id}">
-                        📖 Подробнее
-                    </button>
-                </div>
+    showMapTooltip(element, settlement) {
+        // Удаляем существующий тултип
+        this.hideMapTooltip();
+        
+        const tooltip = document.createElement('div');
+        tooltip.className = 'map-tooltip visible';
+        tooltip.innerHTML = `
+            <div class="tooltip-content">
+                <strong>${settlement.name}</strong>
+                <span>Лидер: ${settlement.leader}</span>
+                <span>Население: ${settlement.population}</span>
+                <span>${settlement.location}</span>
             </div>
         `;
+        
+        document.body.appendChild(tooltip);
+        
+        // Позиционирование
+        const rect = element.getBoundingClientRect();
+        tooltip.style.left = rect.left + (rect.width / 2) + 'px';
+        tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+        tooltip.style.transform = 'translateX(-50%)';
+        
+        this.currentTooltip = tooltip;
+    }
 
-        return card;
+    hideMapTooltip() {
+        if (this.currentTooltip) {
+            this.currentTooltip.remove();
+            this.currentTooltip = null;
+        }
+    }
+
+    setFilter(filter) {
+        this.currentFilter = filter;
+        
+        // Обновляем активную кнопку
+        this.elements.filterBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === filter);
+        });
+        
+        this.filterSettlements();
     }
 
     filterSettlements() {
-        const cards = DOM.grid.querySelectorAll('.settlement-card');
-        let visibleCount = 0;
-
-        cards.forEach(card => {
-            const race = card.dataset.race;
-            const name = card.querySelector('.settlement-name').textContent.toLowerCase();
-            const description = card.querySelector('.settlement-description p').textContent.toLowerCase();
+        this.filteredSettlements = this.settlements.filter(settlement => {
+            const matchesFilter = this.currentFilter === 'all' || settlement.race === this.currentFilter;
+            const matchesSearch = !this.searchTerm || 
+                settlement.name.toLowerCase().includes(this.searchTerm) ||
+                settlement.leader.toLowerCase().includes(this.searchTerm) ||
+                settlement.description.toLowerCase().includes(this.searchTerm);
             
-            const matchesFilter = state.currentFilter === 'all' || race === state.currentFilter;
-            const matchesSearch = !state.currentSearch || 
-                                name.includes(state.currentSearch) || 
-                                description.includes(state.currentSearch);
-            
-            if (matchesFilter && matchesSearch) {
-                card.style.display = 'block';
-                card.classList.add('visible');
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-                card.classList.remove('visible');
-            }
+            return matchesFilter && matchesSearch;
         });
-
-        this.showEmptyState(visibleCount === 0);
+        
+        this.renderSettlements();
     }
 
-    showEmptyState(show) {
-        let emptyState = DOM.grid.querySelector('.empty-state');
+    renderSettlements() {
+        if (!this.elements.grid) return;
         
-        if (show && !emptyState) {
-            emptyState = document.createElement('div');
-            emptyState.className = 'empty-state';
-            emptyState.innerHTML = `
-                <div class="empty-content">
-                    <div class="empty-icon">🏰</div>
+        if (this.filteredSettlements.length === 0) {
+            this.elements.grid.innerHTML = `
+                <div class="no-settlements-message">
                     <h3>Поселения не найдены</h3>
-                    <p>Попробуйте изменить параметры поиска</p>
-                    <button class="clear-filters-btn" onclick="app.clearFilters()">
-                        Очистить фильтры
-                    </button>
                 </div>
             `;
-            DOM.grid.appendChild(emptyState);
-        } else if (!show && emptyState) {
-            emptyState.remove();
+            return;
         }
+        
+        this.elements.grid.innerHTML = this.filteredSettlements
+            .map(settlement => this.createSettlementCard(settlement))
+            .join('');
+            
+        this.setupCardInteractions();
     }
 
-    clearFilters() {
-        state.currentSearch = '';
-        state.currentFilter = 'all';
+    createSettlementCard(settlement) {
+        const raceClass = `${settlement.race}-settlement`;
+        const raceBadge = this.getRaceBadge(settlement.race);
+        const warStatus = this.getWarStatus(settlement.warStatus);
         
-        if (DOM.search) DOM.search.value = '';
+        return `
+            <div class="settlement-card ${raceClass} visible" 
+                 data-race="${settlement.race}" 
+                 data-settlement-id="${settlement.id}">
+                <div class="settlement-visual">
+                    <div class="settlement-image ${settlement.race}">
+                        ${settlement.banner ? 
+                            `<img src="${settlement.banner}" alt="${settlement.name}" class="banner-image">` :
+                            `<div class="settlement-banner-placeholder">${settlement.name.charAt(0)}</div>`
+                        }
+                        <div class="settlement-glow"></div>
+                        <div class="population-badge">
+                            <img src="assets/images/icons/index_icon_players.gif" class="resized-image3"> 
+                            ${settlement.population}
+                        </div>
+                        ${warStatus}
+                    </div>
+                </div>
+                
+                <div class="settlement-content">
+                    <div class="settlement-header">
+                        <h3 class="settlement-name">${settlement.name}</h3>
+                        <span class="settlement-race-badge">${raceBadge}</span>
+                    </div>
+                    
+                    <div class="settlement-leader">
+                        <span class="leader-label">
+                            <img src="assets/images/icons/icon_leader.gif" class="resized-image3"> 
+                            ЛИДЕР -
+                        </span>
+                        <span class="leader-name">${settlement.leader}</span>
+                    </div>
+                    
+                    <div class="settlement-location">
+                        <span class="location-icon">
+                            <img src="assets/images/icons/index_icon_settlements.gif" class="resized-image3">
+                        </span>
+                        <span class="location-text">${settlement.location}</span>
+                    </div>
+                    
+                    <div class="settlement-description">
+                        <p>${settlement.description}</p>
+                    </div>
+                    
+                    <div class="settlement-features">
+                        <h4>
+                            <img src="assets/images/icons/icon_peculiarities.gif" class="resized-image3"> 
+                            ОСОБЕННОСТИ
+                        </h4>
+                        <div class="features-list">
+                            ${settlement.features.map(feature => 
+                                `<span class="feature-tag">${feature}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="settlement-coordinates">
+                        <span class="coordinates-label">📌 КООРДИНАТЫ:</span>
+                        <code class="coordinates-value">${settlement.coordinates}</code>
+                    </div>
+                </div>
+                
+                <div class="settlement-footer">
+                    <span class="established-date">Основано ${settlement.established}</span>
+                    <button class="view-details-btn" data-settlement-id="${settlement.id}">
+                        Подробнее
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    getRaceBadge(race) {
+        const badges = {
+            'hell': 'Демоны',
+            'heaven': 'Ангелы',
+            'earth': 'Земные'
+        };
+        return badges[race] || 'Неизвестно';
+    }
+
+    getWarStatus(status) {
+        const statuses = {
+            'none': { text: 'Неизвестно', class: 'neutral' },
+            'peace': { text: 'Мирный статус', class: 'peace' },
+            'defensive': { text: 'В боевой готовности', class: 'defensive' },
+            'aggressive': { text: 'Агрессивный', class: 'aggressive' },
+            'neutral': { text: 'Нейтральный', class: 'neutral' }
+        };
         
-        DOM.filters.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.dataset.filter === 'all') {
-                btn.classList.add('active');
+        const statusInfo = statuses[status] || statuses.neutral;
+        return `<div class="war-status-badge ${statusInfo.class}">${statusInfo.text}</div>`;
+    }
+
+    setupCardInteractions() {
+        // Обработчики для кнопок "Подробнее"
+        document.querySelectorAll('.view-details-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const settlementId = parseInt(e.target.dataset.settlementId);
+                const settlement = this.settlements.find(s => s.id === settlementId);
+                
+                if (settlement) {
+                    this.showSettlementModal(settlement);
+                }
+            });
+        });
+
+        // Обработчики для баннеров (если есть)
+        document.querySelectorAll('.banner-image').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', (e) => {
+                const card = e.target.closest('.settlement-card');
+                const settlementId = parseInt(card.dataset.settlementId);
+                const settlement = this.settlements.find(s => s.id === settlementId);
+                
+                if (settlement) {
+                    this.showSettlementModal(settlement);
+                }
+            });
+        });
+    }
+
+    showSettlementModal(settlement) {
+        // Создаем модальное окно
+        const modal = document.createElement('div');
+        modal.className = 'settlement-modal active';
+        modal.innerHTML = this.createModalContent(settlement);
+        
+        document.body.appendChild(modal);
+        
+        // Закрытие по клику вне контента
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                this.closeModal(modal);
             }
         });
         
-        this.filterSettlements();
-    }
-
-    visitSettlement(id) {
-        const settlement = settlementsData.settlements.find(s => s.id == id);
-        if (settlement) {
-            this.showNotification(`🔄 Телепортация в ${settlement.name}...`, 'info');
+        // Кнопка закрытия
+        const closeBtn = modal.querySelector('.close-modal');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => this.closeModal(modal));
         }
-    }
-
-    showDetails(id) {
-        const settlement = settlementsData.settlements.find(s => s.id == id);
-        if (settlement) {
-            this.openModal(settlement);
+        
+        // Кнопка посещения
+        const visitBtn = modal.querySelector('.visit-btn');
+        if (visitBtn) {
+            visitBtn.addEventListener('click', () => this.showCoordinates(settlement));
         }
+        
+        this.currentModal = modal;
     }
 
-    copyCoordinates(id) {
-        const settlement = settlementsData.settlements.find(s => s.id == id);
-        if (settlement) {
-            const coords = `${settlement.coordinates.x} ${settlement.coordinates.y} ${settlement.coordinates.z}`;
-            navigator.clipboard.writeText(coords).then(() => {
-                this.showNotification('✅ Координаты скопированы!', 'success');
-            });
-        }
-    }
-
-    openModal(settlement) {
-        const modal = document.createElement('div');
-        modal.className = 'modal-overlay';
-        modal.innerHTML = `
+    createModalContent(settlement) {
+        const raceClass = settlement.race;
+        const raceBadge = this.getRaceBadge(settlement.race);
+        
+        return `
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>${settlement.name}</h2>
-                    <button class="modal-close">&times;</button>
+                    <div class="settlement-image-large ${raceClass}">
+                        ${settlement.banner ? 
+                            `<img src="${settlement.banner}" alt="${settlement.name}" style="width: 100%; height: 100%; border-radius: 16px;">` :
+                            `<div style="font-size: 2rem;">${settlement.name.charAt(0)}</div>`
+                        }
+                    </div>
+                    <div class="settlement-info">
+                        <h2>${settlement.name}</h2>
+                        <div class="settlement-level">${settlement.level} • ${raceBadge}</div>
+                        <button class="close-modal">&times;</button>
+                    </div>
                 </div>
+                
                 <div class="modal-body">
-                    <div class="modal-image">
-                        <img src="${settlement.image}" alt="${settlement.name}">
-                    </div>
-                    <div class="modal-details">
-                        <div class="detail-grid">
-                            <div class="detail-item">
-                                <span class="label">Лидер:</span>
-                                <span class="value">${settlement.leader}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="label">Население:</span>
-                                <span class="value">${settlement.population} жителей</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="label">Уровень:</span>
-                                <span class="value">${settlement.level}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="label">Основано:</span>
-                                <span class="value">${this.formatDate(settlement.established)}</span>
-                            </div>
+                    <div class="settlement-stats-detailed">
+                        <div class="detail-item">
+                            <h4>Население</h4>
+                            <div class="stat-value">${settlement.population} жителей</div>
                         </div>
-                        
-                        <div class="residents-section">
-                            <h4>Жители:</h4>
-                            <div class="residents-list">
-                                ${settlement.residents.map(resident => 
-                                    `<span class="resident-tag">${resident}</span>`
-                                ).join('')}
-                            </div>
+                        <div class="detail-item">
+                            <h4>Лидер</h4>
+                            <div class="leader-info">${settlement.leader}</div>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Основано</h4>
+                            <div class="established-date">${settlement.established}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="settlement-description-detailed">
+                        <h4>Описание</h4>
+                        <p>${settlement.description}</p>
+                    </div>
+                    
+                    <div class="settlement-features-detailed">
+                        <h4>Особенности</h4>
+                        <div class="features-grid-detailed">
+                            ${settlement.features.map(feature => `
+                                <div class="feature-item-detailed">
+                                    <div class="feature-icon">✓</div>
+                                    <div class="feature-content">
+                                        <strong>${feature}</strong>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="settlement-coordinates-detailed">
+                        <h4>Координаты</h4>
+                        <div class="coordinates-display">
+                            <code>${settlement.coordinates}</code>
                         </div>
                     </div>
                 </div>
+                
                 <div class="modal-footer">
-                    <button class="btn-primary" onclick="app.visitSettlement(${settlement.id})">
-                        🎮 Телепортироваться
-                    </button>
-                    <button class="btn-secondary" onclick="app.closeModal()">
-                        Закрыть
-                    </button>
+                    <button class="visit-btn">Посетить</button>
+                    <button class="share-btn">Поделиться</button>
                 </div>
             </div>
         `;
+    }
 
-        document.body.appendChild(modal);
+    closeModal(modal) {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            if (modal.parentNode) {
+                modal.parentNode.removeChild(modal);
+            }
+        }, 300);
+    }
+
+    showCoordinates(settlement) {
+        this.closeModal(this.currentModal);
         
-        modal.querySelector('.modal-close').onclick = () => this.closeModal();
-        modal.onclick = (e) => {
-            if (e.target === modal) this.closeModal();
-        };
-    }
-
-    closeModal() {
-        const modal = document.querySelector('.modal-overlay');
-        if (modal) modal.remove();
-    }
-
-    showNotification(message, type = 'info') {
         const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
+        notification.className = 'visit-notification active';
         notification.innerHTML = `
             <div class="notification-content">
-                <span>${message}</span>
+                <h4>Координаты поселения</h4>
+                <pre>${settlement.coordinates}</pre>
+                <p>Скопируйте координаты для использования в игре</p>
+                <div class="notification-buttons">
+                    <button class="copy-coords-btn">Скопировать</button>
+                    <button class="close-notification">Закрыть</button>
+                </div>
             </div>
         `;
-
+        
         document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
-
-        setTimeout(() => {
-            notification.classList.remove('show');
+        
+        // Копирование координат
+        const copyBtn = notification.querySelector('.copy-coords-btn');
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(settlement.coordinates)
+                .then(() => this.showToast('Координаты скопированы!'))
+                .catch(() => this.showToast('Не удалось скопировать координаты'));
+        });
+        
+        // Закрытие уведомления
+        const closeBtn = notification.querySelector('.close-notification');
+        closeBtn.addEventListener('click', () => {
+            notification.classList.remove('active');
             setTimeout(() => {
                 if (notification.parentNode) {
-                    notification.remove();
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        });
+        
+        // Закрытие по клику вне
+        notification.addEventListener('click', (e) => {
+            if (e.target === notification) {
+                notification.classList.remove('active');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }
+        });
+    }
+
+    showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification show';
+        toast.textContent = message;
+        
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
                 }
             }, 300);
         }, 3000);
     }
 
-    initMap() {
-        // Простая инициализация карты
-        const mapPoints = document.querySelectorAll('.map-point');
-        mapPoints.forEach(point => {
-            point.addEventListener('click', () => {
-                const settlementName = point.dataset.settlement;
-                this.focusOnSettlement(settlementName);
-            });
+    showError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.innerHTML = `
+            <div class="error-content">
+                <h4>Ошибка</h4>
+                <p>${message}</p>
+                <button class="retry-btn">Повторить</button>
+            </div>
+        `;
+        
+        document.body.appendChild(errorDiv);
+        
+        const retryBtn = errorDiv.querySelector('.retry-btn');
+        retryBtn.addEventListener('click', () => {
+            errorDiv.remove();
+            this.init();
         });
     }
 
-    focusOnSettlement(name) {
-        const settlement = settlementsData.settlements.find(s => s.name === name);
-        if (settlement) {
-            const card = document.querySelector(`[data-id="${settlement.id}"]`);
-            if (card) {
-                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                card.classList.add('highlight');
-                setTimeout(() => card.classList.remove('highlight'), 2000);
-            }
+    handleGlobalClick(e) {
+        // Закрытие тултипов при клике вне
+        if (this.currentTooltip && !e.target.closest('.map-point')) {
+            this.hideMapTooltip();
         }
     }
 
-    // Вспомогательные методы
-    getWarStatusIcon(status) {
-        const icons = {
-            'peace': '🕊️',
-            'defensive': '🏹', 
-            'aggressive': '⚔️',
-            'neutral': '⚖️'
-        };
-        return icons[status] || '⚖️';
+    // Публичные методы для внешнего использования
+    refreshData() {
+        this.loadSettlementsData().then(() => {
+            this.filterSettlements();
+            this.showToast('Данные обновлены');
+        });
     }
 
-    getRaceIcon(race) {
-        const icons = {
-            'hell': '🔥',
-            'heaven': '👼',
-            'earth': '🌍'
-        };
-        return icons[race] || '🏰';
+    getSettlementById(id) {
+        return this.settlements.find(s => s.id === id);
     }
 
-    getRaceName(race) {
-        const names = {
-            'hell': 'Демоны',
-            'heaven': 'Ангелы',
-            'earth': 'Земные'
-        };
-        return names[race] || 'Неизвестно';
+    getSettlementsByRace(race) {
+        return this.settlements.filter(s => s.race === race);
     }
 
-    formatDate(dateString) {
-        return new Date(dateString).toLocaleDateString('ru-RU');
+    // Деструктор для очистки
+    destroy() {
+        this.hideMapTooltip();
+        
+        if (this.currentModal) {
+            this.closeModal(this.currentModal);
+        }
+        
+        // Удаляем все обработчики
+        document.removeEventListener('click', this.handleGlobalClick);
+        
+        this.isInitialized = false;
     }
 }
 
-// Инициализация приложения
-const app = new SettlementsApp();
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    // Проверяем, находимся ли мы на странице поселений
+    if (document.querySelector('.settlements-section')) {
+        window.settlementsManager = new SettlementsManager();
+        
+        // Глобальные методы для отладки
+        window.debugSettlements = {
+            refresh: () => window.settlementsManager.refreshData(),
+            getData: () => window.settlementsManager.settlements,
+            filter: (type) => window.settlementsManager.setFilter(type)
+        };
+    }
+});
+
+// Оптимизации для производительности
+let resizeTimeout;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        if (window.settlementsManager && window.settlementsManager.currentTooltip) {
+            window.settlementsManager.hideMapTooltip();
+        }
+    }, 250);
+});
+
+// Preload критических ресурсов
+if (document.querySelector('.settlements-section')) {
+    const criticalImages = [
+        'assets/images/icons/index_icon_players.gif',
+        'assets/images/icons/icon_leader.gif',
+        'assets/images/icons/index_icon_settlements.gif',
+        'assets/images/icons/icon_peculiarities.gif'
+    ];
+    
+    criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+// Service Worker для кэширования (опционально)
+if ('serviceWorker' in navigator && document.querySelector('.settlements-section')) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(registration => console.log('SW registered'))
+        .catch(error => console.log('SW registration failed'));
+}
