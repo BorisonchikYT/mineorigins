@@ -933,6 +933,18 @@ function getLocalPlayersData() {
           },
           {
             "id": 3,
+            "name": "ED4MKM_AERO",
+            "avatar": "assets/images/icons/ERROR.png",
+            "race": "heaven",
+            "description": "Золотой Ангельский Лис — лидер ангелов.\nЯвляется самым первым участником проекта (еще со временем Black Alpha). Сохраняет нейтралитет между всеми фракциями, наблюдает за порядком на сервере. Очень любит лис.",
+            "joinDate": "2025-10-18",
+            "socials": {
+                "discord": "last_troid_0079",
+                "telegram": "@ED4MKM_AERO"
+            }
+          },
+          {
+            "id": 4,
             "name": "amidamaru3434",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "heaven",
@@ -944,7 +956,7 @@ function getLocalPlayersData() {
             }
           },
           {
-            "id": 4,
+            "id": 5,
             "name": "darcklord",
             "avatar": "assets/images/icons/darcklord.png",
             "race": "earth",
@@ -956,7 +968,7 @@ function getLocalPlayersData() {
             }
           },
           {
-            "id": 5,
+            "id": 6,
             "name": "ddanilkaaaa",
             "avatar": "assets/images/icons/ERROR.png",
             "race": "earth",
@@ -968,7 +980,7 @@ function getLocalPlayersData() {
             }
           },
           {
-            "id": 6,
+            "id": 7,
             "name": "deace",
             "avatar": "assets/images/icons/deace.png",
             "race": "heaven",
@@ -977,18 +989,6 @@ function getLocalPlayersData() {
             "socials": {
                 "discord": "winchikvpotoke_36739",
                 "telegram": "@Zkrtssikit"
-            }
-          },
-          {
-            "id": 7,
-            "name": "ED4MKM_AERO",
-            "avatar": "assets/images/icons/ERROR.png",
-            "race": "heaven",
-            "description": "Золотой Ангельский Лис — лидер ангелов.\nЯвляется самым первым участником проекта (еще со временем Black Alpha). Сохраняет нейтралитет между всеми фракциями, наблюдает за порядком на сервере. Очень любит лис.",
-            "joinDate": "2025-10-18",
-            "socials": {
-                "discord": "last_troid_0079",
-                "telegram": "@ED4MKM_AERO"
             }
           },
           {
