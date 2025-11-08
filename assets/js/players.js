@@ -1145,11 +1145,15 @@ function updatePlayersStats(players) {
     const hellElement = document.querySelector('.stat-badge.hell .stat-number2');
     const heavenElement = document.querySelector('.stat-badge.heaven .stat-number2');
     const earthElement = document.querySelector('.stat-badge.earth .stat-number2');
+    const timerElement = document.querySelector('.stat-badge.timer .stat-number2');
+    const iiElement = document.querySelector('.stat-badge.ii .stat-number2');
     const totalElement = document.querySelector('.stat-badge.total .stat-number2');
     
     if (hellElement) hellElement.textContent = raceCounts.hell;
     if (heavenElement) heavenElement.textContent = raceCounts.heaven;
     if (earthElement) earthElement.textContent = raceCounts.earth;
+    if (timerElement) timerElement.textContent = raceCounts.timer;
+    if (iiElement) iiElement.textContent = raceCounts.ii;
     if (totalElement) totalElement.textContent = raceCounts.total;
 }
 
@@ -1193,7 +1197,9 @@ function getRaceName(race) {
     const races = {
         hell: 'Демон',
         heaven: 'Ангел',
-        earth: 'Земной'
+        earth: 'Земной',
+        timer: 'Хранитель Времени',
+        ii: 'Чужой',
     };
     return races[race] || 'Неизвестно';
 }

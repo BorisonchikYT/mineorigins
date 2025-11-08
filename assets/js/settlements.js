@@ -356,7 +356,9 @@ class SettlementsManager {
         const badges = {
             'hell': 'Демоны',
             'heaven': 'Ангелы',
-            'earth': 'Земные'
+            'earth': 'Земные',
+            'timer': 'Хранитель Времени',
+            'ii': 'Чужой',
         };
         return badges[race] || 'Неизвестно';
     }

@@ -19,6 +19,14 @@
     --earth-glow: #aed581;
     --earth-dark: #558b2f;
     
+    --timer-color: #604ac3;
+    --timer-glow: #af81d5;
+    --timer-dark: #762f8b;
+    
+    --ii-color: #c37a4a;
+    --ii-glow: rgb(213, 167, 129);
+    --ii-dark: #8b2f46;
+    
     /* Текст */
     --text-primary: #d7e1ff;
     --text-secondary: #b0b0b0;
@@ -137,6 +145,24 @@ body {
     width: 350px;
     height: 350px;
     background: radial-gradient(circle, var(--earth-color) 0%, transparent 70%);
+    bottom: 10%;
+    left: 50%;
+    animation-delay: -14s;
+}
+
+.timer-island {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, var(--timer-color) 0%, transparent 70%);
+    bottom: 10%;
+    left: 50%;
+    animation-delay: -14s;
+}
+
+.ii-island {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, var(--ii-color) 0%, transparent 70%);
     bottom: 10%;
     left: 50%;
     animation-delay: -14s;
@@ -659,6 +685,16 @@ body {
     }
 
     .earth-island {
+        width: 220px;
+        height: 220px;
+    }
+
+    .timer-island {
+        width: 220px;
+        height: 220px;
+    }
+
+    .ii-island {
         width: 220px;
         height: 220px;
     }

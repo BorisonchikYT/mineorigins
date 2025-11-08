@@ -431,6 +431,14 @@
     background: var(--earth-color);
 }
 
+.map-point.ii {
+    background: var(--ii-color);
+}
+
+.map-point.timer {
+    background: var(--timer-color);
+}
+
 .map-point.glhell {
     background: linear-gradient(45deg, var(--hell-color), #ff6b6b);
     border: 3px solid #ffd700;
@@ -571,9 +579,13 @@
 .legend-color.hell { background: var(--hell-color); }
 .legend-color.heaven { background: var(--heaven-color); }
 .legend-color.earth { background: var(--earth-color); }
+.legend-color.timer { background: var(--timer-color); }
+.legend-color.ii { background: var(--ii-color); }
 .legend-color.glhell { background: linear-gradient(45deg, var(--hell-color), #ff6b6b); }
 .legend-color.glheaven { background: linear-gradient(45deg, var(--heaven-color), #4fc3f7); }
 .legend-color.glearth { background: linear-gradient(45deg, var(--earth-color), #8bc34a); }
+.legend-color.gltimer { background: linear-gradient(45deg, var(--gltimer-color), #a14ac3); }
+.legend-color.glii { background: linear-gradient(45deg, var(--glii-color), #c34a78); }
 
 /* Быстрая информация */
 .quick-settlement-info {
@@ -608,6 +620,14 @@
 .quick-settlement-info.earth-theme {
     border-color: var(--earth-color);
     background: linear-gradient(135deg, rgba(15, 15, 23, 0.95), rgba(26, 42, 26, 0.95));
+}
+.quick-settlement-info.timer-theme {
+    border-color: var(--timer-color);
+    background: linear-gradient(135deg, rgba(15, 15, 23, 0.95), rgba(38, 26, 42, 0.95));
+}
+.quick-settlement-info.ii-theme {
+    border-color: var(--ii-color);
+    background: linear-gradient(135deg, rgba(15, 15, 23, 0.95), rgba(42, 26, 31, 0.95));
 }
 
 .info-content {
@@ -684,6 +704,16 @@
 .settlement-card.earth-settlement:hover {
     border-color: var(--earth-color);
     box-shadow: 0 15px 40px rgba(139, 195, 74, 0.3);
+}
+
+.settlement-card.timer-settlement:hover {
+    border-color: var(--timer-color);
+    box-shadow: 0 15px 40px rgba(151, 74, 195, 0.3);
+}
+
+.settlement-card.ii-settlement:hover {
+    border-color: var(--ii-color);
+    box-shadow: 0 15px 40px rgba(195, 74, 124, 0.3);
 }
 
 /* Визуальная часть поселения */
@@ -969,6 +999,16 @@
 .settlement-image-large.earth {
     background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
     border-color: var(--earth-glow);
+}
+
+.settlement-image-large.timer {
+    background: linear-gradient(135deg, var(--timer-dark), var(--timer-color));
+    border-color: var(--timer-glow);
+}
+
+.settlement-image-large.ii {
+    background: linear-gradient(135deg, var(--ii-dark), var(--ii-color));
+    border-color: var(--ii-glow);
 }
 
 .settlement-info {
@@ -1425,6 +1465,16 @@
     box-shadow: 0 0 20px var(--earth-color);
 }
 
+.map-point-large.timer {
+    background: var(--timer-color);
+    box-shadow: 0 0 20px var(--timer-color);
+}
+
+.map-point-large.ii {
+    background: var(--ii-color);
+    box-shadow: 0 0 20px var(--ii-color);
+}
+
 .point-glow-large {
     position: absolute;
     top: 0;
@@ -1793,6 +1843,16 @@
 .leader-avatar.earth {
     background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
     border-color: var(--earth-glow);
+}
+
+.leader-avatar.timer {
+    background: linear-gradient(135deg, var(--timer-dark), var(--timer-color));
+    border-color: var(--timer-glow);
+}
+
+.leader-avatar.ii {
+    background: linear-gradient(135deg, var(--ii-dark), var(--ii-color));
+    border-color: var(--ii-glow);
 }
 
 .leader-details h5 {
@@ -2676,6 +2736,18 @@
     background: rgba(139, 195, 74, 0.2);
     border-color: var(--earth-color);
     color: var(--earth-color);
+}
+
+.settlement-race-badge.timer {
+    background: rgba(167, 74, 195, 0.2);
+    border-color: var(--timer-color);
+    color: var(--timer-color);
+}
+
+.settlement-race-badge.ii {
+    background: rgba(195, 74, 110, 0.2);
+    border-color: var(--ii-color);
+    color: var(--ii-color);
 }
 
 /* Модальное окно - дополнительные стили */

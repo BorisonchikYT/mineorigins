@@ -55,6 +55,14 @@
     border-color: var(--earth-color);
 }
 
+.stat-badge.timer {
+    border-color: var(--timer-color);
+}
+
+.stat-badge.ii {
+    border-color: var(--ii-color);
+}
+
 .stat-badge.glhell {
     border-color: var(--hell-color);
 }
@@ -118,6 +126,20 @@
     color: transparent;
 }
 
+.stat-badge.timer .stat-number {
+    background: linear-gradient(45deg, var(--timer-color), var(--timer-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.ii .stat-number {
+    background: linear-gradient(45deg, var(--ii-color), var(--ii-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
 .stat-badge.glhell .stat-number {
     background: linear-gradient(45deg, var(--hell-color), var(--hell-glow));
     -webkit-background-clip: text;
@@ -170,6 +192,20 @@
 
 .stat-badge.earth .stat-number2 {
     background: linear-gradient(45deg, var(--earth-color), var(--earth-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.timer .stat-number2 {
+    background: linear-gradient(45deg, var(--timer-color), var(--timer-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.ii .stat-number2 {
+    background: linear-gradient(45deg, var(--ii-color), var(--ii-glow));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -329,6 +365,16 @@
         border-color: var(--earth-color);
         box-shadow: 0 15px 40px rgba(139, 195, 74, 0.3);
     }
+    
+    .player-card.timer-race:hover {
+        border-color: var(--timer-color);
+        box-shadow: 0 15px 40px rgba(151, 74, 195, 0.3);
+    }
+    
+    .player-card.ii-race:hover {
+        border-color: var(--ii-color);
+        box-shadow: 0 15px 40px rgba(195, 74, 114, 0.3);
+    }
 
     .player-card.glhell-race:hover {
         border-color: var(--hell-color);
@@ -444,6 +490,16 @@
     
     .race-earth {
         background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+        color: white;
+    }
+
+    .race-timer {
+        background: linear-gradient(135deg, var(--timer-dark), var(--timer-color));
+        color: white;
+    }
+
+    .race-ii {
+        background: linear-gradient(135deg, var(--ii-dark), var(--ii-color));
         color: white;
     }
 
@@ -597,6 +653,16 @@
     .earth-theme {
         border-color: var(--earth-color);
         background: linear-gradient(135deg, var(--mc-dark), #7dff7d);
+    }
+    
+    .timer-theme {
+        border-color: var(--timer-color);
+        background: linear-gradient(135deg, var(--mc-dark), #da7dff);
+    }
+    
+    .ii-theme {
+        border-color: var(--ii-color);
+        background: linear-gradient(135deg, var(--mc-dark), #ff7db3);
     }
 
     .glhell-theme {
@@ -997,6 +1063,16 @@
     .player-avatar-large.earth {
         background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
         border-color: var(--earth-glow);
+    }
+    
+    .player-avatar-large.timer {
+        background: linear-gradient(135deg, var(--timer-dark), var(--timer-color));
+        border-color: var(--timer-glow);
+    }
+    
+    .player-avatar-large.ii {
+        background: linear-gradient(135deg, var(--ii-dark), var(--ii-color));
+        border-color: var(--ii-glow);
     }
     
     .player-info {

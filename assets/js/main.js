@@ -667,7 +667,7 @@ function createPlayerElement(playerName, playerInfo) {
 
 // Определение расы игрока по имени (fallback)
 function determinePlayerRace(playerName) {
-    const races = ['hell', 'heaven', 'earth'];
+    const races = ['hell', 'heaven', 'earth', 'timer', 'ii'];
     
     // Простая эвристика по имени игрока
     if (playerName.toLowerCase().includes('nether') || 
@@ -694,7 +694,9 @@ function getRaceName(race) {
     const races = {
         hell: 'Демон',
         heaven: 'Ангел',
-        earth: 'Земной'
+        earth: 'Земной',
+        timer: 'Хранитель Времени',
+        ii: 'Чужой',
     };
     return races[race] || 'Неизвестно';
 }

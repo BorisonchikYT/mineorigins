@@ -178,6 +178,16 @@
     box-shadow: 0 15px 40px rgba(139, 195, 74, 0.3);
 }
 
+.timer-race:hover {
+    border-color: var(--timer-color);
+    box-shadow: 0 15px 40px rgba(141, 74, 195, 0.3);
+}
+
+.ii-race:hover {
+    border-color: var(--ii-color);
+    box-shadow: 0 15px 40px rgba(195, 74, 110, 0.3);
+}
+
 .race-visual {
     position: relative;
     width: 80px;
@@ -222,6 +232,14 @@
 
 .earth-race .race-glow {
     background: radial-gradient(circle, var(--earth-glow) 0%, transparent 70%);
+}
+
+.timer-race .race-glow {
+    background: radial-gradient(circle, var(--timer-glow) 0%, transparent 70%);
+}
+
+.ii-race .race-glow {
+    background: radial-gradient(circle, var(--ii-glow) 0%, transparent 70%);
 }
 
 .race-card:hover .race-icon {
