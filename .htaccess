@@ -1,19 +1,12 @@
-# Включить перенаправления
 RewriteEngine On
-
-# Обработка ошибок
 ErrorDocument 404 /error.html
 ErrorDocument 500 /error.html
 ErrorDocument 403 /error.html
 ErrorDocument 400 /error.html
-
-# Кэширование для статических файлов
 <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico)$">
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
 </FilesMatch>
-
-# Сжатие
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
     AddOutputFilterByType DEFLATE application/javascript text/javascript
