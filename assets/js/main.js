@@ -98,7 +98,7 @@ async loadPlayersData() {
               {
                 "id": 3,
                 "name": "ED4MKM_AERO",
-                "avatar": "assets/images/icons/ERROR.png",
+                "avatar": "assets/images/icons/ED4MKM_AERO.jpg",
                 "race": "heaven",
                 "description": "◈ Золотой Ангельский Лис — лидер ангелов.\nЯвляется самым первым участником проекта (еще со временем Black Alpha). Сохраняет нейтралитет между всеми фракциями, наблюдает за порядком на сервере. Очень любит лис.",
                 "joinDate": "2025-10-18",
@@ -798,7 +798,7 @@ function updateServerChart(serverData) {
     chartContainer.innerHTML = `
         <div class="chart-real-time">
             <div class="chart-header">
-                <h4>📊 Статистика онлайна</h4>
+                <h4><img src="assets/images/icons/stats.gif" class="resized-image" alt="Игроки" onerror="this.innerHTML='👥'"> Статистика онлайна</h4>
                 <div class="current-online">
                     <span class="online-count">${currentOnline}</span>
                     <span class="online-max">/${maxPlayers}</span>
