@@ -934,7 +934,7 @@ function getLocalPlayersData() {
           {
             "id": 3,
             "name": "ED4MKM_AERO",
-            "avatar": "assets/images/icons/ED4MKM_AERO.jpg",
+            "avatar": "assets/images/icons/ED4MKM_AERO.png",
             "race": "heaven",
             "description": "◈ Золотой Ангельский Лис — лидер ангелов.\nЯвляется самым первым участником проекта (еще со временем Black Alpha). Сохраняет нейтралитет между всеми фракциями, наблюдает за порядком на сервере. Очень любит лис.",
             "joinDate": "2025-10-18",
