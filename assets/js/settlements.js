@@ -64,7 +64,7 @@ class SettlementsManager {
                 features: ["Мы дружим с ФБ", "Мы поддерживаем со всеми расами связь"],
                 coordinates: "212 80 495",
                 established: "11.10.25",
-                banner: "assets/images/icons/settlements/no.gif",
+                banner: "assets/images/icons/icon_demon.png",
                 warStatus: "defensive"
             },
             {
@@ -79,7 +79,7 @@ class SettlementsManager {
                 features: ["Отсутствует"],
                 coordinates: "1500 64 -800",
                 established: "13.10.25",
-                banner: "assets/images/icons/settlements/no.gif",
+                banner: "assets/images/icons/icon_terrestrial.gif",
                 warStatus: "none"
             },
             {
@@ -94,7 +94,7 @@ class SettlementsManager {
                 features: ["Отсутствует"],
                 coordinates: "450 70 600",
                 established: "14.10.25",
-                banner: "assets/images/icons/settlements/no.gif",
+                banner: "assets/images/icons/icon_terrestrial.gif",
                 warStatus: "none"
             },
             {
@@ -109,7 +109,7 @@ class SettlementsManager {
                 features: ["Отсутствует"],
                 coordinates: "100 120 -200",
                 established: "15.10.25",
-                banner: "assets/images/icons/settlements/no.gif",
+                banner: "assets/images/icons/icon_angel.gif",
                 warStatus: "none"
             },
             {
@@ -124,7 +124,7 @@ class SettlementsManager {
                 features: ["Северное расположение"],
                 coordinates: "-800 70 -1500",
                 established: "16.10.25",
-                banner: "assets/images/icons/settlements/no.gif",
+                banner: "assets/images/icons/icon_terrestrial.gif",
                 warStatus: "none"
             },
             {
@@ -139,7 +139,7 @@ class SettlementsManager {
                 features: ["Технологии", "Механизмы"],
                 coordinates: "1200 65 1800",
                 established: "17.10.25",
-                banner: "assets/images/icons/settlements/no.gif",
+                banner: "assets/images/icons/icon_terrestrial.gif",
                 warStatus: "none"
             }
         ];
