@@ -581,7 +581,7 @@
                         ВСЕ
                     </button>
                     <button class="settlement-filter-btn" data-filter="hell">
-                        <span class="filter-icon"><img src="assets/images/icons/icon_demon.gif" class="resized-image"></span>
+                        <span class="filter-icon"><img src="assets/images/icons/icon_demon.png" class="resized-image"></span>
                         ДЕМОНЫ
                     </button>
                     <button class="settlement-filter-btn" data-filter="heaven">
@@ -593,7 +593,7 @@
                         ЗЕМНЫЕ
                     </button>
                     <!-- <button class="settlement-filter-btn" data-filter="timer">
-                        <span class="filter-icon"><img src="assets/images/icons/Timer.gif" class="resized-image"></span>
+                        <span class="filter-icon"><img src="assets/images/icons/Timer.png" class="resized-image"></span>
                         ХРАНИТЕЛИ
                     </button>
                     <button class="settlement-filter-btn" data-filter="ii">
@@ -635,6 +635,7 @@
         </div>
     </footer>
 
+    <script defer src="assets/js/ad/ad.js"></script>
     <script defer src="assets/js/main.js"></script>
     <script defer src="assets/js/stats.js"></script>
     <script defer src="assets/js/settlements.js"></script>
@@ -653,5 +654,45 @@
             }
         };
     </script>
+    <script>
+        // Минимальная версия для проверки статуса
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM загружен, проверяем статус сервера...');
+            
+            // Простая функция обновления статуса
+            async function checkServerStatus() {
+                const statusIndicator = document.querySelector('.status-indicator');
+                const statusText = document.querySelector('.status-text');
+                
+                if (!statusIndicator || !statusText) {
+                    console.log('Элементы статуса не найдены');
+                    return;
+                }
+                
+                try {
+                    // Простая проверка через API
+                    const response = await fetch('https://api.mcsrvstat.us/3/95.216.92.76:25835');
+                    const data = await response.json();
+                    
+                    if (data.online) {
+                        statusIndicator.className = 'status-indicator online';
+                        statusText.textContent = 'ОНЛАЙН';
+                        console.log('Сервер онлайн');
+                    } else {
+                        statusIndicator.className = 'status-indicator offline';
+                        statusText.textContent = 'ОФФЛАЙН';
+                        console.log('Сервер оффлайн');
+                    }
+                } catch (error) {
+                    console.error('Ошибка проверки статуса:', error);
+                    statusIndicator.className = 'status-indicator error';
+                    statusText.textContent = 'ОШИБКА';
+                }
+            }
+            
+            // Запускаем проверку
+            checkServerStatus();
+        });
+        </script>
 </body>
 </html>
