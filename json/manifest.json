@@ -1,0 +1,121 @@
+{
+    "name": "ᴍɪɴᴇ ᴏʀɪɢɪɴs",
+    "short_name": "MineOrigins",
+    "description": "Лучший сервер Minecraft с расами и происхождениями",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f0f17",
+    "theme_color": "#7e57c2",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "ru",
+    "categories": ["games", "entertainment"],
+    "icons": [
+      {
+        "src": "assets/images/MineOrigins.png",
+        "sizes": "55x55",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "assets/images/icons/index_icon_house.png",
+        "sizes": "35x35",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "assets/images/icons/icon_discord.gif",
+        "sizes": "50x50",
+        "type": "image/gif",
+        "purpose": "any"
+      },
+      {
+        "src": "assets/images/icons/icon_telegram.gif",
+        "sizes": "50x50",
+        "type": "image/gif",
+        "purpose": "any"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "assets/images/gallery/nature/osfon1.jpg",
+        "sizes": "1280x720",
+        "type": "image/jpeg",
+        "platform": "wide",
+        "label": "Главная страница сервера"
+      },
+      {
+        "src": "assets/images/gallery/builds/build1.jpg",
+        "sizes": "1280x720",
+        "type": "image/jpeg",
+        "platform": "wide",
+        "label": "Постройки сервера"
+      }
+    ],
+    "shortcuts": [
+      {
+        "name": "Игроки онлайн",
+        "short_name": "Игроки",
+        "description": "Посмотреть список игроков онлайн",
+        "url": "/players.html",
+        "icons": [
+          {
+            "src": "assets/images/icons/index_icon_players.gif",
+            "sizes": "35x35"
+          }
+        ]
+      },
+      {
+        "name": "Поселения",
+        "short_name": "Поселения",
+        "description": "Карта поселений сервера",
+        "url": "/settlements.html",
+        "icons": [
+          {
+            "src": "assets/images/icons/index_icon_settlements.gif",
+            "sizes": "35x35"
+          }
+        ]
+      },
+      {
+        "name": "Галерея",
+        "short_name": "Галерея",
+        "description": "Галерея сервера",
+        "url": "/gallery.html",
+        "icons": [
+          {
+            "src": "assets/images/icons/index_icon_gallery.gif",
+            "sizes": "35x35"
+          }
+        ]
+      },
+      {
+        "name": "FAQ",
+        "short_name": "FAQ",
+        "description": "Часто задаваемые вопросы",
+        "url": "/faq.html",
+        "icons": [
+          {
+            "src": "assets/images/icons/icon_search.gif",
+            "sizes": "35x35"
+          }
+        ]
+      }
+    ],
+    "related_applications": [
+      {
+        "platform": "web",
+        "url": "https://mineorigins.netlify.app/"
+      }
+    ],
+    "prefer_related_applications": false,
+    "features": [
+      "Cross Platform",
+      "fast",
+      "simple"
+    ],
+    "display_override": [
+      "window-controls-overlay",
+      "minimal-ui"
+    ]
+  }
