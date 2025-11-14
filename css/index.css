@@ -1,0 +1,1773 @@
+/* Герой секция */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.title-wrapper {
+    text-align: left;
+}
+
+.main-title {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.title-word {
+    display: block;
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: titleGlow 3s infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 1px -1px 1px rgba(189, 189, 189, 0.5);
+    }
+    100% {
+        text-shadow: 
+            1px -1px 1px var(--text-accent),
+            -1px 1px -1px var(--mc-accent),
+            1px -1px 1px rgba(12, 12, 12, 0.5);
+    }
+}
+
+.title-subtext {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.fabric-label, .version-badge {
+    background: linear-gradient(45deg, var(--mc-accent), #5e35b1);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.server-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 2rem;
+    border-left: 3px solid var(--mc-accent);
+}
+
+/* Статистика сервера */
+.server-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left var(--transition-slow);
+}
+
+.stat-card:hover::before {
+    left: 100%;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--mc-accent);
+    box-shadow: 0 10px 30px rgba(126, 87, 194, 0.2);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.stat-data {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Кнопки действий */
+.action-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Улучшенный дизайн races-showcase */
+.races-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    padding: 2rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 50%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.races-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--mc-accent), 
+        transparent);
+}
+
+.races-showcase::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--mc-accent) 0%, transparent 70%);
+    opacity: 0.03;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.races-showcase {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    padding: 2rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 50%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.races-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--mc-accent), 
+        transparent);
+}
+
+.races-showcase::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--mc-accent) 0%, transparent 70%);
+    opacity: 0.03;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+/* Улучшенный дизайн races-showcase с сеткой 2 колонки и широким видом */
+.races-showcase {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    position: relative;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 50%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    min-height: 600px;
+}
+
+.races-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--mc-accent), 
+        transparent);
+}
+
+.races-showcase::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--mc-accent) 0%, transparent 70%);
+    opacity: 0.03;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.race-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    min-height: 200px;
+    width: 100%;
+}
+
+.race-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.05), 
+        transparent);
+    transition: left var(--transition-slow);
+}
+
+.race-card:hover::before {
+    left: 100%;
+}
+
+.race-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Улучшенные стили для визуальной части */
+.race-visual {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.race-icon {
+    font-size: 3.5rem;
+    z-index: 3;
+    position: relative;
+    transition: all var(--transition-slow);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+}
+
+.race-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all var(--transition-slow);
+    opacity: 0;
+    z-index: 2;
+}
+
+.race-card:hover .race-glow {
+    width: 140px;
+    height: 140px;
+    opacity: 0.4;
+}
+
+/* Улучшенная информация о расе */
+.race-info {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+}
+
+.race-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+}
+
+.race-info p {
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+    position: relative;
+    padding-left: 1.2rem;
+    font-weight: 500;
+}
+
+.race-info p::before {
+    content: '📍';
+    position: absolute;
+    left: -0.2rem;
+    opacity: 0.8;
+}
+
+.race-stats {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.race-stats .stat {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+    font-weight: 600;
+}
+
+.race-stats .stat:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Кнопка подробнее */
+.race-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.details-btn {
+    background: linear-gradient(45deg, var(--mc-accent), #5e35b1);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    color: white;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    min-width: 140px;
+}
+
+.details-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.details-btn:hover::before {
+    left: 100%;
+}
+
+.details-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(126, 87, 194, 0.4);
+}
+
+.race-card:hover .race-icon {
+    transform: scale(1.3) rotate(5deg);
+    filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.7));
+}
+
+/* Добавь этот стиль для еще более широкого расположения */
+.hero-section .races-showcase {
+    grid-column: 1 / -1; /* Занимает всю ширину */
+    margin-top: 2rem;
+}
+
+/* Или альтернативный вариант - сделать races-showcase отдельным блоком */
+.races-section {
+    grid-column: 1 / -1;
+    margin-top: 3rem;
+}
+
+/* Адаптивность для улучшенного дизайна */
+@media (max-width: 1200px) {
+    .races-showcase {
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+    
+    .race-card {
+        padding: 1.5rem;
+        gap: 1.5rem;
+        min-height: 180px;
+    }
+    
+    .race-visual {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .race-info h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .races-showcase {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    
+    .race-card {
+        min-height: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .races-showcase {
+        padding: 1.5rem;
+        gap: 1rem;
+        border-radius: 20px;
+    }
+    
+    .race-card {
+        padding: 1.5rem;
+        min-height: auto;
+        flex-direction: column;
+        text-align: center;
+        gap: 1.2rem;
+    }
+    
+    .race-card:hover {
+        transform: translateY(-5px) scale(1.02);
+    }
+    
+    .race-visual {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .race-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .race-stats {
+        justify-content: center;
+    }
+    
+    .race-stats .stat {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+    }
+    
+    .race-actions {
+        justify-content: center;
+    }
+    
+    .details-btn {
+        min-width: 120px;
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .races-showcase {
+        padding: 1.2rem;
+        gap: 0.8rem;
+    }
+    
+    .race-card {
+        padding: 1.2rem;
+        gap: 1rem;
+    }
+    
+    .race-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .race-stats .stat {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.7rem;
+    }
+}
+
+/* Улучшенная информация о расе */
+.race-info {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.race-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.race-info p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.race-info p::before {
+    content: '📍';
+    position: absolute;
+    left: -0.5rem;
+    opacity: 0.7;
+}
+
+.race-stats {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.race-stats .stat {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    padding: 0.4rem 0.8rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(5px);
+}
+
+.race-stats .stat:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для засекреченных элементов */
+.ability-item.secret, 
+.bonus-item.secret,
+.race-description.secret {
+    position: relative;
+    background: linear-gradient(45deg, 
+        rgba(255, 215, 0, 0.1) 0%, 
+        rgba(255, 165, 0, 0.05) 100%) !important;
+    border-left: 3px solid #ffd700 !important;
+    color: #ffd700 !important;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.ability-item.secret::before,
+.bonus-item.secret::before,
+.race-description.secret::before {
+    content: '🔒';
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.race-description.secret::before {
+    left: -30px;
+    top: 20px;
+}
+
+/* Анимация мерцания для засекреченных элементов */
+@keyframes secretGlow {
+    0%, 100% { 
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        background: linear-gradient(45deg, 
+            rgba(255, 215, 0, 0.1) 0%, 
+            rgba(255, 165, 0, 0.05) 100%);
+    }
+    50% { 
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        background: linear-gradient(45deg, 
+            rgba(255, 215, 0, 0.15) 0%, 
+            rgba(255, 165, 0, 0.1) 100%);
+    }
+}
+
+.ability-item.secret, 
+.bonus-item.secret {
+    animation: secretGlow 2s ease-in-out infinite;
+}
+
+.race-description.secret {
+    animation: secretGlow 3s ease-in-out infinite;
+}
+
+/* Эффект при наведении на засекреченные элементы */
+.ability-item.secret:hover, 
+.bonus-item.secret:hover {
+    animation: secretGlow 0.5s ease-in-out infinite;
+    transform: translateX(5px) scale(1.02);
+}
+
+/* Стиль для неактивных кнопок засекреченных рас */
+.race-card .details-btn.disabled {
+    background: linear-gradient(45deg, #666, #888) !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+    position: relative;
+    overflow: hidden;
+}
+
+.race-card .details-btn.disabled::after {
+    content: '🔒';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+}
+
+/* Адаптивность для улучшенного дизайна */
+@media (max-width: 768px) {
+    .races-showcase {
+        padding: 1.5rem;
+        gap: 1.5rem;
+        border-radius: 20px;
+    }
+    
+    .race-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .race-card:hover {
+        transform: translateY(-5px) scale(1.02);
+    }
+    
+    .race-visual {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .race-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .race-stats {
+        justify-content: center;
+    }
+    
+    .race-stats .stat {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .races-showcase {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .race-card {
+        padding: 1.2rem;
+    }
+    
+    .race-info h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Особенности */
+.features-section {
+    margin: 6rem 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.feature-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    transition: left var(--transition-slow);
+}
+
+.feature-item:hover::before {
+    left: 100%;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    border-color: var(--mc-accent);
+    box-shadow: 0 20px 40px rgba(126, 87, 194, 0.3);
+}
+
+.feature-animation {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* .floating-block {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--mc-accent), #5e35b1);
+    border-radius: 10px;
+    animation: blockFloat 3s ease-in-out infinite;
+    position: relative;
+}
+
+.floating-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.3) 50%, transparent 52%);
+    border-radius: 10px;
+} */
+
+@keyframes blockFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.rotating-item {
+    font-size: 3rem;
+    animation: rotate3D 4s linear infinite;
+}
+
+@keyframes rotate3D {
+    0% { transform: rotateX(0) rotateY(0); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+.pulsing-core {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--text-accent) 0%, transparent 70%);
+    animation: corePulse 2s ease-in-out infinite;
+    filter: blur(1px);
+}
+
+@keyframes corePulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+.feature-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.feature-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Статистика онлайн */
+.online-stats {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 25px;
+    padding: 3rem;
+    margin: 4rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-container h3 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+}
+
+.online-chart {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.players-online {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.players-online h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-accent);
+}
+
+.online-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.online-player {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all var(--transition-fast);
+}
+
+.online-player:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.player-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mc-accent), #5e35b1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.player-name {
+    font-weight: lighter;
+}
+
+.player-race {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* Кнопка подробнее */
+.race-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.details-btn {
+    background: linear-gradient(45deg, var(--mc-accent), #5e35b1);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    color: white;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.details-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.details-btn:hover::before {
+    left: 100%;
+}
+
+.details-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(126, 87, 194, 0.4);
+}
+
+/* Модальное окно */
+.race-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+}
+
+.race-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(30, 30, 40, 0.95), rgba(20, 20, 30, 0.98));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform var(--transition-slow);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.race-modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+    background: rgba(255, 68, 68, 0.2);
+    color: #ff4444;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-race-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.modal-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.modal-subtitle {
+    color: var(--text-accent);
+    font-size: 1rem;
+}
+
+.modal-body {
+    margin-bottom: 2rem;
+}
+
+.race-description {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.race-abilities h4, .race-bonuses h4 {
+    color: var(--text-accent);
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.abilities-list, .bonuses-list {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.ability-item, .bonus-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.8rem;
+    border-radius: 10px;
+    border-left: 3px solid var(--mc-accent);
+    transition: all var(--transition-fast);
+}
+
+.ability-item:hover, .bonus-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+.select-race-btn {
+    background: linear-gradient(45deg, var(--mc-accent), #5e35b1);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    color: white;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    width: 100%;
+}
+
+.select-race-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(126, 87, 194, 0.4);
+}
+
+/* Цветовые темы для рас */
+.hell-race .details-btn {
+    background: linear-gradient(45deg, #ff4444, #cc0000);
+}
+
+.heaven-race .details-btn {
+    background: linear-gradient(45deg, #4fc3f7, #0288d1);
+}
+
+.earth-race .details-btn {
+    background: linear-gradient(45deg, #8bc34a, #689f38);
+}
+
+.hell-race .ability-item {
+    border-left-color: #ff4444;
+}
+
+.heaven-race .ability-item {
+    border-left-color: #4fc3f7;
+}
+
+.earth-race .ability-item {
+    border-left-color: #8bc34a;
+}
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        min-height: auto;
+        padding: 3rem 0;
+    }
+
+    .main-title {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .title-subtext {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .server-description {
+        font-size: 1.1rem;
+        text-align: center;
+        padding-left: 0;
+        border-left: none;
+        border-top: 3px solid var(--mc-accent);
+        padding-top: 1rem;
+    }
+
+    .server-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .action-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .races-showcase {
+        gap: 1rem;
+    }
+
+    .race-card {
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .race-visual {
+        width: 60px;
+        height: 60px;
+    }
+
+    .race-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .race-stats {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .feature-item {
+        padding: 2rem 1.5rem;
+    }
+
+    .feature-animation {
+        height: 80px;
+    }
+
+    .rotating-item {
+        font-size: 2.5rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .online-stats {
+        padding: 2rem;
+        margin: 3rem 0;
+    }
+
+    .stats-container h3 {
+        font-size: 1.7rem;
+    }
+}
+
+/* Мобильные устройства (576px - 768px) */
+@media (max-width: 768px) {
+    .hero-section {
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .title-word {
+        font-size: 2.2rem;
+    }
+
+    .fabric-label, .version-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .server-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .server-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1.2rem;
+        gap: 0.8rem;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .action-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .races-showcase {
+        gap: 0.8rem;
+    }
+
+    .race-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.2rem;
+    }
+
+    .race-visual {
+        width: 70px;
+        height: 70px;
+    }
+
+    .race-info h3 {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+
+    .race-info p {
+        margin-bottom: 0.8rem;
+    }
+
+    .race-stats {
+        justify-content: center;
+    }
+
+    .race-stats .stat {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .features-section {
+        margin: 4rem 0;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .feature-item {
+        padding: 1.5rem 1rem;
+    }
+
+    .feature-animation {
+        height: 70px;
+        margin-bottom: 1.5rem;
+    }
+
+    .rotating-item {
+        font-size: 2rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .feature-content p {
+        font-size: 0.9rem;
+    }
+
+    .online-stats {
+        padding: 1.5rem;
+        margin: 2rem 0;
+        border-radius: 20px;
+    }
+
+    .stats-container h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .online-chart,
+    .players-online {
+        padding: 1.5rem;
+    }
+
+    .players-online h4 {
+        font-size: 1.1rem;
+    }
+
+    .online-player {
+        padding: 0.6rem;
+        gap: 0.8rem;
+    }
+
+    .player-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .player-name {
+        font-size: 0.9rem;
+    }
+
+    .player-race {
+        font-size: 0.7rem;
+    }
+}
+
+/* Маленькие мобильные устройства (до 576px) */
+@media (max-width: 576px) {
+    .hero-section {
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+    }
+
+    .main-title {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .title-word {
+        font-size: 1.8rem;
+    }
+
+    .title-subtext {
+        margin-bottom: 1.5rem;
+    }
+
+    .fabric-label, .version-badge {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .server-description {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+
+    .server-stats {
+        gap: 0.8rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+        gap: 0.6rem;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .stat-number {
+        font-size: 1.7rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .action-buttons {
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .races-showcase {
+        gap: 0.6rem;
+    }
+
+    .race-card {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+
+    .race-visual {
+        width: 60px;
+        height: 60px;
+    }
+
+    .race-icon {
+        font-size: 2rem;
+    }
+
+    .race-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .race-info p {
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .race-stats .stat {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .features-section {
+        margin: 3rem 0;
+    }
+
+    .features-grid {
+        gap: 1rem;
+    }
+
+    .feature-item {
+        padding: 1.2rem 0.8rem;
+        border-radius: 15px;
+    }
+
+    .feature-animation {
+        height: 60px;
+        margin-bottom: 1.2rem;
+    }
+
+    .rotating-item {
+        font-size: 1.8rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .feature-content p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .online-stats {
+        padding: 1.2rem;
+        margin: 1.5rem 0;
+        border-radius: 15px;
+    }
+
+    .stats-container h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .online-chart,
+    .players-online {
+        padding: 1.2rem;
+        border-radius: 12px;
+    }
+
+    .players-online h4 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .online-list {
+        gap: 0.6rem;
+    }
+
+    .online-player {
+        padding: 0.5rem;
+        gap: 0.6rem;
+    }
+
+    .player-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .player-name {
+        font-size: 0.85rem;
+    }
+
+    .player-race {
+        font-size: 0.65rem;
+    }
+}
+
+/* Очень маленькие устройства (до 400px) */
+@media (max-width: 400px) {
+    .main-title {
+        font-size: 1.7rem;
+    }
+
+    .title-word {
+        font-size: 1.5rem;
+    }
+
+    .title-subtext {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .server-description {
+        font-size: 0.85rem;
+    }
+
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .race-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-item {
+        padding: 1rem 0.6rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1rem;
+    }
+
+    .feature-content p {
+        font-size: 0.8rem;
+    }
+
+    .online-stats {
+        padding: 1rem;
+    }
+
+    .stats-container h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Адаптация изображений для всех размеров */
+@media (max-width: 768px) {
+    .resized-image {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .nav-image-index {
+        width: 25px !important;
+        height: 25px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .resized-image {
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    .nav-image-index {
+        width: 22px !important;
+        height: 22px !important;
+    }
+}
+
+/* Отключение сложных анимаций на мобильных для производительности */
+@media (max-width: 768px) {
+    .race-card:hover {
+        transform: none;
+    }
+
+    .race-card:hover .race-glow {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    .race-card:hover .race-icon {
+        transform: none;
+    }
+
+    .feature-item:hover {
+        transform: none;
+    }
+
+    .stat-card:hover {
+        transform: none;
+    }
+
+    .online-player:hover {
+        transform: none;
+    }
+}
+
+/* Портретная ориентация */
+@media (max-width: 768px) and (orientation: portrait) {
+    .hero-section {
+        min-height: 70vh;
+    }
+}
+
+/* Ландшафтная ориентация для мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 100vh;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .races-showcase {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .race-card {
+        flex: 0 0 calc(50% - 1rem);
+        min-width: 200px;
+    }
+}
+
+/* Высокопиксельные дисплеи */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2), 
+       (max-width: 768px) and (min-resolution: 192dpi) {
+    .race-icon,
+    .rotating-item {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}

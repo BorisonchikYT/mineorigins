@@ -1,0 +1,2420 @@
+/* Страница игроков */
+.players-section {
+    padding: 2rem 0;
+}
+
+/* Обзор статистики игроков */
+.players-stats-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.players-stat {
+    position: relative;
+}
+
+.stat-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left var(--transition-slow);
+}
+
+.stat-badge:hover::before {
+    left: 100%;
+}
+
+.stat-badge.hell {
+    border-color: var(--hell-color);
+}
+
+.stat-badge.heaven {
+    border-color: var(--heaven-color);
+}
+
+.stat-badge.earth {
+    border-color: var(--earth-color);
+}
+
+.stat-badge.timer {
+    border-color: var(--timer-color);
+}
+
+.stat-badge.ii {
+    border-color: var(--ii-color);
+}
+
+.stat-badge.glhell {
+    border-color: var(--hell-color);
+}
+
+.stat-badge.glheaven {
+    border-color: var(--heaven-color);
+}
+
+.stat-badge.glearth {
+    border-color: var(--earth-color);
+}
+
+.stat-badge.total {
+    border-color: var(--mc-accent);
+}
+
+.stat-badge:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.stat-badge.hell .stat-number {
+    background: linear-gradient(45deg, var(--hell-color), var(--hell-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.heaven .stat-number {
+    background: linear-gradient(45deg, var(--heaven-color), var(--heaven-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.earth .stat-number {
+    background: linear-gradient(45deg, var(--earth-color), var(--earth-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.timer .stat-number {
+    background: linear-gradient(45deg, var(--timer-color), var(--timer-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.ii .stat-number {
+    background: linear-gradient(45deg, var(--ii-color), var(--ii-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.glhell .stat-number {
+    background: linear-gradient(45deg, var(--hell-color), var(--hell-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.glheaven .stat-number {
+    background: linear-gradient(45deg, var(--heaven-color), var(--heaven-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.glearth .stat-number {
+    background: linear-gradient(45deg, var(--earth-color), var(--earth-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.total .stat-number {
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+.stat-number2 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.stat-badge.hell .stat-number2 {
+    background: linear-gradient(45deg, var(--hell-color), var(--hell-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.heaven .stat-number2 {
+    background: linear-gradient(45deg, var(--heaven-color), var(--heaven-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.earth .stat-number2 {
+    background: linear-gradient(45deg, var(--earth-color), var(--earth-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.timer .stat-number2 {
+    background: linear-gradient(45deg, var(--timer-color), var(--timer-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.ii .stat-number2 {
+    background: linear-gradient(45deg, var(--ii-color), var(--ii-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.glhell .stat-number2 {
+    background: linear-gradient(45deg, var(--hell-color), var(--hell-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.glheaven .stat-number2 {
+    background: linear-gradient(45deg, var(--heaven-color), var(--heaven-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.glearth .stat-number2 {
+    background: linear-gradient(45deg, var(--earth-color), var(--earth-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stat-badge.total .stat-number2 {
+    background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Фильтры игроков */
+.players-filter {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+    .filter-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left var(--transition-slow);
+    }
+    
+    .filter-btn:hover::before {
+        left: 100%;
+    }
+    
+    .filter-btn.active {
+        background: rgba(126, 87, 194, 0.2);
+        border-color: var(--mc-accent);
+        color: var(--text-primary);
+        box-shadow: 0 0 20px rgba(126, 87, 194, 0.3);
+    }
+    
+    .filter-btn:hover {
+        transform: translateY(-2px);
+        border-color: var(--mc-accent);
+    }
+    
+    .filter-icon {
+        font-size: 1.2rem;
+    }
+    
+    /* Поиск игроков */
+    .players-search {
+        width: 100%;
+        max-width: 400px;
+        padding: 1rem 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 1rem;
+        transition: all var(--transition-fast);
+        margin-bottom: 2rem;
+    }
+    
+    .players-search:focus {
+        outline: none;
+        border-color: var(--mc-accent);
+        box-shadow: 0 0 20px rgba(126, 87, 194, 0.3);
+    }
+    
+    .players-search::placeholder {
+        color: var(--text-secondary);
+    }
+    
+    /* Сетка игроков */
+    .players-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .player-card {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.5s ease;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .player-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .player-card.hell-race:hover {
+        border-color: var(--hell-color);
+        box-shadow: 0 15px 40px rgba(255, 68, 68, 0.3);
+    }
+    
+    .player-card.heaven-race:hover {
+        border-color: var(--heaven-color);
+        box-shadow: 0 15px 40px rgba(79, 195, 247, 0.3);
+    }
+    
+    .player-card.earth-race:hover {
+        border-color: var(--earth-color);
+        box-shadow: 0 15px 40px rgba(139, 195, 74, 0.3);
+    }
+    
+    .player-card.timer-race:hover {
+        border-color: var(--timer-color);
+        box-shadow: 0 15px 40px rgba(151, 74, 195, 0.3);
+    }
+    
+    .player-card.ii-race:hover {
+        border-color: var(--ii-color);
+        box-shadow: 0 15px 40px rgba(195, 74, 114, 0.3);
+    }
+
+    .player-card.glhell-race:hover {
+        border-color: var(--hell-color);
+        box-shadow: 0 15px 40px rgba(105, 0, 0, 0.3);
+    }
+    
+    .player-card.glheaven-race:hover {
+        border-color: var(--heaven-color);
+        box-shadow: 0 15px 40px rgba(0, 53, 78, 0.3);
+    }
+    
+    .player-card.glearth-race:hover {
+        border-color: var(--earth-color);
+        box-shadow: 0 15px 40px rgba(43, 80, 0, 0.3);
+    }
+
+    /* Заголовок карточки игрока */
+    .player-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .player-avatar {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        border: 3px solid;
+    }
+    
+    .player-avatar.hell {
+        background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
+        border-color: var(--hell-glow);
+    }
+    
+    .player-avatar.heaven {
+        background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
+        border-color: var(--heaven-glow);
+    }
+    
+    .player-avatar.earth {
+        background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+        border-color: var(--earth-glow);
+    }
+
+    .player-avatar.glhell {
+        background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
+        border-color: var(--hell-glow);
+    }
+    
+    .player-avatar.glheaven {
+        background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
+        border-color: var(--heaven-glow);
+    }
+    
+    .player-avatar.glearth {
+        background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+        border-color: var(--earth-glow);
+    }
+    
+    .level-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: var(--text-accent);
+        color: var(--mc-dark);
+        font-size: 0.7rem;
+        font-weight: bold;
+        padding: 0.3rem 0.6rem;
+        border-radius: 10px;
+        border: 2px solid var(--mc-dark);
+    }
+    
+    .player-main-info {
+        flex: 1;
+    }
+    
+    .player-name {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .player-race-badge {
+        display: inline-block;
+        padding: 0.4rem 1rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .race-hell {
+        background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
+        color: white;
+    }
+    
+    .race-heaven {
+        background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
+        color: white;
+    }
+    
+    .race-earth {
+        background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+        color: white;
+    }
+
+    .race-timer {
+        background: linear-gradient(135deg, var(--timer-dark), var(--timer-color));
+        color: white;
+    }
+
+    .race-ii {
+        background: linear-gradient(135deg, var(--ii-dark), var(--ii-color));
+        color: white;
+    }
+
+    .race-glhell {
+        background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
+        color: white;
+    }
+    
+    .race-glheaven {
+        background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
+        color: white;
+    }
+    
+    .race-glearth {
+        background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+        color: white;
+    }
+
+    /* Описание игрока */
+    .player-description {
+        margin-bottom: 1.5rem;
+        flex: 1;
+    }
+    
+    .player-description p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+    
+    /* Контакты игрока */
+    .player-contacts {
+        display: flex;
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .contact-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        transition: all var(--transition-fast);
+        border: 1px solid transparent;
+    }
+    
+    .contact-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        border-color: var(--mc-accent);
+    }
+    
+    .contact-link.discord:hover {
+        border-color: #5865F2;
+    }
+    
+    .contact-link.telegram:hover {
+        border-color: #0088cc;
+    }
+    
+    .contact-link.tiktok:hover {
+        border-color: #ff0050;
+    }
+    
+    /* Футер карточки */
+    .player-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .join-date {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+    }
+    
+    .profile-btn {
+        padding: 0.6rem 1.2rem;
+        background: rgba(126, 87, 194, 0.2);
+        border: 1px solid var(--mc-accent);
+        border-radius: 8px;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .profile-btn:hover {
+        background: var(--mc-accent);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(126, 87, 194, 0.3);
+    }
+    
+    /* Модальное окно профиля */
+    .player-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .player-modal.active {
+        opacity: 1;
+    }
+    
+    .player-modal .modal-content {
+        background: var(--mc-dark);
+        border: 2px solid;
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        transform: scale(0.8);
+        transition: transform 0.3s ease;
+    }
+    
+    .player-modal.active .modal-content {
+        transform: scale(1);
+    }
+    
+    .hell-theme {
+        border-color: var(--hell-color);
+        background: linear-gradient(135deg, var(--mc-dark), #ff8585);
+    }
+    
+    .heaven-theme {
+        border-color: var(--heaven-color);
+        background: linear-gradient(135deg, var(--mc-dark), #74baff);
+    }
+    
+    .earth-theme {
+        border-color: var(--earth-color);
+        background: linear-gradient(135deg, var(--mc-dark), #7dff7d);
+    }
+    
+    .timer-theme {
+        border-color: var(--timer-color);
+        background: linear-gradient(135deg, var(--mc-dark), #da7dff);
+    }
+    
+    .ii-theme {
+        border-color: var(--ii-color);
+        background: linear-gradient(135deg, var(--mc-dark), #ff7db3);
+    }
+
+    .glhell-theme {
+        border-color: var(--hell-color);
+        background: linear-gradient(135deg, var(--mc-dark), #4b0000);
+    }
+    
+    .glheaven-theme {
+        border-color: var(--heaven-color);
+        background: linear-gradient(135deg, var(--mc-dark), #001d3a);
+    }
+    
+    .glearth-theme {
+        border-color: var(--earth-color);
+        background: linear-gradient(135deg, var(--mc-dark), #004100);
+    }
+
+    .modal-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+    }
+    
+
+
+
+
+
+
+
+
+    
+
+/* Всплывающее уведомление статуса */
+.status-update-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, 
+        rgba(30, 30, 40, 0.95), 
+        rgba(20, 20, 30, 0.98));
+    border: 1px solid rgba(126, 87, 194, 0.3);
+    border-radius: 20px;
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100000000;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateX(400px) scale(0.9);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+}
+
+.status-update-content.show {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+}
+
+.status-update-content.hide {
+    transform: translateX(400px) scale(0.9);
+    opacity: 0;
+}
+
+.status-update-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(126, 87, 194, 0.2), 
+        transparent);
+    transition: left 0.8s ease;
+}
+
+.status-update-content:hover::before {
+    left: 100%;
+}
+
+.status-update-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: radial-gradient(
+        circle at 80% 20%,
+        rgba(126, 87, 194, 0.3) 0%,
+        transparent 50%
+    );
+    filter: blur(20px);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+.status-update-icon {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, 
+        rgba(126, 87, 194, 0.3), 
+        rgba(94, 53, 177, 0.2));
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: spin 3s linear infinite;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+.status-update-text {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.status-update-text strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #a8b9ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.status-update-text span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.status-update-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.3rem;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+}
+
+.status-update-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Прогресс бар для авто-закрытия */
+.status-update-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--mc-accent), #5e35b1);
+    border-radius: 0 2px 2px 0;
+    transition: width 5s linear;
+}
+
+.status-update-content.show .progress-fill {
+    width: 100%;
+}
+
+/* Анимации для уведомления */
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .status-update-content {
+        bottom: 20px;
+        right: 20px;
+        max-width: 320px;
+        padding: 1.2rem;
+        border-radius: 18px;
+    }
+    
+    .status-update-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        border-radius: 12px;
+    }
+    
+    .status-update-text strong {
+        font-size: 1rem;
+    }
+    
+    .status-update-text span {
+        font-size: 0.9rem;
+    }
+    
+    .status-update-close {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+    
+    .status-update-progress {
+        height: 2px;
+    }
+}
+
+@media (max-width: 576px) {
+    .status-update-content {
+        bottom: 15px;
+        right: 15px;
+        max-width: 280px;
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    .status-update-content {
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .status-update-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .status-update-text strong {
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .status-update-text span {
+        font-size: 0.85rem;
+    }
+    
+    .status-update-close {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .status-update-content {
+        bottom: 10px;
+        right: 10px;
+        max-width: 250px;
+        padding: 0.8rem;
+    }
+    
+    .status-update-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+    
+    .status-update-text strong {
+        font-size: 0.9rem;
+    }
+    
+    .status-update-text span {
+        font-size: 0.8rem;
+    }
+}
+
+/* Ландшафтная ориентация для мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+    .status-update-content {
+        bottom: 10px;
+        right: 10px;
+        max-width: 300px;
+    }
+}
+
+/* Поддержка reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .status-update-content {
+        transition: opacity 0.3s ease;
+    }
+    
+    .status-update-icon {
+        animation: none;
+    }
+    
+    .progress-fill {
+        transition: none;
+    }
+    
+    .status-update-close:hover {
+        transform: none;
+    }
+}
+
+/* Темная тема поддержка */
+@media (prefers-color-scheme: dark) {
+    .status-update-content {
+        background: linear-gradient(135deg, 
+            rgba(20, 20, 30, 0.95), 
+            rgba(10, 10, 20, 0.98));
+    }
+}
+
+/* Улучшенная поддержка тач-устройств */
+@media (max-width: 768px) {
+    .status-update-close {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .player-avatar-large {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        border: 4px solid;
+    }
+    
+    .player-avatar-large.hell {
+        background: linear-gradient(135deg, var(--hell-dark), var(--hell-color));
+        border-color: var(--hell-glow);
+    }
+    
+    .player-avatar-large.heaven {
+        background: linear-gradient(135deg, var(--heaven-dark), var(--heaven-color));
+        border-color: var(--heaven-glow);
+    }
+    
+    .player-avatar-large.earth {
+        background: linear-gradient(135deg, var(--earth-dark), var(--earth-color));
+        border-color: var(--earth-glow);
+    }
+    
+    .player-avatar-large.timer {
+        background: linear-gradient(135deg, var(--timer-dark), var(--timer-color));
+        border-color: var(--timer-glow);
+    }
+    
+    .player-avatar-large.ii {
+        background: linear-gradient(135deg, var(--ii-dark), var(--ii-color));
+        border-color: var(--ii-glow);
+    }
+    
+    .player-info {
+        flex: 1;
+    }
+    
+    .player-info h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(45deg, var(--text-primary), var(--text-accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .player-level {
+        font-size: 1rem;
+        color: var(--text-accent);
+        font-weight: bold;
+    }
+    
+    .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 2rem;
+        cursor: pointer;
+        transition: color var(--transition-fast);
+    }
+    
+    .modal-close:hover {
+        color: var(--text-primary);
+    }
+    
+    .modal-body {
+        padding: 2rem;
+    }
+    
+    .player-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .stat-item {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+    
+    .stat-label {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .stat-value {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--text-primary);
+    }
+    
+    .contacts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+    
+    .contact-icon {
+        font-size: 1.2rem;
+    }
+
+/* Элементы управления */
+.players-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.players-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+    align-self: center;
+}
+
+.players-search:focus {
+    outline: none;
+    border-color: var(--mc-accent);
+    box-shadow: 0 0 20px rgba(126, 87, 194, 0.3);
+}
+
+.players-search::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Индикатор загрузки */
+.loading-spinner {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--mc-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Быстрая статистика игрока */
+.player-quick-stats {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.quick-stat {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Детальная статистика в модальном окне */
+.player-stats-detailed {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+/* Детальное описание */
+.player-description-detailed {
+    margin-bottom: 2rem;
+}
+
+.player-description-detailed h4 {
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.player-description-detailed p {
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* Детальные контакты */
+.contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all var(--transition-fast);
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    font-size: 1.2rem;
+    width: 30px;
+    text-align: center;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info strong {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    color: var(--text-primary);
+}
+
+.contact-info span {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.copy-contact, .contact-link-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: all var(--transition-fast);
+}
+
+.copy-contact:hover, .contact-link-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+/* Анимации появления карточек */
+.player-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+}
+
+.player-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.no-players-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 2px solid var(--mc-accent);
+}
+
+.no-players-message h3 {
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.no-players-message p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Премиальное уведомление о копировании */
+.copy-notification.premium {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, rgba(30, 30, 40, 0.95), rgba(20, 20, 30, 0.98));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    z-index: 10001;
+    transform: translateX(400px) scale(0.9);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    max-width: 380px;
+    width: 90%;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.copy-notification.premium.show {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+}
+
+.copy-notification.premium.hide {
+    transform: translateX(400px) scale(0.9);
+    opacity: 0;
+}
+
+.notification-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    filter: blur(40px);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.copy-notification-content {
+    position: relative;
+    z-index: 2;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 25px 25px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.notification-badge {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.notification-pulse {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 20px;
+    background: inherit;
+    opacity: 0.6;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.05); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 0.6; }
+}
+
+.notification-title {
+    flex: 1;
+}
+
+.platform-name {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 4px;
+    background: linear-gradient(45deg, #fff, #a8b9ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.notification-status {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+}
+
+.notification-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: rotate(90deg);
+}
+
+.notification-body {
+    padding: 20px 25px;
+}
+
+.copied-content {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+.content-label {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.content-text {
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.95rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    word-break: break-all;
+}
+
+.copied-content.selectable .content-text {
+    cursor: text;
+    user-select: text;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.copied-content.selectable .content-text:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.notification-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border-left: 3px solid var(--mc-accent);
+}
+
+.hint-icon {
+    font-size: 1rem;
+}
+
+.hint-text {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+.notification-progress {
+    padding: 0 25px 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 5s linear;
+}
+
+/* ===== АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ - СТРАНИЦА ИГРОКОВ ===== */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .players-section {
+        padding: 1.5rem;
+    }
+    
+    .players-stats-overview {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+        margin: 2rem 0;
+    }
+    
+    .stat-badge {
+        padding: 1.2rem;
+        gap: 0.8rem;
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .players-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .player-header {
+        gap: 1rem;
+    }
+    
+    .player-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+    
+    .player-name {
+        font-size: 1.3rem;
+    }
+    
+    .players-filter {
+        gap: 0.8rem;
+        margin: 1.5rem 0;
+    }
+    
+    .filter-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .players-search {
+        max-width: 350px;
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .player-contacts {
+        gap: 0.6rem;
+    }
+    
+    .contact-link {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Модальные окна */
+    .player-modal .modal-content {
+        max-width: 450px;
+    }
+    
+    .modal-header {
+        padding: 1.5rem;
+        gap: 1.2rem;
+    }
+    
+    .player-avatar-large {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+    
+    .player-info h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-body {
+        padding: 1.5rem;
+    }
+    
+    .player-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
+    .stat-item {
+        padding: 0.8rem;
+    }
+    
+    .stat-value {
+        font-size: 1.3rem;
+    }
+    
+    .player-stats-detailed {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Мобильные устройства (576px - 768px) */
+@media (max-width: 768px) {
+    .players-section {
+        padding: 1rem;
+    }
+    
+    .players-stats-overview {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .stat-badge {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+    
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .players-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        margin-top: 1.5rem;
+    }
+    
+    .player-card {
+        border-radius: 15px;
+    }
+    
+    .player-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .player-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+    
+    .player-main-info {
+        text-align: center;
+    }
+    
+    .player-name {
+        font-size: 1.4rem;
+    }
+    
+    .player-race-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.8rem;
+    }
+    
+    .player-description p {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    
+    .player-contacts {
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .contact-link {
+        flex: 1;
+        min-width: 120px;
+        justify-content: center;
+        font-size: 0.8rem;
+    }
+    
+    .player-footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .profile-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Фильтры */
+    .players-filter {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+    
+    .filter-btn {
+        justify-content: center;
+    }
+    
+    .players-search {
+        max-width: none;
+        margin-bottom: 1rem;
+    }
+    
+    /* Модальные окна */
+    .player-modal .modal-content {
+        width: 95%;
+        margin: 1rem;
+        max-height: 85vh;
+    }
+    
+    .modal-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.2rem;
+    }
+    
+    .player-avatar-large {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+    
+    .player-info h2 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-close {
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 1.5rem;
+    }
+    
+    .modal-body {
+        padding: 1.2rem;
+    }
+    
+    .player-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .stat-item {
+        padding: 0.6rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+    }
+    
+    .stat-value {
+        font-size: 1.1rem;
+    }
+    
+    .contacts-list {
+        gap: 0.6rem;
+    }
+    
+    .contact-item {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+    
+    .contact-icon {
+        font-size: 1rem;
+        width: 25px;
+    }
+    
+    .contact-info strong {
+        font-size: 0.85rem;
+    }
+    
+    .contact-info span {
+        font-size: 0.75rem;
+    }
+    
+    /* Уведомления */
+    .copy-notification.premium {
+        max-width: 320px;
+        right: 20px;
+        bottom: 20px;
+    }
+    
+    .notification-header {
+        padding: 20px 20px 15px;
+        gap: 12px;
+    }
+    
+    .notification-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .platform-name {
+        font-size: 1.1rem;
+    }
+    
+    .notification-body {
+        padding: 15px 20px;
+    }
+    
+    .copied-content {
+        padding: 15px;
+    }
+    
+    .content-text {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+    
+    /* Отключаем сложные анимации для производительности */
+    .stat-badge::before,
+    .filter-btn::before {
+        display: none;
+    }
+    
+    .stat-badge:hover,
+    .filter-btn:hover {
+        transform: none;
+    }
+}
+
+/* Маленькие мобильные устройства (до 576px) */
+@media (max-width: 576px) {
+    .players-section {
+        padding: 0.8rem;
+    }
+    
+    .players-stats-overview {
+        gap: 0.8rem;
+        margin: 1rem 0;
+    }
+    
+    .stat-badge {
+        padding: 0.8rem;
+        gap: 0.6rem;
+        border-radius: 12px;
+    }
+    
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+    }
+    
+    .stat-number {
+        font-size: 1.4rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+    }
+    
+    .players-grid {
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .player-header {
+        gap: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .player-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+    
+    .level-badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    .player-name {
+        font-size: 1.2rem;
+    }
+    
+    .player-race-badge {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.6rem;
+    }
+    
+    .player-description p {
+        font-size: 0.85rem;
+    }
+    
+    .player-contacts {
+        gap: 0.4rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .contact-link {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+        min-width: 100px;
+    }
+    
+    .player-footer {
+        padding-top: 1rem;
+    }
+    
+    .join-date {
+        font-size: 0.75rem;
+    }
+    
+    .profile-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Фильтры */
+    .players-filter {
+        gap: 0.6rem;
+        margin: 1rem 0;
+    }
+    
+    .filter-btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .filter-icon {
+        font-size: 1rem;
+    }
+    
+    .players-search {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    /* Модальные окна */
+    .player-modal .modal-content {
+        border-radius: 15px;
+    }
+    
+    .modal-header {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+    
+    .player-avatar-large {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        border-width: 3px;
+    }
+    
+    .player-info h2 {
+        font-size: 1.2rem;
+    }
+    
+    .player-level {
+        font-size: 0.9rem;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .player-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .stat-item {
+        padding: 0.5rem;
+        border-radius: 8px;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .stat-value {
+        font-size: 1rem;
+    }
+    
+    .player-stats-detailed {
+        gap: 0.8rem;
+    }
+    
+    .player-description-detailed h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .player-description-detailed p {
+        font-size: 0.85rem;
+    }
+    
+    .contacts-list {
+        gap: 0.5rem;
+    }
+    
+    .contact-item {
+        padding: 0.6rem;
+        gap: 0.6rem;
+        border-radius: 8px;
+    }
+    
+    .contact-icon {
+        font-size: 0.9rem;
+        width: 20px;
+    }
+    
+    .contact-info strong {
+        font-size: 0.8rem;
+    }
+    
+    .contact-info span {
+        font-size: 0.7rem;
+    }
+    
+    .copy-contact, 
+    .contact-link-btn {
+        font-size: 1rem;
+        padding: 0.3rem;
+    }
+    
+    /* Уведомления */
+    .copy-notification.premium {
+        max-width: 280px;
+        right: 10px;
+        bottom: 10px;
+        border-radius: 15px;
+    }
+    
+    .notification-header {
+        padding: 15px 15px 12px;
+        gap: 10px;
+    }
+    
+    .notification-badge {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+    
+    .platform-name {
+        font-size: 1rem;
+    }
+    
+    .notification-status {
+        font-size: 0.8rem;
+    }
+    
+    .notification-close {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .notification-body {
+        padding: 12px 15px;
+    }
+    
+    .copied-content {
+        padding: 12px;
+        border-radius: 10px;
+    }
+    
+    .content-label {
+        font-size: 0.75rem;
+        margin-bottom: 8px;
+    }
+    
+    .content-text {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+        border-radius: 8px;
+    }
+    
+    .notification-hint {
+        padding: 10px 12px;
+        border-radius: 8px;
+    }
+    
+    .hint-text {
+        font-size: 0.75rem;
+    }
+    
+    .notification-progress {
+        padding: 0 15px 15px;
+    }
+    
+    /* Сообщение об отсутствии игроков */
+    .no-players-message {
+        padding: 2rem;
+        border-radius: 12px;
+    }
+    
+    .no-players-message h3 {
+        font-size: 1.2rem;
+    }
+    
+    .no-players-message p {
+        font-size: 0.9rem;
+    }
+    
+    /* Быстрая статистика */
+    .player-quick-stats {
+        gap: 0.5rem;
+        margin-top: 0.6rem;
+        justify-content: center;
+    }
+    
+    .quick-stat {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* Очень маленькие устройства (до 400px) */
+@media (max-width: 400px) {
+    .players-section {
+        padding: 0.5rem;
+    }
+    
+    .stat-badge {
+        padding: 0.7rem 0.5rem;
+    }
+    
+    .stat-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 1.2rem;
+    }
+    
+    .player-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .player-name {
+        font-size: 1.1rem;
+    }
+    
+    .contact-link {
+        min-width: 90px;
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .players-search {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .copy-notification.premium {
+        max-width: 250px;
+    }
+}
+
+/* Ландшафтная ориентация для мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+    .players-stats-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .players-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .player-modal .modal-content {
+        max-height: 70vh;
+    }
+    
+    .modal-header {
+        flex-direction: row;
+        text-align: left;
+    }
+}
+
+/* Оптимизация для слабых устройств */
+@media (prefers-reduced-motion: reduce) {
+    .player-card,
+    .stat-badge,
+    .filter-btn,
+    .contact-link,
+    .contact-item,
+    .copy-notification.premium {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .stat-badge::before,
+    .filter-btn::before {
+        display: none;
+    }
+}
+
+/* Высокопиксельные дисплеи */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+    .player-card,
+    .stat-badge {
+        border-width: 0.5px;
+    }
+}
+
+/* Темный режим по умолчанию для мобильных */
+@media (max-width: 768px) {
+    .players-section {
+        background: var(--mc-darker);
+    }
+}
+
+/* Предотвращение масштабирования на iOS */
+@media (max-width: 768px) {
+    .players-search,
+    .filter-btn {
+        font-size: 16px;
+    }
+}
+
+/* Улучшенная поддержка тач-устройств */
+@media (max-width: 768px) {
+    .player-avatar,
+    .contact-link,
+    .profile-btn,
+    .filter-btn,
+    .copy-contact,
+    .contact-link-btn {
+        min-height: 44px;
+    }
+    
+    .stat-badge,
+    .player-card {
+        cursor: default;
+    }
+    
+    .player-card:hover {
+        transform: none;
+    }
+}
+
+/* Оптимизация скроллбара для мобильных */
+@media (max-width: 768px) {
+    .player-modal .modal-content {
+        scrollbar-width: thin;
+    }
+    
+    .player-modal .modal-content::-webkit-scrollbar {
+        width: 4px;
+    }
+}
+
+/* Адаптация индикатора загрузки */
+@media (max-width: 768px) {
+    .loading-spinner {
+        padding: 2rem;
+    }
+    
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border-width: 3px;
+    }
+}
+
+/* Адаптация уведомлений для очень маленьких экранов */
+@media (max-width: 320px) {
+    .copy-notification.premium {
+        max-width: 230px;
+        right: 5px;
+        bottom: 5px;
+    }
+    
+    .notification-header {
+        padding: 12px 12px 10px;
+    }
+    
+    .notification-body {
+        padding: 10px 12px;
+    }
+    
+    .copied-content {
+        padding: 10px;
+    }
+}
